@@ -1,0 +1,117 @@
+<div class="c-card mb-4">
+    <div class="c-card-body">
+        <div class="c-header justify-content-center">
+            <div class="c-title text-20">Attachments</div>
+
+            <div class="c-actions action-button-mobile">
+                <button 
+                    type="button" 
+                    class="btn btn-rounded btn-secondary action-button"
+                    (click)="handleModal(addAttachmentPopup)"    
+                 >
+                    <i class="i-Plus"></i>
+                    <span>Add attachment</span>
+                </button>
+            </div>
+        </div>
+
+        <ng-container *ngIf="dataAttachments.length; else notData">
+            <div class="c-list c-list-row">
+                <div *ngFor="let item of dataAttachments" class="file-item">
+                    <div class="file-item-icon">
+                        <img src="assets/images/file-extensions/{{item.fileExtension}}.svg" width="52" height="64" alt="">
+                    </div>
+    
+                    <div class="file-item-body">
+                        <div class="file-item-top">
+                            <div class="title text-16 font-weight-600 lh-sm text-primary-black" title="{{item.fileName}}">{{item.fileName}}</div>
+                            <div class="actions lg-down-hidden">
+                                <button type="button" class="btn btn-rounded btn-secondary">
+                                    <i class="i-Pen-5 me-0"></i>
+                                </button>
+    
+                                <button type="button" class="btn btn-rounded btn-secondary">
+                                    <i class="i-Download me-0"></i>
+                                </button>
+    
+                                <button type="button" class="btn btn-rounded btn-secondary btn-icon-danger">
+                                    <i class="i-Close-Window me-0"></i>
+                                </button>
+                            </div>
+    
+                            <div ngbDropdown class="dropdown-more lg-up-hidden">
+                                <button ngbDropdownToggle class="btn btn-rounded btn-secondary">
+                                    <i class="more-vertical me-0">
+                                        <span></span>
+                                    </i>
+                                </button>
+    
+                                <div ngbDropdownMenu>
+                                    <button class="dropdown-item">Edit</button>
+                                    <button class="dropdown-item">Download</button>
+                                    <button class="dropdown-item">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-12 lh-sm mb-0">
+                            {{item.description}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-template #notData>
+            <app-not-data [text]="'Add attachment'"></app-not-data>
+        </ng-template>
+    </div>
+</div>
+
+<ng-template #addAttachmentPopup let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Add attachment</h4>
+        <button style="opacity: 0; pointer-events: none;" ngbAutoFocus></button>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label>Description</label>
+                <input type="text" class="form-control" id="commercialName" name="commercialName" placeholder="Enter description">
+            </div>
+
+            <div class="file-dropped-wrapper">
+                <div class="file-drop">
+                    <input type="file" id="fileDropRef" hidden />
+                    
+                    <label for="fileDropRef" class="file-drop-label">
+                        <i class="i-Upload"></i>
+                        <span>Click to browse or drag and drop your file</span>
+                    </label>
+                </div>
+
+                <div class="file-upload-list">
+                    <div class="file-upload-item">
+                        <div class="file-item-icon">
+                            <img src="assets/images/file-extensions/ppt.svg" width="40" height="48" alt="File name.pdf">
+                        </div>
+        
+                        <div class="file-item-body">
+                            <div class="title text-16 font-weight-600 lh-sm text-primary-black" title="File name.pdf">File name.pdf</div>
+                            <div class="actions">
+                                <button type="button" class="btn btn-rounded btn-secondary btn-icon-danger">
+                                    <i class="i-Close-Window me-0"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-rounded" (click)="modal.close('Close click')" tabindex="-1">Cancel</button>
+        <button type="button" class="btn btn-primary btn-rounded" (click)="modal.close('Close click')" tabindex="-1">Save</button>
+    </div>
+</ng-template>

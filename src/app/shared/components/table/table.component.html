@@ -1,0 +1,59 @@
+<div class="table-wrap">
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th *ngFor="let header of Headers" style="width: auto;">{{ header.name | translate }}</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor="let data of dataSource">
+                <ng-container *ngFor="let header of Headers">
+
+                    <td  *ngIf="header.field  !== 'status' && header.field  !== 'mobileNumber'  && header.field  !== 'userType' && header.field  !== 'isActive' && header.field  !== 'value' && header.field  !== 'orderId' && header.field !== 'id' && header.field !== 'paymentType' && header.field !== 'orderStatus' && header.field !== 'invoiceStatus'">
+                        <!-- Check if the text exceeds the character limit -->
+                        <span *ngIf="data[header.field]?.length > 40">{{ data[header.field] | slice: 0:40 }}...</span>
+                        <!-- If it doesn't exceed the character limit, display the full text -->
+                        <span *ngIf="data[header.field]?.length <= 40">{{ data[header.field] }}</span>
+                    </td>
+                    <td *ngIf="header.field === 'value'">{{ data[header.field] | number:'1.2-2' }}</td>
+                    <td *ngIf="header.field === 'orderId'">{{ data[header.field] | number }}</td>
+                    <td *ngIf="(header.field | translate) === 'status'">{{ getStatusText(data[header.field]) }}</td>
+                    <td *ngIf="(header.field | translate) === 'isActive'" class="status c-badge "
+                        [ngClass]="{'active':data[header.field]}">
+                        {{ getActiveText(data[header.field]) }}
+                    </td>
+                    <td *ngIf="(header.field | translate)=== 'id'">{{ data[header.field] }}</td>
+                    <td *ngIf="header.field === 'paymentType'">{{ getPaymentTypeText(data[header.field]) }}</td>
+                    <td *ngIf="header.field === 'orderStatus'">{{ getOrderStatusText(data[header.field]) }}</td>
+                    <td *ngIf="header.field === 'invoiceStatus'">{{ getInvoiceStatusText(data[header.field]) }}</td>
+                    <td *ngIf="header.field === 'userType'">{{ getuserTypeText(data[header.field]) }}</td>
+                    <td *ngIf="header.field === 'mobileNumber'" class="ltr-text">{{ data[header.field] }}</td>
+                </ng-container>
+                <td class="actions">
+                    <div ngbDropdown *ngIf="actionList.length > 0">
+                        <i ngbDropdownToggle class="row-menu"><span></span></i>
+                        <div ngbDropdownMenu>
+                            <ng-container *ngFor="let action of actionList">
+                                <button class="dropdown-item" *ngIf="authService.hasPermission(action.permission) && !(action.name === 'common.pay' && data.payAction)"
+                                (click)="onItemEvent(action,data)">{{
+                                action.name | translate }}</button>
+                            </ng-container>
+                           
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr *ngIf="dataSource.length <= 0">
+                <td style="font-weight:bold;">{{'table.NodataFound' | translate}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<app-pagger (PageChange)="onPageChange($event)" [TotalRecords]="TotalRecords" [pageSize]="PageSize"
+    *ngIf="TotalRecords > 1"></app-pagger>

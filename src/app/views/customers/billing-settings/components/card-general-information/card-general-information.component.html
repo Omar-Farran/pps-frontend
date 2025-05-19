@@ -1,0 +1,166 @@
+<div class="c-card mb-4 c-card-hover c-card-branch-inf pb-0">
+    <div class="c-card-body">
+        <div class="c-header justify-content-center">
+            <div class="c-title text-20">General information</div>
+            
+            <div class="c-actions hover-element">
+                <button 
+                    type="button" 
+                    class="btn btn-rounded btn-secondary"
+                    (click)="handleModal(GeneralInfoModal)"      
+                >
+                    <i class="i-Pen-5 me-0"></i>
+                </button>
+            </div>
+        </div>
+    
+        <div class="c-list gap-3">
+            <div class="item-type-1 grid-3x pb-3">
+                <div class="box-info">
+                    <div class="label">Customer name:</div>
+                    <div class="value">Samah</div>
+                </div>
+
+                <div class="box-info">
+                    <div class="label">Branch code:</div>
+                    <div class="value">BR750366</div>
+                </div>
+
+                <div class="box-info">
+                    <div class="label">Currency code:</div>
+                    <div class="value">USD</div>
+                </div>
+            </div>
+
+            <div class="item-type-1 grid-3x pb-3">
+                <div class="box-info">
+                    <div class="label">Goods limit value:</div>
+                    <div class="value">1000</div>
+                </div>
+
+                <div class="box-info">
+                    <div class="label">Charge weight by:</div>
+                    <div class="value">1000</div>
+                </div>
+
+                <div class="box-info">
+                    <div class="label">Weight factor:</div>
+                    <div class="value">Weight factor</div>
+                </div>
+            </div>
+
+            <div class="item-type-1 grid-3x pb-3">
+                <div class="box-info">
+                    <div class="label">Max weight:</div>
+                    <div class="value">Weight</div>
+                </div>
+
+                <div class="box-info">
+                    <div class="label">Max dimensions:</div>
+                    <div class="value">Dimensions</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #GeneralInfoModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">General information</h4>
+        <button style="opacity: 0; pointer-events: none;" ngbAutoFocus></button>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="generalInfoForm" id="generalInfoForm" (ngSubmit)="submitGeneralInfoForm()">
+            <div class="row">
+                <div class="col-12 col-sm-6 form-group">
+                    <label>Goods limit value</label>
+                    <input 
+                        type="text" 
+                        class="form-control"
+                        formControlName="GoodsLimit"
+                        placeholder="Enter value" 
+                    >
+                </div>
+
+                <div class="col-12 col-sm-6 form-group required">
+                    <label>Charge weight by</label>
+                    <select 
+                        class="form-control"
+                        formControlName="ChargeWeight"
+                        [class.is-invalid]="isSubmittedGeneralInfoForm && generalInfoForm.get('ChargeWeight')?.errors"
+                    >
+                        <option value="" disabled selected hidden>Choose weight</option>
+                        <option value="1">Option 2</option>
+                        <option value="2">Option 3</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        This field is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-sm-6 form-group required">
+                    <label>Weight factor</label>
+                    <input 
+                        type="text" 
+                        class="form-control"
+                        formControlName="WeightFactor"
+                        [class.is-invalid]="isSubmittedGeneralInfoForm && generalInfoForm.get('WeightFactor')?.errors"
+                        placeholder="Enter value" 
+                    >
+                    <div class="invalid-feedback">
+                        This field is required
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 form-group">
+                    <label>Max weight</label>
+                    <input 
+                        type="text" 
+                        class="form-control"
+                        formControlName="MaxWeight"
+                        placeholder="Enter value" 
+                    >
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-sm-6 form-group">
+                    <label>Max dimensions</label>
+                    <input 
+                        type="text" 
+                        class="form-control"
+                        formControlName="MaxDimensions"
+                        placeholder="Enter value" 
+                    >
+                    <div class="field-note">
+                        Enter the values for length, width, height separated by commas
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <button 
+            type="button" 
+            class="btn btn-secondary btn-rounded" 
+            (click)="resetGeneralInfoForm()"
+            tabindex="-1"
+        >
+            Clear fields
+        </button>
+
+        <button 
+            type="button"
+            (click)="submitGeneralInfoForm()"
+            class="btn btn-primary btn-rounded"
+            tabindex="-1"
+        >
+            Save
+        </button>
+    </div>
+</ng-template>

@@ -1,0 +1,106 @@
+<div class="breadcrumb">
+    <h1>{{ Id > 0 ? ('category.editCategory' | translate) : ('category.addCategory' | translate) }}</h1>
+    <ul>
+        <li>{{'navigation.production-products' | translate}}</li>
+        <li>
+            <a (click)="router.navigate(['/production-products/category-list'])">
+                <strong>{{'category.categoryManagment' | translate}}</strong>
+            </a>
+        </li>
+        <li>
+            <strong class="text-primary">
+                {{ Id > 0 ? ('category.editCategory' | translate) : ('category.addCategory' | translate) }}
+            </strong>
+        </li>
+    </ul>
+
+</div>
+
+<div class="separator-breadcrumb border-top"></div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <div class="card-body">
+                <form [formGroup]="categoryForm" (ngSubmit)="submit()">
+                    <div class="row">
+                        <div class="col-md-6 form-group mb-3  ">
+                            <label>{{'category.code' | translate}}</label>
+                            <input type="text" maxlength="100" class="form-control" formControlName="code" readonly>
+                            <div class="invalid-feedback">
+                                {{'common.fieldRequired'|translate}}
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 form-group mb-3  required ">
+                            <label>{{'category.nameEn' | translate}}</label>
+                            <input type="text" maxlength="100" class="form-control" formControlName="nameEn"
+                                [class.is-invalid]="categoryForm.get('nameEn').invalid && categoryForm.get('nameEn').touched">
+                            <div class="invalid-feedback"
+                                *ngIf="categoryForm.get('nameEn').invalid &&  categoryForm.get('nameEn').errors['required']">
+                                {{'common.fieldRequired'|translate}}
+                            </div>
+                            <div class="invalid-feedback"
+                                *ngIf="categoryForm.get('nameEn').invalid &&  categoryForm.get('nameEn').errors['englishTextWithNumbers']">
+                                {{'common.onlyEnglishIsAllowed'|translate}}
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group mb-3">
+                            <label>{{'category.nameAr' | translate}}</label>
+                            <input type="text" maxlength="100" class="form-control" formControlName="nameAr"
+                                [class.is-invalid]="categoryForm.get('nameAr').invalid && categoryForm.get('nameAr').touched">
+                            <div class="invalid-feedback"
+                                *ngIf="categoryForm.get('nameAr').invalid &&  categoryForm.get('nameAr').errors['required']">
+                                {{'common.fieldRequired'|translate}}
+                            </div>
+                            <div class="invalid-feedback"
+                                *ngIf="categoryForm.get('nameAr').invalid &&  categoryForm.get('nameAr').errors['arabicTextWithNumbers']">
+                                {{'common.onlyArabicIsAllowed'|translate}}
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group mb-3 required ">
+                            <label>{{'category.status' | translate}}</label>
+                            <select class="form-control form-control-rounded" formControlName="status" 
+                                [class.is-invalid]="categoryForm.get('status').invalid && categoryForm.get('status').touched">
+                                <option value="1">{{'common.active' | translate}}</option>
+                                <option value="2">{{'common.inactive' | translate}}</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                {{'common.fieldRequired'|translate}}
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 form-group mb-3">
+                            <label>{{'category.descriptionEn' | translate}}</label>
+                            <textarea type="text" class="form-control" style="height: 173px;"
+                                formControlName="descriptionEn"
+                                [class.is-invalid]="categoryForm.get('descriptionEn').invalid && categoryForm.get('descriptionEn').touched">
+
+                            </textarea>
+                            <div class="invalid-feedback"
+                                *ngIf="categoryForm.get('descriptionEn').invalid &&  categoryForm.get('descriptionEn').errors['englishTextWithNumbers']">
+                                {{'common.onlyEnglishIsAllowed'|translate}}
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 form-group mb-3">
+                            <label>{{'category.descriptionAr' | translate}}</label>
+                            <textarea type="text" class="form-control" style="height: 173px;"
+                                formControlName="descriptionAr"
+                                [class.is-invalid]="categoryForm.get('descriptionAr').invalid && categoryForm.get('descriptionAr').touched">
+                            </textarea>
+                            <div class="invalid-feedback"
+                                *ngIf="categoryForm.get('descriptionAr').invalid &&  categoryForm.get('descriptionAr').errors['arabicTextWithNumbers']">
+                                {{'common.onlyArabicIsAllowed'|translate}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <btn-loading btnClass="btn-primary btn-rounded">{{'common.save' | translate}}</btn-loading>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

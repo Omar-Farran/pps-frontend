@@ -1,0 +1,341 @@
+<div class="c-card">
+    <div class="c-card-body">
+        <div class="c-header">
+            <div class="c-title text-20 mb-2 mb-md-0">
+                Customer billing profiles
+            </div>
+            <button class="btn btn-secondary btn-rounded action-button-container" (click)="handleModal(AddProfileModal)">
+                <i class="i-Plus"></i>
+                <span>Add billing profile</span>
+            </button>
+        </div>
+        <div class="custom-table-wrap">
+            <div class="table-wrap">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Code
+                                <span class="sort-btn"><i class="i-Arrow-Up"></i><i class="i-Arrow-Down"></i></span>
+                            </th>
+                            <th>
+                                Product service
+                                <span class="sort-btn"><i class="i-Arrow-Up"></i><i class="i-Arrow-Down"></i></span>
+                            </th>
+                            <th>
+                                Product type
+                                <span class="sort-btn"><i class="i-Arrow-Up"></i><i class="i-Arrow-Down"></i></span>
+                            </th>
+                            <th>
+                                Ratesheet
+                                <span class="sort-btn"><i class="i-Arrow-Up"></i><i class="i-Arrow-Down"></i></span>
+                            </th>
+                            <th style="padding-right: 120px;">
+                                Surcharges
+                                <span class="sort-btn"><i class="i-Arrow-Up"></i><i class="i-Arrow-Down"></i></span>
+                            </th>
+                            <th>
+                                Discount
+                                <span class="sort-btn"><i class="i-Arrow-Up"></i><i class="i-Arrow-Down"></i></span>
+                            </th>
+                            <th style="padding-right: 120px;">
+                                Services
+                                <span class="sort-btn"><i class="i-Arrow-Up"></i><i class="i-Arrow-Down"></i></span>
+                            </th>
+                            <th>
+                                Status
+                                <span class="sort-btn"><i class="i-Arrow-Up"></i><i class="i-Arrow-Down"></i></span>
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+    
+                    <tbody>
+                        <tr class="redirect-link">
+                            <td>22224791556</td>
+                            <td>International</td>
+                            <td>Product type</td>
+                            <td>Ratesheet_file</td>
+                            <td>Surchanges</td>
+                            <td>Discount</td>
+                            <td>Services</td>
+                            <td>
+                                <span class="status c-badge active">Active</span>
+                            </td>
+                            <td class="actions">
+                                <div ngbDropdown>
+                                    <i ngbDropdownToggle class="row-menu"><span></span></i>
+                                    <div ngbDropdownMenu>
+                                        <button class="dropdown-item">Edit</button>
+                                        <button class="dropdown-item" (click)="handleDeleteProfileModal(DeleteProfile)">Delete</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="redirect-link">
+                            <td>22224791556</td>
+                            <td>International</td>
+                            <td>Product type</td>
+                            <td>Ratesheet_file</td>
+                            <td>Surchanges</td>
+                            <td>Discount</td>
+                            <td>Services</td>
+                            <td>
+                                <span class="status c-badge active">Active</span>
+                            </td>
+                            <td class="actions">
+                                <div ngbDropdown>
+                                    <i ngbDropdownToggle class="row-menu"><span></span></i>
+                                    <div ngbDropdownMenu>
+                                        <button class="dropdown-item">Edit</button>
+                                        <button class="dropdown-item" (click)="handleDeleteProfileModal(DeleteProfile)">Delete</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    
+            <div class="table-footer-inner">
+                <div class="pages">
+                    <div class="page-count">2 total</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #AddProfileModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Add new billing profile</h4>
+        <button style="opacity: 0; pointer-events: none;" ngbAutoFocus></button>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="addProfileForm" id="addProfileForm" (ngSubmit)="submitAddProfileForm()">
+            <div class="row">
+                <div class="form-group col-12 col-md-6 required">
+                    <label>Product service</label>
+                    <select 
+                        class="form-control" 
+                        formControlName="ProductService"
+                        [class.is-invalid]="isSubmittedAddProfileForm && addProfileForm.get('ProductService')?.errors"
+                    >
+                        <option value="" disabled selected hidden>Choose service</option>
+                        <option value="1">Option 2</option>
+                        <option value="2">Option 3</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        This field is required
+                    </div>
+                </div>
+        
+                <div class="form-group col-12 col-md-6 required">
+                    <label>Product type</label>
+                    <select 
+                        class="form-control" 
+                        formControlName="ProductType"
+                        [class.is-invalid]="isSubmittedAddProfileForm && addProfileForm.get('ProductType')?.errors"
+                    >
+                        <option value="" disabled selected hidden>Choose type</option>
+                        <option value="1">Option 2</option>
+                        <option value="2">Option 3</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        This field is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-12 col-md-6 required">
+                    <label>Ratesheet</label>
+                    <select 
+                        class="form-control" 
+                        formControlName="Ratesheet"
+                        [class.is-invalid]="isSubmittedAddProfileForm && addProfileForm.get('Ratesheet')?.errors"
+                    >
+                        <option value="" disabled selected hidden>Choose ratesheet</option>
+                        <option value="1">Option 2</option>
+                        <option value="2">Option 3</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        This field is required
+                    </div>
+                </div>
+        
+                <div class="form-group col-12 col-md-6">
+                    <label>Discount</label>
+                    <select 
+                        class="form-control" 
+                        formControlName="Discount"
+                    >
+                        <option value="" disabled selected hidden>Choose discount</option>
+                        <option value="1">Option 2</option>
+                        <option value="2">Option 3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-12 col-md-6 required">
+                    <label>Start date</label>
+                    <div class="input-group">
+                        <p-calendar 
+                                formControlName="StartDate"
+                                [class.ng-invalid]="isSubmittedAddProfileForm && addProfileForm.get('StartDate')?.errors"
+                                inputStyleClass="form-control" 
+                                readonlyInput="true"
+                                placeholder="yyyy-mm-dd"
+                                dateFormat="yy.mm.dd"
+                                (onSelect)="onDateChange($event, 'StartDate', 'addProfileForm')"
+                                showClear="true">
+                        </p-calendar>
+                        <div class="invalid-feedback">This field is required</div>
+                        <div class="input-group-append">
+                            <button class="btn"  type="button">
+                                <i class="i-Calendar-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="form-group col-12 col-md-6 required">
+                    <label>End date</label>
+                    <div class="input-group">
+                        <p-calendar 
+                                formControlName="EndDate"
+                                [class.ng-invalid]="isSubmittedAddProfileForm && addProfileForm.get('EndDate')?.errors"
+                                inputStyleClass="form-control" 
+                                readonlyInput="true"
+                                placeholder="yyyy-mm-dd"
+                                dateFormat="yy.mm.dd"
+                                (onSelect)="onDateChange($event, 'EndDate', 'addProfileForm')"
+                                showClear="true">
+                        </p-calendar>
+                        <div class="invalid-feedback">This field is required</div>
+                        <div class="input-group-append">
+                            <button class="btn"  type="button">
+                                <i class="i-Calendar-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-12 col-md-6">
+                    <label>Shipment services</label>
+                    <select 
+                        class="form-control" 
+                        formControlName="ShipmentServices"
+                    >
+                        <option value="" disabled selected hidden>Choose service(s)</option>
+                        <option value="1">Option 2</option>
+                        <option value="2">Option 3</option>
+                    </select>
+                </div>
+        
+                <div class="form-group col-12 col-md-6">
+                    <label>Surcharges</label>
+                    <select 
+                        class="form-control" 
+                        formControlName="Surcharges"
+                    >
+                        <option value="" disabled selected hidden>Choose surcharge(s)</option>
+                        <option value="1">Option 2</option>
+                        <option value="2">Option 3</option>
+                    </select>
+                </div>
+            </div>
+        
+            <div class="row">        
+                <div class="form-group col-12 col-md-6 required">
+                    <label>Status</label>
+                    <select 
+                        class="form-control" 
+                        formControlName="Status"
+                        [class.is-invalid]="isSubmittedAddProfileForm && addProfileForm.get('Status')?.errors"
+                    >
+                        <option value="" disabled selected hidden>Choose status</option>
+                        <option value="1">Option 2</option>
+                        <option value="2">Option 3</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        This field is required
+                    </div>
+                </div>
+            </div>		
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <button 
+            type="button" 
+            class="btn btn-secondary btn-rounded" 
+            (click)="resetAddProfileForm()"
+            tabindex="-1"
+        >
+            Clear fields
+        </button>
+
+        <button 
+            type="button"
+            (click)="submitAddProfileForm()"
+            class="btn btn-primary btn-rounded"
+            tabindex="-1"
+        >
+            Save
+        </button>
+    </div>
+</ng-template>
+
+<ng-template #AddProfileError let-modal>
+    <div class="modal-body" id="addProfileError">
+        <i class="text-46 i-Information alert-block"></i>
+        <div class="note alert-block">A billing profile has already been created with the same product service and product type.</div>
+        <button type="button" class="btn btn-secondary btn-rounded alert-block" (click)="modal.close('Close click')" tabindex="-1">Okay</button>
+    </div>
+</ng-template>
+
+<ng-template #DeleteProfile let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Delete billing profile</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')" tabindex="-1"></button>
+    </div>
+
+    <div class="modal-body" id="dutiesCredit">
+        <div class="note">Are you sure you want to delete the billing profile from the Customer billing profiles?</div>
+        <div class="actions">
+            <button type="button" class="btn btn-secondary btn-rounded" (click)="modal.close('Close click')" tabindex="-1">Cancel</button>
+            <button type="button" class="btn btn-primary btn-rounded" (click)="modal.close('Close click')" ngbAutoFocus>Yes, delete it</button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #DeleteErrorHasActive let-modal>
+    <div class="modal-body" id="addProfileError">
+        <i class="text-46 i-Information alert-block"></i>
+        <div class="note alert-block">This billing profile can’t be deleted because it has active shipments.</div>
+        <button type="button" class="btn btn-secondary btn-rounded alert-block" (click)="modal.close('Close click')" tabindex="-1">Okay</button>
+    </div>
+</ng-template>
+
+<ng-template #DeleteErrorHasUninvoiced let-modal>
+    <div class="modal-body" id="addProfileError">
+        <i class="text-46 i-Information alert-block"></i>
+        <div class="note alert-block">This billing profile can’t be deleted because it has uninvoiced charges.</div>
+        <button type="button" class="btn btn-secondary btn-rounded alert-block" (click)="modal.close('Close click')" tabindex="-1">Okay</button>
+    </div>
+</ng-template>
+
+<ng-template #DeleteErrorHasBoth let-modal>
+    <div class="modal-body" id="addProfileError">
+        <i class="text-46 i-Information alert-block"></i>
+        <div class="note alert-block">This billing profile can’t be deleted because it has active shipments and uninvoiced charges.</div>
+        <button type="button" class="btn btn-secondary btn-rounded alert-block" (click)="modal.close('Close click')" tabindex="-1">Okay</button>
+    </div>
+</ng-template>

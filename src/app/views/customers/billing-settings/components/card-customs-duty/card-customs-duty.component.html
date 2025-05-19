@@ -1,0 +1,429 @@
+<div class="c-card mb-4 c-card-hover c-card-branch-inf pb-0">
+    <div class="c-card-body">
+        <div class="c-header justify-content-center">
+            <div class="c-title text-20">Customs duty</div>
+    
+            <div class="c-badge text-success">
+                <span>Active</span>
+            </div>
+            
+            <div class="c-actions hover-element">
+                <button 
+                    type="button" 
+                    class="btn btn-rounded btn-secondary"
+                    (click)="handleModal(CustomsDutyModal)"      
+                >
+                    <i class="i-Pen-5 me-0"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="c-list gap-3">
+            <div class="item-type-1 grid-2x pb-3">
+                <div class="box-info">
+                    <div class="label">Account type:</div>
+                    <div class="value">Prepaid</div>
+                </div>
+
+                <div class="box-info">
+                    <div class="label">Duties credit:</div>
+                    <div class="value">1000</div>
+                </div>
+            </div>
+
+            <div class="item-type-1 grid-2x pb-3">
+                <div class="box-info">
+                    <div class="label">Duties credit limit:</div>
+                    <div class="value">250</div>
+                </div>
+
+                <div class="box-info">
+                    <div class="label">Delivery duty:</div>
+                    <div class="value">Paid</div>
+                </div>
+            </div>
+
+            <div class="item-type-1 grid-2x pb-3">
+                <div class="box-info">
+                    <div class="label">VAT rate:</div>
+                    <div class="value">20%</div>
+                </div>
+
+                <div class="box-info">
+                    <div class="label">TAX rate:</div>
+                    <div class="value">15%</div>
+                </div>
+            </div>
+
+            <div class="item-type-1 grid-2x pb-3">
+                <div class="box-info">
+                    <div class="label">Invoicing frequency:</div>
+                    <div class="value">Autoinvoice</div>
+                </div>
+
+                <div class="box-info">
+                    <div class="label">Invoicing group by:</div>
+                    <div class="value">Shipment</div>
+                </div>
+            </div>
+
+            <div class="item-type-1 grid-2x pb-3">
+                <div class="box-info">
+                    <div class="label">Duty handling fees:</div>
+                    <div class="value">10%</div>
+                </div>
+
+                <div class="box-info">
+                    <div class="label">Calculation triggers:</div>
+                    <div class="value">Shipment added to MAWB</div>
+                </div>
+            </div>
+
+            <div class="item-type-1 grid-2x pb-3">
+                <div class="box-info">
+                    <div class="label">Invoice triggers:</div>
+                    <div class="value">Shipment added to MAWB</div>
+                </div>
+            </div>
+        </div>          
+    </div>
+</div>
+
+<ng-template #CustomsDutyModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Customs duty</h4>
+        <button style="opacity: 0; pointer-events: none;" ngbAutoFocus></button>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="customsDutyForm" id="customsDutyForm" (ngSubmit)="submitCustomsDutyForm()">
+            <div class="row">
+                <div class="col-12 col-sm-6 form-group required">
+                    <label>Account type</label>
+                    <select 
+                        class="form-control"
+                        formControlName="AccountType"
+                        #accountType
+                        [class.is-invalid]="isSubmittedCustomsDutyForm && customsDutyForm.get('AccountType')?.errors"
+                    >
+                        <option value="" disabled selected hidden>Choose type</option>
+                        <option value="Prepaid">Prepaid</option>
+                        <option value="Postpaid">Postpaid</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        This field is required
+                    </div>
+                </div>
+
+                <ng-container *ngIf="accountType.value !== 'Postpaid'">
+                    <div class="col-12 col-sm-6 form-group required">
+                        <label>Duties credit</label>
+                        <div class="d-flex gap-2" [class.is-invalid]="isSubmittedCustomsDutyForm && customsDutyForm.get('Credit')?.errors">
+                            <input 
+                                type="text" 
+                                class="form-control"
+                                formControlName="Credit"
+                                [class.is-invalid]="isSubmittedCustomsDutyForm && customsDutyForm.get('Credit')?.errors"
+                                placeholder="Enter value" 
+                            >
+                            <button 
+                                class="btn btn-rounded btn-secondary" 
+                                type="button" 
+                                style="min-width: fit-content;" 
+                                (click)="handleDutiesCreditModal(DutiesCredit)"
+                            >
+                                Top up
+                            </button>
+                        </div>
+                        <div class="invalid-feedback">
+                            This field is required
+                        </div>
+                    </div>
+    
+                    <div class="col-12 col-sm-6 form-group required">
+                        <label>Duty credit limit</label>
+                        <input 
+                            type="text" 
+                            class="form-control"
+                            formControlName="CreditLimit"
+                            [class.is-invalid]="isSubmittedCustomsDutyForm && customsDutyForm.get('CreditLimit')?.errors"
+                            placeholder="Enter value" 
+                        >
+                        <div class="invalid-feedback">
+                            This field is required
+                        </div>
+                    </div>
+    
+                    <div class="col-12 col-sm-6 form-group required">
+                        <label>Delivery duty</label>
+                        <select 
+                            class="form-control"
+                            formControlName="DeliveryDuty"
+                            [class.is-invalid]="isSubmittedCustomsDutyForm && customsDutyForm.get('DeliveryDuty')?.errors"
+                        >
+                            <option value="" disabled selected hidden>Choose duty</option>
+                            <option value="1">Option 2</option>
+                            <option value="2">Option 3</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            This field is required
+                        </div>
+                    </div>
+                </ng-container>
+
+                <div class="col-12 col-sm-6 form-group" [class.required]="accountType.value !== 'Postpaid'">
+                    <label>VAT rate</label>
+                    <input 
+                        type="text" 
+                        class="form-control"
+                        formControlName="VatRate"
+                        [class.is-invalid]="isSubmittedCustomsDutyForm && customsDutyForm.get('VatRate')?.errors"
+                        placeholder="Enter value" 
+                    >
+                    <div class="invalid-feedback">
+                        This field is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label class="checkbox checkbox-primary text-13">
+                    <input
+                        #isCustomsTaxApplicable
+                        type="checkbox"
+                        formControlName="isTaxApplicable"
+                    >
+                    <span>TAX applicable</span>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+            <ng-container *ngIf="isCustomsTaxApplicable.checked">
+                <div class="row">
+                    <div class="col-12 col-sm-6 form-group required mb-0">
+                        <label>TAX rate</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            formControlName="TaxRate"
+                            [class.is-invalid]="isSubmittedCustomsDutyForm && customsDutyForm.get('TaxRate')?.errors"
+                            placeholder="Enter value"
+                        >
+                        <div class="invalid-feedback">
+                            This field is required
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+            <hr />
+
+            <div class="row">
+                <div class="col-12 col-sm-6 form-group required">
+                    <label>Invoicing frequency</label>
+                    <select 
+                        class="form-control"
+                        formControlName="InvoicingFrequency"
+                        #InvoicingFrequency
+                        (change)="updateRunAt()"
+                        [class.is-invalid]="isSubmittedCustomsDutyForm && customsDutyForm.get('InvoicingFrequency')?.errors"
+                    >
+                        <option value="" disabled selected hidden>Choose frequency</option>
+                        <option value="Daily">Daily</option>
+                        <option value="Weekly">Weekly</option>
+                        <option value="Monthly">Monthly</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        This field is required
+                    </div>
+                </div>
+
+                <ng-container *ngIf="InvoicingFrequency.value">
+                    <div class="col-12 col-sm-6 form-group required">
+                        <label>Run at</label>
+
+                        <ng-container *ngIf="InvoicingFrequency.value === 'Daily'">
+                            <select 
+                                class="form-control"
+                                formControlName="RunAt"
+                                [class.is-invalid]="isSubmittedCustomsDutyForm && customsDutyForm.get('RunAt')?.errors"
+                            >
+                                <option value="" disabled selected hidden>Choose time</option>
+                                <option value="1">Option 2</option>
+                                <option value="2">Option 3</option>
+                            </select>
+                        </ng-container>
+
+                        <ng-container *ngIf="InvoicingFrequency.value === 'Weekly'">
+                            <select 
+                                class="form-control"
+                                formControlName="RunAt"
+                                [class.is-invalid]="isSubmittedCustomsDutyForm && customsDutyForm.get('RunAt')?.errors"
+                            >
+                                <option value="" disabled selected hidden>Choose day</option>
+                                <option value="1">Option 2</option>
+                                <option value="2">Option 3</option>
+                            </select>
+                        </ng-container>
+
+                        <ng-container *ngIf="InvoicingFrequency.value === 'Monthly'">
+                            <div class="input-group">
+                                <p-calendar 
+                                        formControlName="RunAt"
+                                        [class.ng-invalid]="isSubmittedCustomsDutyForm && customsDutyForm.get('RunAt')?.errors"
+                                        inputStyleClass="form-control" 
+                                        readonlyInput="true"
+                                        placeholder="dd"
+                                        dateFormat="dd"
+                                        (onSelect)="onDateChange($event, 'RunAt', 'customsDutyForm')"
+                                        showClear="true">
+                                </p-calendar>
+                                <div class="invalid-feedback">This field is required</div>
+                                <div class="input-group-append">
+                                    <button class="btn"  type="button">
+                                        <i class="i-Calendar-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div class="invalid-feedback">
+                            This field is required
+                        </div>
+                    </div>
+                </ng-container>
+
+                <div class="col-12 col-sm-6 form-group required">
+                    <label>Invoicing group by</label>
+                    <select 
+                        class="form-control"
+                        formControlName="InvoicingGroup"
+                        [class.is-invalid]="isSubmittedCustomsDutyForm && customsDutyForm.get('InvoicingGroup')?.errors"
+                    >
+                        <option value="" disabled selected hidden>Choose group</option>
+                        <option value="1">Option 2</option>
+                        <option value="2">Option 3</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        This field is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label class="checkbox checkbox-primary text-13">
+                    <input
+                        #isDutyFeeApplicable
+                        type="checkbox"
+                        formControlName="isDutyFeeApplicable"
+                    >
+                    <span>Duty handling fee applicable</span>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+            <ng-container *ngIf="isDutyFeeApplicable.checked">
+                <div class="row">
+                    <div class="col-12 col-sm-6 form-group mb-0">
+                        <label>Duty handling fee percentage</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            formControlName="DutyFees"
+                            placeholder="Enter value"
+                        >
+                    </div>
+                </div>
+            </ng-container>
+
+            <hr />
+
+            <div class="row">
+                <div class="col-12 col-sm-6 form-group">
+                    <label>Calculation triggers</label>
+                    <select 
+                        class="form-control"
+                        formControlName="CalculationTriggers"
+                    >
+                        <option value="" disabled selected hidden>Choose trigger</option>
+                        <option value="1">Option 2</option>
+                        <option value="2">Option 3</option>
+                    </select>
+                </div>
+
+                <div class="col-12 col-sm-6 form-group">
+                    <label>Invoice triggers</label>
+                    <select 
+                        class="form-control"
+                        formControlName="InvoiceTriggers"
+                    >
+                        <option value="" disabled selected hidden>Choose trigger</option>
+                        <option value="1">Option 2</option>
+                        <option value="2">Option 3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-sm-6 form-group required">
+                    <label>Status</label>
+                    <select 
+                        class="form-control"
+                        formControlName="Status"
+                        [class.is-invalid]="isSubmittedCustomsDutyForm && customsDutyForm.get('Status')?.errors"
+                    >
+                        <option value="" disabled selected hidden>Choose status</option>
+                        <option value="1">Option 2</option>
+                        <option value="2">Option 3</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        This field is required
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <button 
+            type="button" 
+            class="btn btn-secondary btn-rounded" 
+            (click)="resetCustomsDutyForm()"
+            tabindex="-1"
+        >
+            Clear fields
+        </button>
+
+        <button 
+            type="button"
+            (click)="submitCustomsDutyForm()"
+            class="btn btn-primary btn-rounded"
+            tabindex="-1"
+        >
+            Save
+        </button>
+    </div>
+</ng-template>
+
+<ng-template #DutiesCredit let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Duties credit</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')" tabindex="-1"></button>
+    </div>
+
+    <div class="modal-body" id="dutiesCredit">
+        <div class="note form-group">
+            <label style="text-align: left;">Amount</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Enter value"
+            >
+        </div>
+        <div class="actions">
+            <button type="button" class="btn btn-secondary btn-rounded" (click)="modal.close('Close click')" tabindex="-1">Cancel</button>
+            <button type="button" class="btn btn-primary btn-rounded" (click)="modal.close('Close click')" ngbAutoFocus>Top up</button>
+        </div>
+    </div>
+</ng-template>

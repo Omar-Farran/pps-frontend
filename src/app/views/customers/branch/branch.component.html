@@ -1,0 +1,38 @@
+<div class="customers">
+    <div class="breadcrumb">
+        <h1>Branch name (trading name)</h1>
+
+        <ul>
+			<li><strong>Customers</strong></li>
+			<li><a href="#/customers/customers-management">Customers management</a></li>
+			<li><a href="#/customers/customers-profile">Company commercial name</a></li>
+            <li>Branch name</li>
+		</ul>
+    </div>
+
+    <div class="content-block mw-100">
+        <div class="row">
+            <div class="col-12 col-xl-7">
+                <!-- Branch information -->
+                <app-card-branch-information [dataBranchInfo]="dataBranchInfo"></app-card-branch-information>
+
+                <!-- SLA -->
+                <app-card-sla [dataCustomerSla]="dataCustomerSla"></app-card-sla>
+
+                <!-- "Addresses" -->
+                <app-card-address [dataCustomerAddress]="dataCustomerAddress"></app-card-address>
+            </div>
+
+            <div class="col-12 col-xl-5">
+                <!-- E-invoice -->
+                <app-card-e-invoice [dataEInvoice]="dataEInvoice"></app-card-e-invoice>
+
+                <!-- Billing settings -->
+                <app-card-billing-settings [dataCustomerBilling]="dataCustomerBilling"></app-card-billing-settings>
+                
+                <!-- Attachments  -->
+                <app-card-attachments [dataAttachments]="dataAttachments"></app-card-attachments>
+            </div>
+        </div>
+    </div>
+</div>

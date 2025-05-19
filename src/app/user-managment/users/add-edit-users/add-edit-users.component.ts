@@ -1,0 +1,116 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { onlyCountries } from 'src/app/shared/models/enum';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { BaseService } from 'src/app/shared/services/base.service';
+import { LanguageService } from 'src/app/shared/services/language.service';
+import Validation from 'src/app/utils/validation-confirmation-password';
+import { emailValidator } from 'src/app/utils/validation-email';
+import { passwordValidator } from 'src/app/utils/validation-password';
+@Component
+(
+  {
+    selector: 'app-add-edit-users',
+    templateUrl: './add-edit-users.component.html',
+    styleUrls: ['./add-edit-users.component.scss']
+  }
+)
+export class AddEditUsersComponent implements OnInit 
+{
+  //#region Variables
+  @Input() modal: any = null
+  @Input() UserId: number
+  @Input() isEditMood: boolean = false
+  private User : any = null;
+  isSubmittedUserAddForm = false;
+  public onlyCountries = onlyCountries;
+  Roles: any[] = []
+  userAddForm = new FormGroup
+  (
+    {
+      id: new FormControl(0),
+      email: new FormControl('', [Validators.required, emailValidator()]),
+      phoneNumber: new FormControl('', [Validators.required]),
+      fullName: new FormControl('', [Validators.required]),
+      userName: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required, passwordValidator()]),
+      PasswordConfirm: new FormControl('', [Validators.required]),
+      isActive: new FormControl('true', Validators.required),
+      roles: new FormControl(null, [Validators.required]),
+    }, 
+    {
+      validators: [Validation.match('password', 'PasswordConfirm')],
+      updateOn: 'blur',
+    }
+  );
+  //#endregion
+  constructor
+  ( 
+    private baseService: BaseService, 
+    public authSerivce: AuthService,
+    public languageService : LanguageService
+  ) 
+  {}
+  ngOnInit (): void 
+  {
+    this.GetAllRoles();
+    if (this.isEditMood && this.UserId)
+      this.GetById();
+  }
+  //#region Functions
+  FetchData (object:any)
+  {
+    this.userAddForm.patchValue(object);
+    this.removeValidators('password')
+    this.removeValidators('PasswordConfirm')
+  }
+  triggerShowPass (e) 
+  {
+    if (!e.target.classList.contains('show')) 
+    {
+      e.target.classList.add('show');
+      e.target.previousElementSibling.type = 'text';
+    } 
+    else 
+    {
+      e.target.classList.remove('show');
+      e.target.previousElementSibling.type = 'password';
+    }
+  }
+  removeValidators (formControlName )
+  {
+    this.userAddForm.get(formControlName).clearValidators()
+    this.userAddForm.get(formControlName).updateValueAndValidity()
+  }
+  submitUserAddForm () 
+  {
+    this.isSubmittedUserAddForm = true;
+    if (this.userAddForm.invalid) 
+    {
+        debugger;
+      this.userAddForm.markAllAsTouched();
+      return;
+    }
+    const form : any = this.userAddForm.getRawValue();
+    
+
+    form.isActive = JSON.parse(form.isActive );
+      const ApiAction = this.isEditMood ? 'UpdateUserProfile' : 'CreateUser';
+   
+    this.baseService.Post('Users', ApiAction , form).subscribe
+    ( res => { this.modal.close(); } )
+  }
+  //#endregion
+  //#region Getters
+  private GetAllRoles() 
+  {
+    this.baseService.Get('Roles', 'GetAllRoles').subscribe
+    ( res => { this.Roles = res as any })
+  }
+  private GetById ()
+  {
+    this.baseService.Get('Users',`GetUserProfileById/${this.UserId}`).subscribe
+    ( res => { this.User = res as any; this.FetchData(this.User); })
+  }
+  //#endregion
+}

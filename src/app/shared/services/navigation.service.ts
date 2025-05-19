@@ -1,0 +1,167 @@
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { LanguageService } from 'src/app/shared/services/language.service';
+export interface IMenuItem {
+    id?: string;
+    title?: string;
+    description?: string;
+    type: string;       // Possible values: link/dropDown/extLink
+    name?: string;      // Used as display text for item and title for separator type
+    state?: string;     // Router state
+    icon?: string;      // Material icon name
+    tooltip?: string;   // Tooltip text
+    disabled?: boolean; // If true, item will not be appeared in sidenav.
+    sub?: IChildItem[]; // Dropdown items
+    badges?: IBadge[];
+    active?: boolean;
+    permissions?: string
+}
+export interface IChildItem {
+    id?: string;
+    parentId?: string;
+    type?: string;
+    name: string;       // Display text
+    state?: string;     // Router state
+    icon?: string;
+    sub?: IChildItem[];
+    active?: boolean;
+    permissions?: string
+
+}
+
+interface IBadge {
+    color: string;      // primary/accent/warn/hex color codes(#fff000)
+    value: string;      // Display text
+}
+
+interface ISidebarState {
+    sidenavOpen?: boolean;
+    childnavOpen?: boolean;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class NavigationService {
+    public sidebarState: ISidebarState = {
+        sidenavOpen: true,
+        childnavOpen: false
+    };
+    selectedItem: IMenuItem;
+
+    constructor
+        (
+            public languageService: LanguageService
+        ) { }
+    defaultMenu: IMenuItem[] = [
+        {
+            name: 'navigation.dashboard',
+            type: 'dropDown',
+            icon: 'i-Bar-Chart',
+            permissions: 'Dashboard',
+            sub: [
+                {
+                    name: 'V1',
+                    state: 'dashboard/v1',
+                    type: 'link',
+                    permissions: 'Dashboard'
+                },
+                {
+                    name: 'V2',
+                    state: '/dashboard/v2',
+                    type: 'link',
+                    permissions: 'Dashboard'
+                },
+                {
+                    name: 'V3',
+                    state: '/dashboard/v3',
+                    type: 'link',
+                    permissions: 'Dashboard'
+                },
+                {
+                    name: 'V4',
+                    state: '/dashboard/v4',
+                    type: 'link',
+                    permissions: 'Dashboard'
+                },
+            ]
+        },
+        {
+            name: 'navigation.users_management',
+            type: 'dropDown',
+            icon: 'i-Men',
+            permissions: 'User-Management',
+            sub: [
+                {
+                    name: 'navigation.manage_admins',
+                    state: '/user-managment/users',
+                    type: 'link',
+                    permissions: 'Admin-List'
+                },
+                {
+                    name: 'navigation.manage_roles',
+                    state: '/user-managment/roles',
+                    type: 'link',
+                    permissions: 'Roles-List'
+                },
+                {
+                    name: 'navigation.manage_permissions',
+                    state: '/user-managment/permissions',
+                    type: 'link',
+                    permissions: 'Permission-List'
+                },
+            ]
+        },
+        {
+            name: 'navigation.settings_management',
+            type: 'dropDown',
+            icon: 'i-Data-Settings',
+            permissions: 'Lookups-Management',
+            sub: [
+                {
+                    name: 'navigation.Nationality',
+                    state: '/lookups-managment/nationality/11',
+                    type: 'link',
+                    permissions: 'Lookups-List'
+                },
+            ]
+        },
+        {
+            name: 'navigation.production-products',
+            type: 'dropDown',
+            icon: 'i-Posterous',
+            permissions: 'Product-Management',
+            sub: [
+                {
+                    name: 'category.categoryManagment',
+                    state: '/production-products/category-list',
+                    type: 'link',
+                    permissions: 'Category-List',
+                },
+                
+            ]
+        },
+    ];
+
+
+
+    // sets iconMenu as default;
+    menuItems = new BehaviorSubject<IMenuItem[]>(this.defaultMenu);
+    // navigation component has subscribed to this Observable
+    menuItems$ = this.menuItems.asObservable();
+
+    // You can customize this method to supply different menu for
+    // different user type.
+    // publishNavigationChange(menuType: string) {
+    //   switch (userType) {
+    //     case 'admin':
+    //       this.menuItems.next(this.adminMenu);
+    //       break;
+    //     case 'user':
+    //       this.menuItems.next(this.userMenu);
+    //       break;
+    //     default:
+    //       this.menuItems.next(this.defaultMenu);
+    //   }
+    // }
+}

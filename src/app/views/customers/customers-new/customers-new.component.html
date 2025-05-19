@@ -1,0 +1,424 @@
+<div class="customers">
+	<div class="breadcrumb">
+		<h1>Add new customer</h1>
+
+		<ul>
+			<li><strong>Customers</strong></li>
+			<li><a href="#/customers/customers-management">Customers management</a></li>
+			<li>Add new customer</li>
+		</ul>
+
+		<div class="action-wrap">
+			<button class="btn btn-secondary btn-rounded" (click)="handleSave(true)">Save as draft</button>
+			<button class="btn btn-primary btn-rounded" (click)="handleSave()">
+				Save
+			</button>
+		</div>
+	</div>
+
+	<form class="add-new-block" [formGroup]="createCustomerForm" id="createCustomerForm">
+		<div class="row">
+			<div class="col-12 col-sm-12 col-xl-9 col-xxl-9 mb-9 ">
+				<div class="c-card pb-0 mb-4">
+					<div class="card-body">
+						<div class="c-header">
+							<div class="c-title text-20">General information</div>
+						</div>
+
+						<div class="c-form">
+							<div class="row">
+								<div class="col-12 col-md-6 col-xl-4 mb-4 form-group required">
+									<label>Company commercial name</label>
+									<input type="text" class="form-control" placeholder="Enter company commercial name"
+										formControlName="CompanyCommercialName"
+										[class.is-invalid]="isSubmitted && createCustomerForm.get('CompanyCommercialName')?.errors">
+									<div class="invalid-feedback">
+										This field is required
+									</div>
+								</div>
+
+								<div class="col-12 col-md-6 col-xl-4 mb-4 form-group required">
+									<label>Company legal name</label>
+									<input type="text" class="form-control" placeholder="Enter company legal name"
+										formControlName="CompanyLegalName"
+										[class.is-invalid]="isSubmitted && createCustomerForm.get('CompanyLegalName')?.errors">
+									<div class="invalid-feedback">
+										This field is required
+									</div>
+								</div>
+
+								<div class="col-12 col-md-6 col-xl-4 mb-4 form-group required">
+									<label>Business type</label>
+									<select 
+										class="form-control" 
+										formControlName="BusinessType"
+										[class.is-invalid]="isSubmitted && createCustomerForm.get('BusinessType')?.errors"
+									>
+										<option value="" disabled selected hidden>Choose type</option>
+										<option value="1">Option 2</option>
+										<option value="2">Option 3</option>
+									</select>
+									<div class="invalid-feedback">
+										This field is required
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="c-card mb-4">
+					<div class="card-body">
+						<div class="c-header">
+							<div class="c-title text-20">Branch</div>
+						</div>
+
+						<div class="c-form">
+							<div class="row">
+								<div class="col-12 col-md-6 col-xl-4 mb-4 form-group required">
+									<label>Trading name</label>
+									<input type="text" class="form-control" placeholder="Enter name"
+										formControlName="TradingName"
+										[class.is-invalid]="isSubmitted && createCustomerForm.get('TradingName')?.errors">
+									<div class="invalid-feedback">
+										This field is required
+									</div>
+								</div>
+
+								<div class="col-12 col-md-6 col-xl-4 mb-4 form-group required">
+									<label>Currency code</label>
+									<select 
+										class="form-control" 
+										formControlName="CurrencyCode"
+										[class.is-invalid]="isSubmitted && createCustomerForm.get('CurrencyCode')?.errors"
+									>
+										<option value="" disabled selected hidden>Choose code</option>
+										<option value="1">Option 2</option>
+										<option value="2">Option 3</option>
+									</select>
+									<div class="invalid-feedback">
+										This field is required
+									</div>
+								</div>
+
+								<div class="col-12 col-md-6 col-xl-4 mb-4 form-group">
+									<label>Consolidation query</label>
+									<select 
+										class="form-control" 
+										formControlName="ConsolidationQuery" 
+									>
+										<option value="" disabled selected hidden>Choose query</option>
+										<option value="1">Option 2</option>
+										<option value="2">Option 3</option>
+									</select>
+								</div>
+
+								<div class="col-12 col-md-6 col-xl-4 mb-4 form-group">
+									<label>VAT number</label>
+									<input type="text" class="form-control" placeholder="Enter VAT number"
+										formControlName="VATNumber">
+								</div>
+
+								<div class="col-12 col-md-6 col-xl-4 mb-4 form-group">
+									<label>EORI</label>
+									<input type="text" class="form-control" placeholder="Enter EORI"
+										formControlName="EORINumber">
+								</div>
+
+								<div class="col-12 col-md-6 col-xl-4 mb-4 form-group">
+									<label>IOSS</label>
+									<input type="text" class="form-control" placeholder="Enter IOSS"
+										formControlName="IOSSNumber">
+								</div>
+
+								<div class="col-12">
+									<div class="form-field">
+										<label class="checkbox checkbox-primary text-13">
+											<input type="checkbox" formControlName="AllowMultiPiece">
+											<span>Allow multi piece</span>
+											<span class="checkmark"></span>
+										</label>
+									</div>
+									<hr />
+								</div>
+
+								<div class="col-12 col-md-6 col-xl-4 mb-4 form-group required">
+									<label>Account type</label>
+									<select 
+										class="form-control" 
+										formControlName="AccountType"
+										[class.is-invalid]="isSubmitted && createCustomerForm.get('AccountType')?.errors"
+									>
+										<option value="" disabled selected hidden>Choose type</option>
+										<option value="1">Option 2</option>
+										<option value="2">Option 3</option>
+									</select>
+									<div class="invalid-feedback">
+										This field is required
+									</div>
+								</div>
+
+								<div class="col-12 col-md-6 col-xl-4 mb-4 form-group">
+									<label>License registration number</label>
+									<input type="text" class="form-control"
+										placeholder="Enter license registration number"
+										formControlName="LicenseRegistrationNumber">
+								</div>
+
+								<div class="col-12 col-md-6 col-xl-4 mb-4 form-group">
+									<label>GPI</label>
+									<input type="text" class="form-control" placeholder="Enter GPI"
+										formControlName="GPI">
+								</div>
+
+								<div class="col-12 col-md-6 col-xl-4 mb-4 form-group required">
+									<label>Preferred contact language</label>
+									<select 
+										class="form-control" 
+										formControlName="PreferredContactLanguage"
+										[class.is-invalid]="isSubmitted && createCustomerForm.get('PreferredContactLanguage')?.errors"
+									>
+										<option value="" disabled selected hidden>Choose language</option>
+										<option value="1">Option 2</option>
+										<option value="2">Option 3</option>
+									</select>
+									<div class="invalid-feedback">
+										This field is required
+									</div>
+								</div>
+
+								<div class="col-12">
+									<div class="form-field">
+										<label class="checkbox checkbox-primary text-13 drop-action">
+											<input #isApiUser type="checkbox" formControlName="IsAPIUser">
+											<span>Is API user</span>
+											<span class="checkmark"></span>
+										</label>
+									</div>
+
+									<ng-container *ngIf="isApiUser.checked">
+										<div class="row drop-row">
+											<div class="col-12 col-md-6 col-xl-4 mb-4 form-group required">
+												<label>API user name</label>
+												<input type="text" class="form-control" 
+												placeholder="Enter user name"
+												formControlName="APIUserName"
+												[class.is-invalid]="isSubmitted && createCustomerForm.get('APIUserName')?.errors">
+												<div class="invalid-feedback">
+													This field is required
+												</div>
+											</div>
+
+											<div class="col-12 col-md-6 col-xl-4 mb-4 form-group required">
+												<label>API user password</label>
+												<input type="password" class="form-control" 
+												placeholder="Enter user name"
+												formControlName="APIPassword"
+												[class.is-invalid]="isSubmitted && createCustomerForm.get('APIPassword')?.errors">
+												<div class="invalid-feedback">
+													This field is required
+												</div>
+											</div>
+										</div>
+									</ng-container>
+
+									<div class="form-field">
+										<label class="checkbox checkbox-primary text-13 mb-0 drop-action">
+											<input #ifEInvoice type="checkbox" formControlName="SendEInvoice">
+											<span>Send E-invoice</span>
+											<span class="checkmark"></span>
+										</label>
+									</div>
+
+									<ng-container *ngIf="ifEInvoice.checked">
+										<div class="row drop-row">
+											<div class="col-12 col-md-6 col-xl-4 mb-4 form-group required">
+												<label>Branch name</label>
+												<input type="text" class="form-control" 
+													placeholder="Enter branch name"
+													formControlName="BranchName"
+													[class.is-invalid]="isSubmitted && createCustomerForm.get('BranchName')?.errors">
+												<div class="invalid-feedback">
+													This field is required
+												</div>
+											</div>
+
+											<div class="col-12 col-md-6 col-xl-4 mb-4 form-group required">
+												<label>File name scheme</label>
+												<input type="text" class="form-control"
+													placeholder="Enter file name scheme"
+													formControlName="FileNameScheme"
+													[class.is-invalid]="isSubmitted && createCustomerForm.get('FileNameScheme')?.errors">
+												<div class="invalid-feedback">
+													This field is required
+												</div>
+											</div>
+
+											<div class="col-12 col-md-6 col-xl-4 mb-4 form-group required">
+												<label>Format type</label>
+												<select 
+													class="form-control" 
+													formControlName="FormatType"
+													[class.is-invalid]="isSubmitted && createCustomerForm.get('FormatType')?.errors" 
+												>
+													<option value="" disabled selected hidden>Choose type</option>
+													<option value="1">Option 2</option>
+													<option value="2">Option 3</option>
+												</select>
+												<div class="invalid-feedback">
+													This field is required
+												</div>
+											</div>
+
+											<div
+												class="col-12 col-md-6 col-xl-4 mb-0 form-group required">
+												<label>Destination type</label>
+												<select 
+													(change)="handleDestinationType($event)" 
+													class="form-control"
+													id="BranchInfoDestinationType" formControlName="DestinationType"
+													[class.is-invalid]="isSubmitted && createCustomerForm.get('DestinationType')?.errors"
+												>
+													<option value="" disabled selected hidden>Choose type</option>
+													<option value="EmailLink">Email link</option>
+													<option value="EmailWithAttachment">Email with attachment</option>
+													<option value="FileSystem">File System</option>
+													<option value="FTP">FTP</option>
+												</select>
+
+												<div class="invalid-feedback">
+													This field is required
+												</div>
+											</div>
+
+											<ng-container *ngIf="activeDestinationType=='EmailLink' || activeDestinationType=='EmailWithAttachment'">
+												<div class="col-12">
+													<hr />
+												</div>
+
+												<div class="col-12 col-md-6 col-xl-4 mb-4 form-group">
+													<label>To Email</label>
+													<input type="text" placeholder="Enter email" class="form-control"
+														id="" name="">
+												</div>
+
+												<div class="col-12 col-md-6 col-xl-4 mb-4 form-group">
+													<label>Cc</label>
+													<input type="text" placeholder="Enter cc" class="form-control" id=""
+														name="">
+												</div>
+
+												<div class="col-12 col-md-6 col-xl-4 mb-4 form-group">
+													<label>Bcc</label>
+													<input type="text" placeholder="Enter bcc" class="form-control"
+														id="" name="">
+												</div>
+
+												<div class="col-12 col-md-6 col-xl-4 mb-4 form-group">
+													<label>Subject</label>
+													<input type="text" placeholder="Enter subject" class="form-control"
+														id="" name="">
+												</div>
+
+												<div class="col-12 col-md-12 col-xl-8 mb-8 form-group">
+													<label>Body</label>
+													<textarea class="form-control form-control-rounded"
+														placeholder="Text" style="height: 56px"></textarea>
+												</div>
+											</ng-container>
+
+											<ng-container *ngIf="activeDestinationType=='FileSystem'">
+												<div class="col-12">
+													<hr />
+												</div>
+
+												<div class="col-12 col-md-6 col-xl-4 mb-4 form-group">
+													<label>File path</label>
+													<input type="text" placeholder="Enter file path"
+														class="form-control" id="" name="">
+												</div>
+											</ng-container>
+
+											<ng-container *ngIf="activeDestinationType=='FTP'">
+												<div class="col-12">
+													<hr />
+												</div>
+												
+												<div class="col-12 col-md-6 col-xl-4 mb-4 form-group">
+													<label>Server</label>
+													<input type="text" class="form-control" placeholder="Enter server">
+												</div>
+
+												<div class="col-12 col-md-6 col-xl-4 mb-4 form-group">
+													<label>Port</label>
+													<input type="text" class="form-control" placeholder="Enter port">
+												</div>
+
+												<div class="col-12 col-md-6 col-xl-4 mb-4 form-group">
+													<label>File path</label>
+													<input type="text" class="form-control"
+														placeholder="Enter file path">
+												</div>
+
+												<div class="col-12 col-md-6 col-xl-4 mb-4 form-group">
+													<label>User name</label>
+													<input type="text" class="form-control"
+														placeholder="Enter user name">
+												</div>
+
+												<div class="col-12 col-md-6 col-xl-4 mb-4 form-group">
+													<label>Password</label>
+													<input type="text" class="form-control"
+														placeholder="Enter password">
+												</div>
+
+												<div class="col-12">
+													<div class="form-field">
+														<label class="checkbox checkbox-primary text-13 mb-0">
+															<input type="checkbox">
+															<span>Secured</span>
+															<span class="checkmark"></span>
+														</label>
+													</div>
+												</div>
+											</ng-container>
+										</div>
+									</ng-container>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-12 col-sm-12 col-xl-3 col-xxl-3 mb-3 ">
+				<div class="c-card">
+					<div class="card-body">
+						<div class="c-header">
+							<div class="c-title text-20">Logo</div>
+
+							<div class="c-actions hover-element">
+								
+								<label class="btn btn-secondary btn-rounded btn-upload">
+									<i class="text-13 i-Upload"></i>
+									<span>Browse</span>
+									<img-cropper [image]="data" [settings]="cropperSettings"></img-cropper><br>
+								</label>
+							</div>
+						</div>
+
+						<div class="c-not-data">
+							<div class="img-wrap mb-4">
+								<picture>
+									<img *ngIf="!data?.image" id="customer-logo" src="assets/images/customer-logo.png" width="240" height="240px" alt="Customer image">
+									<img *ngIf="data?.image" id="customer-logo" [src]="data?.image" width="240" height="240px" alt="Customer image">
+								</picture>
+							</div>
+							<div class="text-12">Recommended logo size: 480x480px (jpg, png)</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
