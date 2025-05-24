@@ -35,38 +35,15 @@ export const productUom =
         { id: 72, titleEn: "Kg", titleAr: "كغم", NumValue: 3 }
     ]
 export enum LookpusType {
-    Input_Types = 1,
-    UOM = 2,
-    Data_Types = 3,
-    Low_speed_reason = 4,
-    Handling_material = 5,
-    Handling_type = 6,
-    Planning_status = 7,
-    Production_status = 8,
-    Waste_type = 9,
-    Standard_ratio = 10,
+    
     Nationality = 11,
-    Departments = 12,
-    Shifts = 13,
-    Postion = 14,
-    ProductsUOM = 15
+    Currency = 12
 }
 export const LookupsTypeArr =
     [
-        { id: 1, name: 'Input Types', nameAr: 'أنواع المدخلات', parentId: null },
-        { id: 2, name: 'Unit of Measure', nameAr: 'وحدة القياس', parentId: 1 },
-        { id: 3, name: 'Data Types', nameAr: 'أنواع البيانات', parentId: null },
-        { id: 4, name: 'Low Speed Reason', nameAr: 'سبب السرعة المنخفضة', parentId: null },
-        { id: 5, name: 'Handling Material', nameAr: 'المواد المناولة', parentId: 4 },
-        { id: 6, name: 'Handling Type', nameAr: 'نوع المناولة', parentId: null },
-        { id: 7, name: 'Planning Status', nameAr: 'حالة التخطيط', parentId: null },
-        { id: 8, name: 'Production Status', nameAr: 'حالة الإنتاج', parentId: null },
-        { id: 9, name: 'Waste Type', nameAr: 'نوع النفايات', parentId: null },
-        { id: 10, name: 'Standard Ratio', nameAr: 'النسبة القياسية', parentId: null },
+        
         { id: 11, name: 'Nationality', nameAr: 'الجنسية', parentId: null },
-        { id: 12, name: 'Departments', nameAr: 'الأقسام', parentId: null },
-        { id: 13, name: 'Shifts', nameAr: 'الورديات', parentId: null },
-        { id: 14, name: 'Postions', nameAr: 'المنصب الوظيفي', parentId: null },
+        { id: 12, name: 'Currency', nameAr: 'العملة', parentId: null }
     ]
 export enum OrderStatus {
     Pending = 1,

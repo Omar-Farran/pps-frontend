@@ -86,6 +86,26 @@ export class NavigationService {
                 },
             ]
         },
+         {
+            name: 'navigation.company-management',
+            type: 'dropDown',
+            icon: 'i-Men',
+            permissions: 'Company-Management',
+            sub: [
+                {
+                    name: 'navigation.Companies',
+                    state: '/company-management/companies',
+                    type: 'link',
+                    permissions: 'Company-List'
+                },
+                 {
+                    name: 'navigation.Branchies',
+                    state: '/company-management/branchies',
+                    type: 'link',
+                    permissions: 'Branch-List'
+                }
+            ]
+        },
         {
             name: 'navigation.users_management',
             type: 'dropDown',
@@ -103,13 +123,7 @@ export class NavigationService {
                     state: '/user-managment/roles',
                     type: 'link',
                     permissions: 'Roles-List'
-                },
-                {
-                    name: 'navigation.manage_permissions',
-                    state: '/user-managment/permissions',
-                    type: 'link',
-                    permissions: 'Permission-List'
-                },
+                }
             ]
         },
         {
@@ -121,6 +135,12 @@ export class NavigationService {
                 {
                     name: 'navigation.Nationality',
                     state: '/lookups-managment/nationality/11',
+                    type: 'link',
+                    permissions: 'Lookups-List'
+                },
+                {
+                    name: 'navigation.Currency',
+                    state: '/lookups-managment/currency/12',
                     type: 'link',
                     permissions: 'Lookups-List'
                 },

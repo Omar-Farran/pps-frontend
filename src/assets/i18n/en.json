@@ -1,4 +1,7 @@
 {
+  "status": "Status",
+  "successUpdated": "Updated Successfully",
+  "successAdded": " Added Successfully",
   "ManageRoles": "Manage Roles",
   "Active": "Active",
   "Inactive": "Inactive",
@@ -55,7 +58,9 @@
     "selectedItems": "{count} Items Selected",
     "search": "Search",
     "onlyWholeNumbersAllowed": "Only whole numbers are allowed",
-    "SelectItems": "Select Items"
+    "SelectItems": "Select Items",
+    "updatestatus":"Change Status",
+    "info": "Info"
   },
   "userManagment": {
     "email": "Email",
@@ -491,7 +496,11 @@
     "employeeOnMachine": "Employee on machine",
     "Statistics": "Statistics",
     "fault-justification": "Fault Justification",
-    "oee-dashboard": "OEE Dashboard"
+    "oee-dashboard": "OEE Dashboard",
+    "Currency":"Currency",
+    "Companies":"Companies",
+    "company-management":"Company Management",
+    "Branchies":"Branchies"
   },
   "factory": {
     "factoryManagment": "Factory Management",
@@ -852,7 +861,8 @@
     "ThereisAlreadyLinkedProductionOrderToMachine": "A production product order with a ‘Not Planned' or 'Active' status is already linked to the product",
     "MachineCodeAlreadyExists": "Machine Code Already Exists",
     "ThereIsCategoryLinkedActive": "There is already active subcategory linked into category",
-    "LinkedPrespectiveInactive": "The linked perspective is inactive; activate it first."
+    "LinkedPrespectiveInactive": "The linked perspective is inactive; activate it first.",
+    "CompanyIsInActive":"Company is inactive"
   },
   "dashboards": {
     "oee-dashboard": "OEE Dashboard",
@@ -879,5 +889,43 @@
   },
   "table": {
     "NodataFound": "No Data Found"
+  },
+  "companyManagement": {
+    "manageCompanies": "Manage Companies",
+    "addCompany": "Add New Company",
+    "editCompany": "Edit New Company",
+    "search":"Search",
+    "company": "Company",
+    "nameEn":"Name English",
+    "nameAr": "Name Arabic",
+    "mobile":"Mobile",
+    "subscriptionStart": "subscription Start",
+    "subscriptionEnd": "subscription End",
+    "code":"Code",
+    "address": "Address",
+    "isActive":"Active",
+    "mainAccountEmail": "Main Account Email",
+    "status": "Status",
+    "logo":"Company Logo",
+    "searchByCodeName": "Search by Code , Name",
+    "info":"Company Info",
+    "currencyId": "Currency",
+    "renewSubscription":"Renew Subscription",
+    "getbackup":"Get Backup",
+    "timezone":"Time Zone"
+  },
+  "branch": {
+    "descriptionEn": "Description English",
+    "descriptionAr": "Description Arabic",
+    "endWorkingHour": "End Working Hours",
+    "startWorkingHour": "Start Working Hours",
+    "address": "Address",
+    "currencyId": "Currency",
+    "manageBranch": "Manage Branchies",
+    "branch":"Branch",
+    "isActive":"Active",
+    "addBranch": "Add New Branch",
+    "editBranch": "Edit New Branch"
   }
+
 }

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API: 'https://localhost:44351/api',
+  API: 'https://localhost:7154/api',
   token: 'acessToken',
   mapbox:
   {

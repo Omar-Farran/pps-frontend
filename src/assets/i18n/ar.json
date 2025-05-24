@@ -479,7 +479,8 @@
     "manage_employee": "ادارة الموظفين",
     "maintenance-faults": "تحليل الأخطاء",
     "fault-justification": "تبرير الأخطاء",
-    "oee-dashboard": "لوحة معلومات الكفاءة التشغيلية"
+    "oee-dashboard": "لوحة معلومات الكفاءة التشغيلية",
+    "Currecy":"العملات"
   },
   "factory": {
     "factoryManagment": "إدارة المصانع",

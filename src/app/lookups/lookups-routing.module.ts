@@ -4,6 +4,7 @@ import { LookupsListComponent } from './lookups-list/lookups-list.component';
 const routes: Routes =
   [
     { path: 'nationality/:typeId', component: LookupsListComponent },
+    { path: 'currency/:typeId', component: LookupsListComponent }
   ];
 @NgModule
 (

@@ -18,7 +18,7 @@ export class LookupsListComponent implements OnInit {
     // { name: "#", field: "id" },
     { name: "Lookups.title", field: "title" },
     { name: "Lookups.value", field: "valueText" },
-    { name: "Lookups.status", field: "status" },
+    { name: "Lookups.status", field: "isActive" },
   ];
   dataSource: any[] = [];
   actionList: any[] = [

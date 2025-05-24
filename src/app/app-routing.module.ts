@@ -12,13 +12,13 @@ const adminRoutes: Routes = [
       canActivate: [AuthGaurd]
     },
     {
-      path: 'customers',
-      loadChildren: () => import('./views/customers/customers.module').then(m => m.CustomersModule),
+      path: 'accounts',
+      loadChildren: () => import('./views/accounts/accounts.module').then(m => m.AccountsModule),
       canActivate: [AuthGaurd]
     },
     {
-      path: 'accounts',
-      loadChildren: () => import('./views/accounts/accounts.module').then(m => m.AccountsModule),
+      path: 'company-management',
+      loadChildren: () => import('./company-management/company-management.module').then(m => m.CompanyManagementModule),
       canActivate: [AuthGaurd]
     },
     {
