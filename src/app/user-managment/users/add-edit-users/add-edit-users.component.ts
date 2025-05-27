@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { onlyCountries } from 'src/app/shared/models/enum';
+import { LookpusType, onlyCountries } from 'src/app/shared/models/enum';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { BaseService } from 'src/app/shared/services/base.service';
 import { LanguageService } from 'src/app/shared/services/language.service';
@@ -18,6 +18,8 @@ import { passwordValidator } from 'src/app/utils/validation-password';
 export class AddEditUsersComponent implements OnInit 
 {
   //#region Variables
+  preferredLanguages:any[];
+  branchies:any;
   @Input() modal: any = null
   @Input() UserId: number
   @Input() isEditMood: boolean = false
@@ -37,6 +39,11 @@ export class AddEditUsersComponent implements OnInit
       PasswordConfirm: new FormControl('', [Validators.required]),
       isActive: new FormControl('true', Validators.required),
       roles: new FormControl(null, [Validators.required]),
+      address: new FormControl('', [Validators.required]),
+      jobDescription: new FormControl('', [Validators.required]),
+      preferredLanguageId: new FormControl(0, [Validators.required]),
+      branchId: new FormControl(0, [Validators.required])
+
     }, 
     {
       validators: [Validation.match('password', 'PasswordConfirm')],
@@ -56,11 +63,28 @@ export class AddEditUsersComponent implements OnInit
     this.GetAllRoles();
     if (this.isEditMood && this.UserId)
       this.GetById();
+    this.getPreferredLanguges();
+    this.getBranchies();
   }
   //#region Functions
   FetchData (object:any)
   {
-    this.userAddForm.patchValue(object);
+    this.userAddForm.patchValue
+					({
+				
+          id: object.id,
+          email: object.email,
+          phoneNumber: object.phoneNumber,
+          fullName: object.fullName,
+          userName: object.userName,
+          isActive: object.isActive,
+          roles: object.roles,
+          address: object.address,
+          jobDescription: object.jobDescription,
+          preferredLanguageId: object.preferredLanguageId,
+          branchId: object.branchId
+});
+
     this.removeValidators('password')
     this.removeValidators('PasswordConfirm')
   }
@@ -100,6 +124,20 @@ export class AddEditUsersComponent implements OnInit
     this.baseService.Post('Users', ApiAction , form).subscribe
     ( res => { this.modal.close(); } )
   }
+
+  getPreferredLanguges(){
+      this.baseService.getLookupsByType(LookpusType.PreferredLanguage).subscribe(res => {
+        this.preferredLanguages = res;
+      });
+    }
+
+    
+  getBranchies(){
+      this.baseService.Get('Branch' , 'GetAll').subscribe(res => {
+        this.branchies  = res;
+      });
+    }
+
   //#endregion
   //#region Getters
   private GetAllRoles() 
@@ -113,4 +151,7 @@ export class AddEditUsersComponent implements OnInit
     ( res => { this.User = res as any; this.FetchData(this.User); })
   }
   //#endregion
+
+
+
 }

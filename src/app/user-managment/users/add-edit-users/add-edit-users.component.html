@@ -7,6 +7,14 @@
 <div class="modal-body">
     <form [formGroup]="userAddForm" id="userAddForm">
         <div class="row">
+            <!-- Branchies -->
+              <div class="col-md-6 form-group mb-3">
+                            <label for="picker1"> {{ "userManagment.branch" | translate }}</label>
+                            <select class="form-control" formControlName="branchId" name="branchId">
+                                <option *ngFor="let item of branchies" value="{{item.id}}" >{{item.description}}</option>
+                            </select>
+                        </div>
+
             <!-- Full Name -->
             <div class="col-12 col-sm-6 form-group required">
                 <label>{{'userManagment.fullName' | translate }}</label>
@@ -54,7 +62,7 @@
             <!-- Phone Number -->
             <div class="col-12 col-sm-6 form-group required">
                 <label>{{'userManagment.phoneNumber' | translate}}</label>
-                <ngx-mat-intl-tel-input [preferredCountries]="['sa']"
+                <ngx-mat-intl-tel-input [preferredCountries]="['iq']"
                                         [onlyCountries]="onlyCountries"
                                         [enablePlaceholder]="true"
                                         [enableSearch]="true"
@@ -103,6 +111,43 @@
             </div>
 
         </div>
+
+         <div class="row">
+    <div class="col-md-6 col-sm-6 form-group required">
+                <label>{{'userManagment.jobDescription' | translate }}</label>
+                <input type="text"
+                       maxlength="100"
+                       placeholder="{{'userManagment.jobDescription' | translate }}"
+                       class="form-control"
+                       formControlName="jobDescription"
+                       [class.is-invalid]="isSubmittedUserAddForm && userAddForm.get('jobDescription')?.errors">
+                <div class="invalid-feedback">
+                    {{'common.fieldRequired'|translate}}
+                </div>
+            </div>
+
+     <div class="col-md-6 form-group mb-3">
+                            <label for="picker1"> {{ "userManagment.preferredLanguage" | translate }}</label>
+                            <select class="form-control" formControlName="preferredLanguageId" name="preferredLanguageId">
+                                <option *ngFor="let item of preferredLanguages" value="{{item.id}}" >{{item.title}}</option>
+                            </select>
+                        </div>
+         </div>
+           
+
+             <div class="col-md-12 col-sm-6 form-group required">
+                <label>{{'userManagment.address' | translate }}</label>
+                <input type="textarea"
+                       maxlength="100"
+                       placeholder="{{'userManagment.address' | translate }}"
+                       class="form-control"
+                       formControlName="address"
+                       [class.is-invalid]="isSubmittedUserAddForm && userAddForm.get('address')?.errors">
+                <div class="invalid-feedback">
+                    {{'common.fieldRequired'|translate}}
+                </div>
+            </div>
+
         <!-- Password -->
         <div class="form-group required" *ngIf="!isEditMood">
             <label>{{'userManagment.password' | translate}}</label>

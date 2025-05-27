@@ -2,6 +2,8 @@
     <h1>{{'common.MyProfile' | translate}}</h1>
 </div>
 
+<div class="row">
+	<div class="col-md-4 mb-2">
 <div class="user-profile">
     <div class="user-name">{{User?.fullName}}</div>
     <div class="user-id">{{User?.id}}</div>
@@ -11,10 +13,7 @@
         <li class="user-phone">{{User?.phoneNumber}}</li>
     </ul>
 
-    <!-- <div class="change-pass-action" (click)="openChangePassword(modalChangePassword)">
-		Change password
-		<input type="password" readonly value="1111111111111">
-	</div> -->
+  
 
     <ng-template #modalChangePassword let-modal>
 		<div class="modal-header">
@@ -61,3 +60,15 @@
 		</div>
     </ng-template>
 </div>
+	</div>
+		<div class="col-md-8 mb-2" *ngIf="companyId > 0">
+<div class="card p-4">
+	<div class="card-body">
+<app-company-form [id]="companyId" [isEditMood]="true"  [isCompanyUser]="true"></app-company-form>
+
+	</div>
+</div>
+	</div>
+</div>
+
+

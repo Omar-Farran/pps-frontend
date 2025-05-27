@@ -31,6 +31,7 @@ import { MatSelectCountryModule } from "@angular-material-extensions/select-coun
 import { HttpClientModule } from '@angular/common/http';
 import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CompanyManagementModule } from 'src/app/company-management/company-management.module';
 
 @NgModule({
   imports: [
@@ -46,7 +47,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CalendarModule,
     MatSelectCountryModule.forRoot('en'),
     NgxMatIntlTelInputComponent,
-    HttpClientModule
+    HttpClientModule,
+    CompanyManagementModule
   ],
   declarations: [
     EventMappingNewComponent,

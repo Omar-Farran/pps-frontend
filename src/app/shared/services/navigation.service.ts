@@ -144,23 +144,36 @@ export class NavigationService {
                     type: 'link',
                     permissions: 'Lookups-List'
                 },
-            ]
-        },
-        {
-            name: 'navigation.production-products',
-            type: 'dropDown',
-            icon: 'i-Posterous',
-            permissions: 'Product-Management',
-            sub: [
                 {
-                    name: 'category.categoryManagment',
-                    state: '/production-products/category-list',
+                    name: 'navigation.preferred-language',
+                    state: '/lookups-managment/preferred-language/13',
                     type: 'link',
-                    permissions: 'Category-List',
+                    permissions: 'Lookups-List'
                 },
-                
+                {
+                    name: 'navigation.tax-management',
+                    state: '/lookups-managment/tax-management/14',
+                    type: 'link',
+                    permissions: 'Lookups-List'
+                },
             ]
-        },
+        }
+        // ,
+        // {
+        //     name: 'navigation.production-products',
+        //     type: 'dropDown',
+        //     icon: 'i-Posterous',
+        //     permissions: 'Product-Management',
+        //     sub: [
+        //         {
+        //             name: 'category.categoryManagment',
+        //             state: '/production-products/category-list',
+        //             type: 'link',
+        //             permissions: 'Category-List',
+        //         },
+                
+        //     ]
+        // },
     ];
 
 

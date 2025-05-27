@@ -81,7 +81,11 @@
     "changeStatus": "Change Status",
     "UpdateUser": "Update User",
     "ChangePassword": "Change Password",
-    "ChangeSuccess": "Password Changed Successfully"
+    "ChangeSuccess": "Password Changed Successfully",
+    "address":"Address",
+    "jobDescription": "Job Description",
+    "preferredLanguage": "Preferred Language",
+    "branch":"Branch"
   },
   "SpeedStandard": {
     "MachineHasNoDimensions": "The machine does not have any defined dimensions.",
@@ -500,7 +504,9 @@
     "Currency":"Currency",
     "Companies":"Companies",
     "company-management":"Company Management",
-    "Branchies":"Branchies"
+    "Branchies":"Branchies",
+    "preferred-language": "Preferred Language",
+    "tax-management":"Taxes"
   },
   "factory": {
     "factoryManagment": "Factory Management",
@@ -893,7 +899,7 @@
   "companyManagement": {
     "manageCompanies": "Manage Companies",
     "addCompany": "Add New Company",
-    "editCompany": "Edit New Company",
+    "editCompany": "Edit Company",
     "search":"Search",
     "company": "Company",
     "nameEn":"Name English",

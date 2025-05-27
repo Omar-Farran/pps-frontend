@@ -90,13 +90,15 @@ export class AddEditLookupsComponent implements OnInit
     const ControllerPath = 'Lookups'
     const form = this.lookupAddForm.getRawValue()
     this.baseService.Post(ControllerPath , ApiPath , form).subscribe
-    ( res => { this.modal.close(); }
-    )
+    ( res => { this.modal.close(); 
+
   this.toastr.success(
     this.translate.instant(this.isEditMood ? 'Lookups.successUpdated' : "Lookups.successAdded"),
     this.translate.instant("Lookups.success"),
     { timeOut: 3000 }
-  );
+  );}
+    )
+
     
   }
   //#endregion

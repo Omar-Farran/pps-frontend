@@ -42,6 +42,7 @@ import { CompanyInfoComponent } from './company-list/company-info/company-info.c
        DropdownModule,
        NgbDatepickerModule,
       
-  ]
+  ],
+  exports:[CompanyFormComponent]
 })
 export class CompanyManagementModule { }

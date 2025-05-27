@@ -37,13 +37,20 @@ export const productUom =
 export enum LookpusType {
     
     Nationality = 11,
-    Currency = 12
+    Currency = 12,
+    PreferredLanguage = 13,
+    Tax = 14
+
 }
 export const LookupsTypeArr =
     [
         
         { id: 11, name: 'Nationality', nameAr: 'الجنسية', parentId: null },
-        { id: 12, name: 'Currency', nameAr: 'العملة', parentId: null }
+        { id: 12, name: 'Currency', nameAr: 'العملة', parentId: null },
+        { id: 13, name: 'Preferred Language', nameAr: 'الغة المفضلة', parentId: null },
+        { id: 14, name: 'Taxes', nameAr: 'ضريبة', parentId: null }
+
+
     ]
 export enum OrderStatus {
     Pending = 1,
