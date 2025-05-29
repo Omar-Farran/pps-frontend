@@ -86,7 +86,7 @@ export class NavigationService {
                 },
             ]
         },
-         {
+        {
             name: 'navigation.company-management',
             type: 'dropDown',
             icon: 'i-Men',
@@ -98,12 +98,24 @@ export class NavigationService {
                     type: 'link',
                     permissions: 'Company-List'
                 },
-                 {
+                {
                     name: 'navigation.Branchies',
                     state: '/company-management/branchies',
                     type: 'link',
                     permissions: 'Branch-List'
-                }
+                },
+                {
+                    name: 'navigation.Customers',
+                    state: '/company-management/customers',
+                    type: 'link',
+                    permissions: 'Customers-List'
+                },
+                {
+                    name: 'navigation.Suppliers',
+                    state: '/company-management/suppliers',
+                    type: 'link',
+                    permissions: 'Suppliers-List'
+                },
             ]
         },
         {
@@ -123,7 +135,7 @@ export class NavigationService {
                     state: '/user-managment/roles',
                     type: 'link',
                     permissions: 'Roles-List'
-                }
+                } 
             ]
         },
         {
@@ -144,6 +156,12 @@ export class NavigationService {
                     type: 'link',
                     permissions: 'Lookups-List'
                 },
+                {
+                    name: 'navigation.CustomerType',
+                    state: '/lookups-managment/customerType/15',
+                    type: 'link',
+                    permissions: 'Lookups-List' 
+                },
             ]
         },
         {
@@ -158,7 +176,7 @@ export class NavigationService {
                     type: 'link',
                     permissions: 'Category-List',
                 },
-                
+
             ]
         },
     ];

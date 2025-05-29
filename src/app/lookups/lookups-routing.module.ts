@@ -4,13 +4,14 @@ import { LookupsListComponent } from './lookups-list/lookups-list.component';
 const routes: Routes =
   [
     { path: 'nationality/:typeId', component: LookupsListComponent },
-    { path: 'currency/:typeId', component: LookupsListComponent }
+    { path: 'currency/:typeId', component: LookupsListComponent },
+    { path: 'customerType/:typeId', component: LookupsListComponent }
   ];
 @NgModule
-(
-  {
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
-  }
-)
-export class LookupsRoutingModule {}
+  (
+    {
+      imports: [RouterModule.forChild(routes)],
+      exports: [RouterModule]
+    }
+  )
+export class LookupsRoutingModule { }

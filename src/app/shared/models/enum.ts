@@ -7,16 +7,15 @@ export const StatusArr =
         { id: 1, name: 'Active', nameAr: 'فعال' },
         { id: 2, name: 'Inactive', nameAr: 'غير فعال' },
     ]
-export enum GlobalStatus 
-{
+export enum GlobalStatus {
     Active = 1,
     Inactive = 2
 }
 export const GlobalStatusArr =
-[
-    { id: 1, name: 'Active', nameAr: 'فعال' },
-    { id: 2, name: 'Inactive', nameAr: 'غير فعال' },
-]
+    [
+        { id: 1, name: 'Active', nameAr: 'فعال' },
+        { id: 2, name: 'Inactive', nameAr: 'غير فعال' },
+    ]
 export const orderStatusArr =
     [
         { id: 4, name: 'Not Planned', nameAr: 'غير مخطط' },
@@ -35,15 +34,17 @@ export const productUom =
         { id: 72, titleEn: "Kg", titleAr: "كغم", NumValue: 3 }
     ]
 export enum LookpusType {
-    
+
     Nationality = 11,
-    Currency = 12
+    Currency = 12,
+    CustomersType = 15,
+
 }
 export const LookupsTypeArr =
     [
-        
         { id: 11, name: 'Nationality', nameAr: 'الجنسية', parentId: null },
-        { id: 12, name: 'Currency', nameAr: 'العملة', parentId: null }
+        { id: 12, name: 'Currency', nameAr: 'العملة', parentId: null },
+        { id: 15, name: 'Customer Type', nameAr: 'نوع العميل', parentId: null }
     ]
 export enum OrderStatus {
     Pending = 1,
@@ -222,3 +223,9 @@ export const approvalStatuses =
         { id: 1, name: 'Approved', nameAr: 'تمت الموافقة' },
         { id: 2, name: 'Rejected', nameAr: 'تم الرفض' },
     ];
+
+
+export enum ClientType {
+    Customer = 1,
+    Supplier = 2
+}

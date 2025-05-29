@@ -15,33 +15,38 @@ import { DropdownModule } from 'primeng/dropdown';
 import { BranchListComponent } from './branch-list/branch-list.component';
 import { BranchFormComponent } from './branch-list/branch-form/branch-form.component';
 import { CompanyInfoComponent } from './company-list/company-info/company-info.component';
-
-
-
-
+import { CustomersListComponent } from './customers-list/customers-list.component';
+import { CustomersFormComponent } from './customers-list/customers-form/customers-form.component';
+import { SuppliersListComponent } from './suppliers-list/suppliers-list.component';
+import { SuppliersFormComponent } from './suppliers-list/suppliers-form/suppliers-form.component';
 
 @NgModule({
-  declarations: [ 
+  declarations: [
     CompanyListComponent,
     CompanyFormComponent,
     BranchListComponent,
     BranchFormComponent,
-    CompanyInfoComponent],
+    CompanyInfoComponent,
+    CustomersListComponent,
+    CustomersFormComponent,
+    SuppliersListComponent,
+    SuppliersFormComponent,
+  ],
   imports: [
-       CommonModule,
-       NgbNavModule,
-       NgxPaginationModule,
-       SharedModule,
-       ReactiveFormsModule,
-       NgxMatIntlTelInputComponent,
-       CompanyManagementRoutingModule,
-       MultiSelectModule,
-       NgbModule,
-       MatFormFieldModule,
-       MatSelectModule,
-       DropdownModule,
-       NgbDatepickerModule,
-      
+    CommonModule,
+    NgbNavModule,
+    NgxPaginationModule,
+    SharedModule,
+    ReactiveFormsModule,
+    NgxMatIntlTelInputComponent,
+    CompanyManagementRoutingModule,
+    MultiSelectModule,
+    NgbModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    DropdownModule,
+    NgbDatepickerModule,
+
   ]
 })
 export class CompanyManagementModule { }

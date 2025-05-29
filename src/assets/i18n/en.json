@@ -59,7 +59,7 @@
     "search": "Search",
     "onlyWholeNumbersAllowed": "Only whole numbers are allowed",
     "SelectItems": "Select Items",
-    "updatestatus":"Change Status",
+    "updatestatus": "Change Status",
     "info": "Info"
   },
   "userManagment": {
@@ -197,7 +197,7 @@
   "Lookups": {
     "successUpdated": "Updated Successfully",
     "successAdded": " Added Successfully",
-    "success":"Success!",
+    "success": "Success!",
     "SearchbyLookups": "Search by Settings ...",
     "Add": "Add Lookups",
     "name": "Name",
@@ -497,10 +497,13 @@
     "Statistics": "Statistics",
     "fault-justification": "Fault Justification",
     "oee-dashboard": "OEE Dashboard",
-    "Currency":"Currency",
-    "Companies":"Companies",
-    "company-management":"Company Management",
-    "Branchies":"Branchies"
+    "Currency": "Currency",
+    "CustomerType": "Customer Type",
+    "Companies": "Companies",
+    "company-management": "Company Management",
+    "Branchies": "Branchies",
+    "Customers": "Customers",
+    "Suppliers": "Suppliers"
   },
   "factory": {
     "factoryManagment": "Factory Management",
@@ -682,8 +685,7 @@
     "InvalidOrderStatus": "Order status is invalid",
     "InvalidProducedQuantity": "Produced quantity must be greater than zero"
   },
-  
-"speed-query-logs": {
+  "speed-query-logs": {
     "pageTitle": "Speed Query Logs",
     "search": "Search",
     "ExportReport": "Export to Excel",
@@ -716,7 +718,7 @@
     "uomId": "Unit of Measure",
     "approvalStatus": "Approval Status",
     "status": "Status"
-},
+  },
   "assign-employee": {
     "employeeOnMachine": "Employee on machine",
     "selectShift": "Select Shift for All Machines",
@@ -862,7 +864,7 @@
     "MachineCodeAlreadyExists": "Machine Code Already Exists",
     "ThereIsCategoryLinkedActive": "There is already active subcategory linked into category",
     "LinkedPrespectiveInactive": "The linked perspective is inactive; activate it first.",
-    "CompanyIsInActive":"Company is inactive"
+    "CompanyIsInActive": "Company is inactive"
   },
   "dashboards": {
     "oee-dashboard": "OEE Dashboard",
@@ -894,25 +896,26 @@
     "manageCompanies": "Manage Companies",
     "addCompany": "Add New Company",
     "editCompany": "Edit New Company",
-    "search":"Search",
+    "search": "Search",
     "company": "Company",
-    "nameEn":"Name English",
+    "nameEn": "Name English",
     "nameAr": "Name Arabic",
-    "mobile":"Mobile",
+    "mobile": "Mobile",
     "subscriptionStart": "subscription Start",
     "subscriptionEnd": "subscription End",
-    "code":"Code",
+    "code": "Code",
     "address": "Address",
-    "isActive":"Active",
+    "isActive": "Active",
     "mainAccountEmail": "Main Account Email",
     "status": "Status",
-    "logo":"Company Logo",
+    "logo": "Company Logo",
     "searchByCodeName": "Search by Code , Name",
-    "info":"Company Info",
+    "info": "Company Info",
     "currencyId": "Currency",
-    "renewSubscription":"Renew Subscription",
-    "getbackup":"Get Backup",
-    "timezone":"Time Zone"
+    "CustomerTypeId": "Customer Type",
+    "renewSubscription": "Renew Subscription",
+    "getbackup": "Get Backup",
+    "timezone": "Time Zone"
   },
   "branch": {
     "descriptionEn": "Description English",
@@ -920,12 +923,66 @@
     "endWorkingHour": "End Working Hours",
     "startWorkingHour": "Start Working Hours",
     "address": "Address",
-    "currencyId": "Currency",
+    "CustomerTypeId": "Customer Type",
     "manageBranch": "Manage Branchies",
-    "branch":"Branch",
-    "isActive":"Active",
+    "branch": "Branch",
+    "isActive": "Active",
     "addBranch": "Add New Branch",
     "editBranch": "Edit New Branch"
+  },
+  "customers": {
+    "customers": "Customers",
+    "managecustomers": "Manage Customers",
+    "descriptionAr": "Description Arabic",
+    "endWorkingHour": "End Working Hours",
+    "startWorkingHour": "Start Working Hours",
+    "address": "Address",
+    "CustomerTypeId": "Customer Type",
+    "manageBranch": "Manage Branchies",
+    "branch": "Branch",
+    "isActive": "Active",
+    "addcustomers": "Add New Customer",
+    "editCustomers": "Edit Customer",
+    "select": "Select ...",
+    "nameAr": "Name Arabic",
+    "nameEn": "Name English",
+    "customerTypeId": "Customer Type",
+    "initialBalance": "Initial Balance",
+    "mobileNumber": "Mobile Number",
+    "debitLimit": "Debit Limit",
+    "creditLimit": "Credit Limit",
+    "periodInDays": "Period (in Days)",
+    "discount": "Discount",
+    "accountNumber": "Account Number",
+    "notes": "Notes",
+    "editcustomers": "Edit Customers",
+    "Searchby": "Search By Name, Type, Mobile"
+  },
+  "Suppliers": {
+    "Suppliers": "Suppliers",
+    "manageSuppliers": "Manage Suppliers",
+    "descriptionAr": "Description Arabic",
+    "endWorkingHour": "End Working Hours",
+    "startWorkingHour": "Start Working Hours",
+    "address": "Address",
+    "customerTypeId": "Supplier Type",
+    "manageBranch": "Manage Branchies",
+    "branch": "Branch",
+    "isActive": "Active",
+    "addSuppliers": "Add New Supplier",
+    "select": "Select ...",
+    "nameAr": "Name Arabic",
+    "nameEn": "Name English",
+    "SupplierTypeId": "Supplier Type",
+    "initialBalance": "Initial Balance",
+    "mobileNumber": "Mobile Number",
+    "debitLimit": "Debit Limit",
+    "creditLimit": "Credit Limit",
+    "periodInDays": "Period (in Days)",
+    "discount": "Discount",
+    "accountNumber": "Account Number",
+    "notes": "Notes",
+    "editSuppliers": "Edit Suppliers",
+    "Searchby": "Search By Name, Type, Mobile"
   }
-
 }
