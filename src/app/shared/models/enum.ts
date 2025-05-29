@@ -7,16 +7,15 @@ export const StatusArr =
         { id: 1, name: 'Active', nameAr: 'فعال' },
         { id: 2, name: 'Inactive', nameAr: 'غير فعال' },
     ]
-export enum GlobalStatus 
-{
+export enum GlobalStatus {
     Active = 1,
     Inactive = 2
 }
 export const GlobalStatusArr =
-[
-    { id: 1, name: 'Active', nameAr: 'فعال' },
-    { id: 2, name: 'Inactive', nameAr: 'غير فعال' },
-]
+    [
+        { id: 1, name: 'Active', nameAr: 'فعال' },
+        { id: 2, name: 'Inactive', nameAr: 'غير فعال' },
+    ]
 export const orderStatusArr =
     [
         { id: 4, name: 'Not Planned', nameAr: 'غير مخطط' },
@@ -35,24 +34,26 @@ export const productUom =
         { id: 72, titleEn: "Kg", titleAr: "كغم", NumValue: 3 }
     ]
 export enum LookpusType {
-    
+
     Nationality = 11,
     Currency = 12,
     PreferredLanguage = 13,
     Tax = 14,
-    Category = 15,
-    unitOfMeasures = 16
+    CustomersType = 15,
+    unitOfMeasures = 16,
+    Category = 17
+
 
 }
 export const LookupsTypeArr =
     [
-        
         { id: 11, name: 'Nationality', nameAr: 'الجنسية', parentId: null },
         { id: 12, name: 'Currency', nameAr: 'العملة', parentId: null },
         { id: 13, name: 'Preferred Language', nameAr: 'الغة المفضلة', parentId: null },
         { id: 14, name: 'Taxes', nameAr: 'ضريبة', parentId: null },
-        { id: 15, name: 'Category', nameAr: 'الصنف', parentId: null },
-        { id: 16, name: 'Unit Of Measure', nameAr: 'وحدة القياس', parentId: null }
+        { id: 15, name: 'Customer Type', nameAr: 'نوع العميل', parentId: null },
+        { id: 16, name: 'Unit Of Measure', nameAr: 'وحدة القياس', parentId: null },
+        { id: 17, name: 'Category', nameAr: 'الصنف', parentId: null }
     ]
 export enum OrderStatus {
     Pending = 1,
@@ -231,3 +232,9 @@ export const approvalStatuses =
         { id: 1, name: 'Approved', nameAr: 'تمت الموافقة' },
         { id: 2, name: 'Rejected', nameAr: 'تم الرفض' },
     ];
+
+
+export enum ClientType {
+    Customer = 1,
+    Supplier = 2
+}
