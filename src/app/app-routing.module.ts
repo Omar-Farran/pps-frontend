@@ -27,8 +27,8 @@ const adminRoutes: Routes = [
       canActivate: [AuthGaurd]
     },
     {
-        path: 'production-products',
-        loadChildren: () => import('./production-products/production-products.module').then(m => m.ProductionProductsModule),
+        path: 'product-management',
+        loadChildren: () => import('./product-management/product-management.module').then(m => m.ProductManagementModule),
         canActivate: [AuthGaurd]
     },
     {

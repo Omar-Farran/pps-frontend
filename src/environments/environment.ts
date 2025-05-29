@@ -9,7 +9,8 @@ export const environment = {
   mapbox:
   {
     accessToken: 'pk.eyJ1IjoibG9ycnkyMDI0IiwiYSI6ImNsd2oyeDA4dDBzZnUyanJ5d3RiczlxcXYifQ.TSAp7_ShcMtYcFsMAy_1Bg'
-  }
+  },
+  attachmentUrl: 'https://localhost:7154/uploads/'
 };
 
 /*

@@ -12,24 +12,21 @@
             <tr *ngFor="let data of dataSource">
                 <ng-container *ngFor="let header of Headers">
 
-                    <td  *ngIf="header.field  !== 'status' && header.field  !== 'mobileNumber'  && header.field  !== 'userType' && header.field  !== 'isActive' && header.field  !== 'value' && header.field  !== 'orderId' && header.field !== 'id' && header.field !== 'paymentType' && header.field !== 'orderStatus' && header.field !== 'invoiceStatus'
+                    <td  *ngIf="
+                        header.field  !== 'status'
+                     && header.type  !== 'number'  
+                     && header.field  !== 'userType' 
+                     && header.field  !== 'isActive' 
                     && header.type !== 'date'">
                         <!-- Check if the text exceeds the character limit -->
                         <span *ngIf="data[header.field]?.length > 40">{{ data[header.field] | slice: 0:40 }}...</span>
                         <!-- If it doesn't exceed the character limit, display the full text -->
                         <span *ngIf="data[header.field]?.length <= 40">{{ data[header.field] }}</span>
                     </td>
-                    <td *ngIf="header.field === 'value'">{{ data[header.field] | number:'1.2-2' }}</td>
-                    <td *ngIf="header.field === 'orderId'">{{ data[header.field] | number }}</td>
                     <td *ngIf="(header.field | translate) === 'status'">{{ getStatusText(data[header.field]) }}</td>
-                    <td *ngIf="(header.field | translate) === 'isActive'" class="status c-badge "[ngClass]="{'active':data[header.field]}"> {{ getActiveText(data[header.field]) }}
-                    </td>
-                    <td *ngIf="(header.field | translate)=== 'id'">{{ data[header.field] }}</td>
-                    <td *ngIf="header.field === 'paymentType'">{{ getPaymentTypeText(data[header.field]) }}</td>
-                    <td *ngIf="header.field === 'orderStatus'">{{ getOrderStatusText(data[header.field]) }}</td>
-                    <td *ngIf="header.field === 'invoiceStatus'">{{ getInvoiceStatusText(data[header.field]) }}</td>
+                    <td *ngIf="(header.field | translate) === 'isActive'" class="status c-badge "[ngClass]="{'active':data[header.field]}"> {{ getActiveText(data[header.field]) }} </td>
                     <td *ngIf="header.field === 'userType'">{{ getuserTypeText(data[header.field]) }}</td>
-                    <td *ngIf="header.field === 'mobileNumber'" class="ltr-text">{{ data[header.field] }}</td>
+                    <td *ngIf="header.type === 'number'" class="ltr-text">{{ data[header.field] }}</td>
                     <td *ngIf="header.type === 'date'" class="ltr-text">{{ data[header.field] | date:'MM-dd-yyyy' }}</td>
 
                     

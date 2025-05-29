@@ -1,0 +1,58 @@
+<div class="customers">
+<div class="breadcrumb">
+    <h1>{{'product-management.product-management' | translate}}</h1>
+    <ul>
+        <li>{{'product-management.manageProduct'  | translate}}</li>
+        <li><strong class="text-primary">{{'product-management.product'  | translate}}</strong></li>
+    </ul>
+</div>
+	<div class="custom-table-wrap">
+		<div class="table-heading">
+			<div class="table-search form-group">
+				<!-- Searching Lookups -->
+				<input 
+					id="table-search" 
+					placeholder="{{'product-management.productSsearch' | translate}}"
+					class="form-control" 
+					type="text"
+					maxlength="100"
+					(keydown.enter)="onSearch($event)"
+				>
+			</div>
+			<div *ngIf="authService.hasPermission('Product-Form')" class="heading-actions">
+				<!-- Add Lookups -->
+				<button 
+					type="button" 
+					class="btn btn-rounded btn-primary" 
+					(click)="onAddCompany(AddProductPopup)" 
+					*ngIf="authService.hasPermission('Lookups-Add') "
+				>
+					<i class="i-Plus"></i>
+					<span>
+						{{ 'product-management.addNewProduct' | translate }}
+					</span>
+				</button>
+			</div>
+		</div>
+		<!-- Lookups -->
+		<app-table 
+			[Headers]="columns" 
+			[dataSource]="dataSource" 
+			[actionList]="actionList" 
+			(EventHandler)="onHandleAction($event , EditProductPopup )"
+			[PageSize]="baseSearch.pageSize" 
+			[TotalRecords]="totalCount" 
+			(PageChange)="onPageChange($event)"
+		>
+		</app-table>
+	</div>
+</div>
+<!-- Add Lookups -->
+<ng-template #AddProductPopup let-modal>
+	<app-product-form [modal]="modal" [TypeId]="TypeId"></app-product-form>
+</ng-template>
+<!-- Edit Lookups -->
+<ng-template #EditProductPopup let-modal>
+     	<app-product-form [modal]="modal" [TypeId]="TypeId" [id]="id" [isEditMood]="true" ></app-product-form>
+
+</ng-template>

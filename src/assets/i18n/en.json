@@ -506,7 +506,11 @@
     "company-management":"Company Management",
     "Branchies":"Branchies",
     "preferred-language": "Preferred Language",
-    "tax-management":"Taxes"
+    "tax-management":"Taxes",
+    "product-management":"Product Management",
+    "warehouse-management":"Warehouse Management",
+    "category": "Category",
+     "unitOfMeasure":"Unit Of Measure"
   },
   "factory": {
     "factoryManagment": "Factory Management",
@@ -932,6 +936,41 @@
     "isActive":"Active",
     "addBranch": "Add New Branch",
     "editBranch": "Edit New Branch"
+  },
+  "product-management": {
+    "product": "Products",
+    "product-management":"Product Management",
+    "manageProduct":"Manage Products",
+    "addNewProduct":"Add New Product",
+    "nameEn":"Name English",
+    "nameAr": "Name Arabic",
+    "code":"BarCode",
+    "status": "Status",
+    "purchasePrice": "Purchase Price",
+    "sellPrice": "Sell Price",
+    "productSsearch":"Serach by Name or code",
+    "editProduct":"Edit Product",
+    "basicInfo":"Basic Info",
+    "details":"Product Details",
+    "follow": "Follow Details",
+    "isActive": "Active",
+    "category":"Category",
+    "unitOfMeasure":"Unit Of Measure",
+    "hasBarCode":"Has BarCode",
+    "salesTax":"Sales Tax",
+    "descriptionAr":"Description Arabic",
+    "descriptionEn":"Description English",
+    "followItem":"Follow Item",
+    "onlyDefault":"Only Default WareHouse",
+    "followType": "Follow Type",
+    "quantityValue": "Quantity Value",
+    "expirationDate": "Expiration Date",
+    "expirationDays": "Expiration Days",
+    "quantity":"Quantity",
+    "expiry":"Expiry",
+    "both":"Both",
+    "image":"Image",
+     "discount":"Discount Price"
   }
 
 }

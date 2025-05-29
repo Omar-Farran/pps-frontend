@@ -156,24 +156,35 @@ export class NavigationService {
                     type: 'link',
                     permissions: 'Lookups-List'
                 },
+                 {
+                    name: 'navigation.category',
+                    state: '/lookups-managment/category/15',
+                    type: 'link',
+                    permissions: 'Lookups-List'
+                },
+                {
+                    name: 'navigation.unitOfMeasure',
+                    state: '/lookups-managment/unitOfMeasure/16',
+                    type: 'link',
+                    permissions: 'Lookups-List'
+                }
             ]
-        }
-        // ,
-        // {
-        //     name: 'navigation.production-products',
-        //     type: 'dropDown',
-        //     icon: 'i-Posterous',
-        //     permissions: 'Product-Management',
-        //     sub: [
-        //         {
-        //             name: 'category.categoryManagment',
-        //             state: '/production-products/category-list',
-        //             type: 'link',
-        //             permissions: 'Category-List',
-        //         },
+        },
+        {
+            name: 'navigation.warehouse-management',
+            type: 'dropDown',
+            icon: 'i-Posterous',
+            permissions: 'Product-List',
+            sub: [
+                {
+                    name: 'product-management.product',
+                    state: '/product-management/products',
+                    type: 'link',
+                    permissions: 'Product-List',
+                },
                 
-        //     ]
-        // },
+            ]
+        },
     ];
 
 

@@ -1,31 +1,29 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { LookpusType } from 'src/app/shared/models/enum';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { BaseService } from 'src/app/shared/services/base.service';
 import { LanguageService } from 'src/app/shared/services/language.service';
 
 @Component({
-  selector: 'app-branch-list',
-  templateUrl: './branch-list.component.html',
-  styleUrls: ['./branch-list.component.scss']
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.scss']
 })
-export class BranchListComponent {
+export class ProductListComponent {
  columns: any[] = [
-    { name: "branch.descriptionEn", field: "descriptionEn" },
-    { name: "branch.descriptionAr", field: "descriptionAr" },
-    { name: "branch.startWorkingHour", field: "startWorkingHour" },
-    { name: "branch.endWorkingHour", field: "endWorkingHour" },
-    { name: "branch.address", field: "address" },
-    { name: "branch.currencyId", field: "currencyTitle" },
-    { name: "status", field: "isActive" }
+    { name: "product-management.code", field: "barCode" },
+    { name: "product-management.nameEn", field: "nameEn" },
+    { name: "product-management.nameAr", field: "nameAr" },
+    { name: "product-management.purchasePrice", field: "purchasePrice" , type:'number' },
+    { name: "product-management.sellPrice", field: "sellPrice"  , type:'number' },
+    { name: "product-management.status", field: "isActive"  }
   ];
-   actionList: any[] = [
-    { name: "common.edit", icon: "change", permission: "Update-Branch" },
-    { name: 'common.updatestatus', icon: 'change' , permission: 'Update-Branch'}
+    actionList: any[] = [
+    { name: "common.edit", icon: "change", permission: "Product-Form" },
+    { name: 'common.updatestatus', icon: 'change' , permission: 'Admin-Change-Status'}
   ];
-
 
 dataSource: any[] = [];
   totalCount: number = 0
@@ -49,7 +47,8 @@ dataSource: any[] = [];
     private modalService: NgbModal,
     public authService : AuthService,
     private baseService: BaseService,
-    public languageService : LanguageService
+    public languageService : LanguageService,
+    private router: Router
   ) 
   {}
   ngOnInit() : void 
@@ -60,7 +59,7 @@ dataSource: any[] = [];
   //#region Getters
   private getList () 
   {
-    this.baseService.Post('Branch', 'List', this.baseSearch).subscribe
+    this.baseService.Post('Product', 'List', this.baseSearch).subscribe
     ( res => 
       {
         this.dataSource = (res as any).entities
@@ -70,13 +69,13 @@ dataSource: any[] = [];
   }
   //#endregion
   //#region Actions Handler
-  onAddBranch (modal: any) 
+  onAddCompany (modal: any) 
   {
     const modalRef = this.modalService.open
     (modal, { modalDialogClass: 'side-modal', backdrop: 'static', keyboard: false });
     modalRef.result.then((result) => { this.getList(); })
   }
-  onEditBranch (entity: any, modal: any) 
+  onEditCompany (entity: any, modal: any) 
   {
     this.id = entity.id;
     const modalRef = this.modalService.open
@@ -86,9 +85,12 @@ dataSource: any[] = [];
   //#endregion
   //#region Filtering and Searching
   onSearch(event) {
-    if(event?.target)
-      this.baseSearch.name = event.target.value;
+
+    if(event?.target){
+     this.baseSearch.name = event.target.value;
       this.baseSearch.pageNumber = 0;
+    }
+
       this.getList();
   }
   onPageChange (event: any): void 
@@ -111,6 +113,11 @@ dataSource: any[] = [];
            this.onChageStatus(event.data);
         }
         break;
+         case "common.info":
+        {
+           this.onInfo(event.data);
+        }
+        break;
     }
   }
 
@@ -130,9 +137,11 @@ dataSource: any[] = [];
 
   onChageStatus (entity) 
   {
-    this.baseService.Get('Branch', `UpdateStatus/${entity.id}`).subscribe
+    this.baseService.Get('Product', `UpdateStatus/${entity.id}`).subscribe
     ( res => { this.getList() } )
   }
 
-  
+   onInfo(event) {
+        this.router.navigate(['/product-management/products/' + event.id])
+    }
 }

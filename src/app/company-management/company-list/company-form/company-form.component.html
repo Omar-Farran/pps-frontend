@@ -58,9 +58,14 @@
           formControlName="nameAr"
           [class.is-invalid]="isFormSubmitted &&  form && form.get('nameAr')?.errors"
         />
-        <div class="invalid-feedback">
-          {{ "common.fieldRequired" | translate }}
-        </div>
+        <div class="invalid-feedback"
+                    *ngIf="form.get('nameAr').invalid && (form.get('nameAr').errors?.required || form.get('nameAr').errors?.whitespace)">
+                    {{ 'common.fieldRequired' | translate }}
+                </div>
+                <div class="invalid-feedback"
+                    *ngIf="form.get('nameAr').invalid && form.get('nameAr').errors?.arabicTextWithNumbers">
+                    {{ 'common.onlyArabicIsAllowed' | translate }}
+                </div>
       </div>
 
          <div class="col-12 col-sm-6 form-group required">
@@ -215,31 +220,9 @@
     </div>
   </form>
 </div>
-<div [ngClass]="{
-  'modal-footer position-absolute bottom-0 w-100': !isCompanyUser,
-  'modal-footer': isCompanyUser
-}">  <!-- Cancel Event -->
-  <button
-    type="button"
-    class="btn btn-secondary btn-rounded mr-2"
-    (click)="modal.dismiss('Cross click')"
-    tabindex="-1"
-  >
-    {{ "common.cancel" | translate }}
-  </button>
+<div *ngIf="isCompanyUser" class="modal-footer">  <!-- Cancel Event -->
   <!-- Save Event -->
-  <button
-    type="button"
-    (click)="submitForm()"
-    class="btn btn-primary btn-rounded mr-2"
-    tabindex="-1"
-    *ngIf="
-      authSerivce.hasPermission('Add-Admin') ||
-      authSerivce.hasPermission('Update-Admin')
-    "
-  >
-    {{ "common.save" | translate }}
-  </button>
+
 
      <ng-container *ngIf="isCompanyUser" >
                         <button
@@ -258,8 +241,45 @@
     {{ "companyManagement.renewSubscription" | translate }}
   </button>
 
+
+    <button
+    type="button"
+    (click)="submitForm()"
+    class="btn btn-primary btn-rounded mr-2"
+    tabindex="-1"
+    *ngIf="
+      authSerivce.hasPermission('Add-Admin') ||
+      authSerivce.hasPermission('Update-Admin')
+    "
+  >
+    {{ "common.save" | translate }}
+  </button>
+
          </ng-container>
          
 
        
+</div>
+
+
+<div  *ngIf="!isCompanyUser" class="modal-footer position-absolute bottom-0 w-100">
+    <!-- Clear Event -->
+    <button 
+        type="button" 
+        class="btn btn-secondary btn-rounded" 
+        (click)="modal.dismiss('Cross click')"
+        tabindex="-1"
+    >
+         {{ "common.cancel" | translate }}
+    </button>
+    <!-- Save Event -->
+    <button 
+        type="button"
+        (click)="submitForm()"
+        class="btn btn-primary btn-rounded" 
+        tabindex="-1" 
+        *ngIf="authSerivce.hasPermission('Add-Roles') || authSerivce.hasPermission('Update-Roles')"
+    >
+        {{'common.save'|translate}}
+    </button>
 </div>
