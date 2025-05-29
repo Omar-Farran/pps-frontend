@@ -47,6 +47,7 @@ import { SuppliersFormComponent } from './suppliers-list/suppliers-form/supplier
     DropdownModule,
     NgbDatepickerModule,
 
-  ]
+  ],
+  exports:[CompanyFormComponent]
 })
 export class CompanyManagementModule { }

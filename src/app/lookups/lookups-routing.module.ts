@@ -5,6 +5,7 @@ const routes: Routes =
   [
     { path: 'nationality/:typeId', component: LookupsListComponent },
     { path: 'currency/:typeId', component: LookupsListComponent },
+    { path: 'preferred-language/:typeId', component: LookupsListComponent },
     { path: 'customerType/:typeId', component: LookupsListComponent }
   ];
 @NgModule

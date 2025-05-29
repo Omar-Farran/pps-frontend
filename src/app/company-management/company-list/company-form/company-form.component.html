@@ -6,7 +6,7 @@
     {{ "companyManagement.editCompany" | translate }}
   </h4>
   <button style="opacity: 0; pointer-events: none" ngbAutoFocus></button>
-  <button
+  <button *ngIf="!isCompanyUser"
     type="button"
     class="btn-close"
     aria-label="Close"
@@ -16,7 +16,7 @@
 <div class="modal-body">
   <form [formGroup]="form" id="form">
     <div class="row">
-      <div class="col-12 col-sm-6 form-group required">
+      <div  class="col-12 col-sm-6 form-group required" >
         <label>{{ "companyManagement.code" | translate }}</label>
         <input
           type="text"
@@ -25,6 +25,8 @@
           class="form-control"
           formControlName="code"
           [class.is-invalid]="isFormSubmitted &&  form && form.get('code')?.errors"
+         
+          
         />
         <div class="invalid-feedback">
           {{ "common.fieldRequired" | translate }}
@@ -141,6 +143,7 @@
             formControlName="endDate"
             ngbDatepicker
             #dp="ngbDatepicker"
+            
           />
           <div class="input-group-append">
             <button
@@ -212,11 +215,13 @@
     </div>
   </form>
 </div>
-<div class="modal-footer position-absolute bottom-0 w-100">
-  <!-- Cancel Event -->
+<div [ngClass]="{
+  'modal-footer position-absolute bottom-0 w-100': !isCompanyUser,
+  'modal-footer': isCompanyUser
+}">  <!-- Cancel Event -->
   <button
     type="button"
-    class="btn btn-secondary btn-rounded"
+    class="btn btn-secondary btn-rounded mr-2"
     (click)="modal.dismiss('Cross click')"
     tabindex="-1"
   >
@@ -226,7 +231,7 @@
   <button
     type="button"
     (click)="submitForm()"
-    class="btn btn-primary btn-rounded"
+    class="btn btn-primary btn-rounded mr-2"
     tabindex="-1"
     *ngIf="
       authSerivce.hasPermission('Add-Admin') ||
@@ -235,4 +240,26 @@
   >
     {{ "common.save" | translate }}
   </button>
+
+     <ng-container *ngIf="isCompanyUser" >
+                        <button
+    type="button"
+    class="btn btn-light btn-rounded mr-2"
+    tabindex="-1"
+  >
+    {{ "companyManagement.getbackup" | translate }}
+  </button>
+  <!-- Save Event -->
+  <button
+    type="button"
+    class="btn btn-warning btn-rounded mr-2" 
+    tabindex="-1"
+  >
+    {{ "companyManagement.renewSubscription" | translate }}
+  </button>
+
+         </ng-container>
+         
+
+       
 </div>

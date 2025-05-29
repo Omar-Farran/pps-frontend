@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
-import { BaseService } from 'src/app/shared/services/base.service';
+import { BaseService } from '../../../shared/services/base.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
 	selector: 'app-user-profile',
@@ -11,6 +12,7 @@ import { BaseService } from 'src/app/shared/services/base.service';
 })
 export class UserProfileComponent implements OnInit {
 	isCompleted: boolean;
+	companyId:number;
 	data: any = {
 		email: ''
 	};
@@ -18,7 +20,8 @@ export class UserProfileComponent implements OnInit {
 	constructor(
 		private modalService: NgbModal,
 		private fb: UntypedFormBuilder,
-		private baseService:BaseService
+		private baseService:BaseService,
+		 private toastr: ToastrService
 	) { }
 
 	ngOnInit() {
@@ -29,6 +32,7 @@ export class UserProfileComponent implements OnInit {
 	getUser(){
 		this.baseService.Get('Users','GetUserInfo').subscribe(res=>{
 			this.User = res as any;
+			this.companyId = this.User.companyId;
 		})
 	}
 
@@ -47,8 +51,7 @@ export class UserProfileComponent implements OnInit {
     	element.innerHTML = '2';
 	}
 	onComplete(e) {
-		let element: HTMLElement = document.getElementsByClassName('change-password-popup')[0] as HTMLElement;
-    	element.click();
+		this.changePassword();
 	}
 
 	openChangePassword(content) {
@@ -59,9 +62,16 @@ export class UserProfileComponent implements OnInit {
 			centered: true
 		})
 		.result.then((result) => {
+			debugger;
 			console.log(result);
 		}, (reason) => {
 			console.log('Err!', reason);
 		});
+	}
+
+	changePassword(){
+		this.baseService.Post('Users' , 'ChangeUserPassword' , this.data).subscribe(res => {
+			this.toastr.success('success');
+		})
 	}
 }

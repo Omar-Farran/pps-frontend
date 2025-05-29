@@ -19,7 +19,7 @@ export class CompanyFormComponent {
   logoFile:any;
   public status = GlobalStatusArr
   currencies:any[];
-
+    @Input() isCompanyUser:boolean = false;
     @Input() modal: any = null
     @Input() isEditMood: boolean = false
     @Input() id: number
@@ -51,7 +51,7 @@ export class CompanyFormComponent {
       public authSerivce: AuthService,
       private overlay: OverlayContainer,
       private toastr: ToastrService,
-      private translate: TranslateService
+      private translate: TranslateService,
     ) 
     {}
     ngOnInit (): void 
@@ -60,6 +60,10 @@ export class CompanyFormComponent {
       if (this.isEditMood && this.id) 
         this.GetById()
       this.getCurcencies();
+      if(this.isCompanyUser){
+        this.form.get('code')?.disable();
+        this.form.get('endDate')?.disable();
+      }
     }
     //#region Functions
     resetForm () 
@@ -80,7 +84,9 @@ export class CompanyFormComponent {
     let form = this.form.getRawValue()
     const date = this.form.value.endDate;
     form.logoFile = this.logoFile;
+    if(!this.isCompanyUser) {
     form.subscriptionEndDate = new Date(date.year, date.month - 1, date.day).toISOString().split('T')[0];
+    }
     this.baseService.postItemFromForm(ControllerPath , ApiPath , form).subscribe
     ( res => { this.modal.close();
 
