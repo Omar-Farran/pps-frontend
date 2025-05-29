@@ -2,48 +2,34 @@
 	<div class="breadcrumb">
 		<h1>{{ languageService.getCurrentLanguage() === 'en' ? Lookup?.name : Lookup?.nameAr }}</h1>
 		<ul>
-			<li>{{'Lookups.SettingsManagment' | translate}}</li>
-			<li><strong class="text-primary">{{ languageService.getCurrentLanguage() === 'en' ? Lookup?.name : Lookup?.nameAr }}</strong></li>
+			<li>{{'Lookups.SettingsManagment' | translate}}</li> 
+			<li><strong class="text-primary">{{ languageService.getCurrentLanguage() === 'en' ? Lookup?.name :
+					Lookup?.nameAr }}</strong></li>
 		</ul>
-	</div>
+	</div> 
 	<div class="custom-table-wrap">
 		<div class="table-heading">
 			<div class="table-search form-group">
 				<!-- Searching Lookups -->
-				<input 
-					id="table-search" 
-					placeholder="{{'Lookups.SearchbyLookups' | translate}}"
-					class="form-control" 
-					type="text"
-					maxlength="100"
-					(keydown.enter)="onSearch($event)"
-				>
+				<input id="table-search" placeholder="{{'Lookups.SearchbyLookups' | translate}}" class="form-control"
+					type="text" maxlength="100" (keydown.enter)="onSearch($event)">
 			</div>
 			<div class="heading-actions">
 				<!-- Add Lookups -->
-				<button 
-					type="button" 
-					class="btn btn-rounded btn-primary" 
-					(click)="onAddNewLookups(AddLookupsPopup)" 
-					*ngIf="authService.hasPermission('Lookups-Add') "
-				>
+				<button type="button" class="btn btn-rounded btn-primary" (click)="onAddNewLookups(AddLookupsPopup)"
+					*ngIf="authService.hasPermission('Lookups-Add') ">
 					<i class="i-Plus"></i>
 					<span>
-						{{ ('Lookups.Add' | translate) + ' ' + (languageService.getCurrentLanguage() === 'en' ? Lookup?.name : Lookup?.nameAr) }}
+						{{ ('Lookups.Add' | translate) + ' ' + (languageService.getCurrentLanguage() === 'en' ?
+						Lookup?.name : Lookup?.nameAr) }}
 					</span>
 				</button>
 			</div>
 		</div>
 		<!-- Lookups -->
-		<app-table 
-			[Headers]="columns" 
-			[dataSource]="dataSource" 
-			[actionList]="actionList" 
-			(EventHandler)="onHandleAction($event , AddEditLookups )"
-			[PageSize]="baseSearch.pageSize" 
-			[TotalRecords]="totalCount" 
-			(PageChange)="onPageChange($event)"
-		>
+		<app-table [Headers]="columns" [dataSource]="dataSource" [actionList]="actionList"
+			(EventHandler)="onHandleAction($event , AddEditLookups )" [PageSize]="baseSearch.pageSize"
+			[TotalRecords]="totalCount" (PageChange)="onPageChange($event)">
 		</app-table>
 	</div>
 </div>
@@ -53,5 +39,5 @@
 </ng-template>
 <!-- Edit Lookups -->
 <ng-template #AddEditLookups let-modal>
-	<app-add-edit-lookups [Id]="lookupId" [TypeId]="TypeId" [isEditMood]="true"  [modal]="modal"></app-add-edit-lookups>
+	<app-add-edit-lookups [Id]="lookupId" [TypeId]="TypeId" [isEditMood]="true" [modal]="modal"></app-add-edit-lookups>
 </ng-template>
