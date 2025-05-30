@@ -938,7 +938,9 @@
     "branch": "Branch",
     "isActive": "Active",
     "addBranch": "Add New Branch",
-    "editBranch": "Edit New Branch"
+    "editBranch": "Edit New Branch",
+    "currencyId": "Currency"
+
   },
   "product-management": {
     "product": "Products",
@@ -1029,5 +1031,29 @@
     "notes": "Notes",
     "editSuppliers": "Edit Suppliers",
     "Searchby": "Search By Name, Type, Mobile"
+  },
+  "warehouse-balance": {
+    "warehouse": "Warehouse",
+    "location": "Location",
+    "branch": "Branch",
+    "product": "Product",
+    "balance": "Balance",
+    "warehouse-balance": "Warehouse Balance",
+    "warehouseBalanceManagement":"Warehouse Balance Management",
+    "manageWarehouse":"Manage Warehouse",
+    "search":"Search"
+  },
+  "transaction":{
+    "transaction-management":"Transaction Management",
+    "manageTransaction" : "Manage Transactions",
+    "transaction":"Transaction",
+    "type":"Type",
+    "warehouse":"Warehouse",
+    "branch":"Branch",
+     "towarehouse":"To Warehouse",
+     "toSectionName":"To Section",
+     "tobranch":"To Branch",
+     "addNewTransaction":"Add New Transaction",
+     "tosection":"To Section"
   }
 }

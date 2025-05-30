@@ -14,11 +14,17 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ProductManagementRoutingModule } from './product-management-routing.module';
 import { FormWizardModule } from '../shared/components/form-wizard/form-wizard.module';
 import { StepsModule } from 'primeng/steps';
+import { WarehouseBalanceListComponent } from './warehouse-balance-list/warehouse-balance-list.component';
+import { TransactionListComponent } from './transaction-list/transaction-list.component';
+import { TransactionFormComponent } from './transaction-list/transaction-form/transaction-form.component';
 
 @NgModule({
   declarations: [
     ProductListComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    WarehouseBalanceListComponent,
+    TransactionListComponent,
+    TransactionFormComponent
   ],
   imports: [
     CommonModule,

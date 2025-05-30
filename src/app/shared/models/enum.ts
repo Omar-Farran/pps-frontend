@@ -1,6 +1,6 @@
 export enum Status {
     Active = 1,
-    Inactive = 2
+    Inactive =  0 
 }
 export const StatusArr =
     [

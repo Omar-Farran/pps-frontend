@@ -1,0 +1,76 @@
+<div class="customers">
+<div class="breadcrumb">
+    <h1>{{'warehouse-balance.warehouseBalanceManagement' | translate}}</h1>
+    <ul>
+        <li>{{'warehouse-balance.manageWarehouse'  | translate}}</li>
+        <li><strong class="text-primary">{{'warehouse-balance.balance'  | translate}}</strong></li>
+    </ul>
+</div>
+	<div class="custom-table-wrap">
+		<div class="card mb-50">
+			<div class="card-body form-group ">
+				<form [formGroup]="searchForm" id="form" >
+
+				
+				<div class="row">
+
+	              <div class="col-md-6 form-group mb-3">
+                            <label for="picker1"> {{ "warehouse-balance.warehouse" | translate }}</label>
+                            <select class="form-control" formControlName="warehouseId" name="warehouseId">
+                                <option *ngFor="let item of warehouses" value="{{item.id}}" >{{item.name}}</option>
+                            </select>
+             </div>
+
+			       <div class="col-md-6 form-group mb-3">
+                            <label for="picker1"> {{ "warehouse-balance.location" | translate }}</label>
+                            <select class="form-control" formControlName="locationId" name="locationId">
+                                <option *ngFor="let item of locations" value="{{item.id}}" >{{item.name}}</option>
+                            </select>
+             </div>
+
+			    <div class="col-md-6 form-group mb-3">
+                            <label for="picker1"> {{ "warehouse-balance.branch" | translate }}</label>
+                            <select class="form-control" formControlName="branchId" name="branchId">
+                                <option *ngFor="let item of branchies" value="{{item.id}}" >{{item.description}}</option>
+                            </select>
+             </div>
+
+			     <div class="col-md-6 form-group mb-3">
+                            <label for="picker1"> {{ "warehouse-balance.product" | translate }}</label>
+                            <select class="form-control" formControlName="productId" name="productId">
+                                <option *ngFor="let item of products" value="{{item.id}}" >{{item.name}}</option>
+                            </select>
+             </div>
+
+
+
+
+				</div>
+
+
+				  <button
+    type="submit"
+    class="btn btn-primary btn-rounded mr-2" 
+    tabindex="-1"
+	(click)="onSearch(null)"
+  >
+    {{ "warehouse-balance.search" | translate }}
+  </button>
+				</form>
+			</div>
+
+		</div>
+		<!-- Lookups -->
+		<app-table 
+			[Headers]="columns" 
+			[dataSource]="dataSource" 
+			[actionList]="actionList" 
+			(EventHandler)="onHandleAction($event  )"
+			[PageSize]="baseSearch.pageSize" 
+			[TotalRecords]="totalCount" 
+			(PageChange)="onPageChange($event)"
+		>
+		</app-table>
+	</div>
+</div>
+<!-- Add Lookups -->

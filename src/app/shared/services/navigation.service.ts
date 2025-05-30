@@ -128,7 +128,7 @@ export class NavigationService {
                     name: 'navigation.manage_admins',
                     state: '/user-managment/users',
                     type: 'link',
-                    permissions: 'Admin-List'
+                    permissions: 'User-List'
                 },
                 {
                     name: 'navigation.manage_roles',
@@ -182,7 +182,7 @@ export class NavigationService {
                 },
                  {
                     name: 'navigation.category',
-                    state: '/lookups-managment/category/15',
+                    state: '/lookups-managment/category/17',
                     type: 'link',
                     permissions: 'Lookups-List'
                 },
@@ -205,6 +205,18 @@ export class NavigationService {
                     state: '/product-management/products',
                     type: 'link',
                     permissions: 'Product-List',
+                },
+                 {
+                    name: 'warehouse-balance.warehouse-balance',
+                    state: '/product-management/warehouse-balance',
+                    type: 'link',
+                    permissions: 'Product-List',
+                },
+                {
+                    name: 'transaction.transaction',
+                    state: '/product-management/transaction',
+                    type: 'link',
+                    permissions: 'Transaction-list',
                 },
                 
             ]

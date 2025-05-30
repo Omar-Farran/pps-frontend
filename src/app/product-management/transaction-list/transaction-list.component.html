@@ -1,0 +1,58 @@
+<div class="customers">
+<div class="breadcrumb">
+    <h1>{{'transaction.transaction-management' | translate}}</h1>
+    <ul>
+        <li>{{'transaction.manageTransaction'  | translate}}</li>
+        <li><strong class="text-primary">{{'transaction.transaction'  | translate}}</strong></li>
+    </ul>
+</div>
+	<div class="custom-table-wrap">
+		<div class="table-heading">
+			<div class="table-search form-group">
+				<!-- Searching Lookups -->
+				<input 
+					id="table-search" 
+					placeholder="{{'product-management.productSsearch' | translate}}"
+					class="form-control" 
+					type="text"
+					maxlength="100"
+					(keydown.enter)="onSearch($event)"
+				>
+			</div>
+			<div *ngIf="authService.hasPermission('Transaction-Form')" class="heading-actions">
+				<!-- Add Lookups -->
+				<button 
+					type="button" 
+					class="btn btn-rounded btn-primary" 
+					(click)="onAddTransaction(AddTransactionPopup)" 
+					*ngIf="authService.hasPermission('Lookups-Add') "
+				>
+					<i class="i-Plus"></i>
+					<span>
+						{{ 'transaction.addNewTransaction' | translate }}
+					</span>
+				</button>
+			</div>
+		</div>
+		<!-- Lookups -->
+		<app-table 
+			[Headers]="columns" 
+			[dataSource]="dataSource" 
+			[actionList]="actionList" 
+			(EventHandler)="onHandleAction($event , EditTransctionPopup )"
+			[PageSize]="baseSearch.pageSize" 
+			[TotalRecords]="totalCount" 
+			(PageChange)="onPageChange($event)"
+		>
+		</app-table>
+	</div>
+</div>
+<!-- Add Lookups -->
+<ng-template #AddTransactionPopup let-modal>
+	<app-transction-form [modal]="modal" [TypeId]="TypeId"></app-transction-form>
+</ng-template>
+<!-- Edit Lookups -->
+<ng-template #EditTransctionPopup let-modal>
+     	<app-transction-form [modal]="modal" [TypeId]="TypeId" [id]="id" [isEditMood]="true" ></app-transction-form>
+
+</ng-template>
