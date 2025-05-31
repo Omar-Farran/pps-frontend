@@ -39,10 +39,10 @@ export class AddEditUsersComponent implements OnInit
       PasswordConfirm: new FormControl('', [Validators.required]),
       isActive: new FormControl('true', Validators.required),
       roles: new FormControl(null, [Validators.required]),
-      address: new FormControl('', [Validators.required]),
-      jobDescription: new FormControl('', [Validators.required]),
-      preferredLanguageId: new FormControl(0, [Validators.required]),
-      branchId: new FormControl(0, [Validators.required])
+      address: new FormControl(null),
+      jobDescription: new FormControl(null),
+      preferredLanguageId: new FormControl(null),
+      branchId: new FormControl(null, [Validators.required])
 
     }, 
     {

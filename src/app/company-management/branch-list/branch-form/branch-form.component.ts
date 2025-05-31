@@ -30,9 +30,9 @@ isFormSubmitted:boolean = false;
         id: new FormControl(0),
         descriptionEn : new FormControl('', [Validators.required,englishTextWithNumbersValidator,noWhitespaceValidator() , Validators.maxLength(100)]),
         descriptionAr: new FormControl('', [Validators.required, arabicTextWithNumbersValidator(), noWhitespaceValidator() ]),
-        address: new FormControl(''),
-        startWorkingHour:new FormControl(),
-        endWorkingHour:new FormControl(),
+        address: new FormControl(null ),
+        startWorkingHour:new FormControl(null,Validators.required),
+        endWorkingHour:new FormControl(null,Validators.required),
         isActive: new FormControl(false),
         currencyId:new FormControl(null,Validators.required)
       }

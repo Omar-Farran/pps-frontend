@@ -44,18 +44,24 @@
         <div *ngIf="form.get('descriptionAr').invalid &&  form.get('descriptionAr').errors['required']" class="invalid-feedback">
           {{ "common.fieldRequired" | translate }}
         </div>
-
-          <div class="invalid-feedback"
-                    *ngIf="form.get('descriptionAr').invalid && (form.get('descriptionAr').errors?.required || form.get('descriptionAr').errors?.whitespace)">
-                    {{ 'common.fieldRequired' | translate }}
-                </div>
-                <div class="invalid-feedback"
-                    *ngIf="form.get('descriptionAr').invalid && form.get('descriptionAr').errors?.arabicTextWithNumbers">
+                <div class="invalid-feedback"  *ngIf="form.get('descriptionAr').invalid && form.get('descriptionAr').errors?.arabicTextWithNumbers">
                     {{ 'common.onlyArabicIsAllowed' | translate }}
                 </div>
       </div>
 
-      <div class="col-12 col-sm-6 form-group required">
+       <div class="col-md-6 form-group mb-3 required">
+                            <label for="picker1"> {{ "branch.currencyId" | translate }}</label>
+                            <select class="form-control" formControlName="currencyId" name="currencyId">
+                                <option *ngFor="let item of currencies" value="{{item.id}}" >{{item.title}}</option>
+                            </select>
+                            <div *ngIf="isFormSubmitted && form.get('currencyId').invalid" class="invalid-feedback">
+                                    {{ "common.fieldRequired" | translate }}
+                                 </div>
+                        </div>
+
+
+
+      <div class="col-12 col-sm-6 form-group">
         <label>{{ "branch.address" | translate }}</label>
         <input
           type="text"
@@ -65,22 +71,12 @@
           formControlName="address"
           [class.is-invalid]="isFormSubmitted && form && form.get('address')?.errors"
         />
-        <div class="invalid-feedback">
-          {{ "common.fieldRequired" | translate }}
-        </div>
       </div>
  
 
-       <div class="col-md-6 form-group mb-3">
-                            <label for="picker1"> {{ "branch.currencyId" | translate }}</label>
-                            <select class="form-control" formControlName="currencyId" name="currencyId">
-                                <option *ngFor="let item of currencies" value="{{item.id}}" >{{item.title}}</option>
-                            </select>
-                        </div>
 
 
-
-      <div class="col-md-6 form-group mb-3">
+      <div class="col-md-6 form-group mb-3 required">
         <label for="timePicker">
           {{ "branch.startWorkingHour" | translate }}
         </label>
@@ -90,10 +86,13 @@
             formControlName="startWorkingHour"
             [seconds]="false"
           ></ngb-timepicker>
+           <div class="invalid-feedback">
+          {{ "common.fieldRequired" | translate }}
+        </div>
         </div>
       </div>
 
-      <div class="col-md-6 form-group mb-3">
+      <div class="col-md-6 form-group mb-3 required">
         <label for="timePicker">
           {{ "branch.endWorkingHour" | translate }}
         </label>
@@ -103,6 +102,9 @@
             formControlName="endWorkingHour"
             [seconds]="false"
           ></ngb-timepicker>
+           <div class="invalid-feedback">
+          {{ "common.fieldRequired" | translate }}
+        </div>
         </div>
       </div>
 
