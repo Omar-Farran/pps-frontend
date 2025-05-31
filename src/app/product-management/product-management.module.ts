@@ -17,6 +17,10 @@ import { StepsModule } from 'primeng/steps';
 import { WarehouseBalanceListComponent } from './warehouse-balance-list/warehouse-balance-list.component';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
 import { TransactionFormComponent } from './transaction-list/transaction-form/transaction-form.component';
+import { WarehouseFormComponent } from './warehouse-list/warehouse-form/warehouse-form.component';
+import { WarehouseListComponent } from './warehouse-list/warehouse-list.component';
+import { WarehouseSectionsListComponent } from './warehouse-sections-list/warehouse-sections-list.component';
+import { WarehouseSectionsFormComponent } from './warehouse-sections-list/warehouse-sections-form/warehouse-sections-form.component';
 
 @NgModule({
   declarations: [
@@ -24,25 +28,29 @@ import { TransactionFormComponent } from './transaction-list/transaction-form/tr
     ProductFormComponent,
     WarehouseBalanceListComponent,
     TransactionListComponent,
-    TransactionFormComponent
+    TransactionFormComponent,
+    WarehouseFormComponent,
+    WarehouseListComponent,
+    WarehouseSectionsListComponent,
+    WarehouseSectionsFormComponent
   ],
   imports: [
     CommonModule,
-          NgbNavModule,
-          NgxPaginationModule,
-          SharedModule,
-          ReactiveFormsModule,
-          NgxMatIntlTelInputComponent,
-          ProductManagementRoutingModule,
-          MultiSelectModule,
-          NgbModule,
-          MatFormFieldModule,
-          MatSelectModule,
-          DropdownModule,
-          NgbDatepickerModule,
-          FormWizardModule,
-          FormsModule,
-          StepsModule
+    NgbNavModule,
+    NgxPaginationModule,
+    SharedModule,
+    ReactiveFormsModule,
+    NgxMatIntlTelInputComponent,
+    ProductManagementRoutingModule,
+    MultiSelectModule,
+    NgbModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    DropdownModule,
+    NgbDatepickerModule,
+    FormWizardModule,
+    FormsModule,
+    StepsModule
   ]
 })
 export class ProductManagementModule { }
