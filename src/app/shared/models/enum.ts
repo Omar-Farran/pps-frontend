@@ -238,3 +238,20 @@ export enum ClientType {
     Customer = 1,
     Supplier = 2
 }
+
+export enum TransactionTypes {
+    Reciving = 0,
+    Issueance = 1,
+    Transfer = 2,
+    ExportToBranch = 3
+}
+
+export const transactionTypes  =
+    [
+        { id: 0, name: 'Reciving', nameAr: 'استقبال' },
+        { id: 1, name: 'Issueance', nameAr: 'الإصدار' },
+        { id: 2, name: 'Transfer', nameAr: 'فرع' },
+        { id: 3, name: 'Export To Branch', nameAr: 'تصدير الى فرع' },
+
+    ];
+

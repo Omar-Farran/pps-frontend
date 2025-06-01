@@ -1,1 +1,231 @@
-<p>transaction-form works!</p>
+<div class="modal-header">
+  <h4 class="modal-title" *ngIf="!isEditMood">
+    {{ "transaction.addNewTransaction" | translate }}
+  </h4>
+  <h4 class="modal-title" *ngIf="isEditMood">
+    {{ "branch.editBranch" | translate }}
+  </h4>
+  <button style="opacity: 0; pointer-events: none" ngbAutoFocus></button>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="modal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+
+
+    <p-steps [model]="steps" [activeIndex]="activeIndex" [readonly]="true"></p-steps>
+    <div *ngIf="activeIndex === 0" >
+  <form [formGroup]="form" id="form">
+<div class="row">
+     
+     
+        <div class="col-12 col-sm-6 form-group required">
+        <label>{{ "transaction.orderId" | translate }}</label>
+        <input
+          type="text"
+          maxlength="100"
+          placeholder="{{ 'transaction.orderId' | translate }}"
+          class="form-control"
+          formControlName="orderId"
+          [class.is-invalid]=" isFormSubmitted && form && form.get('orderId')?.errors"
+        />
+        <div *ngIf="form.get('orderId').invalid &&  form.get('orderId').errors['required']" class="invalid-feedback">
+          {{ "common.fieldRequired" | translate }}
+        </div>
+       
+      </div>
+
+    
+          <div class="col-md-6 form-group mb-3 required">
+                            <label for="picker1"> {{ "transaction.type" | translate }}</label>
+                            <select class="form-control" formControlName="type" name="type" (change)="getCustomers(form.get('type').value)">
+                                <option *ngFor="let item of types" value="{{item.id}}" >{{item.name}}</option>
+                            </select>
+                            <div *ngIf="isFormSubmitted && form.get('type').invalid" class="invalid-feedback">
+                                    {{ "common.fieldRequired" | translate }}
+                                 </div>
+                        </div>
+
+                         <div class="col-md-6 form-group mb-3 required">
+                            <label for="picker1"> {{ "transaction.customer" | translate }}</label>
+                            <select class="form-control" formControlName="customerId" name="customerId">
+                                <option *ngFor="let item of customers" value="{{item.id}}" >{{item.name}}</option>
+                            </select>
+                            <div *ngIf="isFormSubmitted && form.get('customerId').invalid" class="invalid-feedback">
+                                    {{ "common.fieldRequired" | translate }}
+                                 </div>
+                        </div>
+
+
+                        <div class="col-md-6 form-group mb-3 required">
+                            <label for="picker1"> {{ "transaction.warehouse" | translate }}</label>
+                            <select class="form-control" formControlName="warehouseId" name="warehouseId">
+                                <option *ngFor="let item of warehouses" value="{{item.id}}" >{{item.name}}</option>
+                            </select>
+                            <div *ngIf="isFormSubmitted && form.get('warehouseId').invalid" class="invalid-feedback">
+                                    {{ "common.fieldRequired" | translate }}
+                                 </div>
+                        </div>
+
+                             <div class="col-md-6 form-group mb-3 required">
+                            <label for="picker1"> {{ "transaction.section" | translate }}</label>
+                            <select class="form-control" formControlName="sectionId" name="sectionId">
+                                <option *ngFor="let item of sections" value="{{item.id}}" >{{item.name}}</option>
+                            </select>
+                            <div *ngIf="isFormSubmitted && form.get('sectionId').invalid" class="invalid-feedback">
+                                    {{ "common.fieldRequired" | translate }}
+                                 </div>
+                        </div>
+
+                        <ng-container  *ngIf="form.get('type').value == transferType"> 
+
+                        <div class="col-md-6 form-group mb-3 required">
+                            <label for="picker1"> {{ "transaction.towarehouse" | translate }}</label>
+                            <select class="form-control" formControlName="toWarehouseId" name="toWarehouseId">
+                                <option *ngFor="let item of warehouses" value="{{item.id}}" >{{item.name}}</option>
+                            </select>
+                            <div *ngIf="isFormSubmitted && form.get('toWarehouseId').invalid" class="invalid-feedback">
+                                    {{ "common.fieldRequired" | translate }}
+                                 </div>
+                        </div>
+
+                             <div class="col-md-6 form-group mb-3 required">
+                            <label for="picker1"> {{ "transaction.toSectionName" | translate }}</label>
+                            <select class="form-control" formControlName="toSectionId" name="toSectionId">
+                                <option *ngFor="let item of sections" value="{{item.id}}" >{{item.name}}</option>
+                            </select>
+                            <div *ngIf="isFormSubmitted && form.get('toSectionId').invalid" class="invalid-feedback">
+                                    {{ "common.fieldRequired" | translate }}
+                                 </div>
+                        </div>
+
+                           
+                        </ng-container>
+                      <ng-container  *ngIf="form.get('type').value == exportToBranchType">  
+                       
+                       
+                        <div class="col-md-6 form-group mb-3 required">
+                            <label for="picker1"> {{ "transaction.tobranch" | translate }}</label>
+                            <select class="form-control" formControlName="toBranchId" name="toBranchId">
+                                <option *ngFor="let item of branchies" value="{{item.id}}" >{{item.description}}</option>
+                            </select>
+                            <div *ngIf="isFormSubmitted && form.get('branch').invalid" class="invalid-feedback">
+                                    {{ "common.fieldRequired" | translate }}
+                                 </div>
+                        </div>
+
+                        </ng-container>
+
+                                  
+ <div class="col-md-12 form-group">
+        <label>{{ "transaction.notes" | translate }}</label>
+        <textarea
+          type="textarea"
+          maxlength="100"
+          placeholder="{{ 'transaction.notes' | translate }}"
+          class="form-control"
+          formControlName="notes"
+          [class.is-invalid]="isFormSubmitted &&  form && form.get('notes')?.errors"
+        > </textarea>
+      </div>
+
+
+    </div>
+  </form>
+    </div>
+
+      <div *ngIf="activeIndex === 1"  >
+        
+        <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="width: 40%;">Product</th>
+        <th>Ordered Quantity</th>
+        <th>Received Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody  *ngIf="transactionItems?.length > 0">
+      <tr *ngFor="let item of transactionItems; let i = index" >
+        <td>
+          <select class="form-control" [(ngModel)]="item.productId" name="productId">
+            <option *ngFor="let product of products" [value]="product.id">
+              {{ product.name }}
+            </option>
+          </select>
+        </td>
+        <td>
+          <input type="number" class="form-control"   [(ngModel)]="item.orderedQuantity" name="orderedQuantity" />
+        </td>
+        <td>
+          <input type="number" class="form-control" [(ngModel)]="item.quantity"  name="quantity" />
+        </td>
+        <td>
+          <button *ngIf="item.index == transactionItems.length - 1" type="button"  class="btn btn-success btn-sm me-1" (click)="addRow()">
+            +
+          </button>
+          <button *ngIf="!(transactionItems?.length === 1)"
+            type="button"
+            class="btn btn-danger btn-sm"
+            (click)="removeRow(item.index)"
+           
+          >
+            ×
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+      </div>
+    
+
+
+  <div class="mt-3 d-flex">
+                   <button
+    type="button"
+    class="btn btn-light btn-rounded mr-2"
+    tabindex="-1"
+    (click)="previous()" [disabled]="activeIndex === 0"
+  >
+    {{ "Previous" | translate }}
+  </button>
+
+           <button
+    type="button"
+  (click)="next()"  class="btn btn-primary btn-rounded m-l"
+  >
+    {{  (activeIndex === steps.length - 1 ? "Save" :  "Next") | translate }}
+  </button>
+
+</div>
+
+
+</div>
+<div class="modal-footer position-absolute bottom-0 w-100">
+  <!-- Cancel Event -->
+  <button
+    type="button"
+    class="btn btn-secondary btn-rounded"
+    (click)="modal.dismiss('Cross click')"
+    tabindex="-1"
+  >
+    {{ "common.cancel" | translate }}
+  </button>
+  <!-- Save Event -->
+  <button
+    type="button"
+    (click)="submitForm()"
+    class="btn btn-primary btn-rounded"
+    tabindex="-1"
+    *ngIf="
+      authSerivce.hasPermission('Add-Admin') ||
+      authSerivce.hasPermission('Update-Admin')
+    "
+  >
+    {{ "common.save" | translate }}
+  </button>
+</div>

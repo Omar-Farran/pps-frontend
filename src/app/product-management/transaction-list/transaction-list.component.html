@@ -24,7 +24,7 @@
 				<button 
 					type="button" 
 					class="btn btn-rounded btn-primary" 
-					(click)="onAddTransaction(AddTransactionPopup)" 
+					(click)="onAddTransaction(AddTransactionPop)" 
 					*ngIf="authService.hasPermission('Lookups-Add') "
 				>
 					<i class="i-Plus"></i>
@@ -48,8 +48,8 @@
 	</div>
 </div>
 <!-- Add Lookups -->
-<ng-template #AddTransactionPopup let-modal>
-	<app-transction-form [modal]="modal" [TypeId]="TypeId"></app-transction-form>
+<ng-template #AddTransactionPop let-modal>
+	<app-transaction-form [modal]="modal" [TypeId]="TypeId"></app-transaction-form>
 </ng-template>
 <!-- Edit Lookups -->
 <ng-template #EditTransctionPopup let-modal>

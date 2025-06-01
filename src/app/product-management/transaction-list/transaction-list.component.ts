@@ -13,10 +13,9 @@ import { LanguageService } from 'src/app/shared/services/language.service';
 })
 export class TransactionListComponent {
  columns: any[] = [
-    { name: "transaction.type", field: "typeName" },
+    { name: "transaction.type", field: "type" },
     { name: "transaction.warehouse", field: "warehouseName" },
     { name: "transaction.section", field: "sectionName" },
-    { name: "transaction.branch", field: "branchName" },
     { name: "transaction.towarehouse", field: "toWarehouseName" },
     { name: "transaction.tosection", field: "toSectionName" },
     { name: "transaction.tobranch", field: "toBranchName" }
@@ -76,6 +75,8 @@ dataSource: any[] = [];
     (modal, { modalDialogClass: 'side-modal', backdrop: 'static', keyboard: false });
     modalRef.result.then((result) => { this.getList(); })
   }
+
+  
   onEditTransaction (entity: any, modal: any) 
   {
     this.id = entity.id;
@@ -86,6 +87,7 @@ dataSource: any[] = [];
   //#endregion
   //#region Filtering and Searching
   onSearch(event) {
+    if(event?.target)
       this.baseSearch.name = event.target.value;
       this.baseSearch.pageNumber = 0;
       this.getList();
@@ -141,5 +143,5 @@ dataSource: any[] = [];
    onInfo(event) {
         this.router.navigate(['/product-management/transaction/' + event.id])
     }
-    
+   
 }

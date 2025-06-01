@@ -1047,13 +1047,21 @@
     "transaction-management":"Transaction Management",
     "manageTransaction" : "Manage Transactions",
     "transaction":"Transaction",
-    "type":"Type",
+    "type":"Transaction Type",
     "warehouse":"Warehouse",
     "branch":"Branch",
+    "section":"Section",
      "towarehouse":"To Warehouse",
      "toSectionName":"To Section",
      "tobranch":"To Branch",
      "addNewTransaction":"Add New Transaction",
-     "tosection":"To Section"
+     "tosection":"To Section",
+      "editTransaction":"Add New Transaction",
+      "orderId":"Transaction Order Id",
+      "notes":"Notes",
+      "transactionitems":"Transaction Products",
+      "oneOfTheProductInvalid":"one of the product invalid",
+      "customer": "Customers / Suppliers"
+
   }
 }

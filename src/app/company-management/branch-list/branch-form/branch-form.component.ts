@@ -15,7 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./branch-form.component.scss']
 })
 export class BranchFormComponent implements OnInit {
-isFormSubmitted:boolean = false;
+  isFormSubmitted:boolean = false;
   logoFile:any;
   currencies:any[];
   public status = GlobalStatusArr

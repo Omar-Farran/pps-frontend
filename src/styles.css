@@ -19,3 +19,12 @@
     margin-left: unset;
     margin-right: auto;
 }
+
+.d-flex {
+    display: flex;
+}
+
+.m-l {
+    margin-left: auto;
+}
+
