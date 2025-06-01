@@ -1,6 +1,6 @@
 export enum Status {
     Active = 1,
-    Inactive =  0 
+    Inactive = 0
 }
 export const StatusArr =
     [
@@ -34,15 +34,14 @@ export const productUom =
         { id: 72, titleEn: "Kg", titleAr: "كغم", NumValue: 3 }
     ]
 export enum LookpusType {
-
     Nationality = 11,
     Currency = 12,
     PreferredLanguage = 13,
     Tax = 14,
     CustomersType = 15,
     unitOfMeasures = 16,
-    Category = 17
-
+    Category = 17,
+    SectionType = 18
 
 }
 export const LookupsTypeArr =
@@ -53,7 +52,8 @@ export const LookupsTypeArr =
         { id: 14, name: 'Taxes', nameAr: 'ضريبة', parentId: null },
         { id: 15, name: 'Customer Type', nameAr: 'نوع العميل', parentId: null },
         { id: 16, name: 'Unit Of Measure', nameAr: 'وحدة القياس', parentId: null },
-        { id: 17, name: 'Category', nameAr: 'الصنف', parentId: null }
+        { id: 17, name: 'Category', nameAr: 'الصنف', parentId: null },
+        { id: 18, name: 'Section Type', nameAr: 'نوع القسم', parentId: null }
     ]
 export enum OrderStatus {
     Pending = 1,

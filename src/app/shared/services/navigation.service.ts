@@ -135,7 +135,7 @@ export class NavigationService {
                     state: '/user-managment/roles',
                     type: 'link',
                     permissions: 'Roles-List'
-                } 
+                }
             ]
         },
         {
@@ -160,12 +160,6 @@ export class NavigationService {
                     name: 'navigation.CustomerType',
                     state: '/lookups-managment/customerType/15',
                     type: 'link',
-                    permissions: 'Lookups-List' 
-                },
-                {
-                    name: 'navigation.preferred-language',
-                    state: '/lookups-managment/preferred-language/13',
-                    type: 'link',
                     permissions: 'Lookups-List'
                 },
                 {
@@ -180,7 +174,7 @@ export class NavigationService {
                     type: 'link',
                     permissions: 'Lookups-List'
                 },
-                 {
+                {
                     name: 'navigation.category',
                     state: '/lookups-managment/category/17',
                     type: 'link',
@@ -189,6 +183,12 @@ export class NavigationService {
                 {
                     name: 'navigation.unitOfMeasure',
                     state: '/lookups-managment/unitOfMeasure/16',
+                    type: 'link',
+                    permissions: 'Lookups-List'
+                },
+                {
+                    name: 'navigation.sectionType',
+                    state: '/lookups-managment/sectionType/18',
                     type: 'link',
                     permissions: 'Lookups-List'
                 }
@@ -201,14 +201,26 @@ export class NavigationService {
             permissions: 'Product-List',
             sub: [
                 {
-                    name: 'product-management.product',
-                    state: '/product-management/products',
+                    name: 'warehouse.warehouse',
+                    state: '/product-management/warehouse',
+                    type: 'link',
+                    permissions: 'Warehouse-List',
+                },
+                {
+                    name: 'warehouse-sections.warehouse-sections',
+                    state: '/product-management/warehouse-sections',
+                    type: 'link',
+                    permissions: 'Warehouse-Sections-List',
+                },
+                {
+                    name: 'warehouse-balance.warehouse-balance',
+                    state: '/product-management/warehouse-balance',
                     type: 'link',
                     permissions: 'Product-List',
                 },
-                 {
-                    name: 'warehouse-balance.warehouse-balance',
-                    state: '/product-management/warehouse-balance',
+                {
+                    name: 'product-management.product',
+                    state: '/product-management/products',
                     type: 'link',
                     permissions: 'Product-List',
                 },
@@ -218,7 +230,6 @@ export class NavigationService {
                     type: 'link',
                     permissions: 'Transaction-list',
                 },
-                
             ]
         },
     ];

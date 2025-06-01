@@ -5,11 +5,12 @@ const routes: Routes =
   [
     { path: 'nationality/:typeId', component: LookupsListComponent },
     { path: 'currency/:typeId', component: LookupsListComponent },
-    {path:'preferred-language/:typeId' ,component: LookupsListComponent },
-    {path:'tax-management/:typeId' ,component: LookupsListComponent },
-    {path:'category/:typeId' ,component: LookupsListComponent },
-    {path:'unitOfMeasure/:typeId' ,component: LookupsListComponent },
-    { path: 'customerType/:typeId', component: LookupsListComponent }
+    { path: 'preferred-language/:typeId', component: LookupsListComponent },
+    { path: 'tax-management/:typeId', component: LookupsListComponent },
+    { path: 'category/:typeId', component: LookupsListComponent },
+    { path: 'unitOfMeasure/:typeId', component: LookupsListComponent },
+    { path: 'customerType/:typeId', component: LookupsListComponent },
+    { path: 'sectionType/:typeId', component: LookupsListComponent }
 
   ];
 @NgModule
