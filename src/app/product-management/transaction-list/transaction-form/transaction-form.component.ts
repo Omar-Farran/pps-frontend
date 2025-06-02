@@ -24,13 +24,17 @@ export class TransactionFormComponent {
 
   transferType = TransactionTypes.Transfer;
   exportToBranchType = TransactionTypes.ExportToBranch;
+  recivingType = TransactionTypes.Reciving;
+  issueanceType = TransactionTypes.Issueance;
+  type:number;
 
     @Input() modal: any = null
     @Input() isEditMood: boolean = false
     @Input() id: number
     private entity: any = null;
-   warehouses:any[] = [{id:1 , name:'Warehouse A'}]
-   sections:any[] = [{id:2 , name:'Section A'}]
+   warehouses:any;
+   sections:any;
+   toSections:any;
    types:any[]  = transactionTypes;
    branchies:any;
    customers:any;
@@ -46,7 +50,7 @@ export class TransactionFormComponent {
         type: new FormControl(0, [Validators.required]),
         customerId: new FormControl(null ),
         warehouseId:new FormControl(null),
-        sectionId:new FormControl(null),
+        warehouseSectionId:new FormControl(null),
         toWarehouseId: new FormControl(null),
         toSectionId:new FormControl(null),
         toBranchId:new FormControl(null),
@@ -79,9 +83,10 @@ export class TransactionFormComponent {
   {index: 0 ,productId:0 , orderedQuantity: 0 , quantity:0}
   ];
       }
-      this.getBranchies();
       this.getProducts();
-      this.getCustomers(ClientType.Supplier);
+      this.form.get('type').setValue(ClientType.Supplier);
+      this.onTypeChange(ClientType.Supplier);
+      this.getWarehouses();
     }
     //#region Functions
     resetForm () 
@@ -98,7 +103,7 @@ export class TransactionFormComponent {
     }
   
     const allProductsValid = this.transactionItems.every(
-        item =>  item.productId > 0 && item.quantity > 0 && item.orderedQuantity > 0
+        item =>  item.productId > 0 && item.quantity > 0 && (item.orderedQuantity > 0 || this.type !=   TransactionTypes.Reciving)
             );
             if(!allProductsValid){
                this.toastr.error(this.translate.instant('transaction.oneOfTheProductInvalid'))
@@ -133,17 +138,14 @@ export class TransactionFormComponent {
           (
             {
                 id: this.entity.id,
+                warehouseSectionId:this.entity.warehouseSectionId,
             }
           );
       }
       )
   }
 
-  getBranchies(){
-      this.baseService.Get('Branch' , 'GetAll').subscribe(res => {
-        this.branchies  = res;
-      });
-    }
+ 
   getProducts(){
       this.baseService.Get('Product' , 'GetAll').subscribe(res => {
         this.products  = res;
@@ -172,13 +174,47 @@ removeRow(index){
   this.transactionItems = this.transactionItems.filter(x=> x.index != index);
 }
 
- getCustomers(type:any){
+ onTypeChange(type:any){
+  this.type = type;
   if( type == TransactionTypes.Reciving ||  type == TransactionTypes.Issueance){
       let clientType = type == TransactionTypes.Reciving ? ClientType.Supplier :  ClientType.Customer;
       this.baseService.Get('Customers' , 'GetAll?type='   + clientType ).subscribe(res => {
         this.customers  = res;
       });
-  }
+  } 
     }
 
+    getWarehouses(){
+      this.baseService.Get('Warehouse' , 'GetAll').subscribe(res => {
+        this.warehouses = res; 
+      })
+    }
+
+    onWarehouseChange(warehouseId:number){
+   this.getWarehouseSections(warehouseId);
+   if(this.type == this.exportToBranchType){
+    this.getBranchies(warehouseId);
+   }
+    }
+    getWarehouseSections(warehouseId:number){
+      if(warehouseId > 0){
+this.baseService.Get('WarehouseSections' , 'GetSectionsByWarehouseId/' + warehouseId ).subscribe(res => {
+  this.sections = res;
+})}}
+
+
+   getWarehouseToSections(){
+      let warehouseId = this.form.get('toWarehouseId').value;
+      if(warehouseId > 0){
+this.baseService.Get('WarehouseSections' , 'GetSectionsByWarehouseId/' + warehouseId ).subscribe(res => {
+  this.toSections = res;
+})}}
+
+
+ getBranchies(warehouseId:number){
+      this.baseService.Get('Branch' , 'GetAll?warehouseId=' + warehouseId).subscribe(res => {
+        this.branchies  = res;
+      });
+    }
+    
 }

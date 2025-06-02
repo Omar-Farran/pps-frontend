@@ -10,26 +10,26 @@ import { BaseService } from 'src/app/shared/services/base.service';
 export class WarehouseBalanceListComponent {
  columns: any[] = [
     { name: "warehouse-balance.warehouse", field: "warehouseName" },
-    { name: "warehouse-balance.location", field: "locationName" },
+    { name: "warehouse-balance.section", field: "sectionName" },
     { name: "warehouse-balance.branch", field: "branchName" },
     { name: "warehouse-balance.product", field: "productName" },
-    { name: "warehouse-balance.balance", field: "balance" },
+    { name: "warehouse-balance.balance", field: "balance" , type:'number' },
   ];
     actionList: any[] = [];
 products:any[];
 branchies:any[];
-locations:any[];
-warehouses:any[];
+locations:any;
+warehouses:any;
 dataSource: any[] = [];
   totalCount: number = 0
   id: number = null
   public searchForm = new FormGroup
   (
     {
-      warehouseId:new FormControl(),
-      branchId:new FormControl(),
-      productId:new FormControl(),
-      locationId:new FormControl()
+      warehouseId:new FormControl(null),
+      branchId:new FormControl(null),
+      productId:new FormControl(null),
+      locationId:new FormControl(null)
     }
   )
   baseSearch = 
@@ -53,6 +53,8 @@ dataSource: any[] = [];
     this.onSearch(null)
     this.getProducts();
     this.getBranchies();
+    this.getWarehouses();
+    this.getWarehouseSections();
   }
   //#region Getters
   private getList () 
@@ -87,10 +89,7 @@ dataSource: any[] = [];
   }
   //#endregion
 
-  getWarehouses(){
-    
-  }
-
+ 
       onHandleAction(event) {
     switch (event.action.name) {
       case "common.edit":
@@ -121,4 +120,17 @@ dataSource: any[] = [];
       this.branchies = res as any[];
     })
   }
+
+
+    getWarehouses(){
+      this.baseService.Get('Warehouse' , 'GetAll').subscribe(res => {
+        this.warehouses = res; 
+      })
+    }
+
+     getWarehouseSections(){
+this.baseService.Get('WarehouseSections' , 'GetAll' ).subscribe(res => {
+  this.locations = res;
+     })}
+
 }

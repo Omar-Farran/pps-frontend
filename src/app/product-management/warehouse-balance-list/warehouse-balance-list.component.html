@@ -17,27 +17,26 @@
 	              <div class="col-md-6 form-group mb-3">
                             <label for="picker1"> {{ "warehouse-balance.warehouse" | translate }}</label>
                             <select class="form-control" formControlName="warehouseId" name="warehouseId">
-                                <option *ngFor="let item of warehouses" value="{{item.id}}" >{{item.name}}</option>
+                            <option  [ngValue]="null" selected >{{ "select" | translate }}</option>
+                                <option *ngFor="let item of warehouses" value="{{item.id}}" >{{item.nameEn}}</option>
                             </select>
              </div>
 
-			       <div class="col-md-6 form-group mb-3">
-                            <label for="picker1"> {{ "warehouse-balance.location" | translate }}</label>
-                            <select class="form-control" formControlName="locationId" name="locationId">
-                                <option *ngFor="let item of locations" value="{{item.id}}" >{{item.name}}</option>
-                            </select>
-             </div>
 
 			    <div class="col-md-6 form-group mb-3">
                             <label for="picker1"> {{ "warehouse-balance.branch" | translate }}</label>
                             <select class="form-control" formControlName="branchId" name="branchId">
+                             <option  [ngValue]="null" selected>{{ "select" | translate }}</option>
+
                                 <option *ngFor="let item of branchies" value="{{item.id}}" >{{item.description}}</option>
                             </select>
              </div>
 
 			     <div class="col-md-6 form-group mb-3">
                             <label for="picker1"> {{ "warehouse-balance.product" | translate }}</label>
-                            <select class="form-control" formControlName="productId" name="productId">
+                            <select  class="form-control" formControlName="productId" name="productId">
+                                                            <option [ngValue]="null"  selected>{{ "select" | translate }}</option>
+
                                 <option *ngFor="let item of products" value="{{item.id}}" >{{item.name}}</option>
                             </select>
              </div>

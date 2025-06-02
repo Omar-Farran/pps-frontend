@@ -21,6 +21,7 @@ import { WarehouseFormComponent } from './warehouse-list/warehouse-form/warehous
 import { WarehouseListComponent } from './warehouse-list/warehouse-list.component';
 import { WarehouseSectionsListComponent } from './warehouse-sections-list/warehouse-sections-list.component';
 import { WarehouseSectionsFormComponent } from './warehouse-sections-list/warehouse-sections-form/warehouse-sections-form.component';
+import { TransactionInfoComponent } from './transaction-list/transaction-info/transaction-info.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { WarehouseSectionsFormComponent } from './warehouse-sections-list/wareho
     WarehouseFormComponent,
     WarehouseListComponent,
     WarehouseSectionsListComponent,
-    WarehouseSectionsFormComponent
+    WarehouseSectionsFormComponent,
+    TransactionInfoComponent
   ],
   imports: [
     CommonModule,

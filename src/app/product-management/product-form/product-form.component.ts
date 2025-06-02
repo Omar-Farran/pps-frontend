@@ -27,6 +27,8 @@ export class ProductFormComponent {
   unitOfMeasures:any[];
   followTypes:any[];
   baseUrl = environment.attachmentUrl;
+  warehouses:any;
+  sections:any;
     @Input() isCompanyUser:boolean = false;
     @Input() modal: any = null
     @Input() isEditMood: boolean = false
@@ -46,6 +48,7 @@ export class ProductFormComponent {
         categoryId:new FormControl(null ,  [Validators.required ]),
         isActive: new FormControl(false),
         hasBarCode:new FormControl(false)
+
       }
     );
      detailsForm = new FormGroup ({
@@ -59,7 +62,10 @@ export class ProductFormComponent {
      followType:new FormControl(null),
      quantityValue:new FormControl(0),
      expDate:new FormControl(),
-     expirationDays: new FormControl()
+     expirationDays: new FormControl(),
+        currentStock:new FormControl(null),
+        defaultWarehouseId:new FormControl(null),
+        warehouseSectionId: new FormControl(null)
     })
    followForm = new FormGroup({
 
@@ -81,6 +87,8 @@ export class ProductFormComponent {
         this.GetById()
       this.getCategories();
       this.getUnitOfMeasures();
+      this.getWarehouses();
+      
       this.steps = [
     { label: this.translate.instant('product-management.basicInfo'), command: () => (this.activeIndex = 0) },
     { label: this.translate.instant('product-management.details'), command: () => (this.activeIndex = 1) }
@@ -194,11 +202,15 @@ export class ProductFormComponent {
                 quantityValue:this.entity.quantityValue,
                 salesTax:this.entity.salesTax,
                 discount:this.entity.discount,
+                currentStock:this.entity.currentStock,
+                defaultWarehouseId:this.entity.DefaultWarehouseId,
+                warehouseSectionId: this.entity.WarehouseSectionId,
                 expDate: date ? {
                           year: date.getFullYear(),
                           month: date.getMonth() + 1, // Note: JS months are 0-based
                           day: date.getDate()
                         } : null,
+                  
 
              }
           );
@@ -227,11 +239,29 @@ export class ProductFormComponent {
       });
     }
 
-  onHasBarCodeChange(){
-    if(this.basicForm.get('hasBarCode')?.value){
-    this.basicForm.get('barCode').addValidators(Validators.required);
-    } else {
-      this.basicForm.get('barCode').removeValidators(Validators.required);
-    }
+  onHasBarCodeChange() {
+  const barCodeControl = this.basicForm.get('barCode');
+  if (this.basicForm.get('hasBarCode')?.value) {
+    barCodeControl?.setValidators(Validators.required);
+  } else {
+    barCodeControl?.clearValidators();
   }
+  barCodeControl?.updateValueAndValidity(); // This is essential
+}
+
+    getWarehouses(){
+      this.baseService.Get('Warehouse' , 'GetAll').subscribe(res => {
+        this.warehouses = res; 
+      })
+    }
+
+      onWarehouseChange(warehouseId:number){
+   this.getWarehouseSections(warehouseId);
+  }
+
+      getWarehouseSections(warehouseId:number){
+      if(warehouseId > 0){
+this.baseService.Get('WarehouseSections' , 'GetSectionsByWarehouseId/' + warehouseId ).subscribe(res => {
+  this.sections = res;
+})}}
 }

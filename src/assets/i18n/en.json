@@ -976,7 +976,9 @@
     "expiry": "Expiry",
     "both": "Both",
     "image": "Image",
-    "discount": "Discount Price"
+    "discount": "Discount Price",
+    "defaultWarehouse":"Default Warehouse",
+    "section":"Sections"
   },
   "customers": {
     "customers": "Customers",
@@ -1035,7 +1037,7 @@
   },
   "warehouse-balance": {
     "warehouse": "Warehouse",
-    "location": "Location",
+    "section": "Section",
     "branch": "Branch",
     "product": "Product",
     "balance": "Balance",
@@ -1062,7 +1064,9 @@
       "notes":"Notes",
       "transactionitems":"Transaction Products",
       "oneOfTheProductInvalid":"one of the product invalid",
-      "customer": "Customers / Suppliers"
+      "customer": "Customers / Suppliers",
+      "transction":"Warehouse Transactions",
+    "info":"Transaction Details"
   },
   "warehouse": {
     "warehouse": "Warehouse",
