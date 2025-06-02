@@ -15,7 +15,7 @@
 
             <!-- Warehouse Dropdown -->
             <div class="col-12 col-sm-6 form-group required">
-                <label>{{ "warehouse-sections.warehouseId" | translate }}</label> 
+                <label>{{ "warehouse-sections.warehouseId" | translate }}</label>
                 <select class="form-control" formControlName="warehouseId"
                     [class.is-invalid]="isFormSubmitted && form.get('warehouseId')?.invalid">
                     <option value="" disabled selected>{{ "select" | translate }}</option>
@@ -67,7 +67,7 @@
             <div class="col-12 col-sm-6 form-group">
                 <label>{{ "warehouse-sections.sectionType" | translate }}</label>
                 <select class="form-control" formControlName="sectionTypeId">
-                    <option value="">{{ "warehouse-sections.select" | translate }}</option>
+                    <option [value]=null>{{ "warehouse-sections.select" | translate }}</option>
                     <option *ngFor="let type of sectionTypeList" [value]="type.id">
                         {{ type.title }}
                     </option>

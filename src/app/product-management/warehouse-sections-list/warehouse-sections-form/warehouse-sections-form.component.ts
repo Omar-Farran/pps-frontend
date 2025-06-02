@@ -83,18 +83,18 @@ export class WarehouseSectionsFormComponent implements OnInit {
     const ApiPath = this.isEditMood ? 'Update' : 'Post';
 
     let form = this.form.getRawValue();
+    form.sectionTypeId = form.sectionTypeId == "null" ? null : form.sectionTypeId,
+      this.baseService.Post(this.ControllerPath, ApiPath, form).subscribe
+        (res => {
+          this.modal.close();
 
-    this.baseService.Post(this.ControllerPath, ApiPath, form).subscribe
-      (res => {
-        this.modal.close();
-
-        this.toastr.success(
-          this.translate.instant(this.isEditMood ? 'successUpdated' : "successAdded"),
-          this.translate.instant("success"),
-          { timeOut: 3000 }
-        );
-      }
-      )
+          this.toastr.success(
+            this.translate.instant(this.isEditMood ? 'successUpdated' : "successAdded"),
+            this.translate.instant("success"),
+            { timeOut: 3000 }
+          );
+        }
+        )
 
   }
 
