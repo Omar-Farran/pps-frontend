@@ -21,8 +21,7 @@ export class TransactionListComponent {
     { name: "transaction.tobranch", field: "toBranchName" }
   ];
     actionList: any[] = [
-    { name: "common.info", icon: "change", permission: "Transaction-List" },
-    { name: 'common.updatestatus', icon: 'change' , permission: 'Admin-Change-Status'}
+    { name: "common.info", icon: "change", permission: "Transaction-list" },
   ];
 
 dataSource: any[] = [];
@@ -102,16 +101,6 @@ dataSource: any[] = [];
 
     onHandleAction(event, modal) {
     switch (event.action.name) {
-      case "common.edit":
-        {
-           this.onEdit(event.data, modal);
-        }
-         break;
-        case "common.updatestatus":
-        {
-           this.onChageStatus(event.data);
-        }
-        break;
          case "common.info":
         {
            this.onInfo(event.data);

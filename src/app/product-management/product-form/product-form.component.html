@@ -217,6 +217,44 @@
                     {{'common.fieldRequired'|translate}}
                 </div>
             </div>
+
+               <div class="col-md-6 form-group mb-3 required">
+                            <label for="picker1"> {{ "product-management.defaultWarehouse" | translate }}</label>
+                            <select class="form-control" formControlName="defaultWarehouseId" name="defaultWarehouseId" (change)="onWarehouseChange(detailsForm.get('defaultWarehouseId').value)">
+                                <option *ngFor="let item of warehouses" value="{{item.id}}" >{{item.nameEn}}</option>
+                            </select>
+                            <div *ngIf="isFormSubmitted && detailsForm.get('defaultWarehouseId').invalid" class="invalid-feedback">
+                                    {{ "common.fieldRequired" | translate }}
+                                 </div>
+                        </div>
+
+
+                          <div class="col-md-6 form-group mb-3 required">
+                            <label for="picker1"> {{ "product-management.section" | translate }}</label>
+                            <select class="form-control" formControlName="warehouseSectionId" name="warehouseSectionId">
+                                <option *ngFor="let item of sections" value="{{item.id}}" >{{item.name}}</option>
+                            </select>
+                            <div *ngIf="isFormSubmitted && detailsForm.get('warehouseSectionId').invalid" class="invalid-feedback">
+                                    {{ "common.fieldRequired" | translate }}
+                                 </div>
+                        </div>
+
+                         <div class="col-12 col-sm-6 form-group ">
+                <label>{{'product-management.currentStock' | translate }}</label>
+                <input 
+                    type="number" 
+                    placeholder="{{'product-management.currentStock' | translate }}" 
+                    class="form-control" 
+                    formControlName="currentStock"
+                    [class.is-invalid]="isDetailsFormSubmitted && detailsForm.get('currentStock')?.errors"
+                >
+                <div class="invalid-feedback">
+                    {{'common.fieldRequired'|translate}}
+                </div>
+            </div>
+
+
+
       <div *ngIf="entity?.imagePath" class="col-md-12 form-group required">
         <img height="200px;" width="200px" src="{{this.entity.imagePath}}"    />
         <label>{{ "product-management.image" | translate }}</label>

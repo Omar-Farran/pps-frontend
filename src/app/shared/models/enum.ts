@@ -9,7 +9,7 @@ export const StatusArr =
     ]
 export enum GlobalStatus {
     Active = 1,
-    Inactive = 2
+    Inactive = 0
 }
 export const GlobalStatusArr =
     [
