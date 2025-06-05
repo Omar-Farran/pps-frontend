@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-    API: 'https://mes-api-dev.azurewebsites.net/api',
+    API: 'https://pss-backend-9.onrender.com/api',
   token: 'acessToken',
   mapbox: 
   {
