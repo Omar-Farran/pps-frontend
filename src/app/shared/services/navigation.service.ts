@@ -144,12 +144,12 @@ export class NavigationService {
             icon: 'i-Data-Settings',
             permissions: 'Lookups-Management',
             sub: [
-                {
-                    name: 'navigation.Nationality',
-                    state: '/lookups-managment/nationality/11',
-                    type: 'link',
-                    permissions: 'Lookups-List'
-                },
+                // {
+                //     name: 'navigation.Nationality',
+                //     state: '/lookups-managment/nationality/11',
+                //     type: 'link',
+                //     permissions: 'Lookups-List'
+                // },
                 {
                     name: 'navigation.Currency',
                     state: '/lookups-managment/currency/12',
@@ -201,7 +201,7 @@ export class NavigationService {
             permissions: 'Product-List',
             sub: [
                 {
-                    name: 'warehouse.warehouse',
+                    name: 'navigation.warehouse',
                     state: '/product-management/warehouse',
                     type: 'link',
                     permissions: 'Warehouse-List',
@@ -213,7 +213,7 @@ export class NavigationService {
                     permissions: 'Warehouse-Sections-List',
                 },
                 {
-                    name: 'warehouse-balance.warehouse-balance',
+                    name: 'navigation.warehouse-balance',
                     state: '/product-management/warehouse-balance',
                     type: 'link',
                     permissions: 'Product-List',
@@ -225,7 +225,7 @@ export class NavigationService {
                     permissions: 'Product-List',
                 },
                 {
-                    name: 'transaction.transaction',
+                    name: 'navigation.transaction',
                     state: '/product-management/transaction',
                     type: 'link',
                     permissions: 'Transaction-list',

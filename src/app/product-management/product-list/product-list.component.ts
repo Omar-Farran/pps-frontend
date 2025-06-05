@@ -22,7 +22,7 @@ export class ProductListComponent {
   ];
     actionList: any[] = [
     { name: "common.edit", icon: "change", permission: "Product-Form" },
-    { name: 'common.updatestatus', icon: 'change' , permission: 'Admin-Change-Status'}
+    { name: 'common.updatestatus', icon: 'change' , permission: 'Product-Form'}
   ];
 
 dataSource: any[] = [];

@@ -85,7 +85,7 @@
 
         <div class="col-12 col-sm-6 form-group required">
                 <label>{{'companyManagement.mobile' | translate}}</label>
-                <ngx-mat-intl-tel-input [preferredCountries]="['sa']"
+                <ngx-mat-intl-tel-input [preferredCountries]="['iq']"
                                         [onlyCountries]="onlyCountries"
                                         [enablePlaceholder]="true"
                                         [enableSearch]="true"
@@ -135,7 +135,7 @@
           </div>
         </div>
       </div> -->
-      <div class="col-md-6 form-group mb-3">
+      <div class="col-md-6 form-group mb-3 required">
         <label for="picker1">{{
           "companyManagement.subscriptionEnd" | translate
         }}</label>
@@ -148,7 +148,7 @@
             formControlName="endDate"
             ngbDatepicker
             #dp="ngbDatepicker"
-            
+            [class.is-invalid]="isFormSubmitted &&  form && form.get('endDate')?.errors"
           />
           <div class="input-group-append">
             <button
@@ -160,20 +160,34 @@
             </button>
           </div>
         </div>
+         <div class="invalid-feedback" *ngIf="isFormSubmitted && form.get('endDate')?.errors">
+                    <div *ngIf="form.get('endDate')?.errors?.required">
+                        {{ 'common.fieldRequired' | translate }}
+                    </div>
+                </div>
       </div>
 
-            <div class="col-md-6 form-group mb-3">
+            <div class="col-md-6 form-group mb-3 required">
                             <label for="picker1"> {{ "companyManagement.currencyId" | translate }}</label>
-                            <select class="form-control" formControlName="currencyId" name="currencyId">
+                            <select class="form-control" formControlName="currencyId" name="currencyId"
+                                       [class.is-invalid]="isFormSubmitted &&  form && form.get('currencyId')?.errors"
+
+                            >
                                 <option *ngFor="let item of currencies" value="{{item.id}}" >{{item.title}}</option>
                             </select>
+
+                   <div class="invalid-feedback" *ngIf="isFormSubmitted && form.get('currencyId')?.errors">
+                    <div *ngIf="form.get('currencyId')?.errors?.required">
+                        {{ 'common.fieldRequired' | translate }}
+                    </div>
+                </div>
              </div>
 
 
                
 
 
-       <div class="col-12 col-sm-6 form-group required">
+       <div class="col-12 col-sm-6 form-group">
         <label>{{ "companyManagement.logo" | translate }}</label>
         <input
           type="file"
@@ -186,6 +200,22 @@
           {{ "common.fieldRequired" | translate }}
         </div>
       </div>
+
+      <div class="col-md-12 form-group required">
+        <label>{{ "companyManagement.address" | translate }}</label>
+        <textarea
+          type="textarea"
+          maxlength="100"
+          placeholder="{{ 'companyManagement.address' | translate }}"
+          class="form-control"
+          formControlName="address"
+          [class.is-invalid]="isFormSubmitted &&  form && form.get('address')?.errors"
+        > </textarea>
+        <div class="invalid-feedback">
+          {{ "common.fieldRequired" | translate }}
+        </div>
+      </div>
+      
 
 
          <div class="col-md-6 form-group mb-3">
@@ -202,21 +232,7 @@
                 </label>
          </div>
           
- <div class="col-md-12 form-group required">
-        <label>{{ "companyManagement.address" | translate }}</label>
-        <input
-          type="textarea"
-          maxlength="100"
-          placeholder="{{ 'companyManagement.address' | translate }}"
-          class="form-control"
-          formControlName="address"
-          [class.is-invalid]="isFormSubmitted &&  form && form.get('address')?.errors"
-        />
-        <div class="invalid-feedback">
-          {{ "common.fieldRequired" | translate }}
-        </div>
-      </div>
-      
+ 
     </div>
   </form>
 </div>
@@ -278,7 +294,7 @@
         (click)="submitForm()"
         class="btn btn-primary btn-rounded" 
         tabindex="-1" 
-        *ngIf="authSerivce.hasPermission('Add-Roles') || authSerivce.hasPermission('Update-Roles')"
+        *ngIf="authSerivce.hasPermission('Company-List')"
     >
         {{'common.save'|translate}}
     </button>

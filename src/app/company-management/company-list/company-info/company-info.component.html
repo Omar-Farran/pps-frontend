@@ -50,7 +50,7 @@
                              <span class="value" > {{entity.currencyTitle  }} </span>
                         </div>
 
-                         <div class="col-md-4 form-group mb-3">
+                         <div *ngIf="entity.timezone" class="col-md-4 form-group mb-3">
                             <label>{{'companyManagement.timezone' | translate}}</label>
                              <span class="value" > {{entity.timezone  }} </span>
                         </div>

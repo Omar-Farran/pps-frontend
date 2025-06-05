@@ -10,9 +10,14 @@
             <!-- Branchies -->
               <div class="col-md-6 form-group mb-3 required">
                             <label for="picker1"> {{ "userManagment.branch" | translate }}</label>
-                            <select class="form-control" formControlName="branchId" name="branchId">
+                            <select class="form-control" formControlName="branchId" name="branchId"
+                            [class.is-invalid]="isSubmittedUserAddForm && userAddForm.get('branchId')?.errors"
+                            >
                                 <option *ngFor="let item of branchies" value="{{item.id}}" >{{item.description}}</option>
                             </select>
+                             <div class="invalid-feedback">
+                    {{'common.fieldRequired'|translate}}
+                </div>
                         </div>
 
             <!-- Full Name -->
@@ -100,15 +105,20 @@
                 </div>
             </div>
 
-            <div class="col-md-6 form-group mb-3 required">
-                <label>{{'section.status' | translate}}</label>
-                <select class="form-control form-control-rounded"
-                        formControlName="isActive"
-                        [class.is-invalid]="userAddForm.get('isActive').invalid && userAddForm.get('isActive').touched">
-                    <option [value]="true">{{'common.active' | translate}}</option>
-                    <option [value]="false">{{'common.inactive' | translate}}</option>
-                </select>
-            </div>
+          
+         <div class="col-md-6 form-group mb-3">
+
+<label class="switch switch-primary me-3 mt-4">
+                    <span>
+
+                        {{
+          "companyManagement.isActive" | translate
+        }}
+                    </span>
+                    <input type="checkbox"   formControlName="isActive" >
+                    <span class="slider"></span>
+                </label>
+         </div>
 
         </div>
 

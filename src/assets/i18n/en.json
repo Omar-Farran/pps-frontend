@@ -501,21 +501,24 @@
     "Statistics": "Statistics",
     "fault-justification": "Fault Justification",
     "oee-dashboard": "OEE Dashboard",
-    "Currency": "Currency",
-    "CustomerType": "Customer Type",
+    "Currency": "Currencies",
+    "CustomerType": "Customer Types",
     "Companies": "Companies",
     "company-management": "Company Management",
     "Branchies": "Branchies",
     "Customers": "Customers",
     "Suppliers": "Suppliers",
-    "preferred-language": "Preferred Language",
+    "preferred-language": "Preferred Languages",
     "tax-management": "Taxes",
     "product-management": "Product Management",
     "warehouse-management": "Warehouse Management",
-    "category": "Category",
-    "unitOfMeasure": "Unit Of Measure",
-    "sectionType": "Section Type",
-    "warehouse-sections": "Warehouse Sections"
+    "category": "Categories",
+    "unitOfMeasure": "Unit Of Measureies",
+    "sectionType": "Section Types",
+    "warehouse-sections": "Warehouse Sections",
+    "warehouse":"Warehouseies",
+    "transaction":"Transactions",
+    "warehouse-balance":"Warehouse Balanceies"
   },
   "factory": {
     "factoryManagment": "Factory Management",
@@ -876,7 +879,10 @@
     "MachineCodeAlreadyExists": "Machine Code Already Exists",
     "ThereIsCategoryLinkedActive": "There is already active subcategory linked into category",
     "LinkedPrespectiveInactive": "The linked perspective is inactive; activate it first.",
-    "CompanyIsInActive": "Company is inactive"
+    "CompanyIsInActive": "Company is inactive",
+    "EmailNotExists":"Email Not Found",
+    "BarCodeAlreadyExists":"Bar code alredy exists",
+    "PleaseSelectSectionAndCurrentStockValue":"Please Select Section And Current Stock Balance"
   },
   "dashboards": {
     "oee-dashboard": "OEE Dashboard",
@@ -913,8 +919,8 @@
     "nameEn": "Name English",
     "nameAr": "Name Arabic",
     "mobile": "Mobile",
-    "subscriptionStart": "subscription Start",
-    "subscriptionEnd": "subscription End",
+    "subscriptionStart": "Subscription Start",
+    "subscriptionEnd": "Subscription End",
     "code": "Code",
     "address": "Address",
     "isActive": "Active",
@@ -941,7 +947,8 @@
     "isActive": "Active",
     "addBranch": "Add New Branch",
     "editBranch": "Edit New Branch",
-    "currencyId": "Currency"
+    "currencyId": "Currency",
+    "search":"Search By Name"
   },
   "product-management": {
     "product": "Products",
@@ -978,7 +985,8 @@
     "image": "Image",
     "discount": "Discount Price",
     "defaultWarehouse":"Default Warehouse",
-    "section":"Sections"
+    "section":"Sections",
+    "currentStock":"Current Stock"
   },
   "customers": {
     "customers": "Customers",
@@ -1036,7 +1044,7 @@
     "Searchby": "Search By Name, Type, Mobile"
   },
   "warehouse-balance": {
-    "warehouse": "Warehouse",
+    "warehouse": "Warehouseies",
     "section": "Section",
     "branch": "Branch",
     "product": "Product",

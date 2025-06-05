@@ -117,9 +117,14 @@
 
              <div class="col-md-6 form-group mb-3 required">
                <label for="picker1"> {{ "product-management.category" | translate }}</label>
-               <select class="form-control" formControlName="categoryId" name="categoryId">
+               <select class="form-control" formControlName="categoryId" name="categoryId"
+               [class.is-invalid]="isFormSubmitted && basicForm.get('sellPrice')?.errors"
+               >
                <option *ngFor="let item of categories" value="{{item.id}}" >{{item.title}}</option>
                </select>
+                 <div class="invalid-feedback">
+                    {{'common.fieldRequired'|translate}}
+                </div>
              </div>
 
               <div class="col-md-6 form-group mb-3 required">
@@ -155,7 +160,7 @@
        <form [formGroup]="detailsForm" id="form">
       <div class="row">
 
-         <div  class="col-12 col-sm-6 form-group required" >
+         <div  class="col-12 col-sm-6 form-group" >
         <label>{{ "product-management.descriptionEn" | translate }}</label>
         <input
           type="text"
@@ -170,7 +175,7 @@
         </div>
       </div>
 
-       <div  class="col-12 col-sm-6 form-group required" >
+       <div  class="col-12 col-sm-6 form-group" >
         <label>{{ "product-management.descriptionAr" | translate }}</label>
         <input
           type="text"
@@ -180,12 +185,9 @@
           formControlName="descriptionAr"
           [class.is-invalid]="isDetailsFormSubmitted &&  detailsForm && detailsForm.get('descriptionAr')?.errors"
         />
-        <div *ngIf="detailsForm.get('descriptionAr').invalid &&  detailsForm.get('descriptionAr').errors['required']" class="invalid-feedback">
-          {{ "common.fieldRequired" | translate }}
-        </div>
 
           <div class="invalid-feedback"
-                                *ngIf="detailsForm.get('descriptionAr').invalid &&  detailsForm.get('nameAr').errors['arabicTextWithNumbers']">
+                *ngIf="detailsForm.get('descriptionAr').invalid &&  detailsForm.get('nameAr').errors['arabicTextWithNumbers']">
                                 {{'common.onlyArabicIsAllowed'|translate}}
           </div>
       </div>
@@ -211,14 +213,12 @@
                     placeholder="{{'product-management.discount' | translate }}" 
                     class="form-control" 
                     formControlName="discount"
-                    [class.is-invalid]="isDetailsFormSubmitted && detailsForm.get('discount')?.errors"
                 >
-                <div class="invalid-feedback">
-                    {{'common.fieldRequired'|translate}}
-                </div>
+          
             </div>
 
-               <div class="col-md-6 form-group mb-3 required">
+            <ng-container *ngIf="!isEditMood"> 
+      <div class="col-md-6 form-group mb-3">
                             <label for="picker1"> {{ "product-management.defaultWarehouse" | translate }}</label>
                             <select class="form-control" formControlName="defaultWarehouseId" name="defaultWarehouseId" (change)="onWarehouseChange(detailsForm.get('defaultWarehouseId').value)">
                                 <option *ngFor="let item of warehouses" value="{{item.id}}" >{{item.nameEn}}</option>
@@ -228,8 +228,9 @@
                                  </div>
                         </div>
 
+                      <ng-container *ngIf="detailsForm.get('defaultWarehouseId')?.value > 0" > 
 
-                          <div class="col-md-6 form-group mb-3 required">
+  <div class="col-md-6 form-group mb-3 required">
                             <label for="picker1"> {{ "product-management.section" | translate }}</label>
                             <select class="form-control" formControlName="warehouseSectionId" name="warehouseSectionId">
                                 <option *ngFor="let item of sections" value="{{item.id}}" >{{item.name}}</option>
@@ -239,7 +240,7 @@
                                  </div>
                         </div>
 
-                         <div class="col-12 col-sm-6 form-group ">
+                         <div class="col-12 col-sm-6 form-group required">
                 <label>{{'product-management.currentStock' | translate }}</label>
                 <input 
                     type="number" 
@@ -252,6 +253,12 @@
                     {{'common.fieldRequired'|translate}}
                 </div>
             </div>
+
+                      </ng-container>
+
+            </ng-container>
+         
+                        
 
 
 
@@ -399,6 +406,7 @@
   </button>
 
            <button
+           *ngIf="authSerivce.hasPermission('Product-Form')"
     type="button"
   (click)="next()"  class="btn btn-primary btn-rounded m-l"
   >

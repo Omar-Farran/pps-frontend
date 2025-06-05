@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ResetPassword } from '../../../data/reset-password';
 import { BaseService } from '../../../shared/services/base.service';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-reset-password',
@@ -13,7 +13,8 @@ export class ResetPasswordComponent {
 data:ResetPassword = new ResetPassword;
 constructor(private baseService: BaseService,
     private toastr: ToastrService,
-  private route: ActivatedRoute)
+  private route: ActivatedRoute,
+private router:Router)
     {
 
     }
@@ -24,6 +25,7 @@ resetPassword(){
   this.data.id = id;
  this.baseService.Post("Auth" , 'ResetPassword' , this.data).subscribe(res => {
    this.toastr.success('success');
+   this.router.navigate(['/sessions/signin'])
  })
 }
 

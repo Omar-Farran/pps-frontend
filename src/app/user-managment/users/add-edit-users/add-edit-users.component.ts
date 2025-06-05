@@ -37,7 +37,7 @@ export class AddEditUsersComponent implements OnInit
       userName: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required, passwordValidator()]),
       PasswordConfirm: new FormControl('', [Validators.required]),
-      isActive: new FormControl('true', Validators.required),
+      isActive: new FormControl(true, Validators.required),
       roles: new FormControl(null, [Validators.required]),
       address: new FormControl(null),
       jobDescription: new FormControl(null),

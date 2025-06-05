@@ -106,6 +106,7 @@ export class ProductFormComponent {
     next() {
       if(this.activeIndex  == 0){
         this.isFormSubmitted = true;
+        this.isDetailsFormSubmitted = true;
         this.basicForm.markAllAsTouched();
         if(this.basicForm.valid){
         this.activeIndex++;
@@ -222,7 +223,7 @@ export class ProductFormComponent {
 
   onFileChange(event: Event): void {
   const input = event.target as HTMLInputElement;
-  if (input.files && input.files.length > 0) {
+  if (input.files && input.files?.length > 0) {
     this.imageFile = input.files[0];
         }
   }
@@ -244,6 +245,7 @@ export class ProductFormComponent {
   if (this.basicForm.get('hasBarCode')?.value) {
     barCodeControl?.setValidators(Validators.required);
   } else {
+    barCodeControl.setValue(null);
     barCodeControl?.clearValidators();
   }
   barCodeControl?.updateValueAndValidity(); // This is essential
@@ -257,6 +259,13 @@ export class ProductFormComponent {
 
       onWarehouseChange(warehouseId:number){
    this.getWarehouseSections(warehouseId);
+   if(warehouseId > 0){
+    this.detailsForm.get('warehouseSectionId').setValidators(Validators.required);
+    this.detailsForm.get('currentStock').setValidators(Validators.required);
+   }else {
+    this.detailsForm.get('warehouseSectionId')?.clearValidators();
+    this.detailsForm.get('currentStock')?.clearValidators();
+   }
   }
 
       getWarehouseSections(warehouseId:number){

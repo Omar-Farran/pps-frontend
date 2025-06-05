@@ -14,7 +14,7 @@ import { noWhitespaceValidator } from 'src/app/utils/validation-white-space';
   templateUrl: './company-form.component.html',
   styleUrls: ['./company-form.component.scss']
 })
-export class CompanyFormComponent {
+export class CompanyFormComponent  {
   isFormSubmitted:boolean = false;
   logoFile:any;
   public status = GlobalStatusArr
@@ -33,13 +33,13 @@ export class CompanyFormComponent {
         code:new FormControl('', [Validators.required , Validators.maxLength(100)]),
         nameEn: new FormControl('', [Validators.required,englishTextWithNumbersValidator,noWhitespaceValidator() , Validators.maxLength(100)]),
         nameAr: new FormControl('', [Validators.required, arabicTextWithNumbersValidator(), noWhitespaceValidator() ]),
-        address: new FormControl(''),
+        address: new FormControl('' , [Validators.required]),
         mainAccountEmail: new FormControl('', [Validators.required , Validators.email]),
         mobile: new FormControl(''),
-        endDate: new FormControl<any>(''),
+        endDate: new FormControl<any>('' ,[Validators.required]),
         isActive: new FormControl(false),
         subscriptionEndDate:new FormControl(''),
-        logoFile:new FormControl(),
+        logoFile:new FormControl(null),
         currencyId:new FormControl(null,Validators.required)
       }
     );
@@ -53,13 +53,14 @@ export class CompanyFormComponent {
       private toastr: ToastrService,
       private translate: TranslateService,
     ) 
-    {}
+    {
+      this.getCurcencies();
+    }
     ngOnInit (): void 
     {
-      
       if (this.isEditMood && this.id) 
         this.GetById()
-      this.getCurcencies();
+      
       if(this.isCompanyUser){
         this.form.get('code')?.disable();
         this.form.get('endDate')?.disable();

@@ -68,7 +68,7 @@
       <!-- Mobile Number -->
       <div class="col-12 col-sm-6 form-group">
         <label>{{ 'Suppliers.mobileNumber' | translate }}</label>
-        <ngx-mat-intl-tel-input [preferredCountries]="['sa']" [onlyCountries]="onlyCountries" [enablePlaceholder]="true"
+        <ngx-mat-intl-tel-input [preferredCountries]="['iq']" [onlyCountries]="onlyCountries" [enablePlaceholder]="true"
           [enableSearch]="true" class="form-control input-group input-phone-selector" formControlName="mobileNumber"
           [class.is-invalid]="isFormSubmitted && form.get('mobileNumber')?.invalid">
         </ngx-mat-intl-tel-input>
@@ -188,10 +188,7 @@
   <button type="button" class="btn btn-secondary btn-rounded" (click)="modal.dismiss('Cross click')" tabindex="-1">
     {{ "common.cancel" | translate }}
   </button>
-  <button type="button" (click)="submitForm()" class="btn btn-primary btn-rounded" tabindex="-1" *ngIf="
-      authSerivce.hasPermission('Add-Admin') ||
-      authSerivce.hasPermission('Update-Admin')
-    ">
+  <button type="button" (click)="submitForm()" class="btn btn-primary btn-rounded" tabindex="-1" *ngIf="authSerivce.hasPermission('Add-Suppliers')">
     {{ "common.save" | translate }}
   </button>
 </div>

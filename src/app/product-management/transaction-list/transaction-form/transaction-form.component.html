@@ -203,10 +203,7 @@
     (click)="submitForm()"
     class="btn btn-primary btn-rounded"
     tabindex="-1"
-    *ngIf="
-      authSerivce.hasPermission('Add-Admin') ||
-      authSerivce.hasPermission('Update-Admin')
-    "
+    *ngIf="authSerivce.hasPermission('Transaction-Form')"
   >
     {{ "common.save" | translate }}
   </button>
