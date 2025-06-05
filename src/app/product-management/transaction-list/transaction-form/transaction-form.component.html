@@ -24,7 +24,8 @@
           <div class="col-md-6 form-group mb-3 required">
                             <label for="picker1"> {{ "transaction.type" | translate }}</label>
                             <select class="form-control" formControlName="type" name="type" (change)="onTypeChange(form.get('type').value)">
-                                <option *ngFor="let item of types" value="{{item.id}}" >{{item.name}}</option>
+                               <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
+                              <option *ngFor="let item of types" value="{{item.id}}" >{{item.name}}</option>
                             </select>
                             <div *ngIf="isFormSubmitted && form.get('type').invalid" class="invalid-feedback">
                                     {{ "common.fieldRequired" | translate }}
@@ -34,7 +35,8 @@
                          <div *ngIf="form.get('type').value == recivingType || form.get('type').value ==  issueanceType " class="col-md-6 form-group mb-3 required">
                             <label for="picker1"> {{  (form.get('type').value == recivingType ?   "Suppliers.Suppliers"  :   "customers.customers"  ) | translate }}</label>
                             <select class="form-control" formControlName="customerId" name="customerId">
-                                <option *ngFor="let item of customers" value="{{item.id}}" >{{item.name}}</option>
+                              <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
+                              <option *ngFor="let item of customers" value="{{item.id}}" >{{item.name}}</option>
                             </select>
                             <div *ngIf="isFormSubmitted && form.get('customerId').invalid" class="invalid-feedback">
                                     {{ "common.fieldRequired" | translate }}
@@ -45,7 +47,8 @@
                         <div class="col-md-6 form-group mb-3 required">
                             <label for="picker1"> {{ "transaction.warehouse" | translate }}</label>
                             <select class="form-control" formControlName="warehouseId" name="warehouseId" (change)="onWarehouseChange(form.get('warehouseId').value)">
-                                <option *ngFor="let item of warehouses" value="{{item.id}}" >{{item.nameEn}}</option>
+                               <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
+                              <option *ngFor="let item of warehouses" value="{{item.id}}" >{{item.nameEn}}</option>
                             </select>
                             <div *ngIf="isFormSubmitted && form.get('warehouseId').invalid" class="invalid-feedback">
                                     {{ "common.fieldRequired" | translate }}
@@ -55,7 +58,8 @@
                              <div class="col-md-6 form-group mb-3 required">
                             <label for="picker1"> {{ "transaction.section" | translate }}</label>
                             <select class="form-control" formControlName="warehouseSectionId" name="warehouseSectionId">
-                                <option *ngFor="let item of sections" value="{{item.id}}" >{{item.name}}</option>
+                               <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
+                              <option *ngFor="let item of sections" value="{{item.id}}" >{{item.name}}</option>
                             </select>
                             <div *ngIf="isFormSubmitted && form.get('warehouseSectionId').invalid" class="invalid-feedback">
                                     {{ "common.fieldRequired" | translate }}
@@ -67,7 +71,8 @@
                         <div class="col-md-6 form-group mb-3 required">
                             <label for="picker1"> {{ "transaction.towarehouse" | translate }}</label>
                             <select class="form-control" formControlName="toWarehouseId" name="toWarehouseId" (click)="getWarehouseToSections()">
-                                <option *ngFor="let item of warehouses" value="{{item.id}}" >{{item.nameEn}}</option>
+                               <option  [ngValue]="null" selected>{{ "select" | translate }}</option>
+                              <option *ngFor="let item of warehouses" value="{{item.id}}" >{{item.nameEn}}</option>
                             </select>
                             <div *ngIf="isFormSubmitted && form.get('toWarehouseId').invalid" class="invalid-feedback">
                                     {{ "common.fieldRequired" | translate }}
@@ -77,7 +82,8 @@
                              <div class="col-md-6 form-group mb-3 required">
                             <label for="picker1"> {{ "transaction.toSectionName" | translate }}</label>
                             <select class="form-control" formControlName="toSectionId" name="toSectionId">
-                                <option *ngFor="let item of toSections" value="{{item.id}}" >{{item.name}}</option>
+                               <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
+                              <option *ngFor="let item of toSections" value="{{item.id}}" >{{item.name}}</option>
                             </select>
                             <div *ngIf="isFormSubmitted && form.get('toSectionId').invalid" class="invalid-feedback">
                                     {{ "common.fieldRequired" | translate }}
@@ -92,7 +98,8 @@
                         <div class="col-md-6 form-group mb-3 required">
                             <label for="picker1"> {{ "transaction.tobranch" | translate }}</label>
                             <select class="form-control" formControlName="toBranchId" name="toBranchId">
-                                <option *ngFor="let item of branchies" value="{{item.id}}" >{{item.description}}</option>
+                               <option  [ngValue]="null" selected>{{ "select" | translate }}</option>
+                              <option *ngFor="let item of branchies" value="{{item.id}}" >{{item.description}}</option>
                             </select>
                             <div *ngIf="isFormSubmitted && form.get('branch').invalid" class="invalid-feedback">
                                     {{ "common.fieldRequired" | translate }}
