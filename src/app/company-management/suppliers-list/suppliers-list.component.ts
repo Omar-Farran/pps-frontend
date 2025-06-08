@@ -7,9 +7,9 @@ import { BaseService } from 'src/app/shared/services/base.service';
 import { LanguageService } from 'src/app/shared/services/language.service';
 
 @Component({
-  selector: 'app-Suppliers-list',
-  templateUrl: './Suppliers-list.component.html',
-  styleUrls: ['./Suppliers-list.component.scss']
+  selector: 'app-suppliers-list',
+  templateUrl: './suppliers-list.component.html',
+  styleUrls: ['./suppliers-list.component.scss']
 })
 export class SuppliersListComponent {
   columns: any[] = [
