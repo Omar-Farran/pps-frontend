@@ -184,10 +184,26 @@
              </div>
 
 
+
+         <div class="col-md-6 form-group mb-3">
+
+<label class="switch switch-primary me-3 mt-4">
+                    <span>
+
+                        {{
+          "companyManagement.isActive" | translate
+        }}
+                    </span>
+                    <input type="checkbox"   formControlName="isActive" >
+                    <span class="slider"></span>
+                </label>
+         </div>
+
                
 
 
-       <div class="col-12 col-sm-6 form-group">
+       <div class="col-md-12 form-group">
+        <img *ngIf="logoPath && isEditMood" class="image-max-height"   src="{{logoPath}}"    />
         <label>{{ "companyManagement.logo" | translate }}</label>
         <input
           type="file"
@@ -217,20 +233,6 @@
       </div>
       
 
-
-         <div class="col-md-6 form-group mb-3">
-
-<label class="switch switch-primary me-3 mt-4">
-                    <span>
-
-                        {{
-          "companyManagement.isActive" | translate
-        }}
-                    </span>
-                    <input type="checkbox"   formControlName="isActive" >
-                    <span class="slider"></span>
-                </label>
-         </div>
           
  
     </div>

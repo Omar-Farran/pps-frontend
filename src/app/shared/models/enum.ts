@@ -240,18 +240,18 @@ export enum ClientType {
 }
 
 export enum TransactionTypes {
-    Reciving = 0,
-    Issueance = 1,
-    Transfer = 2,
-    ExportToBranch = 3
+    Reciving = 1,
+    Issueance = 2,
+    Transfer = 3,
+    ExportToBranch = 4
 }
 
 export const transactionTypes  =
     [
-        { id: 0, name: 'Reciving', nameAr: 'استقبال' },
-        { id: 1, name: 'Issueance', nameAr: 'الإصدار' },
-        { id: 2, name: 'Transfer', nameAr: 'فرع' },
-        { id: 3, name: 'Export To Branch', nameAr: 'تصدير الى فرع' },
+        { id: 1, name: 'Reciving', nameAr: 'استقبال' },
+        { id: 2, name: 'Issueance', nameAr: 'الإصدار' },
+        { id: 3, name: 'Transfer', nameAr: 'فرع' },
+        { id: 4, name: 'Export To Branch', nameAr: 'تصدير الى فرع' },
 
     ];
 

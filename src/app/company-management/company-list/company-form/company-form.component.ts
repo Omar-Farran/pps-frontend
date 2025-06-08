@@ -8,6 +8,7 @@ import { BaseService } from 'src/app/shared/services/base.service';
 import { LanguageService } from 'src/app/shared/services/language.service';
 import { arabicTextWithNumbersValidator, englishTextWithNumbersValidator } from 'src/app/utils/validation-text';
 import { noWhitespaceValidator } from 'src/app/utils/validation-white-space';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-company-form',
@@ -15,16 +16,18 @@ import { noWhitespaceValidator } from 'src/app/utils/validation-white-space';
   styleUrls: ['./company-form.component.scss']
 })
 export class CompanyFormComponent  {
-  isFormSubmitted:boolean = false;
-  logoFile:any;
-  public status = GlobalStatusArr
-  currencies:any[];
+    isFormSubmitted:boolean = false;
+    logoFile:any;
+    public status = GlobalStatusArr
+    currencies:any[];
+    baseUrl = environment.attachmentUrl;
     @Input() isCompanyUser:boolean = false;
     @Input() modal: any = null
     @Input() isEditMood: boolean = false
     @Input() id: number
-    private entity: any = null;
+    entity: any = null;
     public onlyCountries = onlyCountries;
+    logoPath:string;
    
     form = new FormGroup
     (
@@ -106,6 +109,8 @@ export class CompanyFormComponent  {
 			(res => {
 				this.entity = res;
         const date = new Date(this.entity.subscriptionEndDate);
+        if(this.entity?.logoPath)
+        this.logoPath = `${this.baseUrl}/${this.entity.logoPath}`;
 				this.form.patchValue
 					(
 						{

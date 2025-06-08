@@ -60,7 +60,9 @@
     "onlyWholeNumbersAllowed": "Only whole numbers are allowed",
     "SelectItems": "Select Items",
     "updatestatus": "Change Status",
-    "info": "Info"
+    "info": "Info",
+    "maxValue":"Discount Price Exceed Max Value",
+    "clear":"Clear"
   },
   "userManagment": {
     "email": "Email",
@@ -882,7 +884,8 @@
     "CompanyIsInActive": "Company is inactive",
     "EmailNotExists":"Email Not Found",
     "BarCodeAlreadyExists":"Bar code alredy exists",
-    "PleaseSelectSectionAndCurrentStockValue":"Please Select Section And Current Stock Balance"
+    "PleaseSelectSectionAndCurrentStockValue":"Please Select Section And Current Stock Balance",
+    "AlreadyAssignedToAnotherWarehouse":"One or more selected branches are already assigned to another warehouse."
   },
   "dashboards": {
     "oee-dashboard": "OEE Dashboard",
@@ -983,7 +986,7 @@
     "expiry": "Expiry",
     "both": "Both",
     "image": "Image",
-    "discount": "Discount Price",
+    "discount": "Discount Price %",
     "defaultWarehouse":"Default Warehouse",
     "section":"Sections",
     "currentStock":"Current Stock"
@@ -1052,7 +1055,8 @@
     "warehouse-balance": "Warehouse Balance",
     "warehouseBalanceManagement": "Warehouse Balance Management",
     "manageWarehouse": "Manage Warehouse",
-    "search": "Search"
+    "search": "Search",
+    "reserved":"Reserved"
   },
   "transaction": {
     "transaction-management": "Transaction Management",
@@ -1074,7 +1078,9 @@
       "oneOfTheProductInvalid":"one of the product invalid",
       "customer": "Customers / Suppliers",
       "transction":"Warehouse Transactions",
-    "info":"Transaction Details"
+    "info":"Transaction Details",
+    "transactionDate":"Transaction Date",
+    "seasrch-product":"Select Product"
   },
   "warehouse": {
     "warehouse": "Warehouse",

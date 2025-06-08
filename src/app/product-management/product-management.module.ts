@@ -22,6 +22,7 @@ import { WarehouseListComponent } from './warehouse-list/warehouse-list.componen
 import { WarehouseSectionsListComponent } from './warehouse-sections-list/warehouse-sections-list.component';
 import { WarehouseSectionsFormComponent } from './warehouse-sections-list/warehouse-sections-form/warehouse-sections-form.component';
 import { TransactionInfoComponent } from './transaction-list/transaction-info/transaction-info.component';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { TransactionInfoComponent } from './transaction-list/transaction-info/tr
     NgbDatepickerModule,
     FormWizardModule,
     FormsModule,
-    StepsModule
+    StepsModule,
+    AutoCompleteModule
   ]
 })
 export class ProductManagementModule { }

@@ -14,6 +14,8 @@ export class WarehouseBalanceListComponent {
     { name: "warehouse-balance.branch", field: "branchName" },
     { name: "warehouse-balance.product", field: "productName" },
     { name: "warehouse-balance.balance", field: "balance" , type:'number' },
+    { name: "warehouse-balance.reserved", field: "reserved" , type:'number' },
+    
   ];
     actionList: any[] = [];
 products:any[];
@@ -50,7 +52,7 @@ dataSource: any[] = [];
   ngOnInit() : void 
   {
     this.getList()
-    this.onSearch(null)
+    this.onSearch()
     this.getProducts();
     this.getBranchies();
     this.getWarehouses();
@@ -72,12 +74,14 @@ dataSource: any[] = [];
  
   //#endregion
   //#region Filtering and Searching
-  onSearch(event) {
+  onSearch() {
     let form = this.searchForm.getRawValue();
+    if(form){
       this.baseSearch.branchId = form.branchId;
       this.baseSearch.warehouseId = form.warehouseId;
       this.baseSearch.productId = form.productId;
-      this.baseSearch.locationId = form.locationId;
+    }
+      
       this.baseSearch.pageNumber = 0;
       this.getList();
   }
@@ -133,4 +137,8 @@ this.baseService.Get('WarehouseSections' , 'GetAll' ).subscribe(res => {
   this.locations = res;
      })}
 
+     resetSearchForm(){
+      this.searchForm.reset();
+      this.onSearch();
+     }
 }

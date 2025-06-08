@@ -2,13 +2,13 @@ import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { OverlayContainer, ToastrService } from 'ngx-toastr';
-import { TransactionVM } from 'src/app/data/transaction';
-import { ClientType, LookpusType, TransactionTypes, transactionTypes } from 'src/app/shared/models/enum';
+import { SelectItem } from 'src/app/data/select-item';
+
+import { ClientType, TransactionTypes, transactionTypes } from 'src/app/shared/models/enum';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { BaseService } from 'src/app/shared/services/base.service';
 import { LanguageService } from 'src/app/shared/services/language.service';
-import { arabicTextWithNumbersValidator, englishTextWithNumbersValidator } from 'src/app/utils/validation-text';
-import { noWhitespaceValidator } from 'src/app/utils/validation-white-space';
+
 
 @Component({
   selector: 'app-transaction-form',
@@ -41,13 +41,14 @@ export class TransactionFormComponent {
    products:any;
   steps = [];
   activeIndex: number = 0;
-
+filteredProducts:any;
+searchProduct:string;
     form = new FormGroup
     (
       {
         id: new FormControl(0),
         orderId : new FormControl(null),
-        type: new FormControl(0, [Validators.required]),
+        type: new FormControl(null, [Validators.required]),
         customerId: new FormControl(null ),
         warehouseId:new FormControl(null),
         warehouseSectionId:new FormControl(null),
@@ -84,9 +85,8 @@ export class TransactionFormComponent {
   ];
       }
       this.getProducts();
-      this.form.get('type').setValue(ClientType.Supplier);
-      this.onTypeChange(ClientType.Supplier);
       this.getWarehouses();
+      this.searchProduct = this.translate.instant('transaction.seasrch-product')
     }
     //#region Functions
     resetForm () 
@@ -103,13 +103,16 @@ export class TransactionFormComponent {
     }
   
     const allProductsValid = this.transactionItems.every(
-        item =>  item.productId > 0 && item.quantity > 0 && (item.orderedQuantity > 0 || this.type !=   TransactionTypes.Reciving)
+        item =>  item.product  && item.quantity > 0 && (item.orderedQuantity > 0 || this.type !=   TransactionTypes.Reciving)
             );
             if(!allProductsValid){
                this.toastr.error(this.translate.instant('transaction.oneOfTheProductInvalid'))
                return;
             }
-
+   this.transactionItems = this.transactionItems.map(x=> {
+    x.productId = x.product.id;
+    return x;
+   });
 
     const ApiPath = this.isEditMood ? 'Update' : 'Post';
     const ControllerPath = 'Transaction'
@@ -172,6 +175,12 @@ export class TransactionFormComponent {
     }
 removeRow(index){
   this.transactionItems = this.transactionItems.filter(x=> x.index != index);
+  let i = 0;
+  this.transactionItems = this.transactionItems.map(item => {
+    item.index = i;
+    i++;
+    return item;
+  })
 }
 
  onTypeChange(type:any){
@@ -217,4 +226,21 @@ this.baseService.Get('WarehouseSections' , 'GetSectionsByWarehouseId/' + warehou
       });
     }
     
+
+    filterProducts(event: any) {
+    const query = event.query.toLowerCase();
+    this.getSelectItemList(query);
+    // this.filteredProducts = this.products.filter(product =>
+    //   product.name.toLowerCase().includes(query)
+    // );
+  }
+
+  getSelectItemList(query){
+    
+    this.baseService.Get('Product' , 'GetSelectItemsList?query=' + query ).subscribe(res => {
+      this.filteredProducts = (res as SelectItem[]).filter(product =>
+  this.transactionItems.every(item => item.product?.id !== product.id)
+);
+    })
+  }
 }

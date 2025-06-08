@@ -4,7 +4,7 @@
         <li>{{'transaction.transaction' | translate}}</li>
         <li>
             <a (click)="router.navigate(['/company-management/companies'])">
-                <strong>{{'transaction.company' | translate}}</strong>
+                <strong>{{'transaction.info' | translate}}</strong>
             </a>
         </li>
       
@@ -45,7 +45,7 @@
                         </div>
 
 
-                         <div  *ngIf="entity.tosection" class="col-md-4 form-group mb-3">
+                         <div  *ngIf="entity.toSectionName" class="col-md-4 form-group mb-3">
                             <label>{{'transaction.tosection' | translate}}</label>
                              <span class="value" > {{entity.toSectionName}} </span>
                         </div>
@@ -53,6 +53,11 @@
                          <div *ngIf="entity.toBranchName" class="col-md-4 form-group mb-3">
                             <label>{{'transaction.tobranch' | translate}}</label>
                              <span class="value" > {{entity.toBranchName  }} </span>
+                        </div>
+
+                           <div  class="col-md-4 form-group mb-3">
+                            <label>{{'transaction.transactionDate' | translate}}</label>
+                             <span class="value" > {{entity.creationDate | date:'MM-dd-yyyy' }} </span>
                         </div>
                         
                     </div>

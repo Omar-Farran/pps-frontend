@@ -28,3 +28,12 @@
     margin-left: auto;
 }
 
+
+.mr-1 {
+    margin-right: 5px;
+}
+
+.image-max-height {
+    max-height: 100px;
+}
+

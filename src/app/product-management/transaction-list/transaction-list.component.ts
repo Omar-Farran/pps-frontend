@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { transactionTypes } from 'src/app/shared/models/enum';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { BaseService } from 'src/app/shared/services/base.service';
 import { LanguageService } from 'src/app/shared/services/language.service';
@@ -23,7 +24,9 @@ export class TransactionListComponent {
     actionList: any[] = [
     { name: "common.info", icon: "change", permission: "Transaction-list" },
   ];
-
+warehouses:any;
+sections:any;
+types:any[]  = transactionTypes;
 dataSource: any[] = [];
   totalCount: number = 0
   id: number = null
@@ -31,14 +34,20 @@ dataSource: any[] = [];
   (
     {
       status: new FormControl(),
-      searchValue: new FormControl()
+      searchValue: new FormControl(),
+      warehouseId:new FormControl(null),
+      warehouseSectionId:new FormControl(null),
+      type:new FormControl(null),
+
     }
   )
   baseSearch = 
   {
-    name: '',
     pageSize: 25,
     pageNumber: 0,
+    warehouseId:null,
+    warehouseSectionId:null,
+    type:null
   }
   //#endregion
   constructor 
@@ -53,7 +62,8 @@ dataSource: any[] = [];
   ngOnInit() : void 
   {
     this.getList()
-    this.onSearch(null)
+    this.onSearch();
+    this.getWarehouses();
   }
   //#region Getters
   private getList () 
@@ -85,9 +95,13 @@ dataSource: any[] = [];
   }
   //#endregion
   //#region Filtering and Searching
-  onSearch(event) {
-    if(event?.target)
-      this.baseSearch.name = event.target.value;
+  onSearch() {
+    let searchFormValue = this.searchForm?.getRawValue();
+    if(searchFormValue){
+    this.baseSearch.type = searchFormValue.type;
+    this.baseSearch.warehouseId = searchFormValue.warehouseId;
+    this.baseSearch.warehouseSectionId = searchFormValue.warehouseSectionId;
+    }
       this.baseSearch.pageNumber = 0;
       this.getList();
   }
@@ -132,5 +146,25 @@ dataSource: any[] = [];
    onInfo(event) {
         this.router.navigate(['/product-management/transaction/' + event.id])
     }
+
+      getWarehouses(){
+      this.baseService.Get('Warehouse' , 'GetAll').subscribe(res => {
+        this.warehouses = res; 
+      })
+    }
+
+    onWarehouseChange(warehouseId:number){
+   this.getWarehouseSections(warehouseId);
+    }
+    getWarehouseSections(warehouseId:number){
+      if(warehouseId > 0){
+this.baseService.Get('WarehouseSections' , 'GetSectionsByWarehouseId/' + warehouseId ).subscribe(res => {
+  this.sections = res;
+})}}
+
+  resetSearchForm(){
+      this.searchForm.reset();
+      this.onSearch();
+     }
    
 }

@@ -110,7 +110,7 @@ export class WarehouseSectionsFormComponent implements OnInit {
           nameAr: this.entity.nameAr,
           sectionTypeId: this.entity.sectionTypeId,
           note: this.entity.note,
-          isActive: this.entity.isActive ?? true,
+          isActive: this.entity.isActive
         });
       })
   }

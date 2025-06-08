@@ -9,7 +9,7 @@
 	<div class="custom-table-wrap">
 		<div class="card mb-50">
 			<div class="card-body form-group ">
-				<form [formGroup]="searchForm" id="form" >
+				<form [formGroup]="searchForm" id="form" (submit)="onSearch()" >
 
 				
 				<div class="row">
@@ -41,20 +41,17 @@
                             </select>
              </div>
 
+             <div  class="col-md-4 mt-3 mt-md-0">
+                <button class="btn btn-light  btn-block mt-3 mr-1" type="button" (click)="resetSearchForm()">{{'common.clear' | translate}}</button>
+			<button class="btn btn-primary btn-block mt-3 mr-1" type="submit">{{'common.search' | translate}}</button>
+
+			</div>
+
 
 
 
 				</div>
-
-
-				  <button
-    type="submit"
-    class="btn btn-primary btn-rounded mr-2" 
-    tabindex="-1"
-	(click)="onSearch(null)"
-  >
-    {{ "warehouse-balance.search" | translate }}
-  </button>
+				
 				</form>
 			</div>
 

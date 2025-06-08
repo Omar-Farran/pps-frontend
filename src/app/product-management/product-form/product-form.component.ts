@@ -5,6 +5,7 @@ import { OverlayContainer, ToastrService } from 'ngx-toastr';
 import { GlobalStatus, GlobalStatusArr, LookpusType } from 'src/app/shared/models/enum';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { BaseService } from 'src/app/shared/services/base.service';
+import { maxValueValidator } from 'src/app/utils/maxValueValidator';
 import { arabicTextWithNumbersValidator, englishTextWithNumbersValidator } from 'src/app/utils/validation-text';
 import { noWhitespaceValidator } from 'src/app/utils/validation-white-space';
 import { environment } from 'src/environments/environment';
@@ -55,7 +56,7 @@ export class ProductFormComponent {
      descriptionEn: new FormControl('', [englishTextWithNumbersValidator,noWhitespaceValidator() , Validators.maxLength(100)]),
      descriptionAr: new FormControl('', [arabicTextWithNumbersValidator(), noWhitespaceValidator() ]),
      salesTax: new FormControl(null),
-     discount: new FormControl(null),
+     discount: new FormControl(null, [maxValueValidator(100)]),
      Image:new FormControl(),
      followItem: new FormControl(false),
      onlyDefault: new FormControl(false),
@@ -99,6 +100,8 @@ export class ProductFormComponent {
         { id:1 , title:this.translate.instant('product-management.expiry')},
         { id:2 , title:this.translate.instant('product-management.both')}
       ]
+
+       this.detailsForm.get('followType').disable();
     }
   
     
@@ -273,4 +276,13 @@ export class ProductFormComponent {
 this.baseService.Get('WarehouseSections' , 'GetSectionsByWarehouseId/' + warehouseId ).subscribe(res => {
   this.sections = res;
 })}}
+
+
+onFollowItemChange(value){
+  if(value){
+    this.detailsForm.get('followType').setValue(0);
+  }else {
+    this.detailsForm.get('followType').setValue(null);
+  }
+}
 }

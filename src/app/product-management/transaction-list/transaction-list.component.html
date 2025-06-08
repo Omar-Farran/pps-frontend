@@ -6,18 +6,62 @@
         <li><strong class="text-primary">{{'transaction.transaction'  | translate}}</strong></li>
     </ul>
 </div>
-	<div class="custom-table-wrap">
+	
+		<div class="card">
+					<div class="card-body">
+<form [formGroup]="searchForm" id="searchForm" (submit)="onSearch()">
+	<div class="row">
+ <div class="col-md-6 form-group mb-3 ">
+                            <label for="picker1"> {{ "transaction.type" | translate }}</label>
+                            <select class="form-control" formControlName="type" name="type" >
+                               <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
+                              <option *ngFor="let item of types" value="{{item.id}}" >{{item.name}}</option>
+                            </select>
+                           
+                        </div>
+
+
+                        <div class="col-md-6 form-group mb-3 ">
+                            <label for="picker1"> {{ "transaction.warehouse" | translate }}</label>
+                            <select class="form-control" formControlName="warehouseId" name="warehouseId" (change)="onWarehouseChange(searchForm.get('warehouseId').value)">
+                               <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
+                              <option *ngFor="let item of warehouses" value="{{item.id}}" >{{item.nameEn}}</option>
+                            </select>
+                        </div>
+
+                             <div class="col-md-6 form-group mb-3 ">
+                            <label for="picker1"> {{ "transaction.section" | translate }}</label>
+                            <select class="form-control" formControlName="warehouseSectionId" name="warehouseSectionId">
+                               <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
+                              <option *ngFor="let item of sections" value="{{item.id}}" >{{item.name}}</option>
+                            </select>
+                        </div>
+
+			<div  class="col-md-4 mt-3 mt-md-0">
+				 <button class="btn btn-light  btn-block mt-3 mr-1" type="button" (click)="resetSearchForm()">{{'common.clear' | translate}}</button>
+				<button class="btn btn-primary btn-block mt-3" type="submit">Search</button>
+			</div>
+
+	</div>
+				
+ </form>
+					</div>
+				</div>
+
+<div class="custom-table-wrap my-3">
 		<div class="table-heading">
 			<div class="table-search form-group">
+
+				
 				<!-- Searching Lookups -->
-				<input 
+				<!-- <input 
 					id="table-search" 
 					placeholder="{{'product-management.productSsearch' | translate}}"
 					class="form-control" 
 					type="text"
 					maxlength="100"
-					(keydown.enter)="onSearch($event)"
-				>
+					(keydown.enter)="onSearch()"
+				> -->
 			</div>
 			<div *ngIf="authService.hasPermission('Transaction-Form')" class="heading-actions">
 				<!-- Add Lookups -->
