@@ -10,9 +10,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { ClientType, GlobalStatusArr, LookpusType, onlyCountries } from 'src/app/shared/models/enum';
 
 @Component({
-  selector: 'app-Suppliers-form',
-  templateUrl: './Suppliers-form.component.html',
-  styleUrls: ['./Suppliers-form.component.scss']
+  selector: 'app-suppliers-form',
+  templateUrl: './suppliers-form.component.html',
+  styleUrls: ['./suppliers-form.component.scss']
 })
 export class SuppliersFormComponent implements OnInit {
   isFormSubmitted: boolean = false;
