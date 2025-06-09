@@ -7,12 +7,29 @@
 <div class="modal-body">
     <form [formGroup]="userAddForm" id="userAddForm">
         <div class="row">
+
+             <!-- Warehouses -->
+                <div class="col-md-6 form-group mb-3">
+                            <label for="picker1"> {{ "userManagment.warehouse" | translate }}</label>
+                            <select class="form-control" formControlName="warehouseId" name="warehouseId"
+                            (change)="getBranchies($event.target.value)"
+                            >
+                            <option   selected>{{ "customers.select" | translate }}</option>
+                             <option *ngFor="let item of warehouseies" value="{{item.id}}" >{{item.nameEn}}</option>
+                            </select>
+                             <div class="invalid-feedback">
+                    {{'common.fieldRequired'|translate}}
+                </div>
+                        </div>
+
+
             <!-- Branchies -->
-              <div class="col-md-6 form-group mb-3 required">
-                            <label for="picker1"> {{ "userManagment.branch" | translate }}</label>
+              <div class="col-md-6 form-group mb-3">
+                            <label for="branchId"> {{ "userManagment.branch" | translate }}</label>
                             <select class="form-control" formControlName="branchId" name="branchId"
                             [class.is-invalid]="isSubmittedUserAddForm && userAddForm.get('branchId')?.errors"
                             >
+                                <option   selected>{{ "customers.select" | translate }}</option>
                                 <option *ngFor="let item of branchies" value="{{item.id}}" >{{item.description}}</option>
                             </select>
                              <div class="invalid-feedback">

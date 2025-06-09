@@ -42,7 +42,8 @@ export class AddEditUsersComponent implements OnInit
       address: new FormControl(null),
       jobDescription: new FormControl(null),
       preferredLanguageId: new FormControl(null),
-      branchId: new FormControl(null, [Validators.required])
+      branchId: new FormControl(null),
+      warehouseId: new FormControl(null)
 
     }, 
     {
@@ -50,6 +51,7 @@ export class AddEditUsersComponent implements OnInit
       updateOn: 'blur',
     }
   );
+  warehouseies:any;
   //#endregion
   constructor
   ( 
@@ -64,7 +66,7 @@ export class AddEditUsersComponent implements OnInit
     if (this.isEditMood && this.UserId)
       this.GetById();
     this.getPreferredLanguges();
-    this.getBranchies();
+    this.getWarehouses();
   }
   //#region Functions
   FetchData (object:any)
@@ -82,7 +84,8 @@ export class AddEditUsersComponent implements OnInit
           address: object.address,
           jobDescription: object.jobDescription,
           preferredLanguageId: object.preferredLanguageId,
-          branchId: object.branchId
+          branchId: object.branchId,
+          warehouseId:object.warehouseId
 });
 
     this.removeValidators('password')
@@ -132,11 +135,19 @@ export class AddEditUsersComponent implements OnInit
     }
 
     
-  getBranchies(){
-      this.baseService.Get('Branch' , 'GetAll').subscribe(res => {
+ getBranchies(warehouseId:number){
+  if(warehouseId > 0){
+ this.baseService.Get('Branch' , 'GetAll?warehouseId=' + warehouseId).subscribe(res => {
         this.branchies  = res;
       });
+  }
     }
+      getWarehouses(){
+      this.baseService.Get('Warehouse' , 'GetAll').subscribe(res => {
+        this.warehouseies = res; 
+      })
+    }
+
 
   //#endregion
   //#region Getters
@@ -148,7 +159,12 @@ export class AddEditUsersComponent implements OnInit
   private GetById ()
   {
     this.baseService.Get('Users',`GetUserProfileById/${this.UserId}`).subscribe
-    ( res => { this.User = res as any; this.FetchData(this.User); })
+    ( res => { 
+      this.User = res as any;
+       this.FetchData(this.User);
+       this.getBranchies(this.User.warehouseId);
+      
+      })
   }
   //#endregion
 

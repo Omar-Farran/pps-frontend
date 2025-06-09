@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BaseService } from 'src/app/shared/services/base.service';
+import { DirectionService } from 'src/app/shared/services/change-language.service';
 
 @Component({
   selector: 'app-warehouse-balance-list',
@@ -17,10 +18,11 @@ export class WarehouseBalanceListComponent {
     { name: "warehouse-balance.reserved", field: "reserved" , type:'number' },
     
   ];
+  locale:string;
     actionList: any[] = [];
 products:any[];
 branchies:any[];
-locations:any;
+sections:any;
 warehouses:any;
 dataSource: any[] = [];
   totalCount: number = 0
@@ -31,7 +33,7 @@ dataSource: any[] = [];
       warehouseId:new FormControl(null),
       branchId:new FormControl(null),
       productId:new FormControl(null),
-      locationId:new FormControl(null)
+      sectionId:new FormControl(null)
     }
   )
   baseSearch = 
@@ -39,14 +41,15 @@ dataSource: any[] = [];
     warehouseId: null,
     branchId:null,
     productId:null,
-    locationId:null,
+    sectionId:null,
     pageSize: 25,
     pageNumber: 0,
   }
   //#endregion
   constructor 
   ( 
-    private baseService: BaseService
+    private baseService: BaseService,
+    public directionService: DirectionService
   ) 
   {}
   ngOnInit() : void 
@@ -56,7 +59,7 @@ dataSource: any[] = [];
     this.getProducts();
     this.getBranchies();
     this.getWarehouses();
-    this.getWarehouseSections();
+    this.locale =  this.directionService.getCurrentLanguage();
   }
   //#region Getters
   private getList () 
@@ -68,6 +71,7 @@ dataSource: any[] = [];
         this.totalCount = (res as any).totalCount
       }
     )
+    
   }
   //#endregion
   //#region Actions Handler
@@ -132,10 +136,11 @@ dataSource: any[] = [];
       })
     }
 
-     getWarehouseSections(){
-this.baseService.Get('WarehouseSections' , 'GetAll' ).subscribe(res => {
-  this.locations = res;
-     })}
+  getWarehouseSections(warehouseId:number){
+      if(warehouseId > 0){
+this.baseService.Get('WarehouseSections' , 'GetSectionsByWarehouseId/' + warehouseId ).subscribe(res => {
+  this.sections = res;
+})}}
 
      resetSearchForm(){
       this.searchForm.reset();

@@ -87,7 +87,8 @@
     "address": "Address",
     "jobDescription": "Job Description",
     "preferredLanguage": "Preferred Language",
-    "branch": "Branch"
+    "branch": "Branch",
+    "warehouse":"Warehouse"
   },
   "SpeedStandard": {
     "MachineHasNoDimensions": "The machine does not have any defined dimensions.",

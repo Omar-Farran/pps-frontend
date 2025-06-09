@@ -37,3 +37,14 @@
     max-height: 100px;
 }
 
+
+[dir=rtl]  .search-section 
+{
+    margin-left: unset;
+    margin-right: auto;
+}
+
+ .search-section {
+        margin-left: auto;
+    }
+

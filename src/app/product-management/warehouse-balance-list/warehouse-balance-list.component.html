@@ -14,25 +14,33 @@
 				
 				<div class="row">
 
-	              <div class="col-md-6 form-group mb-3">
+	              <div class="col-md-4 form-group mb-3">
                             <label for="picker1"> {{ "warehouse-balance.warehouse" | translate }}</label>
-                            <select class="form-control" formControlName="warehouseId" name="warehouseId">
+                            <select class="form-control" formControlName="warehouseId" name="warehouseId" (change)="getWarehouseSections(searchForm.get('warehouseId').value)">
                             <option  [ngValue]="null" selected >{{ "select" | translate }}</option>
                                 <option *ngFor="let item of warehouses" value="{{item.id}}" >{{item.nameEn}}</option>
                             </select>
              </div>
 
+			 
+	              <div class="col-md-4 form-group mb-3">
+                            <label for="picker1"> {{ "warehouse-balance.section" | translate }}</label>
+                            <select class="form-control" formControlName="sectionId" name="sectionId">
+                            <option  [ngValue]="null" selected >{{ "select" | translate }}</option>
+                                <option *ngFor="let item of sections" value="{{item.id}}" >{{item.name}}</option>
+                            </select>
+             </div>
 
-			    <div class="col-md-6 form-group mb-3">
+
+			    <div class="col-md-4 form-group mb-3">
                             <label for="picker1"> {{ "warehouse-balance.branch" | translate }}</label>
                             <select class="form-control" formControlName="branchId" name="branchId">
                              <option  [ngValue]="null" selected>{{ "select" | translate }}</option>
-
                                 <option *ngFor="let item of branchies" value="{{item.id}}" >{{item.description}}</option>
                             </select>
              </div>
 
-			     <div class="col-md-6 form-group mb-3">
+			     <div class="col-md-4 form-group mb-3">
                             <label for="picker1"> {{ "warehouse-balance.product" | translate }}</label>
                             <select  class="form-control" formControlName="productId" name="productId">
                                                             <option [ngValue]="null"  selected>{{ "select" | translate }}</option>
@@ -41,16 +49,19 @@
                             </select>
              </div>
 
-             <div  class="col-md-4 mt-3 mt-md-0">
-                <button class="btn btn-light  btn-block mt-3 mr-1" type="button" (click)="resetSearchForm()">{{'common.clear' | translate}}</button>
-			<button class="btn btn-primary btn-block mt-3 mr-1" type="submit">{{'common.search' | translate}}</button>
-
-			</div>
+          
 
 
 
 
 				</div>
+
+				<div class="row ">
+  <div class="col-2 search-section" >
+       <button class="btn btn-light  btn-block mt-3 mr-1" type="button" (click)="resetSearchForm()">{{'common.clear' | translate}}</button>
+		<button class="btn btn-primary btn-block mt-3 mr-1" type="submit">{{'common.search' | translate}}</button>
+  </div>
+</div>
 				
 				</form>
 			</div>

@@ -33,6 +33,7 @@ export class TransactionFormComponent {
     @Input() id: number
     private entity: any = null;
    warehouses:any;
+   toWarehouses:any;
    sections:any;
    toSections:any;
    types:any[]  = transactionTypes;
@@ -203,7 +204,11 @@ removeRow(index){
    this.getWarehouseSections(warehouseId);
    if(this.type == this.exportToBranchType){
     this.getBranchies(warehouseId);
-   }
+    }else if(this.form.get('type').value == this.transferType){
+      this.toWarehouses = this.warehouses.filter(x=> x.id != warehouseId);
+    }
+
+
     }
     getWarehouseSections(warehouseId:number){
       if(warehouseId > 0){

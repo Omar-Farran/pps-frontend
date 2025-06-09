@@ -11,7 +11,7 @@
 					<div class="card-body">
 <form [formGroup]="searchForm" id="searchForm" (submit)="onSearch()">
 	<div class="row">
- <div class="col-md-6 form-group mb-3 ">
+ <div class="col-md-4 form-group mb-3 ">
                             <label for="picker1"> {{ "transaction.type" | translate }}</label>
                             <select class="form-control" formControlName="type" name="type" >
                                <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
@@ -21,7 +21,7 @@
                         </div>
 
 
-                        <div class="col-md-6 form-group mb-3 ">
+                        <div class="col-md-4 form-group mb-3 ">
                             <label for="picker1"> {{ "transaction.warehouse" | translate }}</label>
                             <select class="form-control" formControlName="warehouseId" name="warehouseId" (change)="onWarehouseChange(searchForm.get('warehouseId').value)">
                                <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
@@ -29,7 +29,7 @@
                             </select>
                         </div>
 
-                             <div class="col-md-6 form-group mb-3 ">
+                             <div class="col-md-4 form-group mb-3 ">
                             <label for="picker1"> {{ "transaction.section" | translate }}</label>
                             <select class="form-control" formControlName="warehouseSectionId" name="warehouseSectionId">
                                <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
@@ -37,12 +37,14 @@
                             </select>
                         </div>
 
-			<div  class="col-md-4 mt-3 mt-md-0">
-				 <button class="btn btn-light  btn-block mt-3 mr-1" type="button" (click)="resetSearchForm()">{{'common.clear' | translate}}</button>
-				<button class="btn btn-primary btn-block mt-3" type="submit">Search</button>
-			</div>
-
 	</div>
+
+				<div class="row ">
+  <div class="col-2 search-section" >
+       <button class="btn btn-light  btn-block mt-3 mr-1" type="button" (click)="resetSearchForm()">{{'common.clear' | translate}}</button>
+		<button class="btn btn-primary btn-block mt-3 mr-1" type="submit">{{'common.search' | translate}}</button>
+  </div>
+</div>
 				
  </form>
 					</div>
