@@ -150,6 +150,7 @@ filteredProducts:SelectItem[];
   getWarehouseSections(warehouseId:number){
       if(warehouseId > 0){
 this.baseService.Get('WarehouseSections' , 'GetSectionsByWarehouseId/' + warehouseId ).subscribe(res => {
+  this.searchForm.get('sectionId').setValue(null);
   this.sections = res;
 })}}
 
@@ -172,4 +173,7 @@ this.baseService.Get('WarehouseSections' , 'GetSectionsByWarehouseId/' + warehou
            this.filteredProducts = res as SelectItem[];
          })
        }
+
+
+      
 }

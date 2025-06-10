@@ -251,4 +251,13 @@ this.baseService.Get('WarehouseSections' , 'GetSectionsByWarehouseId/' + warehou
 );
     })
   }
+
+
+   onSectionChange(sectionId){
+       if(this.type == this.transferType){
+        this.form.get('toSectionId').setValue(null);
+        this.getWarehouseToSections();
+       }
+     }
+
 }

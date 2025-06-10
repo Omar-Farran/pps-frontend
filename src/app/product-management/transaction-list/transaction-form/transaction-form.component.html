@@ -56,7 +56,9 @@
 
                              <div class="col-md-6 form-group mb-3 required">
                             <label for="picker1"> {{ "transaction.section" | translate }}</label>
-                            <select class="form-control" formControlName="warehouseSectionId" name="warehouseSectionId">
+                            <select class="form-control" formControlName="warehouseSectionId" name="warehouseSectionId"
+                            
+                            (change)="onSectionChange($event.target.value)">
                                <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
                               <option *ngFor="let item of sections" value="{{item.id}}" >{{item.name}}</option>
                             </select>
