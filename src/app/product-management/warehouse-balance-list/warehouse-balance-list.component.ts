@@ -91,6 +91,7 @@ filteredProducts:SelectItem[];
     if(form){
       this.baseSearch.branchId = form.branchId;
       this.baseSearch.warehouseId = form.warehouseId;
+      this.baseSearch.sectionId = form.sectionId;
       if(form.product){
       this.baseSearch.productId = form.product.id;
       }

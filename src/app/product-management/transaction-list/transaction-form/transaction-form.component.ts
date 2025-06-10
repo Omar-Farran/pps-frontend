@@ -204,8 +204,9 @@ removeRow(index){
    this.getWarehouseSections(warehouseId);
    if(this.type == this.exportToBranchType){
     this.getBranchies(warehouseId);
-    }else if(this.form.get('type').value == this.transferType){
-      this.toWarehouses = this.warehouses.filter(x=> x.id != warehouseId);
+    }
+    else if(this.form.get('type').value == this.transferType){
+      // this.toWarehouses = this.warehouses.filter(x=> x.id != warehouseId);
     }
 
 
@@ -221,7 +222,9 @@ this.baseService.Get('WarehouseSections' , 'GetSectionsByWarehouseId/' + warehou
       let warehouseId = this.form.get('toWarehouseId').value;
       if(warehouseId > 0){
 this.baseService.Get('WarehouseSections' , 'GetSectionsByWarehouseId/' + warehouseId ).subscribe(res => {
-  this.toSections = res;
+  this.toSections = res as any[];
+  let sectionId = this.form.get('warehouseSectionId').value;
+  this.toSections = this.toSections.filter(x=> x.id != sectionId)
 })}}
 
 
