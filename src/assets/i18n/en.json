@@ -61,8 +61,8 @@
     "SelectItems": "Select Items",
     "updatestatus": "Change Status",
     "info": "Info",
-    "maxValue":"Discount Price Exceed Max Value",
-    "clear":"Clear"
+    "maxValue": "Discount Price Exceed Max Value",
+    "clear": "Clear"
   },
   "userManagment": {
     "email": "Email",
@@ -88,7 +88,7 @@
     "jobDescription": "Job Description",
     "preferredLanguage": "Preferred Language",
     "branch": "Branch",
-    "warehouse":"Warehouse"
+    "warehouse": "Warehouse"
   },
   "SpeedStandard": {
     "MachineHasNoDimensions": "The machine does not have any defined dimensions.",
@@ -519,9 +519,10 @@
     "unitOfMeasure": "Unit Of Measureies",
     "sectionType": "Section Types",
     "warehouse-sections": "Warehouse Sections",
-    "warehouse":"Warehouseies",
-    "transaction":"Transactions",
-    "warehouse-balance":"Warehouse Balanceies"
+    "warehouse": "Warehouseies",
+    "transaction": "Transactions",
+    "warehouse-balance": "Warehouse Balanceies",
+    "inventory-counting": "Inventory Counting"
   },
   "factory": {
     "factoryManagment": "Factory Management",
@@ -883,10 +884,10 @@
     "ThereIsCategoryLinkedActive": "There is already active subcategory linked into category",
     "LinkedPrespectiveInactive": "The linked perspective is inactive; activate it first.",
     "CompanyIsInActive": "Company is inactive",
-    "EmailNotExists":"Email Not Found",
-    "BarCodeAlreadyExists":"Bar code alredy exists",
-    "PleaseSelectSectionAndCurrentStockValue":"Please Select Section And Current Stock Balance",
-    "AlreadyAssignedToAnotherWarehouse":"One or more selected branches are already assigned to another warehouse."
+    "EmailNotExists": "Email Not Found",
+    "BarCodeAlreadyExists": "Bar code alredy exists",
+    "PleaseSelectSectionAndCurrentStockValue": "Please Select Section And Current Stock Balance",
+    "AlreadyAssignedToAnotherWarehouse": "One or more selected branches are already assigned to another warehouse."
   },
   "dashboards": {
     "oee-dashboard": "OEE Dashboard",
@@ -952,7 +953,7 @@
     "addBranch": "Add New Branch",
     "editBranch": "Edit New Branch",
     "currencyId": "Currency",
-    "search":"Search By Name"
+    "search": "Search By Name"
   },
   "product-management": {
     "product": "Products",
@@ -988,9 +989,9 @@
     "both": "Both",
     "image": "Image",
     "discount": "Discount Price %",
-    "defaultWarehouse":"Default Warehouse",
-    "section":"Sections",
-    "currentStock":"Current Stock"
+    "defaultWarehouse": "Default Warehouse",
+    "section": "Sections",
+    "currentStock": "Current Stock"
   },
   "customers": {
     "customers": "Customers",
@@ -1057,7 +1058,7 @@
     "warehouseBalanceManagement": "Warehouse Balance Management",
     "manageWarehouse": "Manage Warehouse",
     "search": "Search",
-    "reserved":"Reserved"
+    "reserved": "Reserved"
   },
   "transaction": {
     "transaction-management": "Transaction Management",
@@ -1066,22 +1067,22 @@
     "type": "Transaction Type",
     "warehouse": "Warehouse",
     "branch": "Branch",
-     "section":"Section",
+    "section": "Section",
     "towarehouse": "To Warehouse",
     "toSectionName": "To Section",
     "tobranch": "To Branch",
     "addNewTransaction": "Add New Transaction",
     "tosection": "To Section",
-      "editTransaction":"Add New Transaction",
-      "orderId":"Transaction Order Id",
-      "notes":"Notes",
-      "transactionitems":"Transaction Products",
-      "oneOfTheProductInvalid":"one of the product invalid",
-      "customer": "Customers / Suppliers",
-      "transction":"Warehouse Transactions",
-    "info":"Transaction Details",
-    "transactionDate":"Transaction Date",
-    "seasrch-product":"Select Product"
+    "editTransaction": "Add New Transaction",
+    "orderId": "Transaction Order Id",
+    "notes": "Notes",
+    "transactionitems": "Transaction Products",
+    "oneOfTheProductInvalid": "one of the product invalid",
+    "customer": "Customers / Suppliers",
+    "transction": "Warehouse Transactions",
+    "info": "Transaction Details",
+    "transactionDate": "Transaction Date",
+    "seasrch-product": "Select Product"
   },
   "warehouse": {
     "warehouse": "Warehouse",
@@ -1123,5 +1124,19 @@
     "warehouseId": "Warehouse",
     "sectionType": "Type",
     "note": "Note"
+  },
+  "inventory-counting": {
+    "balance": "Balance",
+    "search": "Search",
+    "calculation": "Calculation",
+    "warehouse": "Warehouse",
+    "section": "Section",
+    "product": "Product",
+    "countDate": "Count Date",
+    "systemQuantity": "System Quantity",
+    "quantityDifference": "Quantity Difference",
+    "actualQuantity": "Actual Quantity",
+    "inventoryCounting": "Inventory Counting",
+    "manageInventoryCounting": "Manage Inventory Counting"
   }
 }

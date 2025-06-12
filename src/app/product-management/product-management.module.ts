@@ -23,6 +23,8 @@ import { WarehouseSectionsListComponent } from './warehouse-sections-list/wareho
 import { WarehouseSectionsFormComponent } from './warehouse-sections-list/warehouse-sections-form/warehouse-sections-form.component';
 import { TransactionInfoComponent } from './transaction-list/transaction-info/transaction-info.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { InventoryCountingComponent } from './inventory-counting/inventory-counting.component';
+import { TabViewModule } from 'primeng/tabview';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     WarehouseListComponent,
     WarehouseSectionsListComponent,
     WarehouseSectionsFormComponent,
-    TransactionInfoComponent
+    TransactionInfoComponent,
+    InventoryCountingComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +57,8 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     FormWizardModule,
     FormsModule,
     StepsModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    TabViewModule
   ]
 })
 export class ProductManagementModule { }
