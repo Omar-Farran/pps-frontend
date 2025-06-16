@@ -13,7 +13,11 @@ import { TableComponent } from './components/table/table.component';
 import { PaggerComponent } from './components/pagger/pagger.component';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { NotDataComponent } from './components/not-data/not-data.component';
-
+import { ProductLineItemsComponent } from './components/product-line-items/product-line-items.component';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { InstallmentComponent } from './components/installment/installment.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -23,7 +27,9 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     TableComponent,
     PaggerComponent,
-    NotDataComponent
+    NotDataComponent,
+    ProductLineItemsComponent,
+    InstallmentComponent
   ],
   imports: [
     CommonModule,
@@ -33,8 +39,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     SharedComponentsModule,
     SharedDirectivesModule,
     SharedPipesModule,
+    ReactiveFormsModule,
+    FormsModule,
     NgbNavModule,
     RouterModule,
+        AutoCompleteModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -44,7 +53,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       isolate: false
     })
   ],
-  exports: [TableComponent, TranslateModule,PaggerComponent],
+  exports: [TableComponent, TranslateModule,PaggerComponent , ProductLineItemsComponent ,InstallmentComponent],
   providers: [JwtHelperService, 
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     

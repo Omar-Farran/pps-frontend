@@ -11,7 +11,7 @@ import { LayoutsModule } from './layouts/layouts.module';
 
 const components = [
   BtnLoadingComponent,
-  FeatherIconComponent,
+  FeatherIconComponent
   
 ];
 

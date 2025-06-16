@@ -17,6 +17,7 @@ export class TransactionListComponent {
     { name: "transaction.type", field: "type" },
     { name: "transaction.warehouse", field: "warehouseName" },
     { name: "transaction.section", field: "sectionName" },
+    { name: "transaction.branch", field: "branchName" },
     { name: "transaction.towarehouse", field: "toWarehouseName" },
     { name: "transaction.tosection", field: "toSectionName" },
     { name: "transaction.tobranch", field: "toBranchName" }

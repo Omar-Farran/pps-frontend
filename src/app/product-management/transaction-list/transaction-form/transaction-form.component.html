@@ -1,9 +1,6 @@
 <div class="modal-header">
-  <h4 class="modal-title" *ngIf="!isEditMood">
+  <h4 class="modal-title">
     {{ "transaction.addNewTransaction" | translate }}
-  </h4>
-  <h4 class="modal-title" *ngIf="isEditMood">
-    {{ "branch.editBranch" | translate }}
   </h4>
   <button style="opacity: 0; pointer-events: none" ngbAutoFocus></button>
   <button

@@ -232,6 +232,20 @@ export class NavigationService {
                 },
             ]
         },
+         {
+            name: 'navigation.invoice-management',
+            type: 'dropDown',
+            icon: 'i-Posterous',
+            permissions: 'Invoice-Management',
+            sub: [
+                {
+                    name: 'navigation.sales-invoices',
+                    state: '/invoice-management/sales-invoice',
+                    type: 'link',
+                    permissions: 'Sales-Invoices-List',
+                }
+            ]
+        }
     ];
 
 

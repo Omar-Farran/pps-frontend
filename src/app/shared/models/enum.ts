@@ -173,11 +173,7 @@ export const InvoiceFrequencyArr =
         // { id: 2, nameEn: 'Weekly', nameAr: 'إسبوعياً' },
         { id: 3, nameEn: 'Monthly', nameAr: 'شهرياً' },
     ];
-export enum InvoiceStatus {
-    UnPaid = 1,
-    Paid = 2,
-    PaymentDue = 3
-}
+
 export const InvoiceStatusArr =
     [
         { id: 1, name: 'Un Paid', nameAr: 'غير مدفوع' },
@@ -246,6 +242,39 @@ export enum TransactionTypes {
     ExportToBranch = 4
 }
 
+export enum SourceType {
+  Branch = 1,
+  Warehouse = 2
+}
+
+export enum InstallmentStatus {
+    UnPaid = 1,
+    Paid = 2,
+    Overdue = 3
+}
+
+export enum PaymentMethod {
+    Cash = 1,
+    Cheque = 2,
+    Installment = 3
+}
+
+export enum InvoiceType {
+    SalesInvoice = 1,
+    PurchaseInvoice = 2,
+    QuotationInvoice = 3,
+    PurchaseRequestInvoice = 4
+}
+
+export enum InvoiceStatus {
+     Draft = 1,
+     Completed = 2,
+     Canceled = 3,
+     UnPaid = 4,
+     PartialPaid = 5,
+     Paid = 6
+}
+
 export const transactionTypes  =
     [
         { id: 1, name: 'Reciving', nameAr: 'استقبال' },
@@ -254,4 +283,25 @@ export const transactionTypes  =
         { id: 4, name: 'Export To Branch', nameAr: 'تصدير الى فرع' },
 
     ];
+
+    export const sourceTypes  =
+    [
+        { id: 1, name: 'Branch', nameAr: 'فرع' },
+        { id: 2, name: 'Warehouse', nameAr: 'مستودع' }
+    ];
+
+    
+    export const paymentMethods  =
+    [
+        { id: 1, name: 'Cash', nameAr: 'كاش' },
+        { id: 2, name: 'Cheque', nameAr: 'شيك' },
+        { id: 3, name: 'Installment', nameAr: 'تقسيط' }
+    ];
+
+    
+    export const installmentStatus = [
+        { id: 1, name: 'Un Paid', nameAr: 'غير مدفوع' },
+        { id: 2, name: 'Paid', nameAr: 'مدفوع' },
+        { id: 3, name: 'Overdue', nameAr: 'متأخر' }
+    ]
 

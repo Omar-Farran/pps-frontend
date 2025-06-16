@@ -238,9 +238,7 @@ this.baseService.Get('WarehouseSections' , 'GetSectionsByWarehouseId/' + warehou
     filterProducts(event: any) {
     const query = event.query.toLowerCase();
     this.getSelectItemList(query);
-    // this.filteredProducts = this.products.filter(product =>
-    //   product.name.toLowerCase().includes(query)
-    // );
+  
   }
 
   getSelectItemList(query){

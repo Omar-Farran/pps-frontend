@@ -21,7 +21,7 @@
                         <!-- Check if the text exceeds the character limit -->
                         <span *ngIf="data[header.field]?.length > 40">{{ data[header.field] | slice: 0:40 }}...</span>
                         <!-- If it doesn't exceed the character limit, display the full text -->
-                        <span *ngIf="data[header.field]?.length <= 40">{{ data[header.field] }}</span>
+                        <span *ngIf="data[header.field]?.length <= 40">{{ header.isTranslate ? (data[header.field] | translate)  : data[header.field] }}</span>
                     </td>
                     <td *ngIf="(header.field | translate) === 'status'">{{ getStatusText(data[header.field]) }}</td>
                     <td *ngIf="(header.field | translate) === 'isActive'" class="status c-badge "[ngClass]="{'active':data[header.field]}"> {{ getActiveText(data[header.field]) }} </td>

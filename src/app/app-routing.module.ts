@@ -32,6 +32,11 @@ const adminRoutes: Routes = [
         canActivate: [AuthGaurd]
     },
     {
+        path: 'invoice-management',
+        loadChildren: () => import('./invoice-management/invoice-management.module').then(m => m.InvoiceManagementModule),
+        canActivate: [AuthGaurd]
+    },
+    {
       path: 'lookups-managment',
       loadChildren: () => import('./lookups/lookups.module').then(m => m.LookupsModule),
       canActivate: [AuthGaurd]

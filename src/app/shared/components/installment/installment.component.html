@@ -1,0 +1,122 @@
+
+
+
+
+    <div class="row">
+ <div class="col-md-3 form-group required">
+        <label>{{ "installment.installmentNumber" | translate }}</label>
+        <input
+          type="text"
+          maxlength="100"
+          placeholder="{{ 'installment.number' | translate }}"
+          class="form-control"
+         [(ngModel)]="installmentNumber"
+         name="installmentNumber"
+          [class.is-invalid]="installmentNumber == 0 || !installmentNumber"
+          [disabled]="invoice.isBalanceUpdated"
+        />
+                <div class="invalid-feedback">
+                    {{ 'common.required' | translate }}
+                </div>
+      </div>
+   
+      <div class="col-md-3 form-group">
+            <button  class="btn btn-primary mt-3"  type="button" (click)="generateInstallments()"  [disabled]="invoice.isBalanceUpdated" > {{ "installment.generateInstallment" | translate  }}</button>
+      </div>
+    </div>
+ 
+
+
+
+ <table  *ngIf="installments?.length > 0" class="table table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th >Due Date</th>
+        <th>Amount</th>
+        <th *ngIf="invoice?.paymentMethod == 2">Cheque Number</th>
+        <th>Status</th>
+        <th>Paid Date</th>
+      </tr>
+    </thead>
+    <!-- <form  > -->
+
+    <tbody  >
+      <tr *ngFor="let item of installments; let i = index" >
+        <td >
+         <input type="text" class="form-control" [(ngModel)]="item.sequence"   name="sequence{{i}}" disabled />
+        </td>
+        <td>
+      <div class="input-group">
+          <input
+            id="dueDateControl"
+            class="form-control"
+            placeholder="yyyy-mm-dd"
+            name="dp"
+            ngbDatepicker
+            #dp="ngbDatepicker"
+            [(ngModel)]="item.dueDateControl" name="dueDate{{i}}" 
+            [disabled]="invoice.isBalanceUpdated"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-secondary"
+              (click)="dp.toggle()"
+              type="button"
+            >
+              <i class="icon-regular i-Calendar-4"></i>
+            </button>
+          </div>
+        </div>
+
+        </td>
+        
+          <td>
+          <input type="number" class="form-control" [(ngModel)]="item.amount" name="amount{{i}}"  [disabled]="invoice.isBalanceUpdated"   />
+        </td>
+        
+          <td *ngIf="invoice.paymentMethod == 2">
+          <input type="text" class="form-control" [(ngModel)]="item.chequeNumber" name="chequeNumber{{i}}" [disabled]="invoice.isBalanceUpdated"    />
+        </td>
+
+         <td>
+          
+                            <select class="form-control" [(ngModel)]="item.status" name="status{{i}}" [disabled]="invoice.isBalanceUpdated"  >
+                              <option *ngFor="let item of installmentStatus" value="{{item.id}}" >{{item.name}}</option>
+                            </select>
+                            <div  class="invalid-feedback">
+                                    {{ "common.fieldRequired" | translate }}
+                                 </div>
+
+        </td>
+         <td>
+                <div class="input-group">
+          <input
+            id="paidDateControl"
+            class="form-control"
+            placeholder="yyyy-mm-dd"
+            name="paidDate"
+            ngbDatepicker
+            #paidDate="ngbDatepicker"
+            [(ngModel)]="item.paidDateControl" name="paidDate{{i}}" [disabled]="invoice.isBalanceUpdated" 
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-secondary"
+              (click)="paidDate.toggle()"
+              type="button"
+            >
+              <i class="icon-regular i-Calendar-4"></i>
+            </button>
+          </div>
+        </div>
+        </td>
+      </tr>
+    </tbody>
+
+    <!-- </form> -->
+
+  </table>
+
+
+
