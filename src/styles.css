@@ -1,20 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 @import "~jsgantt-improved/dist/jsgantt.css";
-.ltr-text 
-{
+
+.ltr-text {
     direction: ltr;
     unicode-bidi: bidi-override;
 }
+
 /* RTL Lists */
-[dir=rtl] .table-heading .heading-actions 
-{
+[dir=rtl] .table-heading .heading-actions {
     margin-left: unset;
     margin-right: auto;
 }
+
 /* RTL Table Numbers */
-[dir=rtl] .table-footer-inner .table-pager 
-{
+[dir=rtl] .table-footer-inner .table-pager {
     align-items: center;
     margin-left: unset;
     margin-right: auto;
@@ -38,13 +38,24 @@
 }
 
 
-[dir=rtl]  .search-section 
-{
+[dir=rtl] .search-section {
     margin-left: unset;
     margin-right: auto;
 }
 
- .search-section {
-        margin-left: auto;
-    }
+.search-section {
+    margin-left: auto;
+}
 
+.p-autocomplete-input {
+    width: 100% !important;
+    height: 32px;
+    background-color: rgb(248, 249, 250);
+    border: 1px solid rgb(206, 212, 218);
+    border-radius: 17px;
+    padding: 0.375rem 0.75rem;
+}
+
+.p-autocomplete.p-component.p-inputwrapper.p-inputwrapper-filled {
+    width: 100%;
+}

@@ -230,6 +230,12 @@ export class NavigationService {
                     type: 'link',
                     permissions: 'Transaction-list',
                 },
+                {
+                    name: 'navigation.inventory-counting',
+                    state: '/product-management/inventory-counting',
+                    type: 'link',
+                    permissions: 'Inventory-Counting',
+                },
             ]
         },
          {
