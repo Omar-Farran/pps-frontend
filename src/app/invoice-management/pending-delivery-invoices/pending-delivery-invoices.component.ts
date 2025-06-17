@@ -10,11 +10,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-sales-invoice-list',
-  templateUrl: './sales-invoice-list.component.html',
-  styleUrls: ['./sales-invoice-list.component.scss']
+  selector: 'app-pending-delivery-invoices',
+  templateUrl: './pending-delivery-invoices.component.html',
+  styleUrls: ['./pending-delivery-invoices.component.scss']
 })
-export class SalesInvoiceListComponent {
+export class PendingDeliveryInvoicesComponent {
 columns: any[] = [
     { name: "sales-invoice.invoiceNumber", field: "invoiceNumber" },
     { name: "sales-invoice.InvoiceDate", field: "invoiceDate" , type:'date' },
@@ -24,7 +24,6 @@ columns: any[] = [
     { name: "sales-invoice.status", field: "invoiceStatus" ,  isTranslate:true }
   ];
     actionList: any[] = [
-    { name: "common.edit", icon: "change", permission: "Sales-Invoices-Form" },
     { name: "sales-invoice.changedeliverydate", icon: "change", permission: "Sales-Invoices-Form" },
     { name: "sales-invoice.markasdelivered", icon: "change", permission: "Sales-Invoices-Form" }
   ];
@@ -54,7 +53,8 @@ deliveryDate:any;
     invoiceDateFrom:null,
     invoiceDateTo:null,
     invoiceId:null,
-    customerName:null
+    customerName:null,
+    isDelivered:false
   }
   @ViewChild('changeDeliveryDate') changeDeliveryDateComp:TemplateRef<any>;
   //#endregion
@@ -122,7 +122,7 @@ deliveryDate:any;
     }
       this.baseSearch.pageNumber = 0;
       this.baseSearch.type = InvoiceType.SalesInvoice;
-      
+      this.baseSearch.isDelivered = false;
       this.getList();
   }
   onPageChange (event: any): void 
@@ -162,17 +162,17 @@ deliveryDate:any;
 
   onChangeDeliveryDate(data){
     this.id = data.id;
-   	this.modalService.open(this.changeDeliveryDateComp, {
-			windowClass: 'change-password-popup',
-			ariaLabelledBy: 'modal-basic-title', 
-			size: 'md',
-			centered: true
-		})
-		.result.then((result) => {
-			console.log(result);
-		}, (reason) => {
-			console.log('Err!', reason);
-		});
+    this.modalService.open(this.changeDeliveryDateComp, {
+      windowClass: 'change-password-popup',
+      ariaLabelledBy: 'modal-basic-title', 
+      size: 'md',
+      centered: true
+    })
+    .result.then((result) => {
+      console.log(result);
+    }, (reason) => {
+      console.log('Err!', reason);
+    });
   }
 
   submitDeliveryDate(){
@@ -205,6 +205,7 @@ deliveryDate:any;
        this.translate.instant('success'),
        this.translate.instant('sales-invoice.markedAsDeliverdsucess'),
     { timeOut: 3000 })
+        this.onSearch();
       }  
     })
   }

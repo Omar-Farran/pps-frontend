@@ -1,9 +1,9 @@
 <div class="customers">
 <div class="breadcrumb">
-    <h1>{{'sales-invoice.sales-invoice' | translate}}</h1>
+    <h1>{{'invoice-installment.invoice-installments' | translate}}</h1>
     <ul>
         <li>{{'sales-invoice.invoice-management'  | translate}}</li>
-        <li><strong class="text-primary">{{'sales-invoice.sales-invoice'  | translate}}</strong></li>
+        <li><strong class="text-primary">{{'invoice-installment.invoice-installments'  | translate}}</strong></li>
     </ul>
 </div>
 	
@@ -11,19 +11,6 @@
 					<div class="card-body">
 <form [formGroup]="searchForm" id="searchForm" (submit)="onSearch()">
 	<div class="row">
-
-		 <div class="col-md-4 form-group required">
-        <label>{{ "sales-invoice.customerName" | translate }}</label>
-        <input
-          type="text"
-          maxlength="100"
-          placeholder="{{ 'sales-invoice.customerName' | translate }}"
-          class="form-control"
-          formControlName="customerName"
-        />
-        <div class="invalid-feedback">
-        </div>
-      </div>
 
 				<div class="col-md-4 form-group mb-3 required">
   <label>{{ "sales-invoice.invoiceNumber" | translate }}</label>
@@ -43,27 +30,38 @@
     }"
   ></p-autoComplete>
 </div>
-               
+
+	<div class="col-md-4 form-group mb-3"> 
+  <label>{{ "invoice-installment.status" | translate }}</label>
+  <select class="form-control"  name="status"   formControlName="status" >
+                              <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
+                              <option *ngFor="let item of installmentStatus" value="{{item.id}}" >{{item.name}}</option>
+                            </select>
+                            <div  class="invalid-feedback">
+                                    {{ "common.fieldRequired" | translate }}
+          </div>
+    </div>
+                          
 
                          
 						<div class="col-md-4 form-group mb-3">
         <label for="picker1">{{
-          "sales-invoice.invoiceDateFrom" | translate
+          "invoice-installment.dueDateFrom" | translate
         }}</label>
         <div class="input-group">
           <input
-            id="invoiceDate"
+            id="dueDate"
             class="form-control"
             placeholder="yyyy-mm-dd"
             name="dp"
-            formControlName="invoiceDateFrom"
+            formControlName="dueDateFrom"
             ngbDatepicker
-            #dp="ngbDatepicker"
+            #dueDateFrom="ngbDatepicker"
           />
           <div class="input-group-append">
             <button
               class="btn btn-secondary"
-              (click)="dp.toggle()"
+              (click)="dueDateFrom.toggle()"
               type="button"
             >
               <i class="icon-regular i-Calendar-4"></i>
@@ -74,22 +72,22 @@
 
 	   <div class="col-md-4 form-group mb-3 ">
         <label for="picker1">{{
-          "sales-invoice.invoiceDateTo" | translate
+          "invoice-installment.dueDateTo" | translate
         }}</label>
         <div class="input-group">
           <input
-            id="invoiceDateTo"
+            id="dueDateTo"
             class="form-control"
             placeholder="yyyy-mm-dd"
-            name="invoiceDateTo"
-            formControlName="invoiceDateTo"
+            name="dueDateTo"
+            formControlName="dueDateTo"
             ngbDatepicker
-            #invoiceDateTo="ngbDatepicker"
+            #dueDateTo="ngbDatepicker"
           />
           <div class="input-group-append">
             <button
               class="btn btn-secondary"
-              (click)="invoiceDateTo.toggle()"
+              (click)="dueDateTo.toggle()"
               type="button"
             >
               <i class="icon-regular i-Calendar-4"></i>
@@ -117,18 +115,6 @@
 <div class="custom-table-wrap my-3">
 		<div class="table-heading">
 			<div class="table-search form-group">
-			</div>
-			<div *ngIf="authService.hasPermission('Sales-Invoices-Form')" class="heading-actions">
-				<button 
-					type="button" 
-					class="btn btn-rounded btn-primary" 
-					(click)="onAddSalesInvoice()" 
-				>
-					<i class="i-Plus"></i>
-					<span>
-						{{ 'sales-invoice.addNewSalesInvoice' | translate }}
-					</span>
-				</button>
 			</div>
 		</div>
 		<!-- Lookups -->

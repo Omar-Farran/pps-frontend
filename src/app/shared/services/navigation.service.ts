@@ -249,6 +249,18 @@ export class NavigationService {
                     state: '/invoice-management/sales-invoice',
                     type: 'link',
                     permissions: 'Sales-Invoices-List',
+                },
+                {
+                    name: 'navigation.pending-delivery-invoice',
+                    state: '/invoice-management/sales-invoice/pending-delivery-invoices',
+                    type: 'link',
+                    permissions: 'Sales-Invoices-List',
+                },
+                 {
+                    name: 'navigation.invoice-installment',
+                    state: '/invoice-management/sales-invoice/installments',
+                    type: 'link',
+                    permissions: 'Sales-Invoices-List',
                 }
             ]
         }

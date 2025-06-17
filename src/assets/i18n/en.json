@@ -527,7 +527,9 @@
     "warehouse-balance": "Warehouse Balanceies",
     "invoice-management": "Invoice Management",
     "sales-invoices":"Sales Invoices",
-    "inventory-counting": "Inventory Counting"
+    "inventory-counting": "Inventory Counting",
+    "pending-delivery-invoice":"Pending Delivery Invoices",
+    "invoice-installment":"Installments"
   },
   "factory": {
     "factoryManagment": "Factory Management",
@@ -893,7 +895,12 @@
     "BarCodeAlreadyExists": "Bar code alredy exists",
     "PleaseSelectSectionAndCurrentStockValue": "Please Select Section And Current Stock Balance",
     "AlreadyAssignedToAnotherWarehouse": "One or more selected branches are already assigned to another warehouse.",
-    "InstallmentAmountInCorrect":"Installment Amount In Correct"
+    "InstallmentAmountInCorrect":"Installment Amount In Correct",
+    "deliverdateisrequired":"Delivery Date is required",
+    "InvoiceAlreadyDeliverd":"Invoice already has delivery date",
+    "ProductsIsRequired":"No products defined",
+    "InstallmentIsRequired":"No installment defined",
+    "installmentalreadypaid":"Installment already paid"
   },
   "dashboards": {
     "oee-dashboard": "OEE Dashboard",
@@ -1177,7 +1184,14 @@
     "search-invoice":"Invoice Number",
     "creditlimitaleart":"Customer Credit Limit",
     "customercreditmessage":"Installments limit exceed customer credit limit.",
-    "paiddateexceedallowedpaiddate":"Last installment pay date is exceed allowed customer limit date."
+    "paiddateexceedallowedpaiddate":"Last installment pay date is exceed allowed customer limit date.",
+    "changedeliverdate":"Change delivery date",
+    "change":"Change",
+    "changedeliverydate":"Change delivery date",
+    "markedAsDeliverdsucess":"Mark As Deliverd Successfully",
+    "markasdelivered":"Mark as delivery",
+    "ProductsIsRequired":"Product is required",
+    "InstallmentIsRequired":"Installment is required"
 
   },
   "installment":{
@@ -1198,5 +1212,22 @@
     "actualQuantity": "Actual Quantity",
     "inventoryCounting": "Inventory Counting",
     "manageInventoryCounting": "Manage Inventory Counting"
+  },
+  "pending-delivery-invoice": {
+    "pending-delivery-invoices":"Pending Delivery Invoices"
+  },
+  "invoice-installment":{
+    "invoiceNumber": "Invoice Number",
+    "dueDate":"Due Date",
+    "amount":"Amount",
+    "paidDate":"Paid Date",
+    "status":"Status",
+    "markaspaid":"Mark as paid",
+     "markasoverdue":"Mark as overdue",
+     "invoice-installments":"Invoice Installments",
+     "dueDateFrom":"Due Date From",
+     "dueDateTo":"Due Date To",
+     "statusupdatedsuccessflly":"Status updated successfully"
+
   }
 }

@@ -15,13 +15,17 @@ import { StepsModule } from 'primeng/steps';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { InvoiceManagementRoutingModule } from './invoice-management-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { PendingDeliveryInvoicesComponent } from './pending-delivery-invoices/pending-delivery-invoices.component';
+import { InvoiceInstallmentComponent } from './invoice-installment/invoice-installment.component';
 
 
 
 @NgModule({
   declarations: [
     SalesInvoiceListComponent,
-    SalesInvoiceFormComponent
+    SalesInvoiceFormComponent,
+    PendingDeliveryInvoicesComponent,
+    InvoiceInstallmentComponent
   ],
   imports: [
        CommonModule,
