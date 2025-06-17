@@ -107,6 +107,8 @@ dataSource: any[] = [];
     }
     if(searchFormValue.status)
        this.baseSearch.status = Number(searchFormValue.status);
+      else 
+      this.baseSearch.status = null;
        this.baseSearch.invoiceId = searchFormValue.invoiceNumber?.id;
       this.baseSearch.pageNumber = 0;
       this.getList();

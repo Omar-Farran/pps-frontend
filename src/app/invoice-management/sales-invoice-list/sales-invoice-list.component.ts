@@ -205,6 +205,7 @@ deliveryDate:any;
        this.translate.instant('success'),
        this.translate.instant('sales-invoice.markedAsDeliverdsucess'),
     { timeOut: 3000 })
+    this.onSearch();
       }  
     })
   }

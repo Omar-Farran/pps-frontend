@@ -900,7 +900,9 @@
     "InvoiceAlreadyDeliverd":"Invoice already has delivery date",
     "ProductsIsRequired":"No products defined",
     "InstallmentIsRequired":"No installment defined",
-    "installmentalreadypaid":"Installment already paid"
+    "InstallmentAlreadyPaid":"Installment already paid",
+    "UserMustBeRelatedToBranch":"No branch selected for the current user",
+    "UserMustBeRelatedToWarehouse":"No warehouse selected for the current user"
   },
   "dashboards": {
     "oee-dashboard": "OEE Dashboard",
