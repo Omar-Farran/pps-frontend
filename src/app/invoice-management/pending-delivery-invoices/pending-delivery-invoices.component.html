@@ -1,9 +1,9 @@
 <div class="customers">
 <div class="breadcrumb">
-    <h1>{{'sales-invoice.sales-invoice' | translate}}</h1>
+    <h1>{{'pending-delivery-invoice.pending-delivery-invoices' | translate}}</h1>
     <ul>
         <li>{{'sales-invoice.invoice-management'  | translate}}</li>
-        <li><strong class="text-primary">{{'sales-invoice.sales-invoice'  | translate}}</strong></li>
+        <li><strong class="text-primary">{{'sales-invoice.pending-delivery-invoices'  | translate}}</strong></li>
     </ul>
 </div>
 	
@@ -117,18 +117,6 @@
 <div class="custom-table-wrap my-3">
 		<div class="table-heading">
 			<div class="table-search form-group">
-			</div>
-			<div *ngIf="authService.hasPermission('Sales-Invoices-Form')" class="heading-actions">
-				<button 
-					type="button" 
-					class="btn btn-rounded btn-primary" 
-					(click)="onAddSalesInvoice()" 
-				>
-					<i class="i-Plus"></i>
-					<span>
-						{{ 'sales-invoice.addNewSalesInvoice' | translate }}
-					</span>
-				</button>
 			</div>
 		</div>
 		<!-- Lookups -->

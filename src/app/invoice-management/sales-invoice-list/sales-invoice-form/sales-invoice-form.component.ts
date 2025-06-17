@@ -460,7 +460,6 @@ submitInvoiceInstallments(validateCredit = true){
 
 
   disableForm(){
-     this.invoiceHeaderForm.get('invoiceDate').disable();
      this.invoiceHeaderForm.get('isCustomer').disable();
      this.invoiceHeaderForm.get('customerId').disable();
      this.invoiceHeaderForm.get('customerName').disable();
