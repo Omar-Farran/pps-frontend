@@ -5,7 +5,11 @@ import { BaseService } from 'src/app/shared/services/base.service';
 import { DirectionService } from 'src/app/shared/services/change-language.service';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
- 
+import { LanguageService } from 'src/app/shared/services/language.service';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { sourceTypes } from 'src/app/shared/models/enum';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-inventory-counting',
   templateUrl: './inventory-counting.component.html',
@@ -33,29 +37,35 @@ export class InventoryCountingComponent {
   filteredProducts: SelectItem[];
   totalCount: number = 0
   id: number = null
+  sourceTypes: any[] = sourceTypes;
+
+
   public searchForm = new FormGroup
     (
       {
-        warehouseId: new FormControl(null),
         productId: new FormControl(null),
         sectionId: new FormControl(null),
-        product: new FormControl(null)
-      }
-    )
+        product: new FormControl(null),
+        from: new FormControl(this.getMonthDateValue(1), requiredDate),
+        to: new FormControl(this.getMonthDateValue(2), requiredDate)
+      });
+
   baseSearch =
     {
       warehouseId: null,
       branchId: null,
       productId: null,
       sectionId: null,
+      from: this.getMonthDateValue(1),
+      to: this.getMonthDateValue(2),
       pageSize: 25,
       pageNumber: 0,
     }
 
   isFormSubmitted = false;
   public calculationForm = new FormGroup({
-    warehouseId: new FormControl(null, Validators.required),
-    sectionId: new FormControl(null, Validators.required),
+    sourceType: new FormControl(null, Validators.required),
+    sectionId: new FormControl(null),
     product: new FormControl(null, Validators.required),
     actualQuantity: new FormControl(null, Validators.required),
     countDate: new FormControl({ value: this.getLocalDateString(), disabled: true })
@@ -67,6 +77,9 @@ export class InventoryCountingComponent {
       public directionService: DirectionService,
       private translate: TranslateService,
       private modalService: NgbModal,
+      public languageService: LanguageService,
+      private toastr: ToastrService,
+
     ) { }
 
   ngOnInit(): void {
@@ -75,9 +88,21 @@ export class InventoryCountingComponent {
     this.getProducts();
     this.getBranchies();
     this.getWarehouses();
+    this.getWarehouseSections();
+
     this.locale = this.directionService.getCurrentLanguage();
     this.searchProduct = this.translate.instant('transaction.seasrch-product')
 
+    this.calculationForm.get('sourceType')?.valueChanges.subscribe((value) => {
+      const sectionControl = this.calculationForm.get('sectionId');
+      if (value == 2) { // 2 = Warehouse
+        sectionControl?.setValidators(Validators.required);
+      } else {
+        sectionControl?.clearValidators();
+        sectionControl?.setValue(null); // Optional: reset value
+      }
+      sectionControl?.updateValueAndValidity();
+    });
   }
   //#region Getters
   private getList() {
@@ -95,17 +120,18 @@ export class InventoryCountingComponent {
   //#endregion
   //#region Filtering and Searching
   onSearch() {
+    debugger;
     let form = this.searchForm.getRawValue();
-    if (form) {
-      this.baseSearch.warehouseId = form.warehouseId;
+    if (form && !this.searchForm.invalid) {
       this.baseSearch.sectionId = form.sectionId;
+      this.baseSearch.from = form.from;
+      this.baseSearch.to = form.to;
       if (form.product) {
         this.baseSearch.productId = form.product.id;
       }
+      this.baseSearch.pageNumber = 0;
+      this.getList();
     }
-
-    this.baseSearch.pageNumber = 0;
-    this.getList();
   }
   onPageChange(event: any): void {
     this.baseSearch.pageNumber = event.PageIndex - 1;
@@ -153,26 +179,26 @@ export class InventoryCountingComponent {
     })
   }
 
-  getWarehouseSections(warehouseId: number) {
-    if (warehouseId > 0) {
-      this.baseService.Get('WarehouseSections', 'GetSectionsByWarehouseId/' + warehouseId).subscribe(res => {
-        this.searchForm.get('sectionId').setValue(null);
-        this.sections = res;
-      })
-    }
+  getWarehouseSections() {
+    this.baseService.Get('WarehouseSections', 'GetWarehouseSectionsByLoggedInUser').subscribe(res => {
+      this.sections = res;
+    })
   }
+
+
 
   resetSearchForm() {
     this.searchForm.reset();
+    this.searchForm.patchValue({
+      from: this.getMonthDateValue(1),
+      to: this.getMonthDateValue(2),
+    });
     this.onSearch();
   }
 
   filterProducts(event: any) {
     const query = event.query.toLowerCase();
     this.getSelectItemList(query);
-    // this.filteredProducts = this.products.filter(product =>
-    //   product.name.toLowerCase().includes(query)
-    // );
   }
 
   getSelectItemList(query) {
@@ -194,10 +220,10 @@ export class InventoryCountingComponent {
       form['productId'] = form.product.id
       this.baseService.Post('InventoryCounting', 'Calculation', form).subscribe
         (res => {
-          // this.dataSource = (res as any).entities
-          // this.totalCount = (res as any).totalCount
-        }
-        )
+          this.toastr.success(this.locale == "en" ? "calculation successfully" : "تم الحساب بنجاح");
+          this.resetCalculationForm();
+          this.onSearch();
+        })
 
     }
 
@@ -225,4 +251,34 @@ export class InventoryCountingComponent {
     return `${year}-${month}-${day}`;
   }
 
+  getMonthDateValue(type: number): string {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+
+    switch (type) {
+      case 1: // First day
+        return `${year}-${month}-01`;
+
+      case 2: { // Last day
+        const lastDate = new Date(year, now.getMonth() + 1, 0);
+        const day = lastDate.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      }
+
+      default:
+        throw new Error('Invalid type. Use 1 for first day or 2 for last day.');
+    }
+  }
+
+
+}
+
+
+function requiredDate(control: AbstractControl): ValidationErrors | null {
+  const value = control.value;
+  if (value === null || value === undefined || value.toString().trim() === '') {
+    return { required: true };
+  }
+  return null;
 }
