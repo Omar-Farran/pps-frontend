@@ -234,7 +234,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
     if(this.activeIndex == 0){
          this.submitInvoiceHeaderForm();
         }else if(this.activeIndex == 1){
-          if(this.productLineComponent.productItems?.every(item => !item.isInValid && item.id > 0)){
+          if(this.productLineComponent.productItems?.every(item => item.quantity > 0 && item.unitPrice > 0 && item.total > 0 && item.id > 0)){
               this.submitProductItems();
           }else {
               this.toastr.error(

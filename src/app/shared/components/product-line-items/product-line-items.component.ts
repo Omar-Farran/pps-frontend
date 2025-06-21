@@ -97,7 +97,10 @@ calculateTotal(item: any , value) {
     if(value == 'quantity' || value == 'unitPrice')
      item.isInValid = true;
   } else {
+    if(item.quantity > 0 && item.unitPrice > 0)
      item.isInValid = false;
+    else 
+    item.isInValid = true;
   }
   this.validateQuantity(item);
   const price = item.unitPrice || 0;
