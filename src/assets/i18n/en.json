@@ -529,7 +529,9 @@
     "sales-invoices": "Sales Invoices",
     "inventory-counting": "Inventory Counting",
     "pending-delivery-invoice": "Pending Delivery Invoices",
-    "invoice-installment": "Installments"
+    "invoice-installment": "Installments",
+    "reports": "Reports",
+    "products-barcode": "Products Barcode"
   },
   "factory": {
     "factoryManagment": "Factory Management",
@@ -903,7 +905,7 @@
     "InstallmentAlreadyPaid": "Installment already paid",
     "UserMustBeRelatedToBranch": "No branch selected for the current user",
     "UserMustBeRelatedToWarehouse": "No warehouse selected for the current user",
-    "InvoiceMustBeDraftOrCompleted":"Invoice Status Must be Draft or Completed"
+    "InvoiceMustBeDraftOrCompleted": "Invoice Status Must be Draft or Completed"
   },
   "dashboards": {
     "oee-dashboard": "OEE Dashboard",
@@ -1099,9 +1101,9 @@
     "info": "Transaction Details",
     "transactionDate": "Transaction Date",
     "seasrch-product": "Select Product",
-    "transactionDateTo":"Transaction Date to",
-    "transactionDateFrom":"Transaction Date from",
-    "CreationDate":"Transaction Date"
+    "transactionDateTo": "Transaction Date to",
+    "transactionDateFrom": "Transaction Date from",
+    "CreationDate": "Transaction Date"
   },
   "warehouse": {
     "warehouse": "Warehouse",
@@ -1198,8 +1200,8 @@
     "markasdelivered": "Mark as delivery",
     "ProductsIsRequired": "Product is required",
     "InstallmentIsRequired": "Installment is required",
-    "cancelInvoice":"Invoice Cancelled Successfully",
-    "cancel":"Cancel Invoice"
+    "cancelInvoice": "Invoice Cancelled Successfully",
+    "cancel": "Cancel Invoice"
   },
   "installment": {
     "installmentNumber": "Number of Installments (e.g., 1, 2, 3, 4)",
@@ -1218,7 +1220,9 @@
     "quantityDifference": "Quantity Difference",
     "actualQuantity": "Actual Quantity",
     "inventoryCounting": "Inventory Counting",
-    "manageInventoryCounting": "Manage Inventory Counting"
+    "manageInventoryCounting": "Manage Inventory Counting",
+    "from": "From",
+    "to": "To"
   },
   "pending-delivery-invoice": {
     "pending-delivery-invoices": "Pending Delivery Invoices"
@@ -1238,5 +1242,15 @@
     "manageInventoryCounting": "Manage Inventory Counting",
     "from": "From Count Date",
     "to": "To Count Date"
+  },
+  "productBarcodes": {
+    "productBarcodes": "Products Barcode",
+    "manageProductBarcodes": "Manage Product Barcodes",
+    "category": "Category",
+    "search": "Search",
+    "barcode": "Barcode",
+    "title": "Product",
+    "SellPrice": "Sell Price",
+    "SelectAll": "Select All"
   }
 }
