@@ -234,9 +234,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
     if(this.activeIndex == 0){
          this.submitInvoiceHeaderForm();
         }else if(this.activeIndex == 1){
-          if(this.productLineComponent.productItems?.every(item => item.quantity > 0 && item?.product?.id > 0 && 
-            !((!item?.product?.id && item.quantity > item.maxQuantity) || 
-            (item?.product?.id > 0 &&  item.quantity  > item.maxQuantity + item.quantityDb)) )){
+          if(this.productLineComponent.productItems?.every(item => !item.isInValid && item.id > 0)){
               this.submitProductItems();
           }else {
               this.toastr.error(
@@ -511,7 +509,7 @@ submitInvoiceInstallments(validateCredit = true){
   }
 
     getCustomerSelectItemList(query){
-      this.baseService.Get('Customers' , 'GetSelectItemsList?query=' + query ).subscribe(res => {
+      this.baseService.Get('Customers' , 'GetSelectItemsList/' + ClientType.Customer + '/?query=' + query ).subscribe(res => {
         this.filteredCustomers = res 
     })
     }

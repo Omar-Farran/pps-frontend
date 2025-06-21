@@ -64,8 +64,8 @@
           <span>
             {{ "product-management.hasBarCode" | translate }}
           </span>
-          <input type="checkbox"  [(ngModel)]="hasBarCode" formControlName="hasBarCode"
-          (change)="onHasBarCodeChange()" />
+          <input type="checkbox"  formControlName="hasBarCode"
+          (change)="onHasBarCodeChange()"  />
           <span class="slider"></span>
         </label>
       </div>

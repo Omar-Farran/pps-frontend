@@ -50,24 +50,29 @@
       [disabled]="invoice.isBalanceUpdated"
       [attr.max]="item.maxQuantity"
       [attr.min]="0"
-      [class.is-invalid]="(!item?.id && item.quantity > item.maxQuantity) || (item?.id > 0 &&  item.quantity  > item.maxQuantity + item.quantityDb)"
-      (change)="calculateTotal(item)" 
+      [class.is-invalid]="item.isInValid"
+      (change)="calculateTotal(item , 'quantity')" 
     />
     <small class="text-muted quantity-inside-inpit">| {{item.maxQuantity}}</small>
   </div>
 </td>
 
         <td>
-          <input type="number" class="form-control" [(ngModel)]="item.unitPrice" name="unitPrice{{i}}" [disabled]="invoice.isBalanceUpdated"  (change)="calculateTotal(item)"   />
+          <input type="number" class="form-control"
+          
+          [(ngModel)]="item.unitPrice" name="unitPrice{{i}}" [disabled]="invoice.isBalanceUpdated"  (change)="calculateTotal(item , 'unitPrice')" 
+          min="1" 
+          [class.is-invalid]="(item.unitPrice < 1)"
+          />
         </td>
           <td>
-          <input type="number" class="form-control" [(ngModel)]="item.discount" name="discount{{i}}" [disabled]="invoice.isBalanceUpdated" (change)="calculateTotal(item)"  />
+          <input type="number" class="form-control" [(ngModel)]="item.discount" name="discount{{i}}" [disabled]="invoice.isBalanceUpdated" (change)="calculateTotal(item , 'discount')"  />
         </td>
          <td>
-          <input type="number" class="form-control" [(ngModel)]="item.tax" name="tax{{i}}" [disabled]="invoice.isBalanceUpdated" (change)="calculateTotal(item)"  />
+          <input type="number" class="form-control" [(ngModel)]="item.tax" name="tax{{i}}" [disabled]="invoice.isBalanceUpdated" (change)="calculateTotal(item , 'tax')"  />
         </td>
          <td>
-          <input type="number" class="form-control" [(ngModel)]="item.feesAmount" name="feesAmount{{i}}"  [disabled]="invoice.isBalanceUpdated" (change)="calculateTotal(item)"  />
+          <input type="number" class="form-control" [(ngModel)]="item.feesAmount" name="feesAmount{{i}}"  [disabled]="invoice.isBalanceUpdated" (change)="calculateTotal(item , 'feesAmount')"  />
         </td>
          <td>
           <input type="number" class="form-control" [(ngModel)]="item.total"  name="total{{i}}"  [disabled]="invoice.isBalanceUpdated" disabled />

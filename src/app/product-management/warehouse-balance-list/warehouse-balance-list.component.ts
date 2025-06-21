@@ -63,8 +63,7 @@ filteredProducts:SelectItem[];
     this.getList()
     this.onSearch()
     this.getProducts();
-    this.getBranchies();
-    this.getWarehouses();
+    this.getWarehouseSections();
     this.locale =  this.directionService.getCurrentLanguage();
     this.searchProduct = this.translate.instant('transaction.seasrch-product')
 
@@ -147,12 +146,10 @@ filteredProducts:SelectItem[];
       })
     }
 
-  getWarehouseSections(warehouseId:number){
-      if(warehouseId > 0){
-this.baseService.Get('WarehouseSections' , 'GetSectionsByWarehouseId/' + warehouseId ).subscribe(res => {
-  this.searchForm.get('sectionId').setValue(null);
+  getWarehouseSections(){
+this.baseService.Get('WarehouseSections' , 'GetWarehouseSectionsByLoggedInUser').subscribe(res => {
   this.sections = res;
-})}}
+})}
 
      resetSearchForm(){
       this.searchForm.reset();

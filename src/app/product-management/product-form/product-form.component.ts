@@ -84,8 +84,10 @@ export class ProductFormComponent {
     ngOnInit (): void 
     {
       
-      if (this.isEditMood && this.id) 
+      if (this.isEditMood && this.id) {
         this.GetById()
+        this.basicForm.get('barCode').disable();
+      }
       this.getCategories();
       this.getUnitOfMeasures();
       this.getWarehouses();

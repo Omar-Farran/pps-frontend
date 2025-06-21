@@ -24,8 +24,8 @@ columns: any[] = [
     { name: "invoice-installment.paidDate", field: "paidDate" , type:'date' }
   ];
     actionList: any[] = [
-    { name: "invoice-installment.markaspaid", icon: "change", permission: "Sales-Invoices-Form" },
-    { name: "invoice-installment.markasoverdue", icon: "change", permission: "Sales-Invoices-Form" }
+    { name: "invoice-installment.markaspaid", icon: "change", permission: "Installments" },
+    { name: "invoice-installment.markasoverdue", icon: "change", permission: "Installments" }
   ];
   installmentStatus= installmentStatus;
 
@@ -65,7 +65,17 @@ dataSource: any[] = [];
     private toastr: ToastrService
     
   ) 
-  {}
+  {
+
+    const date = new Date();
+    const newDate = {
+                          year: date.getFullYear(),
+                          month: date.getMonth() + 1, 
+                          day: date.getDate()
+                        }
+    this.searchForm.get('dueDateFrom').setValue(newDate);
+     this.searchForm.get('dueDateTo').setValue(newDate);
+  }
   ngOnInit() : void 
   {
     this.getList()

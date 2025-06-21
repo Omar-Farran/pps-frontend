@@ -20,7 +20,59 @@
                            
                         </div>
 
+								<div class="col-md-4 form-group mb-3">
+        <label for="picker1">{{
+          "transaction.transactionDateFrom" | translate
+        }}</label>
+        <div class="input-group">
+          <input
+            id="transactionDate"
+            class="form-control"
+            placeholder="yyyy-mm-dd"
+            name="dp"
+            formControlName="transactionDateFrom"
+            ngbDatepicker
+            #dp="ngbDatepicker"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-secondary"
+              (click)="dp.toggle()"
+              type="button"
+            >
+              <i class="icon-regular i-Calendar-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
 
+	   <div class="col-md-4 form-group mb-3 ">
+        <label for="picker1">{{
+          "transaction.transactionDateTo" | translate
+        }}</label>
+        <div class="input-group">
+          <input
+            id="transactionDateTo"
+            class="form-control"
+            placeholder="yyyy-mm-dd"
+            name="transactionDateTo"
+            formControlName="transactionDateTo"
+            ngbDatepicker
+            #transactionDateTo="ngbDatepicker"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-secondary"
+              (click)="transactionDateTo.toggle()"
+              type="button"
+            >
+              <i class="icon-regular i-Calendar-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+<!-- 
                         <div class="col-md-4 form-group mb-3 ">
                             <label for="picker1"> {{ "transaction.warehouse" | translate }}</label>
                             <select class="form-control" formControlName="warehouseId" name="warehouseId" (change)="onWarehouseChange(searchForm.get('warehouseId').value)">
@@ -35,7 +87,7 @@
                                <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
                               <option *ngFor="let item of sections" value="{{item.id}}" >{{item.name}}</option>
                             </select>
-                        </div>
+                        </div> -->
 
 	</div>
 

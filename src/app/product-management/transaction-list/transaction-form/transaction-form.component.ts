@@ -43,7 +43,9 @@ export class TransactionFormComponent {
   steps = [];
   activeIndex: number = 0;
 filteredProducts:any;
+filteredCustomers:any;
 searchProduct:string;
+searchCustomer:string;
     form = new FormGroup
     (
       {
@@ -115,12 +117,14 @@ searchProduct:string;
     return x;
    });
 
+
     const ApiPath = this.isEditMood ? 'Update' : 'Post';
     const ControllerPath = 'Transaction'
     
     let form = this.form.getRawValue();
     form.transactionProducts = this.transactionItems;
     form.type = Number(form.type);
+    form.customerId = form?.customerId?.id;
     this.baseService.Post(ControllerPath , ApiPath , form).subscribe
     ( res => { this.modal.close();
 
@@ -192,6 +196,8 @@ removeRow(index){
         this.customers  = res;
       });
   } 
+  let searchName =  this.type == this.recivingType ?   "Suppliers.Suppliers"  :   "customers.customers";
+  this.searchCustomer = this.translate.instant(searchName);
     }
 
     getWarehouses(){
@@ -257,5 +263,19 @@ this.baseService.Get('WarehouseSections' , 'GetSectionsByWarehouseId/' + warehou
         this.getWarehouseToSections();
        }
      }
+
+
+      filterCustomers(event: any) {
+    const query = event.query.toLowerCase();
+    this.getCustomersSelectItemList(query);
+  
+  }
+
+  getCustomersSelectItemList(query){
+    this.baseService.Get('Customers' , 'GetSelectItemsList/' + 
+      (this.type ==  this.recivingType ? ClientType.Supplier  : ClientType.Customer)+ '/?query=' + query ).subscribe(res => {
+        this.filteredCustomers = res 
+    })
+  }
 
 }

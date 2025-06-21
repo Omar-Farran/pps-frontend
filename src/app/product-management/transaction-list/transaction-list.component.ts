@@ -20,7 +20,10 @@ export class TransactionListComponent {
     { name: "transaction.branch", field: "branchName" },
     { name: "transaction.towarehouse", field: "toWarehouseName" },
     { name: "transaction.tosection", field: "toSectionName" },
-    { name: "transaction.tobranch", field: "toBranchName" }
+    { name: "transaction.tobranch", field: "toBranchName" },
+    { name: "transaction.CreationDate", field: "creationDate" , type:'date' },
+
+    
   ];
     actionList: any[] = [
     { name: "common.info", icon: "change", permission: "Transaction-list" },
@@ -39,6 +42,8 @@ dataSource: any[] = [];
       warehouseId:new FormControl(null),
       warehouseSectionId:new FormControl(null),
       type:new FormControl(null),
+      transactionDateFrom:new FormControl(null),
+      transactionDateTo:new FormControl(null),
 
     }
   )
@@ -48,7 +53,9 @@ dataSource: any[] = [];
     pageNumber: 0,
     warehouseId:null,
     warehouseSectionId:null,
-    type:null
+    type:null,
+    transactionDateFrom:null,
+    transactionDateTo:null,
   }
   //#endregion
   constructor 
@@ -64,7 +71,7 @@ dataSource: any[] = [];
   {
     this.getList()
     this.onSearch();
-    this.getWarehouses();
+    // this.getWarehouses();
   }
   //#region Getters
   private getList () 
@@ -98,6 +105,13 @@ dataSource: any[] = [];
   //#region Filtering and Searching
   onSearch() {
     let searchFormValue = this.searchForm?.getRawValue();
+      if(searchFormValue.transactionDateFrom){
+           this.baseSearch.transactionDateFrom = new Date(searchFormValue.transactionDateFrom.year, searchFormValue.transactionDateFrom.month - 1, searchFormValue.transactionDateFrom.day);
+    }
+     if(searchFormValue.transactionDateTo){
+           this.baseSearch.transactionDateTo = new Date(searchFormValue.transactionDateTo.year, searchFormValue.transactionDateTo.month - 1, searchFormValue.transactionDateTo.day);
+    }
+
     if(searchFormValue){
     this.baseSearch.type = searchFormValue.type;
     this.baseSearch.warehouseId = searchFormValue.warehouseId;
@@ -148,20 +162,20 @@ dataSource: any[] = [];
         this.router.navigate(['/product-management/transaction/' + event.id])
     }
 
-      getWarehouses(){
-      this.baseService.Get('Warehouse' , 'GetAll').subscribe(res => {
-        this.warehouses = res; 
-      })
-    }
+    //   getWarehouses(){
+    //   this.baseService.Get('Warehouse' , 'GetAll').subscribe(res => {
+    //     this.warehouses = res; 
+    //   })
+    // }
 
-    onWarehouseChange(warehouseId:number){
-   this.getWarehouseSections(warehouseId);
-    }
-    getWarehouseSections(warehouseId:number){
-      if(warehouseId > 0){
-this.baseService.Get('WarehouseSections' , 'GetSectionsByWarehouseId/' + warehouseId ).subscribe(res => {
-  this.sections = res;
-})}}
+//     onWarehouseChange(warehouseId:number){
+//    this.getWarehouseSections(warehouseId);
+//     }
+//     getWarehouseSections(warehouseId:number){
+//       if(warehouseId > 0){
+// this.baseService.Get('WarehouseSections' , 'GetSectionsByWarehouseId/' + warehouseId ).subscribe(res => {
+//   this.sections = res;
+// })}}
 
   resetSearchForm(){
       this.searchForm.reset();

@@ -67,6 +67,7 @@ export class AddEditUsersComponent implements OnInit
       this.GetById();
     this.getPreferredLanguges();
     this.getWarehouses();
+    this.getBranchies();
   }
   //#region Functions
   FetchData (object:any)
@@ -135,12 +136,10 @@ export class AddEditUsersComponent implements OnInit
     }
 
     
- getBranchies(warehouseId:number){
-  if(warehouseId > 0){
- this.baseService.Get('Branch' , 'GetAll?warehouseId=' + warehouseId).subscribe(res => {
+ getBranchies(){
+ this.baseService.Get('Branch' , 'GetAll').subscribe(res => {
         this.branchies  = res;
       });
-  }
     }
       getWarehouses(){
       this.baseService.Get('Warehouse' , 'GetAll').subscribe(res => {
@@ -158,12 +157,11 @@ export class AddEditUsersComponent implements OnInit
   }
   private GetById ()
   {
+    debugger;
     this.baseService.Get('Users',`GetUserProfileById/${this.UserId}`).subscribe
     ( res => { 
       this.User = res as any;
        this.FetchData(this.User);
-       this.getBranchies(this.User.warehouseId);
-      
       })
   }
   //#endregion

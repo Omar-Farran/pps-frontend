@@ -91,9 +91,16 @@ onSelectProduct(lineItem: any, event: any) {
 
 }
 
-calculateTotal(item: any) {
-  debugger;
-const price = item.unitPrice || 0;
+calculateTotal(item: any , value) {
+  if(item[value] < 1){
+    item[value] = 0;
+    if(value == 'quantity' || value == 'unitPrice')
+     item.isInValid = true;
+  } else {
+     item.isInValid = false;
+  }
+  this.validateQuantity(item);
+  const price = item.unitPrice || 0;
 const discount = item.discount || 0; // percentage
 const tax = item.tax || 0;           // percentage
 const quantity = item.quantity || 0;
@@ -101,6 +108,16 @@ const fees = item.feesAmount || 0;
 const discountedPrice = price - (price * discount / 100);
 const taxedPrice = discountedPrice + (discountedPrice * tax / 100);
  this.productItems[item.index].total = ((taxedPrice * quantity) + fees).toFixed(3);
+}
+
+validateQuantity(item){
+    let isNotValid = item.quantity > item.maxQuantity + (item.quantityDb ?? 0) || item.quantity == 0 || item.maxQuantity == 0;
+    if(isNotValid){
+      item.isInValid = true;
+    } else {
+       item.isInValid = false;
+    }
+
 }
 
 }

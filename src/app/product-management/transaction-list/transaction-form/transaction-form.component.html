@@ -29,14 +29,35 @@
                                  </div>
                         </div>
                          <div *ngIf="form.get('type').value == recivingType || form.get('type').value ==  issueanceType" class="col-md-6 form-group mb-3 required">
-                            <label for="picker1"> {{  (form.get('type').value == recivingType ?   "Suppliers.Suppliers"  :   "customers.customers"  ) | translate }}</label>
+                            <!-- <label for="picker1"> {{  (form.get('type').value == recivingType ?   "Suppliers.Suppliers"  :   "customers.customers"  ) | translate }}</label>
                             <select class="form-control" formControlName="customerId" name="customerId">
                               <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
                               <option *ngFor="let item of customers" value="{{item.id}}" >{{item.name}}</option>
-                            </select>
-                            <div *ngIf="isFormSubmitted && form.get('customerId').invalid" class="invalid-feedback">
+                            </select> -->
+                           
+                        <label for="picker1"> {{  (form.get('type').value == recivingType ?   "Suppliers.Suppliers"  :  
+                           "customers.customers"  ) | translate }}
+
+                        </label>
+                                 <p-autoComplete
+                                      formControlName="customerId"
+                                      [suggestions]="filteredCustomers"
+                                      (completeMethod)="filterCustomers($event)"
+                                      field="name"
+                                      [forceSelection]="true"
+                                      [placeholder]="searchCustomer"
+                                      [inputStyle]="{
+                                        backgroundColor: '#f8f9fa',
+                                        border: '1px solid #CED4DA',
+                                        borderRadius: '17px',
+                                        height: '32px',
+                                        padding: '0.375rem 0.75rem'
+                                      }"
+                                      />
+                                       <div *ngIf="isFormSubmitted && form.get('customerId').invalid" class="invalid-feedback">
                                     {{ "common.fieldRequired" | translate }}
                                  </div>
+
                         </div>
 
 

@@ -24,8 +24,8 @@ columns: any[] = [
     { name: "sales-invoice.status", field: "invoiceStatus" ,  isTranslate:true }
   ];
     actionList: any[] = [
-    { name: "sales-invoice.changedeliverydate", icon: "change", permission: "Sales-Invoices-Form" },
-    { name: "sales-invoice.markasdelivered", icon: "change", permission: "Sales-Invoices-Form" }
+    { name: "sales-invoice.changedeliverydate", icon: "change", permission: "Pending-Delivery-Invoices" },
+    { name: "sales-invoice.markasdelivered", icon: "change", permission: "Pending-Delivery-Invoices" }
   ];
 warehouses:any;
 sections:any;
@@ -69,7 +69,17 @@ deliveryDate:any;
     private toastr: ToastrService
     
   ) 
-  {}
+  {
+
+        const date = new Date();
+    const newDate = {
+                          year: date.getFullYear(),
+                          month: date.getMonth() + 1, 
+                          day: date.getDate()
+                        }
+    this.searchForm.get('invoiceDateFrom').setValue(newDate);
+     this.searchForm.get('invoiceDateTo').setValue(newDate);
+  }
   ngOnInit() : void 
   {
     this.getList()

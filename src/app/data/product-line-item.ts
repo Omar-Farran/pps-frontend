@@ -13,5 +13,6 @@ export class ProductLineItem {
     productId:number;
     maxQuantity:number;
     quantityDb:number = 0;
+    isInValid:boolean;
 }
 

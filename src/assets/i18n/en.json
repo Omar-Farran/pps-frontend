@@ -902,7 +902,8 @@
     "InstallmentIsRequired":"No installment defined",
     "InstallmentAlreadyPaid":"Installment already paid",
     "UserMustBeRelatedToBranch":"No branch selected for the current user",
-    "UserMustBeRelatedToWarehouse":"No warehouse selected for the current user"
+    "UserMustBeRelatedToWarehouse":"No warehouse selected for the current user",
+    "InvoiceMustBeDraftOrCompleted":"Invoice Status Must be Draft or Completed"
   },
   "dashboards": {
     "oee-dashboard": "OEE Dashboard",
@@ -1097,7 +1098,10 @@
     "transction": "Warehouse Transactions",
     "info": "Transaction Details",
     "transactionDate": "Transaction Date",
-    "seasrch-product": "Select Product"
+    "seasrch-product": "Select Product",
+    "transactionDateTo":"Transaction Date to",
+    "transactionDateFrom":"Transaction Date from",
+    "CreationDate":"Transaction Date"
   },
   "warehouse": {
     "warehouse": "Warehouse",
@@ -1193,7 +1197,9 @@
     "markedAsDeliverdsucess":"Mark As Deliverd Successfully",
     "markasdelivered":"Mark as delivery",
     "ProductsIsRequired":"Product is required",
-    "InstallmentIsRequired":"Installment is required"
+    "InstallmentIsRequired":"Installment is required",
+    "cancelInvoice":"Invoice Cancelled Successfully",
+    "cancel":"Cancel Invoice"
 
   },
   "installment":{

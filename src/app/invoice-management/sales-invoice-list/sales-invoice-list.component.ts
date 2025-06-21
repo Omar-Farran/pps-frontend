@@ -25,8 +25,7 @@ columns: any[] = [
   ];
     actionList: any[] = [
     { name: "common.edit", icon: "change", permission: "Sales-Invoices-Form" },
-    { name: "sales-invoice.changedeliverydate", icon: "change", permission: "Sales-Invoices-Form" },
-    { name: "sales-invoice.markasdelivered", icon: "change", permission: "Sales-Invoices-Form" }
+    { name: "sales-invoice.cancel", icon: "change", permission: "Sales-Invoices-Form" }
   ];
 warehouses:any;
 sections:any;
@@ -140,17 +139,12 @@ deliveryDate:any;
            this.onEdit(event.data);
         }
         break;
-           case "sales-invoice.changedeliverydate":
+           case "sales-invoice.cancel":
         {
-           this.onChangeDeliveryDate(event.data);
+            this.onCancelInvoice(event.data);
         }
          break;
-           case "sales-invoice.markasdelivered":
-        {
-           this.onMarkAsDelivered(event.data);
-        }
-        
-        break;
+       
     }
   }
 
@@ -160,20 +154,7 @@ deliveryDate:any;
         this.router.navigate(['invoice-management/sales-invoice/form/' + this.id]);
   }
 
-  onChangeDeliveryDate(data){
-    this.id = data.id;
-   	this.modalService.open(this.changeDeliveryDateComp, {
-			windowClass: 'change-password-popup',
-			ariaLabelledBy: 'modal-basic-title', 
-			size: 'md',
-			centered: true
-		})
-		.result.then((result) => {
-			console.log(result);
-		}, (reason) => {
-			console.log('Err!', reason);
-		});
-  }
+ 
 
   submitDeliveryDate(){
 
@@ -197,18 +178,7 @@ deliveryDate:any;
     })
   }
 
-    onMarkAsDelivered(data:any){
-    this.id = data.id;
-    this.baseService.Get('Invoice' , 'MarkAsDelivered/' +this.id).subscribe(res => {
-      if(res ){
-     this.toastr.success(
-       this.translate.instant('success'),
-       this.translate.instant('sales-invoice.markedAsDeliverdsucess'),
-    { timeOut: 3000 })
-    this.onSearch();
-      }  
-    })
-  }
+ 
 
   onChageStatus (entity) 
   {
@@ -235,5 +205,15 @@ deliveryDate:any;
       this.baseService.Get('Invoice' , 'GetSelectItemsList?query=' + query ).subscribe(res => {
         this.filteredInvoices = res 
     })
+    }
+
+    onCancelInvoice(data){
+      this.id = data.id;
+      this.baseService.Post('Invoice' , 'CancelInvoice' , this.id).subscribe(res => {
+          this.toastr.success(
+       this.translate.instant('success'),
+       this.translate.instant('sales-invoice.cancelInvoice'),
+    { timeOut: 3000 })
+      })
     }
 }
