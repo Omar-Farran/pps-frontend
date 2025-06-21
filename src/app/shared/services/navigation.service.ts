@@ -238,10 +238,10 @@ export class NavigationService {
                 },
             ]
         },
-         {
+        {
             name: 'navigation.invoice-management',
             type: 'dropDown',
-            icon: 'i-Posterous',
+            icon: 'i-File-Clipboard-File--Text',
             permissions: 'Invoice-Management',
             sub: [
                 {
@@ -256,11 +256,25 @@ export class NavigationService {
                     type: 'link',
                     permissions: 'Pending-Delivery-Invoices',
                 },
-                 {
+                {
                     name: 'navigation.invoice-installment',
                     state: '/invoice-management/sales-invoice/installments',
                     type: 'link',
                     permissions: 'Installments',
+                }
+            ]
+        },
+        {
+            name: 'navigation.reports',
+            type: 'dropDown',
+            icon: 'i-Newspaper',
+            permissions: 'Reports',
+            sub: [
+                {
+                    name: 'navigation.products-barcode',
+                    state: '/reports/productBarcodes',
+                    type: 'link',
+                    permissions: 'Product-Barcodes',
                 }
             ]
         }
