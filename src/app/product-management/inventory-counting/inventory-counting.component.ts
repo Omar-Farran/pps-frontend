@@ -19,11 +19,13 @@ export class InventoryCountingComponent {
   columns: any[] = [
     { name: "inventory-counting.warehouse", field: "warehouseName" },
     { name: "inventory-counting.section", field: "sectionName" },
+    { name: "inventory-counting.branch", field: "branchName" },
     { name: "inventory-counting.product", field: "productName" },
     { name: "inventory-counting.countDate", field: "countDate", type: 'date' },
     { name: "inventory-counting.actualQuantity", field: "actualQuantity", type: 'number' },
     { name: "inventory-counting.systemQuantity", field: "systemQuantity", type: 'number' },
-    { name: "inventory-counting.quantityDifference", field: "quantityDifference", type: 'number' },
+    { name: "inventory-counting.quantityDifference", field: "quantityDifference", type: 'number' }
+    
   ];
 
   locale: string;
@@ -218,6 +220,9 @@ export class InventoryCountingComponent {
     if (form) {
       debugger;
       form['productId'] = form.product.id
+      if(form.sourceType){
+        form.sourceType = Number(form.sourceType);
+      }
       this.baseService.Post('InventoryCounting', 'Calculation', form).subscribe
         (res => {
           this.toastr.success(this.locale == "en" ? "calculation successfully" : "تم الحساب بنجاح");

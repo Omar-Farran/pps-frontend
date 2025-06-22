@@ -965,7 +965,7 @@
     "startWorkingHour": "Start Working Hours",
     "address": "Address",
     "CustomerTypeId": "Customer Type",
-    "manageBranch": "Manage Branchies",
+    "manageBranch": "Manage Branches",
     "branch": "Branch",
     "isActive": "Active",
     "addBranch": "Add New Branch",
@@ -1201,7 +1201,10 @@
     "ProductsIsRequired": "Product is required",
     "InstallmentIsRequired": "Installment is required",
     "cancelInvoice": "Invoice Cancelled Successfully",
-    "cancel": "Cancel Invoice"
+    "cancel": "Cancel Invoice",
+    "deliveryDateFrom":"Delivery Date From",
+    "deliveryDateTo":"Delivery Date To",
+    "pending-delivery-invoices":"Pending Delivery Invoices"
   },
   "installment": {
     "installmentNumber": "Number of Installments (e.g., 1, 2, 3, 4)",
@@ -1222,7 +1225,8 @@
     "inventoryCounting": "Inventory Counting",
     "manageInventoryCounting": "Manage Inventory Counting",
     "from": "From",
-    "to": "To"
+    "to": "To",
+    "branch":"Branch"
   },
   "pending-delivery-invoice": {
     "pending-delivery-invoices": "Pending Delivery Invoices"

@@ -67,7 +67,11 @@ dataSource: any[] = [];
   ) 
   {
 
-    const date = new Date();
+ 
+  }
+  ngOnInit() : void 
+  {
+       const date = new Date();
     const newDate = {
                           year: date.getFullYear(),
                           month: date.getMonth() + 1, 
@@ -75,10 +79,6 @@ dataSource: any[] = [];
                         }
     this.searchForm.get('dueDateFrom').setValue(newDate);
      this.searchForm.get('dueDateTo').setValue(newDate);
-  }
-  ngOnInit() : void 
-  {
-    this.getList()
     this.onSearch();
     this.searchInvoices = this.translate.instant('sales-invoice.seasrch-invoice')
 
@@ -106,14 +106,14 @@ dataSource: any[] = [];
     
     let searchFormValue = this.searchForm?.getRawValue();
     if(searchFormValue){
-    if(searchFormValue.invoiceNumber)
-
+     let pad = (n: number) => n.toString().padStart(2, '0');
    if(searchFormValue.dueDateFrom){
-           this.baseSearch.dueDateFrom = new Date(searchFormValue.dueDateFrom.year, searchFormValue.dueDateFrom.month - 1, searchFormValue.dueDateFrom.day);
+       this.baseSearch.dueDateFrom = `${searchFormValue.dueDateFrom.year}-${pad(searchFormValue.dueDateFrom.month)}-${pad(searchFormValue.dueDateFrom.day)}`;
     }
      if(searchFormValue.dueDateTo){
-           this.baseSearch.dueDateTo = new Date(searchFormValue.dueDateTo.year, searchFormValue.dueDateTo.month - 1, searchFormValue.dueDateTo.day);
+             this.baseSearch.dueDateTo = `${searchFormValue.dueDateTo.year}-${pad(searchFormValue.dueDateTo.month)}-${pad(searchFormValue.dueDateTo.day)}`;
     }
+  
     }
     if(searchFormValue.status)
        this.baseSearch.status = Number(searchFormValue.status);

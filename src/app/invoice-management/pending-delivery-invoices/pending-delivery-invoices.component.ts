@@ -21,6 +21,7 @@ columns: any[] = [
     { name: "sales-invoice.customerName", field: "customerName" },
     { name: "sales-invoice.sourceType", field: "sourceTypeName" , isTranslate:true },
     { name: "sales-invoice.totalAmount", field: "totalAmount" , type:'number' },
+    { name: "sales-invoice.deliveryDate", field: "deliveryDate" , type:'date' },
     { name: "sales-invoice.status", field: "invoiceStatus" ,  isTranslate:true }
   ];
     actionList: any[] = [
@@ -90,7 +91,7 @@ deliveryDate:any;
   //#region Getters
   private getList () 
   {
-    this.baseService.Post('Invoice', 'List', this.baseSearch).subscribe
+    this.baseService.Post('Invoice', 'DeliveryDate', this.baseSearch).subscribe
     ( res => 
       {
         this.dataSource = (res as any).entities
@@ -120,12 +121,12 @@ deliveryDate:any;
     if(searchFormValue.invoiceNumber)
     this.baseSearch.invoiceId = searchFormValue.invoiceNumber.id;
     this.baseSearch.customerName = searchFormValue.customerName;
-
+      let pad = (n: number) => n.toString().padStart(2, '0');
    if(searchFormValue.invoiceDateFrom){
-           this.baseSearch.invoiceDateFrom = new Date(searchFormValue.invoiceDateFrom.year, searchFormValue.invoiceDateFrom.month - 1, searchFormValue.invoiceDateFrom.day);
+        this.baseSearch.invoiceDateFrom = `${searchFormValue.invoiceDateFrom.year}-${pad(searchFormValue.invoiceDateFrom.month)}-${pad(searchFormValue.invoiceDateFrom.day)}`;
     }
      if(searchFormValue.invoiceDateTo){
-           this.baseSearch.invoiceDateTo = new Date(searchFormValue.invoiceDateTo.year, searchFormValue.invoiceDateTo.month - 1, searchFormValue.invoiceDateTo.day);
+              this.baseSearch.invoiceDateTo = `${searchFormValue.invoiceDateTo.year}-${pad(searchFormValue.invoiceDateTo.month)}-${pad(searchFormValue.invoiceDateTo.day)}`;
     }
 
     

@@ -105,11 +105,12 @@ dataSource: any[] = [];
   //#region Filtering and Searching
   onSearch() {
     let searchFormValue = this.searchForm?.getRawValue();
+    let pad = (n: number) => n.toString().padStart(2, '0');
       if(searchFormValue.transactionDateFrom){
-           this.baseSearch.transactionDateFrom = new Date(searchFormValue.transactionDateFrom.year, searchFormValue.transactionDateFrom.month - 1, searchFormValue.transactionDateFrom.day);
+           this.baseSearch.transactionDateFrom = `${searchFormValue.transactionDateFrom.year}-${pad(searchFormValue.transactionDateFrom.month)}-${pad(searchFormValue.transactionDateFrom.day)}`;
     }
      if(searchFormValue.transactionDateTo){
-           this.baseSearch.transactionDateTo = new Date(searchFormValue.transactionDateTo.year, searchFormValue.transactionDateTo.month - 1, searchFormValue.transactionDateTo.day);
+           this.baseSearch.transactionDateTo = `${searchFormValue.transactionDateTo.year}-${pad(searchFormValue.transactionDateTo.month)}-${pad(searchFormValue.transactionDateTo.day)}`;
     }
 
     if(searchFormValue){

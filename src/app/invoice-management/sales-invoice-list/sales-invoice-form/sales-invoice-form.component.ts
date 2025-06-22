@@ -140,10 +140,13 @@ isInvoiceHeaderFormSubmitted:boolean = false;
     if(form.isCustomer){
       form.customerId = form.customerId?.id;
     }
-      form.invoiceDate = new Date(date.year, date.month - 1, date.day).toISOString().split('T')[0];
+       let pad = (n: number) => n.toString().padStart(2, '0');
+       form.invoiceDate = `${date.year}-${pad(date.month)}-${pad(date.day)}`;
       let deliveryDate = form.deliveryDate;
-      if(form.deliveryDate)
-      form.deliveryDate = new Date(deliveryDate.year, deliveryDate.month - 1, deliveryDate.day).toISOString().split('T')[0];
+      if(form.deliveryDate){
+        let pad = (n: number) => n.toString().padStart(2, '0');
+       form.deliveryDate = `${deliveryDate.year}-${pad(deliveryDate.month)}-${pad(deliveryDate.day)}`;
+      }
     form.additionalAttachmentFile = this.additionalAttachmentFile;
     this.baseService.postItemFromForm(ControllerPath , ApiPath , form).subscribe
     ( res => { 
@@ -170,6 +173,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
          this.disableForm()
 
         }
+
         const date = new Date(this.entity.invoiceDate);
         const deliveryDate = this.entity.deliveryDate ?  new Date(this.entity.deliveryDate) : null;
         this.sourceType = this.entity.sourceType;
@@ -215,6 +219,10 @@ isInvoiceHeaderFormSubmitted:boolean = false;
             }
           );
 
+          if(this.entity.status != InvoiceStatus.Draft){
+            this.invoiceHeaderForm.get('sourceType').disable();
+          }
+
         
       }
       )
@@ -234,7 +242,9 @@ isInvoiceHeaderFormSubmitted:boolean = false;
     if(this.activeIndex == 0){
          this.submitInvoiceHeaderForm();
         }else if(this.activeIndex == 1){
-          if(this.productLineComponent.productItems?.every(item => item.quantity > 0 && item.unitPrice > 0 && item.total > 0 && item.id > 0)){
+          if(this.productLineComponent.productItems?.every(item => item.quantity > 0 && item.unitPrice > 0 && item.total > 0 && item.id > 0 &&
+            item.quantity <= (item.maxQuantity + (item.quantityDb ?? 0))
+          )){
               this.submitProductItems();
           }else {
               this.toastr.error(

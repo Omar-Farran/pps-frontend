@@ -109,12 +109,12 @@ deliveryDate:any;
     if(searchFormValue.invoiceNumber)
     this.baseSearch.invoiceId = searchFormValue.invoiceNumber.id;
     this.baseSearch.customerName = searchFormValue.customerName;
-
+let pad = (n: number) => n.toString().padStart(2, '0');
    if(searchFormValue.invoiceDateFrom){
-           this.baseSearch.invoiceDateFrom = new Date(searchFormValue.invoiceDateFrom.year, searchFormValue.invoiceDateFrom.month - 1, searchFormValue.invoiceDateFrom.day);
+       this.baseSearch.invoiceDateFrom = `${searchFormValue.invoiceDateFrom.year}-${pad(searchFormValue.invoiceDateFrom.month)}-${pad(searchFormValue.invoiceDateFrom.day)}`;
     }
      if(searchFormValue.invoiceDateTo){
-           this.baseSearch.invoiceDateTo = new Date(searchFormValue.invoiceDateTo.year, searchFormValue.invoiceDateTo.month - 1, searchFormValue.invoiceDateTo.day);
+             this.baseSearch.invoiceDateTo = `${searchFormValue.invoiceDateTo.year}-${pad(searchFormValue.invoiceDateTo.month)}-${pad(searchFormValue.invoiceDateTo.day)}`;
     }
 
     
