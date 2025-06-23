@@ -243,7 +243,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
          this.submitInvoiceHeaderForm();
         }else if(this.activeIndex == 1){
           if(this.productLineComponent.productItems?.every(item => item.quantity > 0 && item.unitPrice > 0 && item.total > 0 && item.id > 0 &&
-            item.quantity <= (item.maxQuantity + (item.quantityDb ?? 0))
+            item.quantity <= (item.maxQuantity + (item.reserveDb && this.entity.status != InvoiceStatus.Draft ? item.quantityDb ?? 0 : 0))
           )){
               this.submitProductItems();
           }else {
@@ -426,11 +426,12 @@ this.baseService.Get('WarehouseSections' , 'GetWarehouseSectionsByLoggedInUser')
 
 submitInvoiceInstallments(validateCredit = true){
   debugger;
+    let pad = (n: number) => n.toString().padStart(2, '0');
     let form =  {
       invoiceId: this.id,
       installments: this.installmentComponent.installments.map(installment => {
-        installment.dueDate = installment.dueDateControl ?  new Date(installment.dueDateControl.year, installment.dueDateControl.month - 1, installment.dueDateControl.day) : new Date();
-        installment.paidDate = installment.paidDateControl ?  new Date(installment.paidDateControl.year, installment.paidDateControl.month - 1, installment.paidDateControl.day) : null;
+        installment.dueDate = installment.dueDateControl ? `${installment.dueDateControl.year}-${pad(installment.dueDateControl.month)}-${pad(installment.dueDateControl.day)}`   : new Date();
+        installment.paidDate = installment.paidDateControl ?  `${installment.paidDateControl.year}-${pad(installment.paidDateControl.month)}-${pad(installment.paidDateControl.day)}` : null;
         installment.status = Number(installment.status);
         return installment;
       })

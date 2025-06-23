@@ -214,6 +214,7 @@ let pad = (n: number) => n.toString().padStart(2, '0');
        this.translate.instant('success'),
        this.translate.instant('sales-invoice.cancelInvoice'),
     { timeOut: 3000 })
+    this.onSearch();
       })
     }
 }

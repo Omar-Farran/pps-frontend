@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, Output, SimpleChanges } from '@angular/cor
 import { BaseService } from '../../services/base.service';
 import { SelectItem } from 'src/app/data/select-item';
 import { ProductLineItem } from 'src/app/data/product-line-item';
+import { InvoiceStatus } from '../../models/enum';
 
 @Component({
   selector: 'app-product-line-items',
@@ -34,6 +35,7 @@ itemLabel:any;
       }else {
         this.productItems = this.productItems.map(prod => {
     prod.quantityDb = prod.quantity;
+    prod.reserveDb = prod.reserve; 
     return prod;
         })
       }
@@ -114,7 +116,7 @@ const taxedPrice = discountedPrice + (discountedPrice * tax / 100);
 }
 
 validateQuantity(item){
-    let isNotValid = item.quantity > item.maxQuantity + (item.quantityDb ?? 0) || item.quantity == 0 || item.maxQuantity == 0;
+    let isNotValid = item.quantity > (item.maxQuantity + (item.reserveDb && this.invoice.status != InvoiceStatus.Draft ? item.quantityDb ?? 0 : 0));
     if(isNotValid){
       item.isInValid = true;
     } else {

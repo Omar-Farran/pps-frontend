@@ -13,6 +13,7 @@ export class ProductLineItem {
     productId:number;
     maxQuantity:number;
     quantityDb:number = 0;
+    reserveDb:boolean;
     isInValid:boolean;
 }
 
