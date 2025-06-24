@@ -9,7 +9,7 @@
         <th>Tax %</th>
         <th>Fees Amount</th>
         <th>Total</th>
-        <th *ngIf="!invoice.isDeliveredOrReceived" >Reserve</th>
+        <th *ngIf="!invoice.isDeliveredOrReceived && showReserve" >Reserve</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -50,10 +50,10 @@
       [disabled]="invoice.isBalanceUpdated"
       [attr.max]="item.maxQuantity"
       [attr.min]="0"
-      [class.is-invalid]="item.isInValid"
+      [class.is-invalid]="(item.isInValid && showReserve) || item.quantity <= 0"
       (change)="calculateTotal(item , 'quantity')" 
     />
-    <small class="text-muted quantity-inside-inpit">| {{item.maxQuantity}}</small>
+    <small *ngIf="showReserve" class="text-muted quantity-inside-inpit">| {{item.maxQuantity}}</small>
   </div>
 </td>
 
@@ -77,7 +77,7 @@
          <td>
           <input type="number" class="form-control" [(ngModel)]="item.total"  name="total{{i}}"  [disabled]="invoice.isBalanceUpdated" disabled />
         </td>
-        <td *ngIf="!invoice.isDeliveredOrReceived" >
+        <td *ngIf="!invoice.isDeliveredOrReceived && showReserve" >
           <input type="checkbox"  [(ngModel)]="item.reserve" name="reserve{{i}}"  [disabled]="invoice.isBalanceUpdated" >
         </td>
 

@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, Output, SimpleChanges } from '@angular/cor
 import { BaseService } from '../../services/base.service';
 import { SelectItem } from 'src/app/data/select-item';
 import { ProductLineItem } from 'src/app/data/product-line-item';
-import { InvoiceStatus } from '../../models/enum';
+import { InvoiceStatus, InvoiceType } from '../../models/enum';
 
 @Component({
   selector: 'app-product-line-items',
@@ -19,6 +19,7 @@ export class ProductLineItemsComponent  implements OnChanges {
 @Input() invoice:any;
 filteredProducts:any;
 itemLabel:any;
+showReserve:boolean;
  constructor
     (
       private baseService: BaseService
@@ -39,6 +40,8 @@ itemLabel:any;
     return prod;
         })
       }
+      //InvoiceType.QuotationInvoice
+      this.showReserve = this.invoice.type != 3;
 
   }
 
@@ -83,11 +86,8 @@ onSelectProduct(lineItem: any, event: any) {
     this.productItems[lineItem.index].product = event.value;
     this.productItems[lineItem.index].productId = event.value.id;
     this.productItems[lineItem.index].index = lineItem.index;
-    
-
-
-
-
+    this.productItems[lineItem.index].quantity = 1;
+    this.calculateTotal(this.productItems[lineItem.index] , 'quantity');
 });
 
 

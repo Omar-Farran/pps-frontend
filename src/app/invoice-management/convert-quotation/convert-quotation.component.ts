@@ -2,7 +2,7 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { InvoiceType } from 'src/app/shared/models/enum';
+import { InvoiceStatus, InvoiceType } from 'src/app/shared/models/enum';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { BaseService } from 'src/app/shared/services/base.service';
 import { LanguageService } from 'src/app/shared/services/language.service';
@@ -10,11 +10,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-sales-invoice-list',
-  templateUrl: './sales-invoice-list.component.html',
-  styleUrls: ['./sales-invoice-list.component.scss']
+  selector: 'app-convert-quotation',
+  templateUrl: './convert-quotation.component.html',
+  styleUrls: ['./convert-quotation.component.scss']
 })
-export class SalesInvoiceListComponent {
+export class ConvertQuotationComponent {
 columns: any[] = [
     { name: "sales-invoice.invoiceNumber", field: "invoiceNumber" },
     { name: "sales-invoice.InvoiceDate", field: "invoiceDate" , type:'date' },
@@ -24,9 +24,9 @@ columns: any[] = [
     { name: "sales-invoice.status", field: "invoiceStatus" ,  isTranslate:true }
   ];
     actionList: any[] = [
-    { name: "sales-invoice.view", icon: "change", permission: "Sales-Invoices-List" },
-    { name: "common.edit", icon: "change", permission: "Sales-Invoices-Form" },
-    { name: "sales-invoice.cancel", icon: "change", permission: "Sales-Invoices-Form" }
+    { name: "quotation.convert-quotation-invoice", icon: "change", permission: "Convert-Quotation" }
+
+
   ];
 warehouses:any;
 sections:any;
@@ -50,13 +50,13 @@ deliveryDate:any;
   {
     pageSize: 25,
     pageNumber: 0,
-    type:InvoiceType.SalesInvoice,
+    type:InvoiceType.QuotationInvoice,
     invoiceDateFrom:null,
     invoiceDateTo:null,
     invoiceId:null,
-    customerName:null
+    customerName:null,
+    isConvertPage:true
   }
-  @ViewChild('changeDeliveryDate') changeDeliveryDateComp:TemplateRef<any>;
   //#endregion
   constructor 
   ( 
@@ -74,7 +74,7 @@ deliveryDate:any;
   {
     this.getList()
     this.onSearch();
-    this.searchInvoices = this.translate.instant('sales-invoice.seasrch-invoice')
+    this.searchInvoices = this.translate.instant('quotation.search-quotation')
 
   }
   //#region Getters
@@ -90,17 +90,13 @@ deliveryDate:any;
   }
   //#endregion
   //#region Actions Handler
-  onAddSalesInvoice () 
+  onAddQuotation () 
   {
-    this.router.navigate(['invoice-management/sales-invoice/form']);
+    this.router.navigate(['invoice-management/quotation/form']);
   }
 
   
-  onEditInvoice (entity: any, modal: any) 
-  {
-    this.id = entity.id;
-    this.router.navigate(['/invoice-management/sales-invoice/form/' + this.id])
-  }
+ 
   //#endregion
   //#region Filtering and Searching
   onSearch() {
@@ -121,8 +117,8 @@ let pad = (n: number) => n.toString().padStart(2, '0');
     
     }
       this.baseSearch.pageNumber = 0;
-      this.baseSearch.type = InvoiceType.SalesInvoice;
-      
+      this.baseSearch.type = InvoiceType.QuotationInvoice;
+      this.baseSearch.isConvertPage = true;
       this.getList();
   }
   onPageChange (event: any): void 
@@ -135,65 +131,20 @@ let pad = (n: number) => n.toString().padStart(2, '0');
 
     onHandleAction(event) {
     switch (event.action.name) {
-         case "common.edit":
+         case "quotation.convert":
         {
-           this.onEdit(event.data);
+           this.onConvertQuotation(event.data);
         }
         break;
-           case "sales-invoice.cancel":
-        {
-            this.onCancelInvoice(event.data);
-        }
-         break;
-       case "sales-invoice.view":
-        {
-            this.onView(event.data);
-        }
-         break;
-       
     }
   }
 
 
-    onEdit(data) {
-    this.id = data.id;
-        this.router.navigate(['invoice-management/sales-invoice/form/' + this.id]);
-  }
+    
 
-    onView(data) {
-    this.id = data.id;
-        this.router.navigate(['invoice-management/invoice/view/' + this.id]);
-  }
-
-  submitDeliveryDate(){
-
-    if(!this.deliveryDate){
-    this.toastr.error(
-       this.translate.instant('error'),
-       this.translate.instant('error.deliverdateisrequired'),
-    { timeOut: 3000 })
-   
-    return;
-    }
-    let form ={
-      invoiceId: this.id,
-      deliveryDate:this.deliveryDate ? new Date(this.deliveryDate.year, this.deliveryDate.month - 1, this.deliveryDate.day): null,
-    }
-
-    this.baseService.Post('Invoice' , 'ChangeDeliveryDate' , form).subscribe(res => {
-      if(res){
-
-      }
-    })
-  }
 
  
 
-  onChageStatus (entity) 
-  {
-    this.baseService.Get('Invoice', `UpdateStatus/${entity.id}`).subscribe
-    ( res => { this.getList() } )
-  }
 
 
   resetSearchForm(){
@@ -216,12 +167,15 @@ let pad = (n: number) => n.toString().padStart(2, '0');
     })
     }
 
-    onCancelInvoice(data){
+  
+
+     onConvertQuotation(data){
       this.id = data.id;
-      this.baseService.Post('Invoice' , 'CancelInvoice' , this.id).subscribe(res => {
+      this.baseService.Post('Invoice' , 'ConvertToInvoice' , this.id).subscribe(id => {
+         this.router.navigate(['invoice-management/sales-invoice/form/' + id]);
           this.toastr.success(
        this.translate.instant('success'),
-       this.translate.instant('sales-invoice.cancelInvoice'),
+       this.translate.instant('quotation.convertedsuccess'),
     { timeOut: 3000 })
     this.onSearch();
       })

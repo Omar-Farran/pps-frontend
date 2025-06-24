@@ -10,11 +10,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-sales-invoice-list',
-  templateUrl: './sales-invoice-list.component.html',
-  styleUrls: ['./sales-invoice-list.component.scss']
+  selector: 'app-quotation-invoice-list',
+  templateUrl: './quotation-invoice-list.component.html',
+  styleUrls: ['./quotation-invoice-list.component.scss']
 })
-export class SalesInvoiceListComponent {
+export class QuotationInvoiceListComponent {
 columns: any[] = [
     { name: "sales-invoice.invoiceNumber", field: "invoiceNumber" },
     { name: "sales-invoice.InvoiceDate", field: "invoiceDate" , type:'date' },
@@ -24,9 +24,12 @@ columns: any[] = [
     { name: "sales-invoice.status", field: "invoiceStatus" ,  isTranslate:true }
   ];
     actionList: any[] = [
-    { name: "sales-invoice.view", icon: "change", permission: "Sales-Invoices-List" },
-    { name: "common.edit", icon: "change", permission: "Sales-Invoices-Form" },
-    { name: "sales-invoice.cancel", icon: "change", permission: "Sales-Invoices-Form" }
+    { name: "sales-invoice.view", icon: "change", permission: "Quotation-List" },
+    { name: "common.edit", icon: "change", permission: "Quotation-Form" },
+    { name: "quotation.copy", icon: "change", permission: "Quotation-Form" },
+    { name: "quotation.cancel", icon: "change", permission: "Quotation-Form" }
+
+
   ];
 warehouses:any;
 sections:any;
@@ -50,7 +53,7 @@ deliveryDate:any;
   {
     pageSize: 25,
     pageNumber: 0,
-    type:InvoiceType.SalesInvoice,
+    type:InvoiceType.QuotationInvoice,
     invoiceDateFrom:null,
     invoiceDateTo:null,
     invoiceId:null,
@@ -74,7 +77,7 @@ deliveryDate:any;
   {
     this.getList()
     this.onSearch();
-    this.searchInvoices = this.translate.instant('sales-invoice.seasrch-invoice')
+    this.searchInvoices = this.translate.instant('quotation.search-quotation')
 
   }
   //#region Getters
@@ -90,17 +93,13 @@ deliveryDate:any;
   }
   //#endregion
   //#region Actions Handler
-  onAddSalesInvoice () 
+  onAddQuotation () 
   {
-    this.router.navigate(['invoice-management/sales-invoice/form']);
+    this.router.navigate(['invoice-management/quotation/form']);
   }
 
   
-  onEditInvoice (entity: any, modal: any) 
-  {
-    this.id = entity.id;
-    this.router.navigate(['/invoice-management/sales-invoice/form/' + this.id])
-  }
+ 
   //#endregion
   //#region Filtering and Searching
   onSearch() {
@@ -121,7 +120,7 @@ let pad = (n: number) => n.toString().padStart(2, '0');
     
     }
       this.baseSearch.pageNumber = 0;
-      this.baseSearch.type = InvoiceType.SalesInvoice;
+      this.baseSearch.type = InvoiceType.QuotationInvoice;
       
       this.getList();
   }
@@ -135,19 +134,25 @@ let pad = (n: number) => n.toString().padStart(2, '0');
 
     onHandleAction(event) {
     switch (event.action.name) {
+        case "sales-invoice.view":
+        {
+            this.onView(event.data);
+        }
+         break;
+
          case "common.edit":
         {
            this.onEdit(event.data);
         }
         break;
-           case "sales-invoice.cancel":
+         case "quotation.cancel":
         {
             this.onCancelInvoice(event.data);
         }
          break;
-       case "sales-invoice.view":
+            case "quotation.copy":
         {
-            this.onView(event.data);
+            this.onCopyQuotation(event.data);
         }
          break;
        
@@ -157,13 +162,10 @@ let pad = (n: number) => n.toString().padStart(2, '0');
 
     onEdit(data) {
     this.id = data.id;
-        this.router.navigate(['invoice-management/sales-invoice/form/' + this.id]);
+        this.router.navigate(['invoice-management/quotation/form/' + this.id]);
   }
 
-    onView(data) {
-    this.id = data.id;
-        this.router.navigate(['invoice-management/invoice/view/' + this.id]);
-  }
+ 
 
   submitDeliveryDate(){
 
@@ -226,4 +228,22 @@ let pad = (n: number) => n.toString().padStart(2, '0');
     this.onSearch();
       })
     }
+
+     onCopyQuotation(data){
+      this.id = data.id;
+      this.baseService.Post('Invoice' , 'CopyQuotation' , this.id).subscribe(id => {
+         this.router.navigate(['invoice-management/quotation/form/' + id]);
+          this.toastr.success(
+       this.translate.instant('success'),
+       this.translate.instant('quotation.copyquotationsuccess'),
+    { timeOut: 3000 })
+    this.onSearch();
+      })
+    }
+   onView(data) {
+    this.id = data.id;
+        this.router.navigate(['invoice-management/invoice/view/' + this.id]);
+  }
+    
+
 }

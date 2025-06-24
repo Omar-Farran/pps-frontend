@@ -17,6 +17,10 @@ import { InvoiceManagementRoutingModule } from './invoice-management-routing.mod
 import { SharedModule } from '../shared/shared.module';
 import { PendingDeliveryInvoicesComponent } from './pending-delivery-invoices/pending-delivery-invoices.component';
 import { InvoiceInstallmentComponent } from './invoice-installment/invoice-installment.component';
+import { QuotationInvoiceListComponent } from './quotation-invoice-list/quotation-invoice-list.component';
+import { QuotationInvoiceFormComponent } from './quotation-invoice-list/quotation-invoice-form/quotation-invoice-form.component';
+import { ConvertQuotationComponent } from './convert-quotation/convert-quotation.component';
+import { InvoiceViewComponent } from './invoice-view/invoice-view.component';
 
 
 
@@ -25,7 +29,11 @@ import { InvoiceInstallmentComponent } from './invoice-installment/invoice-insta
     SalesInvoiceListComponent,
     SalesInvoiceFormComponent,
     PendingDeliveryInvoicesComponent,
-    InvoiceInstallmentComponent
+    InvoiceInstallmentComponent,
+    QuotationInvoiceListComponent,
+    QuotationInvoiceFormComponent,
+    ConvertQuotationComponent,
+    InvoiceViewComponent
   ],
   imports: [
        CommonModule,

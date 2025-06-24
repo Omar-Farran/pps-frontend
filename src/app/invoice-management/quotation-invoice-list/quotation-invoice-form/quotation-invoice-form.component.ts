@@ -14,13 +14,14 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { BaseService } from 'src/app/shared/services/base.service';
 import { environment } from 'src/environments/environment';
 
+
 @Component({
-  selector: 'app-sales-invoice-form',
-  templateUrl: './sales-invoice-form.component.html',
-  styleUrls: ['./sales-invoice-form.component.scss']
+  selector: 'app-quotation-invoice-form',
+  templateUrl: './quotation-invoice-form.component.html',
+  styleUrls: ['./quotation-invoice-form.component.scss']
 })
-export class SalesInvoiceFormComponent {
-  invoiceId:number;
+export class QuotationInvoiceFormComponent {
+invoiceId:number;
 isInvoiceHeaderFormSubmitted:boolean = false;
   additionalAttachmentFile:any;
   additionalAttachmentPath:any;
@@ -44,9 +45,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
    customers:any;
    products:any;
    invoiceProducts:ProductLineItem[] = [];
-   invoiceInstallments:Installment[] = [];
    sourceTypes:any[]  = sourceTypes;
-   paymentMethods:any[]  = paymentMethods;
    warehouseSourceType = SourceType.Warehouse;
   steps = [];
   activeIndex: number = 0;
@@ -62,20 +61,16 @@ isInvoiceHeaderFormSubmitted:boolean = false;
         customerId:new FormControl(null),
         customerName:new FormControl(null, [Validators.required]),
         sourceType: new FormControl(1, [Validators.required]),
-        paymentMethod:new FormControl(null, [Validators.required]),
-        isDeliveredOrReceived:new FormControl(false),
         note:new FormControl(null),
         additionalAttachmentFile:new FormControl(null),
         warehouseId:new FormControl(null),
         warehouseSectionId:new FormControl(null),
-        deliveryDate:new FormControl(null),
-        type:new FormControl(InvoiceType.SalesInvoice)
+        type:new FormControl(InvoiceType.QuotationInvoice)
       }
     );
 
   @ViewChild('installment') installmentComponent!: InstallmentComponent;
   @ViewChild('productLine') productLineComponent!: ProductLineItemsComponent;
-  @ViewChild('modalCustomerCreditLimit') customerCreditLimitModel!: TemplateRef<any>;
 
     //#endregion
     constructor
@@ -99,10 +94,9 @@ isInvoiceHeaderFormSubmitted:boolean = false;
     ngOnInit (): void 
     {
             this.steps = [
-    { label: this.translate.instant('sales-invoice.invoiceHeader'), command: () => (this.activeIndex = 0) },
-    { label: this.translate.instant('sales-invoice.product-line-items'), command: () => (this.activeIndex = 1) },
-    { label: this.translate.instant('sales-invoice.installment-plan-setup'), command: () => (this.activeIndex = 2) },
-    { label: this.translate.instant('sales-invoice.final-invoice-summary'), command: () => (this.activeIndex = 3) }
+    { label: this.translate.instant('quotation.quotationHeader'), command: () => (this.activeIndex = 0) },
+    { label: this.translate.instant('quotation.product-line-items'), command: () => (this.activeIndex = 1) },
+    { label: this.translate.instant('quotation.final-quotation-summary'), command: () => (this.activeIndex = 2) }
       ]
 
       if (this.id > 0) {
@@ -142,11 +136,6 @@ isInvoiceHeaderFormSubmitted:boolean = false;
     }
        let pad = (n: number) => n.toString().padStart(2, '0');
        form.invoiceDate = `${date.year}-${pad(date.month)}-${pad(date.day)}`;
-      let deliveryDate = form.deliveryDate;
-      if(form.deliveryDate){
-        let pad = (n: number) => n.toString().padStart(2, '0');
-       form.deliveryDate = `${deliveryDate.year}-${pad(deliveryDate.month)}-${pad(deliveryDate.day)}`;
-      }
     form.additionalAttachmentFile = this.additionalAttachmentFile;
     this.baseService.postItemFromForm(ControllerPath , ApiPath , form).subscribe
     ( res => { 
@@ -169,13 +158,13 @@ isInvoiceHeaderFormSubmitted:boolean = false;
     this.baseService.Get('Invoice', `Get/${this.id}`).subscribe
       (res => {
         this.entity = res;
-        if(this.entity.type != InvoiceType.SalesInvoice){
+         if(this.entity.type != InvoiceType.QuotationInvoice){
           this.router.navigate(['others/404'])
         }
         if(this.entity?.isBalanceUpdated){
          this.disableForm()
-
         }
+       
 
         const date = new Date(this.entity.invoiceDate);
         const deliveryDate = this.entity.deliveryDate ?  new Date(this.entity.deliveryDate) : null;
@@ -202,8 +191,6 @@ isInvoiceHeaderFormSubmitted:boolean = false;
                 customerId: {id:this.entity.customerId , name:this.entity.customerName},
                 customerName: this.entity.isCustomer ? null : this.entity.customerName,
                 sourceType: this.entity.sourceType,
-                paymentMethod:this.entity.paymentMethod,
-                isDeliveredOrReceived:this.entity.isDeliveredOrReceived,
                 note:this.entity.note,
                 additionalAttachmentFile:this.additionalAttachmentFile,
                 warehouseSectionId:this.entity.warehouseSectionId,
@@ -212,12 +199,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
                           month: date.getMonth() + 1, // Note: JS months are 0-based
                           day: date.getDate()
                         },
-                        deliveryDate: deliveryDate ?  {
-                          year: deliveryDate.getFullYear(),
-                          month: deliveryDate.getMonth() + 1, // Note: JS months are 0-based
-                          day: deliveryDate.getDate()
-                        } : null,
-                        type:InvoiceType.SalesInvoice
+                        type:InvoiceType.QuotationInvoice
 
             }
           );
@@ -226,8 +208,6 @@ isInvoiceHeaderFormSubmitted:boolean = false;
             this.invoiceHeaderForm.get('sourceType').disable();
             this.invoiceHeaderForm.get('warehouseSectionId').disable();
           }
-
-        
       }
       )
   }
@@ -246,9 +226,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
     if(this.activeIndex == 0){
          this.submitInvoiceHeaderForm();
         }else if(this.activeIndex == 1){
-          if(this.productLineComponent.productItems?.every(item => item.quantity > 0 && item.unitPrice > 0 && item.total > 0 && item.id > 0 &&
-            item.quantity <= (item.maxQuantity + (item.reserveDb && this.entity.status != InvoiceStatus.Draft ? item.quantityDb ?? 0 : 0))
-          )){
+          if(this.productLineComponent.productItems?.every(item => item.quantity > 0 && item.unitPrice > 0 && item.total > 0 && item.id > 0 )){
               this.submitProductItems();
           }else {
               this.toastr.error(
@@ -258,25 +236,14 @@ isInvoiceHeaderFormSubmitted:boolean = false;
           }
           
         } else if(this.activeIndex == 2){
-          if(this.installmentComponent?.installments?.length > 0){
-this.submitInvoiceInstallments();
-this.GetById();
-          }else {
-             this.toastr.error(
-       this.translate.instant('error'),
-       this.translate.instant('sales-invoice.oneInstallment'),
-           { timeOut: 3000 })
-          }
-    }
+            this.onSubmitInvoice();
+            }
 
     
         }else {
           switch(this.activeIndex){
             case 0:
             this.getProductLineItems(this.entity.id);
-            break;
-            case 1:
-              this.getInvoiceInstallments(this.entity.id);
             break;
           }
            this.activeIndex++;
@@ -404,21 +371,15 @@ this.baseService.Get('WarehouseSections' , 'GetWarehouseSectionsByLoggedInUser')
     })
   }
 
-   getInvoiceInstallments(invoiceid:number){
-    this.baseService.Get('Invoice' , 'GetInvoiceInstallments/' + invoiceid).subscribe(res => {
-      debugger;
-      this.invoiceInstallments = res as Installment[];
-    })
-  }
+
 
   submitProductItems(){
     let form =  {
       invoiceId: this.id,
       Products: this.productLineComponent.productItems
     }
-    this.baseService.Post('Invoice' , 'SubmitProductItems' , form).subscribe(res => {
+    this.baseService.Post('Invoice' , 'SubmitQuotationProductItems' , form).subscribe(res => {
       this.GetById();
-      this.getInvoiceInstallments(this.id);
       this.getProductLineItems(this.id);
        this.toastr.success(
        this.translate.instant('success'),
@@ -428,41 +389,12 @@ this.baseService.Get('WarehouseSections' , 'GetWarehouseSectionsByLoggedInUser')
     })
   }
 
-submitInvoiceInstallments(validateCredit = true){
-  debugger;
-    let pad = (n: number) => n.toString().padStart(2, '0');
-    let form =  {
-      invoiceId: this.id,
-      installments: this.installmentComponent.installments.map(installment => {
-        installment.dueDate = installment.dueDateControl ? `${installment.dueDateControl.year}-${pad(installment.dueDateControl.month)}-${pad(installment.dueDateControl.day)}`   : new Date();
-        installment.paidDate = installment.paidDateControl ?  `${installment.paidDateControl.year}-${pad(installment.paidDateControl.month)}-${pad(installment.paidDateControl.day)}` : null;
-        installment.status = Number(installment.status);
-        return installment;
-      })
-    }
-    
-    if(this.entity.customerId && validateCredit){
-      let validateCustomerCreditForm = form as any;
-      validateCustomerCreditForm.customerId = this.entity.customerId;
-  this.baseService.Post('Invoice' , 'ValidateCustomerCreditLimit' , form).subscribe(res => {
-    let response = res as any;
-     if(response.isSuccess) {
-        this.PostInvoiceInstallment(form);
-    }else {
-         this.creditLimitModelMessage = response.message;
-         this.openOpenCustomerCreditLimit();
-    }
-    })
-    } 
-    else {
-    this.PostInvoiceInstallment(form);
-    }
-  }
+
 
 
   onSubmitInvoice(){
-     this.baseService.Post('Invoice' , 'SubmitInvoice' , this.id).subscribe(res => {
-      this.router.navigate(['/invoice-management/sales-invoice'])
+     this.baseService.Post('Invoice' , 'SubmitQuotation' , this.id).subscribe(res => {
+      this.router.navigate(['/invoice-management/quotation'])
        this.toastr.success(
        this.translate.instant('success'),
        this.translate.instant('sales-invoice.invoiceSubmitted'),
@@ -477,44 +409,18 @@ submitInvoiceInstallments(validateCredit = true){
      this.invoiceHeaderForm.get('customerId').disable();
      this.invoiceHeaderForm.get('customerName').disable();
      this.invoiceHeaderForm.get('sourceType').disable();
-     this.invoiceHeaderForm.get('paymentMethod').disable();
-     this.invoiceHeaderForm.get('isDeliveredOrReceived').disable();
      this.invoiceHeaderForm.get('note').disable();
      this.invoiceHeaderForm.get('invoiceDate').disable();
      this.invoiceHeaderForm.get('additionalAttachmentFile').disable();
      this.invoiceHeaderForm.get('warehouseId').disable();
      this.invoiceHeaderForm.get('warehouseSectionId').disable();
-     this.invoiceHeaderForm.get('deliveryDate').disable();
   }
 
-  PostInvoiceInstallment(form){
-    this.baseService.Post('Invoice' , 'SubmitInvoiceInstallments' , form).subscribe(res => {
-      this.invoiceInstallments = res as Installment[];
-      this.GetById();
-       this.toastr.success(
-       this.translate.instant('success'),
-       this.translate.instant('sales-invoice.invoiceInstallmentUpdateSuccessfully'),
-    { timeOut: 3000 })
-     this.activeIndex++;
-    })
-  }
 
-  openOpenCustomerCreditLimit() {
-	this.modalService.open(this.customerCreditLimitModel, {
-			windowClass: 'change-password-popup',
-			ariaLabelledBy: 'modal-basic-title', 
-			size: 'md',
-			centered: true
-		})
-		.result.then((result) => {
-			console.log(result);
-		}, (reason) => {
-			console.log('Err!', reason);
-		});
-	}
+ 
 
   backToTransactionList(){
-    this.router.navigate(['/invoice-management/sales-invoice'])
+    this.router.navigate(['/invoice-management/quotation'])
   }
 
      filterCustomers(event: any) {
@@ -528,5 +434,4 @@ submitInvoiceInstallments(validateCredit = true){
         this.filteredCustomers = res 
     })
     }
-
 }
