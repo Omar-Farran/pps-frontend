@@ -24,7 +24,10 @@ columns: any[] = [
     { name: "sales-invoice.status", field: "invoiceStatus" ,  isTranslate:true }
   ];
     actionList: any[] = [
-    { name: "quotation.convert-quotation-invoice", icon: "change", permission: "Convert-Quotation" }
+    { name: "sales-invoice.view", icon: "change", permission: "Convert-Quotation" },
+    { name: "quotation.convert-quotation-invoice", icon: "change", permission: "Convert-Quotation" },
+    { name: "quotation.cancel", icon: "change", permission: "Convert-Quotation" }
+
 
 
   ];
@@ -131,11 +134,21 @@ let pad = (n: number) => n.toString().padStart(2, '0');
 
     onHandleAction(event) {
     switch (event.action.name) {
-         case "quotation.convert":
+         case "quotation.convert-quotation-invoice":
         {
            this.onConvertQuotation(event.data);
         }
         break;
+         case "sales-invoice.view":
+        {
+            this.onView(event.data);
+        }
+         break;
+            case "quotation.cancel":
+        {
+            this.onCancelInvoice(event.data);
+        }
+         break;
     }
   }
 
@@ -180,4 +193,21 @@ let pad = (n: number) => n.toString().padStart(2, '0');
     this.onSearch();
       })
     }
+
+      onView(data) {
+    this.id = data.id;
+        this.router.navigate(['invoice-management/invoice/view/' + this.id]);
+  }
+
+     onCancelInvoice(data){
+      this.id = data.id;
+      this.baseService.Post('Invoice' , 'CancelInvoice' , this.id).subscribe(res => {
+          this.toastr.success(
+       this.translate.instant('success'),
+       this.translate.instant('sales-invoice.cancelInvoice'),
+    { timeOut: 3000 })
+    this.onSearch();
+      })
+    }
+
 }

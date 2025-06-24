@@ -541,7 +541,7 @@
     "reports": "Reports",
     "products-barcode": "Products Barcodes",
     "quotation":"Quotations",
-    "quotation-convert":"Convert Quotations"
+    "quotation-convert":"Quotation Approvels"
   },
   "factory": {
     "factoryManagment": "Factory Management",
@@ -1305,7 +1305,7 @@
     "cancel":"Cancel Quotation",
     "copy":"Copy Quotation",
     "copyquotationsuccess":"Quotation Copied Successfully",
-    "convert-quotation":"Convert quotation",
+    "convert-quotation":"Quotation Approvals",
     "convertedsuccess":"Quotation converted to invoice",
     "customers":"Customers",
     "convert-quotation-invoice":"Convert quotation to invoice",

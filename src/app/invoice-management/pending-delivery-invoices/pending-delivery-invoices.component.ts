@@ -25,6 +25,7 @@ columns: any[] = [
     { name: "sales-invoice.status", field: "invoiceStatus" ,  isTranslate:true }
   ];
     actionList: any[] = [
+    { name: "sales-invoice.view", icon: "change", permission: "Pending-Delivery-Invoices" },
     { name: "sales-invoice.changedeliverydate", icon: "change", permission: "Pending-Delivery-Invoices" },
     { name: "sales-invoice.markasdelivered", icon: "change", permission: "Pending-Delivery-Invoices" }
   ];
@@ -162,6 +163,11 @@ deliveryDate:any;
         }
         
         break;
+        case "sales-invoice.view":
+        {
+            this.onView(event.data);
+        }
+         break;
     }
   }
 
@@ -247,4 +253,9 @@ deliveryDate:any;
         this.filteredInvoices = res 
     })
     }
+
+     onView(data) {
+    this.id = data.id;
+        this.router.navigate(['invoice-management/invoice/view/' + this.id]);
+  }
 }

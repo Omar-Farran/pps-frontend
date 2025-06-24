@@ -9,7 +9,7 @@ import { ProductLineItem } from 'src/app/data/product-line-item';
 import { SelectItem } from 'src/app/data/select-item';
 import { InstallmentComponent } from 'src/app/shared/components/installment/installment.component';
 import { ProductLineItemsComponent } from 'src/app/shared/components/product-line-items/product-line-items.component';
-import { ClientType, paymentMethods, sourceTypes , SourceType, InvoiceType, InvoiceStatus } from 'src/app/shared/models/enum';
+import { ClientType, paymentMethods, sourceTypes , SourceType, InvoiceType, InvoiceStatus, PaymentMethod } from 'src/app/shared/models/enum';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { BaseService } from 'src/app/shared/services/base.service';
 import { environment } from 'src/environments/environment';
@@ -65,7 +65,8 @@ isInvoiceHeaderFormSubmitted:boolean = false;
         additionalAttachmentFile:new FormControl(null),
         warehouseId:new FormControl(null),
         warehouseSectionId:new FormControl(null),
-        type:new FormControl(InvoiceType.QuotationInvoice)
+        type:new FormControl(InvoiceType.QuotationInvoice),
+        paymentMethod:new FormControl(PaymentMethod.Cash)
       }
     );
 
@@ -137,6 +138,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
        let pad = (n: number) => n.toString().padStart(2, '0');
        form.invoiceDate = `${date.year}-${pad(date.month)}-${pad(date.day)}`;
     form.additionalAttachmentFile = this.additionalAttachmentFile;
+    form.paymentMethod = PaymentMethod.Cash;
     this.baseService.postItemFromForm(ControllerPath , ApiPath , form).subscribe
     ( res => { 
         this.id = res as number;

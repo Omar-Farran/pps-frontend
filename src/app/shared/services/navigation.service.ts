@@ -245,6 +245,18 @@ export class NavigationService {
             permissions: 'Invoice-Management',
             sub: [
                 {
+                    name: 'navigation.quotation',
+                    state: '/invoice-management/quotation',
+                    type: 'link',
+                    permissions: 'Quotation-List',
+                },
+                {
+                    name: 'navigation.quotation-convert',
+                    state: '/invoice-management/quotation/convert',
+                    type: 'link',
+                    permissions: 'Convert-Quotation',
+                },
+                {
                     name: 'navigation.sales-invoices',
                     state: '/invoice-management/sales-invoice',
                     type: 'link',
@@ -261,19 +273,8 @@ export class NavigationService {
                     state: '/invoice-management/sales-invoice/installments',
                     type: 'link',
                     permissions: 'Installments',
-                },
-                {
-                    name: 'navigation.quotation',
-                    state: '/invoice-management/quotation',
-                    type: 'link',
-                    permissions: 'Quotation-List',
-                },
-                {
-                    name: 'navigation.quotation-convert',
-                    state: '/invoice-management/quotation/convert',
-                    type: 'link',
-                    permissions: 'Convert-Quotation',
                 }
+                
             ]
         },
         {

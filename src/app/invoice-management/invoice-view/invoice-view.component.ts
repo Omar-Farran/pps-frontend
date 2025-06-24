@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Installment } from 'src/app/data/installment';
 import { ProductLineItem } from 'src/app/data/product-line-item';
 import { InvoiceType } from 'src/app/shared/models/enum';
@@ -19,7 +19,8 @@ hideQuotationValues:boolean = false;
   constructor
       (
         private route:ActivatedRoute,
-        private baseService: BaseService)
+        private baseService: BaseService,
+      private router:Router)
       {
              this.route.params.subscribe((params) => {
       this.id = params["id"];
@@ -53,5 +54,13 @@ hideQuotationValues:boolean = false;
             debugger;
             this.installments = res as Installment[];
           })
+        }
+
+        navigate(){
+          if(this.entity.type == 1){
+            this.router.navigate(['/invoice-management/sales-invoice'])
+          }else {
+            this.router.navigate(['/invoice-management/quotation'])
+          }
         }
 }

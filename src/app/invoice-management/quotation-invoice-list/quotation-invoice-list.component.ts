@@ -24,12 +24,10 @@ columns: any[] = [
     { name: "sales-invoice.status", field: "invoiceStatus" ,  isTranslate:true }
   ];
     actionList: any[] = [
-    { name: "sales-invoice.view", icon: "change", permission: "Quotation-List" },
+    { name: "sales-invoice.view", icon: "change", permission: "Quotation-Form" },
     { name: "common.edit", icon: "change", permission: "Quotation-Form" },
     { name: "quotation.copy", icon: "change", permission: "Quotation-Form" },
     { name: "quotation.cancel", icon: "change", permission: "Quotation-Form" }
-
-
   ];
 warehouses:any;
 sections:any;
