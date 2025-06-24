@@ -221,6 +221,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
 
           if(this.entity.status != InvoiceStatus.Draft){
             this.invoiceHeaderForm.get('sourceType').disable();
+            this.invoiceHeaderForm.get('warehouseSectionId').disable();
           }
 
         
