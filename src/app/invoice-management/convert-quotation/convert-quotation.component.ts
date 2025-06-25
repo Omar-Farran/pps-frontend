@@ -72,12 +72,22 @@ deliveryDate:any;
     private toastr: ToastrService
     
   ) 
-  {}
+  {
+    const date = new Date();
+    const newDate = {
+                          year: date.getFullYear(),
+                          month: date.getMonth() + 1, 
+                          day: date.getDate()
+                        }
+    this.searchForm.get('invoiceDateFrom').setValue(newDate);
+     this.searchForm.get('invoiceDateTo').setValue(newDate);
+
+  }
   ngOnInit() : void 
   {
-    this.getList()
     this.onSearch();
-    this.searchInvoices = this.translate.instant('quotation.search-quotation')
+    this.searchInvoices = this.translate.instant('quotation.search-quotation');
+    
 
   }
   //#region Getters

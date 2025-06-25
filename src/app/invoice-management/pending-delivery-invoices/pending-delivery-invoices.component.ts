@@ -73,7 +73,7 @@ deliveryDate:any;
   ) 
   {
 
-        const date = new Date();
+    const date = new Date();
     const newDate = {
                           year: date.getFullYear(),
                           month: date.getMonth() + 1, 
@@ -84,7 +84,6 @@ deliveryDate:any;
   }
   ngOnInit() : void 
   {
-    this.getList()
     this.onSearch();
     this.searchInvoices = this.translate.instant('sales-invoice.seasrch-invoice')
 

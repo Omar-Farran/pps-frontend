@@ -70,10 +70,20 @@ deliveryDate:any;
     private toastr: ToastrService
     
   ) 
-  {}
+  {
+  
+
+  }
   ngOnInit() : void 
   {
-    this.getList()
+      const date = new Date();
+      const newDate = {
+                          year: date.getFullYear(),
+                          month: date.getMonth() + 1, 
+                          day: date.getDate()
+                        }
+    this.searchForm.get('invoiceDateFrom').setValue(newDate);
+     this.searchForm.get('invoiceDateTo').setValue(newDate);
     this.onSearch();
     this.searchInvoices = this.translate.instant('quotation.search-quotation')
 
