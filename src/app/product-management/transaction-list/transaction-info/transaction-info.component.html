@@ -18,7 +18,7 @@
     <div class="col-md-12">
         <div class="card mb-4">
              <div class="card-header">
-                    <h4>{{ entity.type }}</h4>
+                    <h4>{{ entity.type }} <span *ngIf="entity.invoiceNumber"> | {{ entity.invoiceNumber}}</span> </h4>
                  </div>
 
             <div class="card-body">
@@ -83,9 +83,9 @@
                           <table class="table table-bordered">
     <thead>
       <tr>
-        <th >Product</th>
-        <th *ngIf="entity.type == 'Reciving'">Ordered Quantity</th>
-        <th>Quantity</th>
+        <th >{{'transaction.product' | translate }}</th>
+        <th *ngIf="entity.type == 'Reciving'"> {{'transaction.orderQuantity' | translate }} </th>
+        <th>{{'transaction.quantity' | translate }}</th>
       </tr>
     </thead>
     <tbody  *ngIf="entity?.transactionProduct?.length > 0">

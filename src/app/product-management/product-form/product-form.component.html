@@ -224,6 +224,38 @@
           
             </div>
 
+             <div class="col-12 col-sm-6 form-group ">
+                <label>{{'product-management.purchaseTax' | translate }}</label>
+                <input 
+                    type="number" 
+                    placeholder="{{'product-management.purchaseTax' | translate }}" 
+                    class="form-control" 
+                    formControlName="purchaseTax"
+                    [class.is-invalid]="isDetailsFormSubmitted && detailsForm.get('purchaseTax')?.errors"
+                >
+                <div class="invalid-feedback">
+                    {{'common.fieldRequired'|translate}}
+                </div>
+            </div>
+
+              <div class="col-12 col-sm-6 form-group ">
+                <label>{{'product-management.purchaseDiscount' | translate }}</label>
+                <input 
+                    type="number" 
+                    max="100" 
+                    placeholder="{{'product-management.purchaseDiscount' | translate }}" 
+                    class="form-control" 
+                    formControlName="purchaseDiscount"
+                    [class.is-invalid]="isDetailsFormSubmitted &&  detailsForm && detailsForm.get('purchaseDiscount')?.errors"
+                >
+                <div class="invalid-feedback"
+                                *ngIf="detailsForm.get('purchaseDiscount').invalid &&  detailsForm.get('purchaseDiscount').errors['maxValue']">
+                                {{'common.maxValue'|translate}}
+          </div>
+
+          
+            </div>
+
             <ng-container *ngIf="!isEditMood"> 
       <div class="col-md-6 form-group mb-3">
                             <label for="picker1"> {{ "product-management.defaultWarehouse" | translate }}</label>
@@ -403,25 +435,29 @@
   
 </div>
 
-<div   class="mt-3 d-flex">
-                   <button
+<div class="mt-3 d-flex justify-content-between">
+  <!-- Previous Button -->
+  <button
     type="button"
-    class="btn btn-light btn-rounded mr-2"
+    class="btn btn-light btn-rounded"
     tabindex="-1"
-    (click)="previous()" [disabled]="activeIndex === 0"
+    (click)="previous()"
+    [disabled]="activeIndex === 0"
   >
     {{ "Previous" | translate }}
   </button>
 
-           <button
-           *ngIf="authSerivce.hasPermission('Product-Form')"
+  <!-- Next/Save Button -->
+  <button
+    *ngIf="authSerivce.hasPermission('Product-Form')"
     type="button"
-  (click)="next()"  class="btn btn-primary btn-rounded m-l"
+    (click)="next()"
+    class="btn btn-primary btn-rounded"
   >
-    {{  (activeIndex === steps.length - 1 ? "Save" :  "Next") | translate }}
+    {{ (activeIndex === steps.length - 1 ? "Save" : "Next") | translate }}
   </button>
-
 </div>
+
 
 
 

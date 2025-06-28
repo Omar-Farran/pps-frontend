@@ -127,7 +127,7 @@
                             (change)="onSourceTypeChange($event.target.value)"
                             >
                                <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
-                              <option *ngFor="let item of sourceTypes" value="{{item.id}}" >{{item.name}}</option>
+                              <option *ngFor="let item of sourceTypes" value="{{item.id}}" >{{item.name | translate}}</option>
                             </select>
                             <div  class="invalid-feedback">
                                     {{ "common.fieldRequired" | translate }}
@@ -162,7 +162,7 @@
                             [class.is-invalid]="isInvoiceHeaderFormSubmitted &&  invoiceHeaderForm && invoiceHeaderForm.get('paymentMethod')?.errors"
                             >
                                <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
-                              <option *ngFor="let item of paymentMethods" value="{{item.id}}" >{{item.name}}</option>
+                              <option *ngFor="let item of paymentMethods" value="{{item.id}}" >{{item.name | translate}}</option>
                             </select>
                             <div  class="invalid-feedback">
                                     {{ "common.fieldRequired" | translate }}
@@ -366,24 +366,29 @@
     
 
 
-  <div class="mt-3 d-flex">
-                   <button
+<div class="mt-3 d-flex justify-content-between">
+  <!-- زر السابق -->
+  <button
     type="button"
-    class="btn btn-light btn-rounded mr-2"
+    class="btn btn-light btn-rounded"
     tabindex="-1"
-    (click)="previous()" [disabled]="activeIndex === 0"
+    (click)="previous()"
+    [disabled]="activeIndex === 0"
   >
     {{ "Previous" | translate }}
   </button>
 
-           <button *ngIf="!(activeIndex === steps.length - 1)"
+  <!-- زر التالي -->
+  <button
+    *ngIf="!(activeIndex === steps.length - 1)"
     type="button"
-  (click)="next()"  class="btn btn-primary btn-rounded m-l"
+    (click)="next()"
+    class="btn btn-primary btn-rounded"
   >
-    {{    "Next" | translate }}
+    {{ "Next" | translate }}
   </button>
-
 </div>
+
 
 
 </div>

@@ -2,7 +2,7 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { InvoiceStatus, InvoiceType } from 'src/app/shared/models/enum';
+import { InvoiceType } from 'src/app/shared/models/enum';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { BaseService } from 'src/app/shared/services/base.service';
 import { LanguageService } from 'src/app/shared/services/language.service';
@@ -10,23 +10,23 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-convert-quotation',
-  templateUrl: './convert-quotation.component.html',
-  styleUrls: ['./convert-quotation.component.scss']
+  selector: 'app-purchase-request-convert-invoice',
+  templateUrl: './purchase-request-convert-invoice.component.html',
+  styleUrls: ['./purchase-request-convert-invoice.component.scss']
 })
-export class ConvertQuotationComponent {
+export class PurchaseRequestConvertInvoiceComponent {
 columns: any[] = [
-    { name: "sales-invoice.invoiceNumber", field: "invoiceNumber" },
-    { name: "sales-invoice.InvoiceDate", field: "invoiceDate" , type:'date' },
-    { name: "sales-invoice.customerName", field: "customerName" },
-    { name: "sales-invoice.sourceType", field: "sourceTypeName" , isTranslate:true },
-    { name: "sales-invoice.totalAmount", field: "totalAmount" , type:'number' },
-    { name: "sales-invoice.status", field: "invoiceStatus" ,  isTranslate:true }
+    { name: "purchase-invoice.invoiceNumber", field: "invoiceNumber" },
+    { name: "purchase-invoice.InvoiceDate", field: "invoiceDate" , type:'date' },
+    { name: "purchase-invoice.supplier", field: "customerName" },
+    { name: "purchase-invoice.sourceType", field: "sourceTypeName" , isTranslate:true },
+    { name: "purchase-invoice.totalAmount", field: "totalAmount" , type:'number' },
+    { name: "purchase-invoice.status", field: "invoiceStatus" ,  isTranslate:true }
   ];
     actionList: any[] = [
     { name: "sales-invoice.view", icon: "change", permission: "Convert-Quotation" },
-    { name: "quotation.convert-quotation-invoice", icon: "change", permission: "Convert-Quotation" },
-    { name: "quotation.cancel", icon: "change", permission: "Convert-Quotation" }
+    { name: "purchase-invoice.convert-purchase-request-invoice", icon: "change", permission: "Convert-Quotation" },
+    { name: "purchase-invoice.cancel", icon: "change", permission: "Convert-Quotation" }
   ];
 warehouses:any;
 sections:any;
@@ -50,13 +50,14 @@ deliveryDate:any;
   {
     pageSize: 25,
     pageNumber: 0,
-    type:InvoiceType.QuotationInvoice,
+    type:InvoiceType.PurchaseRequestInvoice,
     invoiceDateFrom:null,
     invoiceDateTo:null,
     invoiceId:null,
     customerName:null,
     isConvertPage:true
   }
+  @ViewChild('changeDeliveryDate') changeDeliveryDateComp:TemplateRef<any>;
   //#endregion
   constructor 
   ( 
@@ -70,7 +71,7 @@ deliveryDate:any;
     
   ) 
   {
-    const date = new Date();
+   const date = new Date();
     const newDate = {
                           year: date.getFullYear(),
                           month: date.getMonth() + 1, 
@@ -83,8 +84,7 @@ deliveryDate:any;
   ngOnInit() : void 
   {
     this.onSearch();
-    this.searchInvoices = this.translate.instant('quotation.search-quotation');
-    
+    this.searchInvoices = this.translate.instant('sales-invoice.seasrch-invoice')
 
   }
   //#region Getters
@@ -100,13 +100,13 @@ deliveryDate:any;
   }
   //#endregion
   //#region Actions Handler
-  onAddQuotation () 
+  onAddPurchaseRequestInvoice () 
   {
-    this.router.navigate(['invoice-management/quotation/form']);
+    this.router.navigate(['purchase-management/purchase-request-invoice/form']);
   }
 
   
- 
+
   //#endregion
   //#region Filtering and Searching
   onSearch() {
@@ -127,7 +127,7 @@ let pad = (n: number) => n.toString().padStart(2, '0');
     
     }
       this.baseSearch.pageNumber = 0;
-      this.baseSearch.type = InvoiceType.QuotationInvoice;
+      this.baseSearch.type = InvoiceType.PurchaseRequestInvoice;
       this.baseSearch.isConvertPage = true;
       this.getList();
   }
@@ -141,9 +141,9 @@ let pad = (n: number) => n.toString().padStart(2, '0');
 
     onHandleAction(event) {
     switch (event.action.name) {
-         case "quotation.convert-quotation-invoice":
+         case "purchase-invoice.convert-purchase-request-invoice":
         {
-           this.onConvertQuotation(event.data);
+           this.onConvertPurchaseRequest(event.data);
         }
         break;
          case "sales-invoice.view":
@@ -151,7 +151,7 @@ let pad = (n: number) => n.toString().padStart(2, '0');
             this.onView(event.data);
         }
          break;
-            case "quotation.cancel":
+            case "purchase-invoice.cancel":
         {
             this.onCancelInvoice(event.data);
         }
@@ -160,11 +160,20 @@ let pad = (n: number) => n.toString().padStart(2, '0');
   }
 
 
-    
+
+    onView(data) {
+        this.id = data.id;
+        this.router.navigate(['invoice-management/invoice/view/' + this.id]);
+  }
 
 
  
 
+  onChageStatus (entity) 
+  {
+    this.baseService.Get('Invoice', `UpdateStatus/${entity.id}`).subscribe
+    ( res => { this.getList() } )
+  }
 
 
   resetSearchForm(){
@@ -187,26 +196,7 @@ let pad = (n: number) => n.toString().padStart(2, '0');
     })
     }
 
-  
-
-     onConvertQuotation(data){
-      this.id = data.id;
-      this.baseService.Post('Invoice' , 'ConvertToInvoice' , this.id).subscribe(id => {
-         this.router.navigate(['invoice-management/sales-invoice/form/' + id]);
-          this.toastr.success(
-       this.translate.instant('success'),
-       this.translate.instant('quotation.convertedsuccess'),
-    { timeOut: 3000 })
-    this.onSearch();
-      })
-    }
-
-      onView(data) {
-    this.id = data.id;
-        this.router.navigate(['invoice-management/invoice/view/' + this.id]);
-  }
-
-     onCancelInvoice(data){
+    onCancelInvoice(data){
       this.id = data.id;
       this.baseService.Post('Invoice' , 'CancelInvoice' , this.id).subscribe(res => {
           this.toastr.success(
@@ -217,4 +207,18 @@ let pad = (n: number) => n.toString().padStart(2, '0');
       })
     }
 
+    
+
+
+      onConvertPurchaseRequest(data){
+      this.id = data.id;
+      this.baseService.Post('Invoice' , 'ConvertToInvoice' , this.id).subscribe(id => {
+         this.router.navigate(['purchase-management/purchase-invoice/form/' + id]);
+          this.toastr.success(
+       this.translate.instant('success'),
+       this.translate.instant('purchase-invoice.convertedsuccess'),
+    { timeOut: 3000 })
+    this.onSearch();
+      })
+    }
 }

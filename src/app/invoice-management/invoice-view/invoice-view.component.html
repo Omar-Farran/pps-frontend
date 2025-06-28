@@ -27,7 +27,7 @@
                              <span class="value" > {{entity.invoiceDate}} </span>
                 </div>
                   <div class="col-md-4 form-group mb-3">
-                            <label>{{'invoice.customerName' | translate}}</label>
+                            <label>{{ (isPurchase ?  'purchase-invoice.supplier' : 'invoice.customerName' ) | translate}}</label>
                              <span class="value" > {{entity.customerName}} </span>
                 </div>
 
@@ -40,7 +40,7 @@
                              <span class="value" > {{entity.sourceTypeName | translate}} </span>
                 </div>
                  <div  class="col-md-4 form-group mb-3">
-                            <label>{{'invoice.isDeliverd' | translate}}</label>
+                            <label>{{ (isPurchase ?  'purchase-invoice.isReceived' : 'invoice.isDeliverd' )  | translate}}</label>
                              <span class="value" > {{entity.isDeliveredOrReceived }} </span>
                 </div>
 
@@ -53,7 +53,7 @@
                      <div  *ngIf="entity.sectionName" class="col-md-4 form-group mb-3">
                             <label>{{'invoice.section' | translate}}</label>
                              <span class="value" > {{entity.sectionName }} </span>
-                </div>
+                </div>`
           
                      <div   class="col-md-4 form-group mb-3">
                             <label>{{'invoice.note' | translate}}</label>
@@ -87,7 +87,7 @@
         <th>Tax %</th>
         <th>Fees Amount</th>
         <th>Total</th>
-        <th *ngIf="!hideQuotationValues">Reserve</th>
+        <th *ngIf="!hideQuotationValues && !isPurchase">Reserve</th>
       </tr>
     </thead>
     <!-- <form  > -->
@@ -117,7 +117,7 @@
          <td>
               {{item.total}}
         </td>
-        <td *ngIf="!hideQuotationValues">
+        <td *ngIf="!hideQuotationValues && !isPurchase">
             {{item.reserve }}
         </td>
       </tr>

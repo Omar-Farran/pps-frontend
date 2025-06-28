@@ -16,6 +16,7 @@ id:number;
 products:ProductLineItem[];
 installments:Installment[];
 hideQuotationValues:boolean = false;
+isPurchase:boolean;
   constructor
       (
         private route:ActivatedRoute,
@@ -35,9 +36,11 @@ hideQuotationValues:boolean = false;
     this.baseService.Get('Invoice', `View/${this.id}`).subscribe
       (res => {
         this.entity = res;
-        if(this.entity.type == 3){
+        //Quotation & Purchase Request
+        if(this.entity.type == 3 || this.entity.type == 4){
           this.hideQuotationValues = true;
         }
+        this.isPurchase = this.entity.type == InvoiceType.PurchaseInvoice || this.entity.type == InvoiceType.PurchaseRequestInvoice;
       })
     }
 

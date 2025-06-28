@@ -10,11 +10,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-invoice-installment',
-  templateUrl: './invoice-installment.component.html',
-  styleUrls: ['./invoice-installment.component.scss']
+  selector: 'app-purchase-installment',
+  templateUrl: './purchase-installment.component.html',
+  styleUrls: ['./purchase-installment.component.scss']
 })
-export class InvoiceInstallmentComponent {
+export class PurchaseInstallmentComponent {
 columns: any[] = [
     { name: "invoice-installment.invoiceNumber", field: "invoiceNumber" },
     { name: "invoice-installment.dueDate", field: "dueDate" , type:'date' },
@@ -51,7 +51,7 @@ dataSource: any[] = [];
     dueDateFrom:null,
     dueDateTo:null,
     invoiceId:null,
-    invoiceType:InvoiceType.SalesInvoice
+    invoiceType:InvoiceType.PurchaseInvoice
   }
   //#endregion
   constructor 
@@ -115,15 +115,19 @@ dataSource: any[] = [];
     }
   
     }
-    if(searchFormValue.status)
+    if(searchFormValue.status) {
        this.baseSearch.status = Number(searchFormValue.status);
-      else 
+
+    }
+      else {
       this.baseSearch.status = null;
+      }
        this.baseSearch.invoiceId = searchFormValue.invoiceNumber?.id;
       this.baseSearch.pageNumber = 0;
-      this.baseSearch.invoiceType = InvoiceType.SalesInvoice;
+        this.baseSearch.invoiceType = InvoiceType.PurchaseInvoice;
       this.getList();
   }
+  
   onPageChange (event: any): void 
   {
     this.baseSearch.pageNumber = event.PageIndex - 1;

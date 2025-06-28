@@ -18,8 +18,10 @@ export class ProductLineItemsComponent  implements OnChanges {
 @Input() sourceId:any;
 @Input() invoice:any;
 filteredProducts:any;
+isPurchase:boolean;
 itemLabel:any;
 showReserve:boolean;
+
  constructor
     (
       private baseService: BaseService
@@ -40,8 +42,13 @@ showReserve:boolean;
     return prod;
         })
       }
-      //InvoiceType.QuotationInvoice
+
       this.showReserve = this.invoice.type != 3;
+      if(this.invoice.type == InvoiceType.PurchaseInvoice || this.invoice.type == InvoiceType.PurchaseRequestInvoice){
+         this.isPurchase = true;
+        this.showReserve = false;
+      }
+    
 
   }
 
@@ -80,7 +87,7 @@ onSelectProduct(lineItem: any, event: any) {
   const productId = event?.value?.id;
   debugger;
   if (!productId) return;
-  this.baseService.Get('Product', 'GetProductLineItem?SourceType=' + this.sourceType + '&SourceId=' +  this.sourceId + '&Id=' + productId).subscribe(res => {
+  this.baseService.Get('Product', 'GetProductLineItem?SourceType='+ this.sourceType + '&invoiceType=' + this.invoice.type +  '&SourceId=' +  this.sourceId + '&Id=' + productId).subscribe(res => {
     const productLineItem = res as ProductLineItem;
     this.productItems[lineItem.index] = productLineItem;
     this.productItems[lineItem.index].product = event.value;

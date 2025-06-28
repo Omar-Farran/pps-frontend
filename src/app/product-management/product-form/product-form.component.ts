@@ -18,6 +18,7 @@ import { environment } from 'src/environments/environment';
 export class ProductFormComponent {
   imageUrl:string = '';
   activeIndex: number = 0;
+  translateS:any;
   showFollowItemDiv:boolean = false;
   isCompleted: boolean;
   isFormSubmitted:boolean = false;
@@ -55,8 +56,8 @@ export class ProductFormComponent {
      detailsForm = new FormGroup ({
      descriptionEn: new FormControl('', [englishTextWithNumbersValidator,noWhitespaceValidator() , Validators.maxLength(100)]),
      descriptionAr: new FormControl('', [arabicTextWithNumbersValidator(), noWhitespaceValidator() ]),
-     salesTax: new FormControl(null),
-     discount: new FormControl(null, [maxValueValidator(100)]),
+     salesTax: new FormControl(0),
+     discount: new FormControl(0),
      Image:new FormControl(),
      followItem: new FormControl(false),
      onlyDefault: new FormControl(false),
@@ -64,9 +65,11 @@ export class ProductFormComponent {
      quantityValue:new FormControl(0),
      expDate:new FormControl(),
      expirationDays: new FormControl(),
-        currentStock:new FormControl(null),
-        defaultWarehouseId:new FormControl(null),
-        warehouseSectionId: new FormControl(null)
+     currentStock:new FormControl(null),
+     defaultWarehouseId:new FormControl(null),
+     warehouseSectionId: new FormControl(null),
+     purchaseTax:new FormControl(0),
+     purchaseDiscount:new FormControl(0)
     })
    followForm = new FormGroup({
 
@@ -80,7 +83,9 @@ export class ProductFormComponent {
       private toastr: ToastrService,
       private translate: TranslateService,
     ) 
-    {}
+    {
+      this.translateS = this.translate;
+    }
     ngOnInit (): void 
     {
       
@@ -208,6 +213,8 @@ export class ProductFormComponent {
                 quantityValue:this.entity.quantityValue,
                 salesTax:this.entity.salesTax,
                 discount:this.entity.discount,
+                purchaseTax:this.entity.purchaseTax,
+                purchaseDiscount:this.entity.purchaseDiscount,
                 currentStock:this.entity.currentStock,
                 defaultWarehouseId:this.entity.DefaultWarehouseId,
                 warehouseSectionId: this.entity.WarehouseSectionId,

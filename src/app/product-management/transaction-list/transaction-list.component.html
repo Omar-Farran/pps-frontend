@@ -15,7 +15,7 @@
                             <label for="picker1"> {{ "transaction.type" | translate }}</label>
                             <select class="form-control" formControlName="type" name="type" >
                                <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
-                              <option *ngFor="let item of types" value="{{item.id}}" >{{item.name}}</option>
+                              <option *ngFor="let item of types" value="{{item.id}}" >{{item.name | translate }}</option>
                             </select>
                            
                         </div>

@@ -37,6 +37,11 @@ const adminRoutes: Routes = [
     canActivate: [AuthGaurd]
   },
   {
+    path: 'purchase-management',
+    loadChildren: () => import('./purchase-management/purchase-management.module').then(m => m.PurchaseManagementModule),
+    canActivate: [AuthGaurd]
+  },
+  {
     path: 'lookups-managment',
     loadChildren: () => import('./lookups/lookups.module').then(m => m.LookupsModule),
     canActivate: [AuthGaurd]

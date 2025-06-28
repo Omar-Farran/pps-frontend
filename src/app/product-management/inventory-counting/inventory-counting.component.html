@@ -87,7 +87,7 @@
                   <select class="form-control" formControlName="sourceType" name="sourceType"
                     [class.is-invalid]="isFormSubmitted && calculationForm.get('sourceType')?.errors">
                     <option [ngValue]="null" selected>{{ "select" | translate }}</option>
-                    <option *ngFor="let item of sourceTypes" [value]="item.id">{{ item.name }}</option>
+                    <option *ngFor="let item of sourceTypes" [value]="item.id">{{ item.name | translate }}</option>
                   </select>
                   <div class="invalid-feedback">
                     {{ "common.fieldRequired" | translate }}

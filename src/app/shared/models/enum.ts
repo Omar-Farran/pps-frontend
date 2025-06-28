@@ -280,7 +280,7 @@ export const transactionTypes  =
         { id: 1, name: 'Reciving', nameAr: 'استقبال' },
         { id: 2, name: 'Issueance', nameAr: 'الإصدار' },
         { id: 3, name: 'Transfer', nameAr: 'فرع' },
-        { id: 4, name: 'Export To Branch', nameAr: 'تصدير الى فرع' },
+        { id: 4, name: 'ExportToBranch', nameAr: 'تصدير الى فرع' },
 
     ];
 
@@ -300,7 +300,7 @@ export const transactionTypes  =
 
     
     export const installmentStatus = [
-        { id: 1, name: 'Un Paid', nameAr: 'غير مدفوع' },
+        { id: 1, name: 'UnPaid', nameAr: 'غير مدفوع' },
         { id: 2, name: 'Paid', nameAr: 'مدفوع' },
         { id: 3, name: 'Overdue', nameAr: 'متأخر' }
     ]

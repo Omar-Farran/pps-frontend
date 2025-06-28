@@ -32,11 +32,11 @@
     <thead>
       <tr>
         <th>#</th>
-        <th >Due Date</th>
-        <th>Amount</th>
-        <th *ngIf="invoice?.paymentMethod == 2">Cheque Number</th>
-        <th>Status</th>
-        <th>Paid Date</th>
+        <th >{{'installment-line.dueDate' | translate}}</th>
+        <th>{{'installment-line.amount' | translate}} </th>
+        <th *ngIf="invoice?.paymentMethod == 2">{{'installment-line.chequeNumber' | translate}}</th>
+        <th>{{'installment-line.status' | translate}} </th>
+        <th>{{'installment-line.paidDate' | translate}}</th>
       </tr>
     </thead>
     <!-- <form  > -->
@@ -82,7 +82,7 @@
          <td>
           
                             <select class="form-control" [(ngModel)]="item.status" name="status{{i}}" [disabled]="invoice.isBalanceUpdated"  >
-                              <option *ngFor="let item of installmentStatus" value="{{item.id}}" >{{item.name}}</option>
+                              <option *ngFor="let item of installmentStatus" value="{{item.id}}" >{{item.name | translate}}</option>
                             </select>
                             <div  class="invalid-feedback">
                                     {{ "common.fieldRequired" | translate }}

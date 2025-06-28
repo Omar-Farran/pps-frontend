@@ -3,7 +3,7 @@
     <div class="card-body">
 <div class="modal-header">
   <h4 class="modal-title" >
-    {{ "quotation.quotation" | translate }}
+    {{ "purchase-invoice.purchase-invoice" | translate }}
   </h4>
   	<button type="button" class="close" aria-label="Close" (click)="backToTransactionList()">
 						<span aria-hidden="true">&times;</span>
@@ -18,7 +18,7 @@
 <div class="row">
  <div class="col-md-4 form-group mb-3 required">
         <label for="picker1">{{
-          "quotation.invoiceDate" | translate
+          "purchase-invoice.invoiceDate" | translate
         }}</label>
         <div class="input-group">
           <input
@@ -47,30 +47,14 @@
         </div>
 
       </div>
+       
 
-      
-
-
-      
-         <div class="col-md-4 form-group mb-3">
-
-<label class="switch switch-primary me-3 mt-4">
-                    <span>
-
-                        {{
-          "quotation.isCustomer" | translate
-        }}
-                    </span>
-                    <input type="checkbox"   formControlName="isCustomer" (change)="onIsCustomerChange()"  >
-                    <span class="slider"></span>
-                </label>
-         </div>
-                        		<div *ngIf="invoiceHeaderForm.get('isCustomer')?.value  == true"  class="col-md-4 form-group mb-3 required">
-                                  <label>{{ "quotation.customers" | translate }}</label>
+                        		<div  class="col-md-4 form-group mb-3 required">
+                                  <label>{{ "purchase-invoice.suppliers" | translate }}</label>
                                   <p-autoComplete
                                     formControlName="customerId"
                                     [suggestions]="filteredCustomers"
-                                    (completeMethod)="filterCustomers($event)"
+                                    (completeMethod)="filterSupplier($event)"
                                     field="name"
                                     [forceSelection]="true"
                                     [inputStyle]="{
@@ -88,26 +72,12 @@
                                   </div>
 
 
-        <div *ngIf="(invoiceHeaderForm.get('isCustomer')?.value == false)" class="col-md-4 form-group required">
-        <label>{{ "quotation.customerName" | translate }}</label>
-        <input
-          type="text"
-          maxlength="100"
-          placeholder="{{ 'quotation.customerName' | translate }}"
-          class="form-control"
-          formControlName="customerName"
-          [class.is-invalid]="isInvoiceHeaderFormSubmitted &&  invoiceHeaderForm && invoiceHeaderForm.get('customerName')?.errors"
-          [disabled]="invoice?.isBalanceUpdated"
-        />
-        <div class="invalid-feedback">
-          {{ "common.fieldRequired" | translate }}
-        </div>
-      </div>
+     
 
 
 
              <div class="col-md-4 form-group mb-3 required">
-                            <label for="sourceType"> {{ "quotation.sourceType" | translate }}</label>
+                            <label for="sourceType"> {{ "purchase-invoice.sourceType" | translate }}</label>
                             <select class="form-control" formControlName="sourceType" name="sourceType" 
                             [class.is-invalid]="isInvoiceHeaderFormSubmitted &&  invoiceHeaderForm && invoiceHeaderForm.get('sourceType')?.errors"
                             (change)="onSourceTypeChange($event.target.value)"
@@ -123,7 +93,7 @@
                          
 
                             <div *ngIf="invoiceHeaderForm.get('sourceType')?.value == warehouseSourceType" class="col-md-4 form-group mb-3 required">
-                            <label for="picker1"> {{ "quotation.section" | translate }}</label>
+                            <label for="picker1"> {{ "purchase-invoice.section" | translate }}</label>
                             <select class="form-control" formControlName="warehouseSectionId" name="warehouseSectionId"
                             [class.is-invalid]="isInvoiceHeaderFormSubmitted &&  invoiceHeaderForm && invoiceHeaderForm.get('warehouseSectionId')?.errors"
                            >
@@ -134,13 +104,76 @@
                                     {{ "common.fieldRequired" | translate }}
                                  </div>
                         </div>
+                        
 
-      <div class="col-md-8 form-group">
-        <label>{{ "quotation.note" | translate }}</label>
+            
+                       
+                  
+
+
+
+                           <div  class="col-md-4 form-group mb-3 required">
+                            <label for="paymentMethod"> {{ "purchase-invoice.paymentMethod" | translate }}</label>
+                            <select class="form-control" formControlName="paymentMethod" name="paymentMethod" 
+                            [class.is-invalid]="isInvoiceHeaderFormSubmitted &&  invoiceHeaderForm && invoiceHeaderForm.get('paymentMethod')?.errors"
+                            >
+                               <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
+                              <option *ngFor="let item of paymentMethods" value="{{item.id}}" >{{item.name | translate}}</option>
+                            </select>
+                            <div  class="invalid-feedback">
+                                    {{ "common.fieldRequired" | translate }}
+                                 </div>
+                           </div>
+
+                          
+        <div *ngIf="!entity?.status || entity?.status == invoiceStatusDraft" class="col-md-4 form-group mb-3">
+                    <label class="switch switch-primary me-3 mt-4">
+                    <span>  {{  "purchase-invoice.isReceived" | translate}} </span>
+                    <input type="checkbox"   formControlName="isDeliveredOrReceived"  >
+                    <span class="slider"></span>
+                    </label>
+         </div>
+
+          <div  class="col-md-4 form-group mb-3">
+        <label for="picker1">{{
+          "purchase-invoice.receivedDate" | translate
+        }}</label>
+      
+        <div class="input-group">
+          <input
+            id="deliveryDate"
+            class="form-control"
+            placeholder="yyyy-mm-dd"
+            name="deliveryDate"
+            formControlName="deliveryDate"
+            ngbDatepicker
+            #deliveryDate="ngbDatepicker"
+            [class.is-invalid]="isInvoiceHeaderFormSubmitted &&  invoiceHeaderForm && invoiceHeaderForm.get('deliveryDate')?.errors"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-secondary"
+              (click)="deliveryDate.toggle()"
+              type="button"
+            >
+              <i class="icon-regular i-Calendar-4"></i>
+            </button>
+          </div>
+        </div>
+         <div class="invalid-feedback" *ngIf="isInvoiceHeaderFormSubmitted && invoiceHeaderForm.get('deliveryDate')?.errors">
+                    <div *ngIf="invoiceHeaderForm.get('deliveryDate')?.errors?.required">
+                        {{ 'common.fieldRequired' | translate }}
+                    </div>
+                </div>
+      </div>
+
+
+      <div class="col-md-12 form-group">
+        <label>{{ "purchase-invoice.note" | translate }}</label>
         <textarea
           type="textarea"
           maxlength="100"
-          placeholder="{{ 'quotation.note' | translate }}"
+          placeholder="{{ 'purchase-invoice.note' | translate }}"
           class="form-control"
           formControlName="note"
         > </textarea>
@@ -149,11 +182,11 @@
       
            <div class="col-md-4 form-group">
         <img *ngIf="additionalAttachmentPath" class="image-max-height"   src="{{additionalAttachmentPath}}"    />
-        <label>{{ "quotation.additionalAttachment" | translate }}</label>
+        <label>{{ "purchase-invoice.additionalAttachment" | translate }}</label>
         <input
           type="file"
           maxlength="100"
-          placeholder="{{ 'quotation.additionalAttachment' | translate }}"
+          placeholder="{{ 'purchase-invoice.additionalAttachment' | translate }}"
           class="form-control"
           (change)="onFileChange($event)"
            />
@@ -170,22 +203,27 @@
 
       <div *ngIf="activeIndex === 1"  >
         <ng-container *ngIf="entity" > 
-     <app-product-line-items #productLine  [sourceType]="sourceType"  [sourceId]="sourceId" [productItems]="invoiceProducts" [invoice]="entity" ></app-product-line-items>
+     <app-product-line-items #productLine  [sourceType]="sourceType"  [sourceId]="sourceId" [productItems]="invoiceProducts" [invoice]="entity"
+     ></app-product-line-items>
         </ng-container>
       </div>
 
-      
+         <div *ngIf="activeIndex === 2"  >
+        <ng-container *ngIf="entity" > 
+            <app-installment #installment  [installments]="invoiceInstallments"  [invoice]="entity"></app-installment>
+        </ng-container>
+      </div>
 
 
-          <div *ngIf="activeIndex === 2"  >
+          <div *ngIf="activeIndex === 3"  >
         <ng-container *ngIf="entity"  > 
         
           <div class="col-md-3 form-group review-input">
-        <label>{{ "quotation.totalInvoiceAmount" | translate }}</label>
+        <label>{{ "purchase-invoice.totalInvoiceAmount" | translate }}</label>
         <input
           type="number"
           maxlength="100"
-          placeholder="{{ 'quotation.totalInvoiceAmount' | translate }}"
+          placeholder="{{ 'purchase-invoice.totalInvoiceAmount' | translate }}"
           class="form-control"
          [(ngModel)]="entity.totalAmount"
          name="totalInvoiceAmount"
@@ -194,11 +232,11 @@
       </div>
 
         <div class="col-md-3 form-group review-input ">
-        <label>{{ "quotation.totalDiscount" | translate }}</label>
+        <label>{{ "purchase-invoice.totalDiscount" | translate }}</label>
         <input
           type="number"
           maxlength="100"
-          placeholder="{{ 'quotation.totalDiscount' | translate }}"
+          placeholder="{{ 'purchase-invoice.totalDiscount' | translate }}"
           class="form-control"
          [(ngModel)]="entity.totalDiscount"
          name="totalDiscount"
@@ -207,11 +245,11 @@
       </div>
 
         <div class="col-md-3 form-group review-input ">
-        <label>{{ "quotation.totalTax" | translate }}</label>
+        <label>{{ "purchase-invoice.totalTax" | translate }}</label>
         <input
           type="number"
           maxlength="100"
-          placeholder="{{ 'quotation.totalTax' | translate }}"
+          placeholder="{{ 'purchase-invoice.totalTax' | translate }}"
           class="form-control"
          [(ngModel)]="entity.totalTax"
          name="totalTax"
@@ -220,11 +258,11 @@
       </div>
 
        <div class="col-md-3 form-group review-input ">
-        <label>{{ "quotation.totalFees" | translate }}</label>
+        <label>{{ "purchase-invoice.totalFees" | translate }}</label>
         <input
           type="number"
           maxlength="100"
-          placeholder="{{ 'quotation.totalFees' | translate }}"
+          placeholder="{{ 'purchase-invoice.totalFees' | translate }}"
           class="form-control"
          [(ngModel)]="entity.totalFee"
          name="totalFee"
@@ -233,11 +271,11 @@
       </div>
 
        <div class="col-md-3 form-group review-input ">
-        <label>{{ "quotation.netAmount" | translate }}</label>
+        <label>{{ "purchase-invoice.netAmount" | translate }}</label>
         <input
           type="number"
           maxlength="100"
-          placeholder="{{ 'quotation.netAmount' | translate }}"
+          placeholder="{{ 'purchase-invoice.netAmount' | translate }}"
           class="form-control"
          [(ngModel)]="entity.netAmount"
          name="netAmount"
@@ -245,15 +283,38 @@
         />
       </div>
 
-    
+          <div class="col-md-3 form-group review-input ">
+        <label>{{ "purchase-invoice.paidAmount" | translate }}</label>
+        <input
+          type="number"
+          maxlength="100"
+          placeholder="{{ 'purchase-invoice.paidAmount' | translate }}"
+          class="form-control"
+         [(ngModel)]="entity.paidAmount"
+         name="paidAmount"
+          disabled
+        />
+      </div>
 
-        
+          <div class="col-md-3 form-group review-input ">
+        <label>{{ "purchase-invoice.unPaidAmount" | translate }}</label>
+        <input
+          type="number"
+          maxlength="100"
+          placeholder="{{ 'purchase-invoice.unPaidAmount' | translate }}"
+          class="form-control"
+         [(ngModel)]="entity.unPaidAmount"
+         name="unPaidAmount"
+          disabled
+        />
+      </div>
+
 
       <div class="col-md-3 review-input">
         <button type="button" class="btn btn-primary submit"
         (click)="onSubmitInvoice()"
          [disabled]="entity?.isBalanceUpdated"
-        >{{'quotation.submit' | translate}}</button>
+        >{{'purchase-invoice.submit' | translate}}</button>
       </div>
 
 
@@ -264,7 +325,7 @@
 
 
 <div class="mt-3 d-flex justify-content-between">
-  <!-- Previous Button -->
+  <!-- زر السابق -->
   <button
     type="button"
     class="btn btn-light btn-rounded"
@@ -275,7 +336,7 @@
     {{ "Previous" | translate }}
   </button>
 
-  <!-- Next Button -->
+  <!-- زر التالي -->
   <button
     *ngIf="activeIndex < steps.length - 1"
     type="button"
@@ -293,3 +354,21 @@
 </div>
 
 
+<ng-template #modalCustomerCreditLimit let-modal>
+				<div class="modal-header">
+					<h4 class="modal-title" id="modal-basic-title">{{'purchase-invoice.creditlimitaleart' | translate}}</h4>
+					<button style="opacity: 0; pointer-events: none;" ngbAutoFocus></button>
+					<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					  <p >
+              {{creditLimitModelMessage | translate}}
+            </p>
+						<button type="button" class="btn btn-rounded btn-secondary m-1" (click)="modal.dismiss('Cross click')">Cancel</button>
+			    	<button type="button" class="btn btn-rounded btn-primary" (click)="submitInvoiceInstallments(false);modal.dismiss('Cross click')">Submit Installments</button>
+
+				
+				</div>
+			</ng-template>

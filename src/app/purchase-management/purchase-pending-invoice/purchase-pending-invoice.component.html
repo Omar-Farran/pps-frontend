@@ -1,9 +1,9 @@
 <div class="customers">
 <div class="breadcrumb">
-    <h1>{{'invoice-installment.invoice-installments' | translate}}</h1>
+    <h1>{{'pending-delivery-invoice.pending-delivery-invoices' | translate}}</h1>
     <ul>
-        <li>{{'sales-invoice.invoice-management'  | translate}}</li>
-        <li><strong class="text-primary">{{'invoice-installment.invoice-installments'  | translate}}</strong></li>
+        <li>{{'purchase-invoice.invoice-management'  | translate}}</li>
+        <li><strong class="text-primary">{{'purchase-invoice.pending-delivery-invoices'  | translate}}</strong></li>
     </ul>
 </div>
 	
@@ -12,8 +12,21 @@
 <form [formGroup]="searchForm" id="searchForm" (submit)="onSearch()">
 	<div class="row">
 
+		 <div class="col-md-4 form-group required">
+        <label>{{ "purchase-invoice.supplierName" | translate }}</label>
+        <input
+          type="text"
+          maxlength="100"
+          placeholder="{{ 'purchase-invoice.supplierName' | translate }}"
+          class="form-control"
+          formControlName="customerName"
+        />
+        <div class="invalid-feedback">
+        </div>
+      </div>
+
 				<div class="col-md-4 form-group mb-3 required">
-  <label>{{ "sales-invoice.invoiceNumber" | translate }}</label>
+  <label>{{ "purchase-invoice.invoiceNumber" | translate }}</label>
   <p-autoComplete
     formControlName="invoiceNumber"
     [suggestions]="filteredInvoices"
@@ -30,38 +43,27 @@
     }"
   ></p-autoComplete>
 </div>
-
-	<div class="col-md-4 form-group mb-3"> 
-  <label>{{ "invoice-installment.status" | translate }}</label>
-  <select class="form-control"  name="status"   formControlName="status" >
-                              <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
-                              <option *ngFor="let item of installmentStatus" value="{{item.id}}" >{{item.name | translate}}</option>
-                            </select>
-                            <div  class="invalid-feedback">
-                                    {{ "common.fieldRequired" | translate }}
-          </div>
-    </div>
-                          
+               
 
                          
 						<div class="col-md-4 form-group mb-3">
         <label for="picker1">{{
-          "invoice-installment.dueDateFrom" | translate
+          "purchase-invoice.receiveDateFrom" | translate
         }}</label>
         <div class="input-group">
           <input
-            id="dueDate"
+            id="invoiceDate"
             class="form-control"
             placeholder="yyyy-mm-dd"
             name="dp"
-            formControlName="dueDateFrom"
+            formControlName="invoiceDateFrom"
             ngbDatepicker
-            #dueDateFrom="ngbDatepicker"
+            #dp="ngbDatepicker"
           />
           <div class="input-group-append">
             <button
               class="btn btn-secondary"
-              (click)="dueDateFrom.toggle()"
+              (click)="dp.toggle()"
               type="button"
             >
               <i class="icon-regular i-Calendar-4"></i>
@@ -72,22 +74,22 @@
 
 	   <div class="col-md-4 form-group mb-3 ">
         <label for="picker1">{{
-          "invoice-installment.dueDateTo" | translate
+          "purchase-invoice.receiveDateTo" | translate
         }}</label>
         <div class="input-group">
           <input
-            id="dueDateTo"
+            id="invoiceDateTo"
             class="form-control"
             placeholder="yyyy-mm-dd"
-            name="dueDateTo"
-            formControlName="dueDateTo"
+            name="invoiceDateTo"
+            formControlName="invoiceDateTo"
             ngbDatepicker
-            #dueDateTo="ngbDatepicker"
+            #invoiceDateTo="ngbDatepicker"
           />
           <div class="input-group-append">
             <button
               class="btn btn-secondary"
-              (click)="dueDateTo.toggle()"
+              (click)="invoiceDateTo.toggle()"
               type="button"
             >
               <i class="icon-regular i-Calendar-4"></i>
@@ -135,7 +137,7 @@
 
 <ng-template #changeDeliveryDate let-modal>
 				<div class="modal-header">
-					<h4 class="modal-title" id="modal-basic-title">{{'sales-invoice.creditlimitaleart' | translate}}</h4>
+					<h4 class="modal-title" id="modal-basic-title">{{'purchase-invoice.receivedDateTitle' | translate}}</h4>
 					<button style="opacity: 0; pointer-events: none;" ngbAutoFocus></button>
 					<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
 						<span aria-hidden="true">&times;</span>
@@ -145,7 +147,7 @@
 					<div class="row">
              <div class="col-md-12 form-group mb-3 required">
         <label for="picker1">{{
-          "sales-invoice.deliveryDate" | translate
+          "purchase-invoice.receivedDate" | translate
         }}</label>
         <div class="input-group">
           <input
@@ -174,6 +176,6 @@
       </div>
           </div>
 						<button type="button" class="btn btn-rounded btn-secondary m-1" (click)="modal.dismiss('Cross click')">{{'common.cancel' | translate }}</button>
-			    	<button type="button" class="btn btn-rounded btn-primary" (click)="submitDeliveryDate();modal.dismiss('Cross click')">{{'sales-invoice.change'| translate  }}</button>
+			    	<button type="button" class="btn btn-rounded btn-primary" (click)="submitDeliveryDate();modal.dismiss('Cross click')">{{'purchase-invoice.change'| translate  }}</button>
 				</div>
 </ng-template>

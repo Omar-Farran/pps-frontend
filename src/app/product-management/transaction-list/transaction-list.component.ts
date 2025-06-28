@@ -14,7 +14,7 @@ import { LanguageService } from 'src/app/shared/services/language.service';
 })
 export class TransactionListComponent {
  columns: any[] = [
-    { name: "transaction.type", field: "type" },
+    { name: "transaction.type", field: "type" , isTranslate:true },
     { name: "transaction.warehouse", field: "warehouseName" },
     { name: "transaction.section", field: "sectionName" },
     { name: "transaction.branch", field: "branchName" },

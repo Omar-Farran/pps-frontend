@@ -16,6 +16,7 @@ import { LanguageService } from 'src/app/shared/services/language.service';
   styleUrls: ['./transaction-form.component.scss']
 })
 export class TransactionFormComponent {
+  isEnglish:boolean;
  isFormSubmitted:boolean = false;
   logoFile:any;
   currencies:any[];
@@ -72,7 +73,9 @@ searchCustomer:string;
       private toastr: ToastrService,
       private translate: TranslateService
     ) 
-    {}
+    {
+       
+    }
     ngOnInit (): void 
     {
             this.steps = [

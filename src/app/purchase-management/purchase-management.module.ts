@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SalesInvoiceListComponent } from './sales-invoice-list/sales-invoice-list.component';
-import { SalesInvoiceFormComponent } from './sales-invoice-list/sales-invoice-form/sales-invoice-form.component';
 import { NgbDatepickerModule, NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,28 +11,28 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormWizardModule } from '../shared/components/form-wizard/form-wizard.module';
 import { StepsModule } from 'primeng/steps';
 import { AutoCompleteModule } from 'primeng/autocomplete';
-import { InvoiceManagementRoutingModule } from './invoice-management-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { PendingDeliveryInvoicesComponent } from './pending-delivery-invoices/pending-delivery-invoices.component';
-import { InvoiceInstallmentComponent } from './invoice-installment/invoice-installment.component';
-import { QuotationInvoiceListComponent } from './quotation-invoice-list/quotation-invoice-list.component';
-import { QuotationInvoiceFormComponent } from './quotation-invoice-list/quotation-invoice-form/quotation-invoice-form.component';
-import { ConvertQuotationComponent } from './convert-quotation/convert-quotation.component';
-import { InvoiceViewComponent } from './invoice-view/invoice-view.component';
+import { PurchaseManagementRoutingModule } from './purchase-management-routing.module';
+import { PurchaseInvoiceListComponent } from './purchase-invoice-list/purchase-invoice-list.component';
+import { PurchaseInvoiceFormComponent } from './purchase-invoice-list/purchase-invoice-form/purchase-invoice-form.component';
+import { PurchasePendingInvoiceComponent } from './purchase-pending-invoice/purchase-pending-invoice.component';
+import { PurchaseInstallmentComponent } from './purchase-installment/purchase-installment.component';
+import { PurchaseRequestInvoiceComponent } from './purchase-request-invoice/purchase-request-invoice.component';
+import { PurchaseRequestInvoiceFormComponent } from './purchase-request-invoice/purchase-request-invoice-form/purchase-request-invoice-form.component';
+import { PurchaseRequestConvertInvoiceComponent } from './purchase-request-convert-invoice/purchase-request-convert-invoice.component';
 
 
 
 
 @NgModule({
   declarations: [
-    SalesInvoiceListComponent,
-    SalesInvoiceFormComponent,
-    PendingDeliveryInvoicesComponent,
-    InvoiceInstallmentComponent,
-    QuotationInvoiceListComponent,
-    QuotationInvoiceFormComponent,
-    ConvertQuotationComponent,
-    InvoiceViewComponent
+ PurchaseInvoiceListComponent,
+ PurchaseInvoiceFormComponent,
+ PurchasePendingInvoiceComponent,
+ PurchaseInstallmentComponent,
+ PurchaseRequestInvoiceComponent,
+ PurchaseRequestInvoiceFormComponent,
+ PurchaseRequestConvertInvoiceComponent
   ],
   imports: [
        CommonModule,
@@ -43,7 +41,7 @@ import { InvoiceViewComponent } from './invoice-view/invoice-view.component';
         SharedModule,
         ReactiveFormsModule,
         NgxMatIntlTelInputComponent,
-        InvoiceManagementRoutingModule,
+        PurchaseManagementRoutingModule,
         MultiSelectModule,
         NgbModule,
         MatFormFieldModule,
@@ -56,4 +54,4 @@ import { InvoiceViewComponent } from './invoice-view/invoice-view.component';
         AutoCompleteModule
   ]
 })
-export class InvoiceManagementModule { }
+export class PurchaseManagementModule { }

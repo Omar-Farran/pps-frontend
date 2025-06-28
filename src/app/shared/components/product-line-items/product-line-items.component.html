@@ -1,16 +1,16 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th style="width: 10%;">Product</th>
-        <th >Unit</th>
+        <th style="width: 10%;">{{'product-line-item.product' | translate }}</th>
+        <th >{{'product-line-item.unit' | translate }}</th>
         <th style="width: 12%;" >Quantity</th>
-        <th>Unit Price</th>
-        <th>Discount %</th>
-        <th>Tax %</th>
-        <th>Fees Amount</th>
-        <th>Total</th>
+        <th>{{    'product-line-item.unitPrice' | translate}}</th>
+        <th>{{'product-line-item.discount' | translate }}</th>
+        <th>{{'product-line-item.tax' | translate }}</th>
+        <th>{{'product-line-item.fees' | translate }}</th>
+        <th>{{'product-line-item.total' | translate }}</th>
         <th *ngIf="!invoice.isDeliveredOrReceived && showReserve" >Reserve</th>
-        <th>Action</th>
+        <th>{{'product-line-item.action' | translate }}</th>
       </tr>
     </thead>
     <!-- <form  > -->
@@ -53,7 +53,7 @@
       [class.is-invalid]="(item.isInValid && showReserve) || item.quantity <= 0"
       (change)="calculateTotal(item , 'quantity')" 
     />
-    <small *ngIf="showReserve" class="text-muted quantity-inside-inpit">| {{item.maxQuantity}}</small>
+    <small *ngIf="showReserve" class="text-muted quantity-inside-inpit"> | {{item.maxQuantity}}</small>
   </div>
 </td>
 

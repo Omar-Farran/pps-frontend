@@ -278,6 +278,46 @@ export class NavigationService {
             ]
         },
         {
+            name: 'navigation.purchase-management',
+            type: 'dropDown',
+            icon: 'i-File-Clipboard-File--Text',
+            permissions: 'Purchase-Management',
+            sub: [
+                {
+                    name: 'navigation.purchase-request-invoice',
+                    state: '/purchase-management/purchase-request-invoice',
+                    type: 'link',
+                    permissions: 'Purchase-Request-List',
+                },
+                {
+                    name: 'navigation.purchase-request-convert-invoice',
+                    state: '/purchase-management/purchase-request-convert-invoice',
+                    type: 'link',
+                    permissions: 'Purchase-Convert',
+                },
+                {
+                    name: 'navigation.purchase',
+                    state: '/purchase-management/purchase-invoice',
+                    type: 'link',
+                    permissions: 'Purchase-Invoices-List',
+                },
+                {
+                    name: 'navigation.purchase-delivery',
+                    state: '/purchase-management/purchase-invoice/pending',
+                    type: 'link',
+                    permissions: 'Purchase-Delivery-Invoices',
+                },
+                {
+                    name: 'navigation.purchase-installments',
+                    state: '/purchase-management/purchase-invoice/installments',
+                    type: 'link',
+                    permissions: 'Purchase Installments',
+                }
+                
+                
+            ]
+        },
+        {
             name: 'navigation.reports',
             type: 'dropDown',
             icon: 'i-Newspaper',
