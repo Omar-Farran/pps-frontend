@@ -288,7 +288,9 @@
     "InvoiceAlreadyReceived":"Invoice already received",
     "InvoiceCancelled":"Invoice Cancelled",
     "InsufficientBalance":"Insufficient Balance",
-    "installmentalreadypaid":"Installment already paid"
+    "installmentalreadypaid":"Installment already paid",
+    "InvalidInvoiceStatus":"Invalid invoice status"
+
   },
   "dashboards": {
     "oee-dashboard": "OEE Dashboard",

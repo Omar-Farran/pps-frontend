@@ -291,7 +291,8 @@
     "InvoiceAlreadyReceived": "الفاتورة تم استلامها بالفعل",
     "InvoiceCancelled": "الفاتورة ملغاة",
     "InsufficientBalance": "رصيد غير كافٍ",
-    "installmentalreadypaid":"الفاتورة مدفوعه مسبقا"
+    "installmentalreadypaid":"الفاتورة مدفوعه مسبقا",
+    "InvalidInvoiceStatus":"حالة الفاتورة غير صحيحة"
   },
   "dashboards": {
     "oee-dashboard": "لوحة OEE",

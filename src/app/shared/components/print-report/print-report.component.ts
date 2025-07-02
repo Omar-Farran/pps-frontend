@@ -11,7 +11,9 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class PrintReportComponent {
 @Input() invoiceId:number;
- @Input() modal:any; 
+@Input() modal:any; 
+@Input() invoice:any;
+
 reportTypes = reportTypes;
 reportType:number;
 lang:string;
@@ -24,9 +26,16 @@ constructor(private baseService:BaseService,
 
 }
 printReport(){
-  this.modal.dismiss('Cross click')
-  
+  if(this.invoice.invoiceStatus != 'Draft') {
+ this.modal.dismiss('Cross click')
 this.baseService.printReport('Invoice' , 'PrintInvoiceReport/' + this.invoiceId + '/' + this.reportType + '?lang=' + this.lang);
+  } else {
+     this.toastr.error(
+       this.translate.instant('error'),
+       this.translate.instant('errors.InvalidInvoiceStatus'),
+    { timeOut: 3000 })
+  }
+ 
 }
 
 
