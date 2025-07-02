@@ -1,4 +1,9 @@
 {
+  "true":"نعم",
+  "false":"لا",
+  "InvoiceAndInstallment":"فاتورة مع تقرير خطة التقسيط",
+  "InvoiceReport":"تقرير فاتورة",
+  "InstallmentReport":"تقرير التقسيط",
   "success":"بنجاح",
   "Previous":"السابق",
   "Save":"حفظ",
@@ -82,7 +87,8 @@
     "updatestatus": "تغيير الحالة",
     "info": "معلومات",
     "maxValue": "سعر الخصم يتجاوز الحد الأقصى",
-    "clear": "مسح"
+    "clear": "مسح",
+    "print":"طباعة"
   },
   "userManagment": {
     "email": "البريد الإلكتروني",
@@ -284,7 +290,8 @@
     "supplierbalanceisinvalid": "تجاوز الحد الأقصى لدين المورد",
     "InvoiceAlreadyReceived": "الفاتورة تم استلامها بالفعل",
     "InvoiceCancelled": "الفاتورة ملغاة",
-    "InsufficientBalance": "رصيد غير كافٍ"
+    "InsufficientBalance": "رصيد غير كافٍ",
+    "installmentalreadypaid":"الفاتورة مدفوعه مسبقا"
   },
   "dashboards": {
     "oee-dashboard": "لوحة OEE",
@@ -590,7 +597,11 @@
     "deliveryDateFrom": "تاريخ التسليم من",
     "deliveryDateTo": "تاريخ التسليم إلى",
     "pending-delivery-invoices": "فواتير التسليم المعلقة",
-    "view": "عرض الفاتورة"
+    "view": "عرض الفاتورة",
+    "printed":"مطبوع",
+    "print-report":"'طباعة التقراير",
+    "reportType":"نوع التقرير"
+
   },
   "installment": {
     "installmentNumber": "عدد الأقساط (مثال: 1، 2، 3، 4)",
@@ -631,7 +642,8 @@
     "statusupdatedsuccessflly": "تم تحديث الحالة بنجاح",
     "manageInventoryCounting": "إدارة عد المخزون",
     "from": "من تاريخ العد",
-    "to": "إلى تاريخ العد"
+    "to": "إلى تاريخ العد",
+    "purchase-installment":"شراء بالتقسيط"
   },
   "productBarcodes": {
     "productBarcodes": "رموز المنتجات الشريطية",

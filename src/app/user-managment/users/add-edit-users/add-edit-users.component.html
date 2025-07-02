@@ -108,7 +108,7 @@
             <!-- Roles -->
             <div class="col-12 col-sm-6 form-group required">
                 <label>{{'userManagment.roles' | translate }}</label>
-                <p-multiSelect [options]="Roles" [styleClass]="'form-control'" optionLabel="name"
+                <p-multiSelect [options]="Roles" [styleClass]="'form-control'" optionLabel="viewName"
                                optionValue="name"
                                formControlName="roles"
                                [class.is-invalid]="isSubmittedUserAddForm && userAddForm.get('roles')?.errors">

@@ -14,15 +14,15 @@
                 maxlength="100"
                 placeholder="{{'enterName' | translate}}" 
                 class="form-control" 
-                formControlName="name"
+                formControlName="viewName"
                 id="roleName"
-                [class.is-invalid]="rolesAddForm.get('name').invalid && rolesAddForm.get('name').touched">
+                [class.is-invalid]="rolesAddForm.get('viewName').invalid && rolesAddForm.get('viewName').touched">
                 <div class="invalid-feedback"
-                    *ngIf="rolesAddForm.get('name').invalid && (rolesAddForm.get('name').errors?.required || rolesAddForm.get('name').errors?.whitespace)">
+                    *ngIf="rolesAddForm.get('viewName').invalid && (rolesAddForm.get('viewName').errors?.required || rolesAddForm.get('viewName').errors?.whitespace)">
                     {{ 'common.fieldRequired' | translate }}
                 </div>
                 <div class="invalid-feedback"
-                    *ngIf="rolesAddForm.get('name').invalid && rolesAddForm.get('name').errors?.englishTextWithNumbers">
+                    *ngIf="rolesAddForm.get('viewName').invalid && rolesAddForm.get('viewName').errors?.englishTextWithNumbers">
                     {{ 'common.onlyEnglishIsAllowed' | translate }}
                 </div>
         </div>

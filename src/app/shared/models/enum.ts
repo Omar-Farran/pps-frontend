@@ -305,3 +305,10 @@ export const transactionTypes  =
         { id: 3, name: 'Overdue', nameAr: 'متأخر' }
     ]
 
+
+    export const reportTypes = 
+    [
+        { id: 1, name: 'InvoiceAndInstallment', nameAr: 'InvoiceAndInstallmentغير مدفوع' },
+        { id: 2, name: 'InvoiceReport', nameAr: 'InvoiceReport' },
+        { id: 3, name: 'InstallmentReport', nameAr: 'InstallmentReport' }
+    ]

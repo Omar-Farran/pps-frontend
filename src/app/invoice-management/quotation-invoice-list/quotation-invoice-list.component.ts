@@ -27,7 +27,9 @@ columns: any[] = [
     { name: "sales-invoice.view", icon: "change", permission: "Quotation-Form" },
     { name: "common.edit", icon: "change", permission: "Quotation-Form" },
     { name: "quotation.copy", icon: "change", permission: "Quotation-Form" },
-    { name: "quotation.cancel", icon: "change", permission: "Quotation-Form" }
+    { name: "quotation.cancel", icon: "change", permission: "Quotation-Form" },
+    { name: "sales-invoice.print-report", icon: "change", permission: "Sales-Invoices-Form" }
+
   ];
 warehouses:any;
 sections:any;
@@ -35,6 +37,7 @@ dataSource: any[] = [];
 deliveryDate:any;
   totalCount: number = 0
   id: number = null;
+  modal:any;
   filteredInvoices:any;
   searchInvoices:string;
   public searchForm = new FormGroup
@@ -58,6 +61,8 @@ deliveryDate:any;
     customerName:null
   }
   @ViewChild('changeDeliveryDate') changeDeliveryDateComp:TemplateRef<any>;
+  @ViewChild('printReport') printReportComponent:TemplateRef<any>;
+
   //#endregion
   constructor 
   ( 
@@ -140,7 +145,8 @@ let pad = (n: number) => n.toString().padStart(2, '0');
   }
   //#endregion
 
-    onHandleAction(event) {
+    onHandleAction(event , modal) {
+      this.modal = modal;
     switch (event.action.name) {
         case "sales-invoice.view":
         {
@@ -161,6 +167,11 @@ let pad = (n: number) => n.toString().padStart(2, '0');
             case "quotation.copy":
         {
             this.onCopyQuotation(event.data);
+        }
+         break;
+             case "sales-invoice.print-report":
+        {
+            this.onShowPrintModal(event.data);
         }
          break;
        
@@ -252,6 +263,15 @@ let pad = (n: number) => n.toString().padStart(2, '0');
     this.id = data.id;
         this.router.navigate(['invoice-management/invoice/view/' + this.id]);
   }
-    
+
+       onShowPrintModal(data){
+      this.id = data.id;
+        this.modalService.open(this.printReportComponent, {
+      windowClass: 'change-password-popup',
+      ariaLabelledBy: 'modal-basic-title', 
+      size: 'md',
+      centered: true
+    })
+    }
 
 }

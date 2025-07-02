@@ -26,7 +26,9 @@ columns: any[] = [
     actionList: any[] = [
     { name: "purchase-invoice.view", icon: "change", permission: "Purchase-Invoices-List" },
     { name: "common.edit", icon: "change", permission: "Purchase-Invoices-Form" },
-    { name: "purchase-invoice.cancel", icon: "change", permission: "Purchase-Invoices-Form" }
+    { name: "purchase-invoice.cancel", icon: "change", permission: "Purchase-Invoices-Form" },
+    { name: "sales-invoice.print-report", icon: "change", permission: "Sales-Invoices-Form" }
+
   ];
 warehouses:any;
 sections:any;
@@ -36,6 +38,7 @@ deliveryDate:any;
   id: number = null;
   filteredInvoices:any;
   searchInvoices:string;
+  modal:any;
   public searchForm = new FormGroup
   (
     {
@@ -57,6 +60,8 @@ deliveryDate:any;
     customerName:null
   }
   @ViewChild('changeDeliveryDate') changeDeliveryDateComp:TemplateRef<any>;
+  @ViewChild('printReport') printReportComponent:TemplateRef<any>;
+
   //#endregion
   constructor 
   ( 
@@ -142,7 +147,8 @@ let pad = (n: number) => n.toString().padStart(2, '0');
   }
   //#endregion
 
-    onHandleAction(event) {
+    onHandleAction(event , modal) {
+      this.modal = modal;
     switch (event.action.name) {
          case "common.edit":
         {
@@ -157,6 +163,11 @@ let pad = (n: number) => n.toString().padStart(2, '0');
        case "purchase-invoice.view":
         {
             this.onView(event.data);
+        }
+         break;
+       case "sales-invoice.print-report":
+        {
+            this.onShowPrintModal(event.data);
         }
          break;
        
@@ -234,5 +245,15 @@ let pad = (n: number) => n.toString().padStart(2, '0');
     { timeOut: 3000 })
     this.onSearch();
       })
+    }
+
+       onShowPrintModal(data){
+      this.id = data.id;
+        this.modalService.open(this.printReportComponent, {
+      windowClass: 'change-password-popup',
+      ariaLabelledBy: 'modal-basic-title', 
+      size: 'md',
+      centered: true
+    })
     }
 }

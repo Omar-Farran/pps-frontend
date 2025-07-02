@@ -148,18 +148,14 @@ dataSource: any[] = [];
   }
 
 onMarkAsPaid(data){
-let form = {
-  id:data.id,
-  status:InstallmentStatus.Paid
-}
 if(data.status == InstallmentStatus.Paid){
    this.toastr.error(
        this.translate.instant('error'),
-       this.translate.instant('error.installmentalreadypaid'),
+       this.translate.instant('errors.installmentalreadypaid'),
     { timeOut: 3000 })
     return;
 }
-this.updateInstallmentStatus(form);
+this.baseService.printReport('InvoiceInstallment' , 'PayInstallmentStatus/' + data.id);
 }
 
 
@@ -172,15 +168,15 @@ let form = {
 if(data.status == InstallmentStatus.Paid){
    this.toastr.error(
        this.translate.instant('error'),
-       this.translate.instant('error.installmentalreadypaid'),
+       this.translate.instant('errors.installmentalreadypaid'),
     { timeOut: 3000 })
     return;
 }
-this.updateInstallmentStatus(form);
+this.updateInstallmentStatus(form, 'OverdueInstallmentStatus');
 }
 
-updateInstallmentStatus(form){
-  this.baseService.Post('InvoiceInstallment' , 'UpdateInstallmentStatus' , form).subscribe(res=> {
+updateInstallmentStatus(form, action){
+  this.baseService.Get('InvoiceInstallment' , 'OverdueInstallmentStatus/' + form.id ).subscribe(res=> {
     if(res){
        this.toastr.success(
        this.translate.instant('success'),

@@ -21,14 +21,17 @@ columns: any[] = [
     { name: "sales-invoice.customerName", field: "customerName" },
     { name: "sales-invoice.sourceType", field: "sourceTypeName" , isTranslate:true },
     { name: "sales-invoice.totalAmount", field: "totalAmount" , type:'number' },
-    { name: "sales-invoice.status", field: "invoiceStatus" ,  isTranslate:true }
+    { name: "sales-invoice.status", field: "invoiceStatus" ,  isTranslate:true },
+    { name: "sales-invoice.printed", field: "printed" ,  type:'boolean'}
   ];
     actionList: any[] = [
     { name: "sales-invoice.view", icon: "change", permission: "Sales-Invoices-List" },
     { name: "common.edit", icon: "change", permission: "Sales-Invoices-Form" },
-    { name: "sales-invoice.cancel", icon: "change", permission: "Sales-Invoices-Form" }
+    { name: "sales-invoice.cancel", icon: "change", permission: "Sales-Invoices-Form" },
+    { name: "sales-invoice.print-report", icon: "change", permission: "Sales-Invoices-Form" }
   ];
 warehouses:any;
+modal:any;
 sections:any;
 dataSource: any[] = [];
 deliveryDate:any;
@@ -57,6 +60,8 @@ deliveryDate:any;
     customerName:null
   }
   @ViewChild('changeDeliveryDate') changeDeliveryDateComp:TemplateRef<any>;
+  @ViewChild('printReport') printReportComponent:TemplateRef<any>;
+
   //#endregion
   constructor 
   ( 
@@ -142,7 +147,8 @@ let pad = (n: number) => n.toString().padStart(2, '0');
   }
   //#endregion
 
-    onHandleAction(event) {
+    onHandleAction(event , modal) {
+      this.modal = modal;
     switch (event.action.name) {
          case "common.edit":
         {
@@ -157,6 +163,11 @@ let pad = (n: number) => n.toString().padStart(2, '0');
        case "sales-invoice.view":
         {
             this.onView(event.data);
+        }
+         break;
+           case "sales-invoice.print-report":
+        {
+            this.onShowPrintModal(event.data);
         }
          break;
        
@@ -234,5 +245,15 @@ let pad = (n: number) => n.toString().padStart(2, '0');
     { timeOut: 3000 })
     this.onSearch();
       })
+    }
+
+    onShowPrintModal(data){
+      this.id = data.id;
+        this.modalService.open(this.printReportComponent, {
+      windowClass: 'change-password-popup',
+      ariaLabelledBy: 'modal-basic-title', 
+      size: 'md',
+      centered: true
+    })
     }
 }

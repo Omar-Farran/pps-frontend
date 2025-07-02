@@ -30,7 +30,7 @@ export class AddEditRolesComponent implements OnInit
 	(
 		{
 			id: new FormControl(0),
-			name: new FormControl('', [Validators.required,englishTextWithNumbersValidator,noWhitespaceValidator() , Validators.maxLength(100)]),
+			viewName: new FormControl('', [Validators.required,englishTextWithNumbersValidator,noWhitespaceValidator() , Validators.maxLength(100)]),
 			nameAr: new FormControl('', [Validators.required, arabicTextWithNumbersValidator(), noWhitespaceValidator() ]),
 			normalizedName: new FormControl(''),
 			permissions: new FormControl([],[Validators.required]),
@@ -69,7 +69,7 @@ export class AddEditRolesComponent implements OnInit
 			return;
 		}
 		const form = this.rolesAddForm.getRawValue();
-		form.normalizedName = form.name.toUpperCase();
+		form.normalizedName = form.viewName.toUpperCase();
 		form.permissions = form.permissions.map
 			( permissionId => ( { PermissionId: permissionId } ) );
 		this.baseService.Post('Roles', this.isEditMood ? 'UpdateRoles' : 'AddRoles', form).subscribe
@@ -101,7 +101,7 @@ export class AddEditRolesComponent implements OnInit
 					(
 						{
 							id: this.Role.id,
-							name: this.Role.name,
+							viewName: this.Role.viewName,
 							normalizedName: this.Role.normalizedName,
 							permissions: this.Role.permissions.map(per => per.permissionId),
 							status: this.Role.status,

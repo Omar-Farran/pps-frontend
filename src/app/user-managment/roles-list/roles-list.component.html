@@ -38,7 +38,7 @@
             <div class="c-card h-100">
                 <div class="c-card-body h-100 d-flex flex-column">
                     <div class="c-header">
-                        <div class="c-title text-18">{{languageService.getCurrentLanguage() == 'en' ?  data.name : data.nameAr}}</div>
+                        <div class="c-title text-18">{{languageService.getCurrentLanguage() == 'en' ?  data.viewName : data.nameAr}}</div>
                         <div class="c-badge " [ngClass]="{'text-success': data.status == 1}">
                             <span>{{data.status == 1 ? ('Active' | translate) : ('Inactive' | translate)}}</span>
                         </div>

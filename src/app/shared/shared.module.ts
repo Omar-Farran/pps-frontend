@@ -18,6 +18,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { InstallmentComponent } from './components/installment/installment.component';
+import { PrintReportComponent } from './components/print-report/print-report.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -29,7 +30,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     PaggerComponent,
     NotDataComponent,
     ProductLineItemsComponent,
-    InstallmentComponent
+    InstallmentComponent,
+    PrintReportComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +55,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       isolate: false
     })
   ],
-  exports: [TableComponent, TranslateModule,PaggerComponent , ProductLineItemsComponent ,InstallmentComponent],
+  exports: [TableComponent, TranslateModule,PaggerComponent , ProductLineItemsComponent ,InstallmentComponent , PrintReportComponent],
   providers: [JwtHelperService, 
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     

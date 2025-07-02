@@ -51,6 +51,10 @@ export class BaseService {
         return this.http.get(`${this.APIUrl}/${ControllerPath}/${ActionPath}`)
     }
 
+    public printReport(ControllerPath: string, ActionPath: string){
+        var url = `${this.APIUrl}/${ControllerPath}/${ActionPath}`;
+        window.open(url, '_blank');
+    }
     public UpdateStatus(ControllerPath: string, ActionPath: string) {
         return this.http.get(`${this.APIUrl}/${ControllerPath}/${ActionPath}`)
     }

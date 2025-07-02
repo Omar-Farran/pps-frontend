@@ -136,7 +136,7 @@
 			[Headers]="columns" 
 			[dataSource]="dataSource" 
 			[actionList]="actionList" 
-			(EventHandler)="onHandleAction($event)"
+			(EventHandler)="onHandleAction($event , printReport)"
 			[PageSize]="baseSearch.pageSize" 
 			[TotalRecords]="totalCount" 
 			(PageChange)="onPageChange($event)"
@@ -146,3 +146,6 @@
 </div>
 
 
+<ng-template #printReport let-modal>
+		<app-print-report [invoiceId]="id" [modal]="modal"></app-print-report>
+</ng-template>
