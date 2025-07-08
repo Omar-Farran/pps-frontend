@@ -100,7 +100,11 @@ const adminRoutes: Routes = [
     loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule),
     canActivate: [AuthGaurd]
   },
-
+{
+    path: 'report-management',
+    loadChildren: () => import('./report-management/report-management.module').then(m => m.ReportManagementModule),
+    canActivate: [AuthGaurd]
+  },
 ];
 
 const routes: Routes = [

@@ -325,10 +325,61 @@ export class NavigationService {
             sub: [
                 {
                     name: 'navigation.products-barcode',
-                    state: '/reports/productBarcodes',
+                    state: '/report-management/productBarcodes',
                     type: 'link',
                     permissions: 'Product-Barcodes',
+                },
+                 {
+                    name: 'navigation.sales-invoice-report',
+                    state: '/report-management/sales-invoice-report',
+                    type: 'link',
+                    permissions: 'Invoices-Report',
+                },
+                {
+                    name: 'navigation.sales-period-report',
+                    state: '/report-management/sales-period-report',
+                    type: 'link',
+                    permissions: 'Invoices-Report',
+                },
+                {
+                    name: 'navigation.sales-customer-report',
+                    state: '/report-management/sales-customer-report',
+                    type: 'link',
+                    permissions: 'Invoices-Report',
+                },
+                {
+                    name: 'navigation.sales-followup-report',
+                    state: '/report-management/sales-installment-followup-report',
+                    type: 'link',
+                    permissions: 'Invoices-Report',
+                },
+                {
+                    name: 'navigation.purchase-status-report',
+                    state: '/report-management/purchase-status-report',
+                    type: 'link',
+                    permissions: 'Invoices-Report',
+                },
+                {
+                    name: 'navigation.purchase-supplier-report',
+                    state: '/report-management/purchase-supplier-report',
+                    type: 'link',
+                    permissions: 'Invoices-Report',
+                },
+                {
+                    name: 'navigation.purchase-installment-followup-report',
+                    state: '/report-management/purchase-installment-followup-report',
+                    type: 'link',
+                    permissions: 'Invoices-Report',
+                },
+                 {
+                    name: 'navigation.purchase-period-report',
+                    state: '/report-management/purchase-period-report',
+                    type: 'link',
+                    permissions: 'Invoices-Report',
                 }
+
+
+                
             ]
         }
     ];

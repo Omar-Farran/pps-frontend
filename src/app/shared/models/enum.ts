@@ -312,3 +312,21 @@ export const transactionTypes  =
         { id: 2, name: 'InvoiceReport', nameAr: 'InvoiceReport' },
         { id: 3, name: 'InstallmentReport', nameAr: 'InstallmentReport' }
     ]
+
+        export const invoiceStatues = 
+    [
+        { id: 1, name: 'Draft', nameAr: 'Draft' },
+        { id: 2, name: 'Completed', nameAr: 'Completed' },
+        { id: 3, name: 'Canceled', nameAr: 'Canceled' },
+        { id: 4, name: 'UnPaid', nameAr: 'UnPaid' },
+        { id: 5, name: 'PartialPaid', nameAr: 'PartialPaid' },
+        { id: 6, name: 'Paid', nameAr: 'Paid' },
+
+    ]
+
+        export const periodTypes = 
+    [
+        { id: 0, name: 'Daily', nameAr: 'Daily' },
+        { id: 1, name: 'Weekly', nameAr: 'Weekly' },
+        { id: 2, name: 'Monthly', nameAr: 'Monthly' }
+    ]

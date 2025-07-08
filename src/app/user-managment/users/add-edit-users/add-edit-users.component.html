@@ -29,7 +29,7 @@
                             [class.is-invalid]="isSubmittedUserAddForm && userAddForm.get('branchId')?.errors"
                             >
                                 <option   selected [ngValue]="null" >{{ "customers.select" | translate }}</option>
-                                <option *ngFor="let item of branchies" value="{{item.id}}" >{{item.description}}</option>
+                                <option *ngFor="let item of branchies" value="{{item.id}}" >{{item.name}}</option>
                             </select>
                              <div class="invalid-feedback">
                     {{'common.fieldRequired'|translate}}

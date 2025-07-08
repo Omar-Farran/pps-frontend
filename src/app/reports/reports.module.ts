@@ -15,7 +15,6 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { TabViewModule } from 'primeng/tabview';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ReportsRoutingModule } from './reports-routing.module';
-import { ProductBarcodesComponent } from './product-barcodes/product-barcodes.component';
 
 @NgModule({
   imports: [
@@ -46,7 +45,6 @@ import { ProductBarcodesComponent } from './product-barcodes/product-barcodes.co
     TabViewModule
   ],
   declarations: [
-    ProductBarcodesComponent,
   ]
 })
 

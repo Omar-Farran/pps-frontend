@@ -10,6 +10,7 @@ export const httpOptions = {
 };
 
 
+
 export const httpFormDataOptions = {
     headers: new HttpHeaders({
         'Access-Control-Allow-Origin': '*'
@@ -62,6 +63,17 @@ export class BaseService {
     public exportPDFInvoice(invoiceId: number): Observable<any> {
         return this.http.get(`${this.APIUrl}/Invoice/ExportPDFInvoice/${invoiceId}`, { responseType: 'blob' });
     }
+
+   public generatePDF(ControllerPath: string, ActionPath: string, body: any): Observable<Blob> {
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json'
+  });
+
+  return this.http.post(`${this.APIUrl}/${ControllerPath}/${ActionPath}`, body, {
+    headers: headers,
+    responseType: 'blob'
+  });
+}
 
     public cancelRequests() {
         this.abortSubject.next();

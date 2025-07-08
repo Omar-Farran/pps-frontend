@@ -26,6 +26,9 @@
   "UnPaid": "غير مدفوع",
   "Paid": "مدفوع",
   "PartialPaid": "مدفوع جزئياً",
+  "Draft":"مسودة",
+  "Completed":"مكتملة",
+  "Canceled":"ملغي",
   "status": "الحالة",
   "successUpdated": "تم التحديث بنجاح",
   "successAdded": "تمت الإضافة بنجاح",
@@ -234,7 +237,15 @@
     "purchase-delivery": "استلام المشتريات",
     "purchase-installments": "أقساط المشتريات",
     "purchase-request-invoice": "فواتير طلبات الشراء",
-    "purchase-request-convert-invoice": "موافقات طلبات الشراء"
+    "purchase-request-convert-invoice": "موافقات طلبات الشراء",
+    "sales-invoice-report":"تقرير حالة فواتير المبيعات",
+    "sales-period-report":"تقرير أداء المبيعات حسب الفترة",
+    "sales-customer-report":"تقرير التحصيل حسب العميل",
+    "sales-followup-report":"تقرير متابعة دفعات فواتير المبيعات",
+    "purchase-status-report":"تقرير حالة فواتير المشتريات",
+    "purchase-supplier-report":"تقرير التحصيل حسب المورد",
+    "purchase-installment-followup-report":"تقرير متابعة دفعات فواتير الشراء",
+    "purchase-period-report":"تقرير أداء المشتريات حسب الفترة"
   },
   "section": {
     "sectionManagment": "إدارة الأقسام",
@@ -601,7 +612,11 @@
     "view": "عرض الفاتورة",
     "printed":"مطبوع",
     "print-report":"'طباعة التقراير",
-    "reportType":"نوع التقرير"
+    "reportType":"نوع التقرير",
+    "createdUser":"اسم المستخدم",
+    "generateReport":"تصدير PDF",
+    "branch":"فرع",
+    "warehouses":"مستودع"
 
   },
   "installment": {
@@ -818,5 +833,69 @@
   "chequeNumber": "رقم الشيك",
   "status": "الحالة",
   "paidDate": "تاريخ الدفع"
-}
+},
+  "sales-period-report":{
+    "sales-period-report":"تقرير أداء المبيعات حسب الفترة",
+    "period":"الفترة",
+    "invoicesCount":"عدد الفواتير",
+    "totalAmount":"إجمالي المبيعات",
+    "maxInvoiceAmount":"أعلى فاتورة",
+    "minInvoiceAmount":"أقل فاتورة",
+    "avgInvoiceAmount":"متوسط الفاتورة",
+     "report-management":"اداراة التقارير"
+  },
+  "sales-customer-report":{
+    "sales-customer-report":"تقرير أداء المبيعات حسب الفترة",
+    "customer":"عميل",
+    "invoicesCount":"عدد الفواتير",
+    "totalAmount":"إجمالي المبيعات",
+    "paidAmount":"إجمالي المدفوع",
+    "unPaidAmount":"المبلغ المتبقي",
+    "avgInvoiceAmount":"متوسط الفاتورة",
+     "report-management":"اداراة التقارير",
+      "collectedRate":"% نسبة التحصيل"
+  },
+  "sales-followup-report":{
+    "sales-followup-report":"تقرير متابعة دفعات فواتير المبيعات",
+    "customer":"عميل",
+    "invoicesCount":"عدد الفواتير",
+    "totalAmount":"إجمالي المبيعات",
+    "paidAmount":"إجمالي المدفوع",
+    "unPaidAmount":"المبلغ المتبقي",
+    "avgInvoiceAmount":"متوسط الفاتورة",
+     "report-management":"اداراة التقارير",
+      "collectedRate":"نسبة التحصيل",
+      "invoiceNumber":"رقم الفاتورة",
+      "status":"حالة الفاتورة",
+    "invoiceDate":"تاريخ الفاتورة",
+    "dueDate":"تاريخ الاستحقاق"
+  },
+  "purchase-status-report":{
+    "invoiceNumber":"رقم الفاتورة",
+    "invoiceDate":"تاريخ الفاتورة",
+    "supplier": "اسم المورد",
+    "createdUser":"اسم المستخدم",
+    "status": "حالة الفاتورة",
+    "totalAmount": "إجمالي الفاتورة",
+    "report-management":"اداراة التقارير",
+    "purchase-status-report":"تقرير حالة فواتير المشتريات"
+  },
+    "purchase-supplier-report":{
+    "supplier":"اسم المورد",
+    "purchase-supplier-report":"تقرير التحصيل حسب المورد",
+    "report-management":"اداراة التقارير"
+   },
+    "purchase-installment-followup-report":{
+    "supplier":"اسم المورد",
+    "purchase-installment-followup-report":"تقرير متابعة دفعات فواتير الشراء",
+    "report-management":"اداراة التقارير",
+    "purchase-total-amount":"إجمالي المشتريات"
+   },
+   "purchase-period-report":{
+    "supllier":"اسم المورد",
+    "purchase-period-report":"تقرير أداء المشتريات حسب الفترة",
+    "report-management":"اداراة التقارير",
+    "purchase-total-amount":"إجمالي المشتريات"
+
+   }
 }

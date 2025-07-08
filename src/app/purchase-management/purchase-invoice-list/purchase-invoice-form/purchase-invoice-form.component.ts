@@ -104,9 +104,10 @@ isInvoiceHeaderFormSubmitted:boolean = false;
     { label: this.translate.instant('sales-invoice.final-invoice-summary'), command: () => (this.activeIndex = 3) }
       ]
 
+      debugger;
       if (this.id > 0) {
         this.GetById();
-        this.getSupplierSelectItemList(null)
+        this.getSupplierSelectItemList('')
       }else {
         let date = new Date();
         this.invoiceHeaderForm.get('invoiceDate').setValue({
@@ -174,7 +175,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
          this.disableForm()
 
         }
-
+       debugger;
         const date = new Date(this.entity.invoiceDate);
         const deliveryDate = this.entity.deliveryDate ?  new Date(this.entity.deliveryDate) : null;
         this.sourceType = this.entity.sourceType;

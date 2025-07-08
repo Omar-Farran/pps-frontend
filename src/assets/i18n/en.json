@@ -1,4 +1,7 @@
 {
+  "Daily":"يومي",
+  "Weekly":"اسبوعي",
+  "Monthly":"شهري",
   "true":"True",
   "false":"False",
   "InvoiceAndInstallment":"Invoice with installment plan report",
@@ -230,7 +233,15 @@
     "purchase-delivery":"Purchase Receiving",
     "purchase-installments":"Purchase Installments",
     "purchase-request-invoice":"Purchase Requests",
-    "purchase-request-convert-invoice":"Purchase Request Approvals"
+    "purchase-request-convert-invoice":"Purchase Request Approvals",
+    "sales-invoice-report":"Sales Invoice Status Report",
+    "sales-period-report":"Sales Period Report",
+    "sales-customer-report":"Sales Customer Report",
+    "sales-followup-report":"Sales Invoice Payment Follow-up Report",
+    "purchase-status-report":"Purchase Status Report",
+    "purchase-supplier-report":"Collection Report by Supplier",
+    "purchase-installment-followup-report":"Purchase Installment Follow Up",
+    "purchase-period-report":"Purchase Period Report"
     
   },
   "section": {
@@ -600,7 +611,12 @@
     "view":"View Invoice",
     "print-report":"Print Report",
     "reportType":"Report Type",
-    "printed":"Printed"
+    "printed":"Printed",
+    "createdUser":"User",
+    "generateReport":"Generate PDF",
+    "branch":"Branch",
+    "warehouses":"Warehouse"
+
   },
   "installment": {
     "installmentNumber": "Number of Installments (e.g., 1, 2, 3, 4)",
@@ -818,5 +834,67 @@
    "chequeNumber":"Cheque Number",
    "status":"Status",
    "paidDate":"Paid Date"
-  }
+  },
+  "sales-period-report":{
+    "sales-period-report":"Sales Period",
+    "period":"Period",
+    "invoicesCount":"Invoices Count",
+    "totalAmount":"Total Sales Amount",
+    "maxInvoiceAmount":"Max Amount",
+    "minInvoiceAmount":"Min Amount",
+    "avgInvoiceAmount":"Avg Amount",
+    "invoice-management":"Invoice Management"
+  },
+  "sales-customer-report":{
+    "sales-customer-report":"Sales Customer",
+    "customer":"Customer",
+    "invoicesCount":"Invoices Count",
+    "totalAmount":"Total Amount",
+    "paidAmount":"Paid Amount",
+    "unPaidAmount":"Unpaid Amount",
+    "collectedRate":"Collected Rate %",
+    "invoice-management":"Invoice Management",
+    "report-management":"Report Management"
+  },
+  "sales-followup-report":{
+    "sales-followup-report":"Sales Invoice Payment Follow-up Report",
+    "customer":"Customer",
+    "invoicesCount":"Invoices Count",
+    "totalAmount":"Total Amount",
+    "paidAmount":"Paid Amount",
+    "unPaidAmount":"Unpaid Amount",
+    "collectedRate":"Collected Rate",
+    "invoice-management":"Invoice Management",
+    "report-management":"Report Management",
+    "invoiceNumber":"Invoice Number",
+    "status":"Invoice Status",
+    "invoiceDate":"Invoice Date",
+    "dueDate":"Due Date"
+  },
+   "purchase-status-report":{
+    "invoiceNumber":"Invoice Number",
+    "invoiceDate":"Invoice Date",
+    "supplier":"Supplier",
+    "status":"Invoice Status",
+    "totalAmount": "Total Amount",
+    "createdUser":"User",
+    "report-management":"Report Management",
+    "purchase-status-report":"Purchase Status Report"
+   },
+   "purchase-supplier-report":{
+    "supplier":"Supplier",
+    "purchase-supplier-report":"Collection Report by Supplier",
+    "report-management":"Report Management"
+   },
+    "purchase-installment-followup-report":{
+    "supplier":"Supplier",
+    "purchase-installment-followup-report":"Purchase Installment Follow Up",
+    "report-management":"Report Management"
+   },
+   "purchase-period-report":{
+    "supllier":"Supplier",
+    "report-management":"Report Management",
+    "purchase-period-report":"Purchase Period Report",
+    "purchase-total-amount":"Total Purchase Amount"
+   }
 }
