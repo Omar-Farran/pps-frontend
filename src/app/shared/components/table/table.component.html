@@ -15,6 +15,7 @@
                     <td  *ngIf="
                         header.field  !== 'status'
                      && header.type  !== 'number'  
+                     && header.type  !== 'currency'  
                      && header.field  !== 'userType' 
                      && header.field  !== 'isActive' 
                      && header.type !== 'boolean'
@@ -29,7 +30,8 @@
                     <td *ngIf="header.field === 'userType'">{{ getuserTypeText(data[header.field]) }}</td>
                     <td *ngIf="header.type === 'number'" class="ltr-text">{{ data[header.field] }}</td>
                     <td *ngIf="header.type === 'date'" class="ltr-text">{{ data[header.field] | date:'MM-dd-yyyy' }}</td>
-                    <td *ngIf="header.type === 'boolean'" class="ltr-text">{{ ( data[header.field] ? 'true' : 'false') | translate }}</td>
+                    <td *ngIf="header.type === 'boolean'" >{{ ( data[header.field] ? 'true' : 'false') | translate }}</td>
+                    <td *ngIf="header.type === 'currency'" >{{ data[header.field] }} {{'IQD' | translate}}</td>
 
                     
                 </ng-container>

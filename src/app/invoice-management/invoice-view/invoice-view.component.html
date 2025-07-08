@@ -24,7 +24,7 @@
 
                  <div class="col-md-4 form-group mb-3">
                             <label>{{'invoice.invoiceDate' | translate}}</label>
-                             <span class="value" > {{entity.invoiceDate}} </span>
+                             <span class="value" > {{entity.invoiceDate | date:'short'}} </span>
                 </div>
                   <div class="col-md-4 form-group mb-3">
                             <label>{{ (isPurchase ?  'purchase-invoice.supplier' : 'invoice.customerName' ) | translate}}</label>
@@ -68,7 +68,7 @@
     </div>
 </div>
 
-  <div  class="card mb-2">
+  <div  class="card mb-2" *ngIf="products?.length > 0" >
         <div class="card-body m-1">
         <div *ngIf="entity" class="row">
                  <div class="col-md-12 mb-2" >
@@ -79,20 +79,20 @@
                    <table class="table table-bordered">
     <thead>
       <tr>
-        <th >Product</th>
-        <th >Unit</th>
-        <th >Quantity</th>
-        <th>Unit Price</th>
-        <th>Discount %</th>
-        <th>Tax %</th>
-        <th>Fees Amount</th>
-        <th>Total</th>
-        <th *ngIf="!hideQuotationValues && !isPurchase">Reserve</th>
+        <th >{{'product-line-item.product' | translate}}</th>
+        <th >{{'product-line-item.unit' | translate}} </th>
+        <th >{{'product-line-item.quantity' | translate}} </th>
+        <th>{{'product-line-item.unitPrice' | translate}}</th>
+        <th>{{'product-line-item.discount' | translate}} </th>
+        <th>{{'product-line-item.tax' | translate}} </th>
+        <th>{{'product-line-item.fees' | translate}} </th>
+        <th>{{'product-line-item.total' | translate}} </th>
+        <th *ngIf="!hideQuotationValues && !isPurchase">{{'product-line-item.reserve' | translate}} </th>
       </tr>
     </thead>
     <!-- <form  > -->
 
-    <tbody  *ngIf="products?.length > 0">
+    <tbody  >
       <tr *ngFor="let item of products; let i = index" >
         <td>
            {{item.productName}}            
@@ -132,7 +132,7 @@
     </div>
 </div>
 
-  <div *ngIf="!hideQuotationValues" class="card mb-2">
+  <div *ngIf="!hideQuotationValues && installments?.length > 0" class="card mb-2">
         <div class="card-body m-1">
         <div *ngIf="entity" class="row">
                  <div class="col-md-12 mb-2" >
@@ -152,7 +152,7 @@
     </thead>
     <!-- <form  > -->
 
-    <tbody  *ngIf="installments.length > 0">
+    <tbody >
       <tr *ngFor="let item of installments; let i = index" >
         <td>
            {{item.sequence}}            

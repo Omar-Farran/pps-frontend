@@ -1,4 +1,5 @@
 {
+  "IQD":"دينار عراقي",
   "true":"نعم",
   "false":"لا",
   "InvoiceAndInstallment":"فاتورة مع تقرير خطة التقسيط",
@@ -825,7 +826,9 @@
     "fees": "الرسوم",
     "total": "الإجمالي",
     "action": "الإجراء",
-    "purchasePrice": "سعر الشراء"
+    "purchasePrice": "سعر الشراء",
+     "quantity":"الكمية",
+     "reserve":"محجوزة"
   },
   "installment-line": {
   "dueDate": "تاريخ الاستحقاق",
@@ -845,7 +848,7 @@
      "report-management":"اداراة التقارير"
   },
   "sales-customer-report":{
-    "sales-customer-report":"تقرير أداء المبيعات حسب الفترة",
+    "sales-customer-report":"تقرير التحصيل حسب العميل",
     "customer":"عميل",
     "invoicesCount":"عدد الفواتير",
     "totalAmount":"إجمالي المبيعات",
@@ -896,6 +899,16 @@
     "purchase-period-report":"تقرير أداء المشتريات حسب الفترة",
     "report-management":"اداراة التقارير",
     "purchase-total-amount":"إجمالي المشتريات"
-
-   }
+   },
+   "customer-history": {
+  "customer-history": "سجل العميل",
+  "manageCustomerHistory": "سجل العميل",
+  "invoices": "الفواتير",
+  "transaction": "المعاملات",
+  "totalAmount": "المبلغ الإجمالي",
+  "unitPrice": "سعر الوحدة",
+  "quantity": "الكمية",
+  "unitOfMeasure": "وحدة القياس",
+  "name":"اسم المنتج"
+}
 }

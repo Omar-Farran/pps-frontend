@@ -1,4 +1,5 @@
 {
+  "IQD":"IQD",
   "Daily":"يومي",
   "Weekly":"اسبوعي",
   "Monthly":"شهري",
@@ -823,10 +824,12 @@
     "unitPrice":"Unit Price",
     "discount": "Discount",
     "tax": "Tax",
-    "fees": "Fees",
+    "fees": "Fee Amount",
     "total": "Total",
     "action":"Action",
-    "purchasePrice":"Purchase Price"
+    "purchasePrice":"Purchase Price",
+     "quantity":"Quantity",
+     "reserve":"Reserve"
   },
   "installment-line":{
    "dueDate":"Due Date",
@@ -896,5 +899,16 @@
     "report-management":"Report Management",
     "purchase-period-report":"Purchase Period Report",
     "purchase-total-amount":"Total Purchase Amount"
+   },
+   "customer-history":{
+    "customer-history":"Customer History",
+    "manageCustomerHistory":"Customer History",
+    "invoices":"Invoices",
+    "transaction":"Transactions",
+    "totalAmount":"Total Amount",
+    "unitPrice":"Unit Price",
+    "quantity":"Quantity",
+    "unitOfMeasure":"Unit Of Measure",
+      "name":"Product Name"
    }
 }

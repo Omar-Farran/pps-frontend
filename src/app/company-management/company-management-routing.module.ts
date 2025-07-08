@@ -5,6 +5,7 @@ import { BranchListComponent } from './branch-list/branch-list.component';
 import { CompanyInfoComponent } from './company-list/company-info/company-info.component';
 import { CustomersListComponent } from './customers-list/customers-list.component';
 import { SuppliersListComponent } from './suppliers-list/suppliers-list.component';
+import { CustomerHistoryComponent } from './customers-list/customer-history/customer-history.component';
 
 
 
@@ -15,6 +16,8 @@ const routes: Routes =
     { path: 'branchies', component: BranchListComponent },
     { path: 'customers', component: CustomersListComponent },
     { path: 'suppliers', component: SuppliersListComponent },
+    { path: 'customers/history/:id', component: CustomerHistoryComponent }
+
   ];
 @NgModule
   (

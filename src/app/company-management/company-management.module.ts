@@ -19,6 +19,10 @@ import { CustomersListComponent } from './customers-list/customers-list.componen
 import { CustomersFormComponent } from './customers-list/customers-form/customers-form.component';
 import { SuppliersListComponent } from './suppliers-list/suppliers-list.component';
 import { SuppliersFormComponent } from './suppliers-list/suppliers-form/suppliers-form.component';
+import { CustomerHistoryComponent } from './customers-list/customer-history/customer-history.component';
+import { TabViewModule } from 'primeng/tabview';
+import { CustomerHistoryInvoiceComponent } from './customers-list/customer-history/customer-history-invoice/customer-history-invoice.component';
+import { CustomerHistoryTransactionComponent } from './customers-list/customer-history/customer-history-transaction/customer-history-transaction.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,10 @@ import { SuppliersFormComponent } from './suppliers-list/suppliers-form/supplier
     CustomersListComponent,
     CustomersFormComponent,
     SuppliersListComponent,
-    SuppliersFormComponent
+    SuppliersFormComponent,
+    CustomerHistoryComponent,
+    CustomerHistoryInvoiceComponent,
+    CustomerHistoryTransactionComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +53,7 @@ import { SuppliersFormComponent } from './suppliers-list/suppliers-form/supplier
     MatSelectModule,
     DropdownModule,
     NgbDatepickerModule,
-
+    TabViewModule
   ],
   exports:[CompanyFormComponent]
 })

@@ -1,0 +1,20 @@
+<div class="customers">
+  <div class="breadcrumb">
+    <h1>{{'customer-history.customer-history' | translate}}</h1>
+    <ul>
+      <li>{{'customer-history.manageCustomerHistory' | translate}}</li>
+      <li><strong class="text-primary">{{'customer-history.invoices' | translate}}</strong></li>
+    </ul>
+  </div>
+  <div class="custom-table-wrap">
+    <p-tabView>
+ <p-tabPanel header="{{'customer-history.invoices' | translate}}">
+<app-customer-history-invoice></app-customer-history-invoice>
+ </p-tabPanel>
+  <p-tabPanel header="{{'customer-history.transaction' | translate}}">
+<app-customer-history-transaction></app-customer-history-transaction>
+  </p-tabPanel>
+
+        </p-tabView>
+
+  </div>
