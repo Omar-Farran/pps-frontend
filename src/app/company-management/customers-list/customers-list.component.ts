@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ClientType, LookpusType } from 'src/app/shared/models/enum';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -21,7 +22,9 @@ export class CustomersListComponent {
   ];
   actionList: any[] = [
     { name: "common.edit", icon: "change", permission: "Update-Customers" },
-    { name: 'common.updatestatus', icon: 'change', permission: 'Update-Customers' }
+    { name: 'common.updatestatus', icon: 'change', permission: 'Update-Customers' },
+    { name: 'customers.viewcustomerhistory', icon: 'change', permission: 'Update-Customers' }
+
   ];
 
 
@@ -48,7 +51,8 @@ export class CustomersListComponent {
       private modalService: NgbModal,
       public authService: AuthService,
       private baseService: BaseService,
-      public languageService: LanguageService
+      public languageService: LanguageService,
+      private router: Router
     ) { }
   ngOnInit(): void {
     this.getList()
@@ -103,6 +107,11 @@ export class CustomersListComponent {
           this.onChageStatus(event.data);
         }
         break;
+        case "customers.viewcustomerhistory":
+        {
+          this.onViewCustomerHistory(event.data);
+        }
+        break;
     }
   }
 
@@ -124,6 +133,8 @@ export class CustomersListComponent {
     this.baseService.Get('customers', `UpdateStatus/${entity.id}`).subscribe
       (res => { this.getList() })
   }
-
+  onViewCustomerHistory(event) {
+        this.router.navigate(['/company-management/customers/history/'  + event.id])
+    }
 
 }

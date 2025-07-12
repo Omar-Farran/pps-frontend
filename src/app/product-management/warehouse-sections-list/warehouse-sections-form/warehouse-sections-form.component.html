@@ -20,7 +20,7 @@
                     [class.is-invalid]="isFormSubmitted && form.get('warehouseId')?.invalid">
                     <option value="" disabled selected>{{ "select" | translate }}</option>
                     <option *ngFor="let warehouse of warehouseList" [value]="warehouse.id">
-                        {{ languageService.getCurrentLanguage() === 'en' ? warehouse.nameEn : warehouse.nameAr }}
+                        {{ warehouse.name }}
                     </option>
                 </select>
                 <div *ngIf="isFormSubmitted && form.get('warehouseId')?.errors" class="invalid-feedback">

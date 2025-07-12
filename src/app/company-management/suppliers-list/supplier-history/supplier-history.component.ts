@@ -3,11 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { BaseService } from 'src/app/shared/services/base.service';
 
 @Component({
-  selector: 'app-customer-history',
-  templateUrl: './customer-history.component.html',
-  styleUrls: ['./customer-history.component.scss']
+  selector: 'app-supplier-history',
+  templateUrl: './supplier-history.component.html',
+  styleUrls: ['./supplier-history.component.scss']
 })
-export class CustomerHistoryComponent {
+export class SupplierHistoryComponent {
 customerId:number;
 customer:any;
 

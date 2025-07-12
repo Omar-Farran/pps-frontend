@@ -10,11 +10,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-customer-history-transaction',
-  templateUrl: './customer-history-transaction.component.html',
-  styleUrls: ['./customer-history-transaction.component.scss']
+  selector: 'app-supplier-history-transaction',
+  templateUrl: './supplier-history-transaction.component.html',
+  styleUrls: ['./supplier-history-transaction.component.scss']
 })
-export class CustomerHistoryTransactionComponent implements OnChanges {
+export class SupplierHistoryTransactionComponent {
 columns: any[] = [
     { name: "sales-invoice.invoiceNumber", field: "invoiceNumber" },
     { name: "sales-invoice.InvoiceDate", field: "invoiceDate" , type:'date' },
@@ -55,8 +55,11 @@ selectedInvoice:any;
   {
     pageSize: 25,
     pageNumber: 0,
+    type:InvoiceType.SalesInvoice,
     invoiceDateFrom:null,
     invoiceDateTo:null,
+    invoiceId:null,
+    customerName:null,
     customerId:null
   }
   @ViewChild('changeDeliveryDate') changeDeliveryDateComp:TemplateRef<any>;
@@ -75,8 +78,6 @@ selectedInvoice:any;
     
   ) 
   {
- 
-
   }
   ngOnChanges(changes: SimpleChanges): void {
     if(this.customerId){
@@ -132,6 +133,7 @@ let pad = (n: number) => n.toString().padStart(2, '0');
     
     }
       this.baseSearch.pageNumber = 0;
+      this.baseSearch.type = InvoiceType.SalesInvoice;
       this.baseSearch.customerId = this.customerId;
       this.getList();
   }
@@ -216,6 +218,7 @@ let pad = (n: number) => n.toString().padStart(2, '0');
       this.searchForm.reset();
       this.baseSearch.invoiceDateTo = null;
       this.baseSearch.invoiceDateFrom = null;
+      this.baseSearch.invoiceId = null;
       this.onSearch();
      }
 

@@ -23,6 +23,11 @@ import { CustomerHistoryComponent } from './customers-list/customer-history/cust
 import { TabViewModule } from 'primeng/tabview';
 import { CustomerHistoryInvoiceComponent } from './customers-list/customer-history/customer-history-invoice/customer-history-invoice.component';
 import { CustomerHistoryTransactionComponent } from './customers-list/customer-history/customer-history-transaction/customer-history-transaction.component';
+import { CustomerHistoryInstallmentComponent } from './customers-list/customer-history/customer-history-installment/customer-history-installment.component';
+import { SupplierHistoryComponent } from './suppliers-list/supplier-history/supplier-history.component';
+import { SupplierHistoryInvoiceComponent } from './suppliers-list/supplier-history/supplier-history-invoice/supplier-history-invoice.component';
+import { SupplierHistoryTransactionComponent } from './suppliers-list/supplier-history/supplier-history-transaction/supplier-history-transaction.component';
+import { SupplierHistoryInstallmentsComponent } from './suppliers-list/supplier-history/supplier-history-installments/supplier-history-installments.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +42,12 @@ import { CustomerHistoryTransactionComponent } from './customers-list/customer-h
     SuppliersFormComponent,
     CustomerHistoryComponent,
     CustomerHistoryInvoiceComponent,
-    CustomerHistoryTransactionComponent
+    CustomerHistoryTransactionComponent,
+    CustomerHistoryInstallmentComponent,
+    SupplierHistoryComponent,
+    SupplierHistoryInvoiceComponent,
+    SupplierHistoryTransactionComponent,
+    SupplierHistoryInstallmentsComponent
   ],
   imports: [
     CommonModule,

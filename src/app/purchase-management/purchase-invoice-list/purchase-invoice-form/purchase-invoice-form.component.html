@@ -366,8 +366,8 @@
 					  <p >
               {{creditLimitModelMessage | translate}}
             </p>
-						<button type="button" class="btn btn-rounded btn-secondary m-1" (click)="modal.dismiss('Cross click')">Cancel</button>
-			    	<button type="button" class="btn btn-rounded btn-primary" (click)="submitInvoiceInstallments(false);modal.dismiss('Cross click')">Submit Installments</button>
+						<button type="button" class="btn btn-rounded btn-secondary m-1" (click)="modal.dismiss('Cross click')">{{'common.cancel' | translate}}</button>
+			    	<button type="button" class="btn btn-rounded btn-primary" (click)="submitInvoiceInstallments(false);modal.dismiss('Cross click')">{{'purchase-invoice.submitInstallment' | translate}}</button>
 
 				
 				</div>

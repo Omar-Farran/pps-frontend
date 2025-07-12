@@ -6,6 +6,7 @@ import { CompanyInfoComponent } from './company-list/company-info/company-info.c
 import { CustomersListComponent } from './customers-list/customers-list.component';
 import { SuppliersListComponent } from './suppliers-list/suppliers-list.component';
 import { CustomerHistoryComponent } from './customers-list/customer-history/customer-history.component';
+import { SupplierHistoryComponent } from './suppliers-list/supplier-history/supplier-history.component';
 
 
 
@@ -16,7 +17,9 @@ const routes: Routes =
     { path: 'branchies', component: BranchListComponent },
     { path: 'customers', component: CustomersListComponent },
     { path: 'suppliers', component: SuppliersListComponent },
-    { path: 'customers/history/:id', component: CustomerHistoryComponent }
+    { path: 'customers/history/:id', component: CustomerHistoryComponent },
+    { path: 'suppliers/history/:id', component: SupplierHistoryComponent }
+
 
   ];
 @NgModule

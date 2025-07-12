@@ -1,18 +1,15 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import {  periodTypes } from 'src/app/shared/models/enum';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { BaseService } from 'src/app/shared/services/base.service';
 import { LanguageService } from 'src/app/shared/services/language.service';
-
-
 @Component({
-  selector: 'app-customer-history-invoice',
-  templateUrl: './customer-history-invoice.component.html',
-  styleUrls: ['./customer-history-invoice.component.scss']
+  selector: 'app-supplier-history-invoice',
+  templateUrl: './supplier-history-invoice.component.html',
+  styleUrls: ['./supplier-history-invoice.component.scss']
 })
-export class CustomerHistoryInvoiceComponent {
+export class SupplierHistoryInvoiceComponent {
 @Input() customerId:number;
 columns: any[] = [
     { name: "customer-history.name", field: "name" },
@@ -109,6 +106,4 @@ let pad = (n: number) => n.toString().padStart(2, '0');
       this.baseSearch.invoiceDateFrom = null;
       this.onSearch();
      }
-
-
 }

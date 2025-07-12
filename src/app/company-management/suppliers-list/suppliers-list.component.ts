@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ClientType, LookpusType } from 'src/app/shared/models/enum';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -21,7 +22,9 @@ export class SuppliersListComponent {
   ];
   actionList: any[] = [
     { name: "common.edit", icon: "change", permission: "Update-Suppliers" },
-    { name: 'common.updatestatus', icon: 'change', permission: 'Update-Suppliers' }
+    { name: 'common.updatestatus', icon: 'change', permission: 'Update-Suppliers' },
+    { name: 'Suppliers.viewSupplier', icon: 'change', permission: 'Update-Suppliers' }
+
   ];
 
 
@@ -48,7 +51,8 @@ export class SuppliersListComponent {
       private modalService: NgbModal,
       public authService: AuthService,
       private baseService: BaseService,
-      public languageService: LanguageService
+      public languageService: LanguageService,
+      private router:Router
     ) { }
   ngOnInit(): void {
     this.getList()
@@ -103,6 +107,11 @@ export class SuppliersListComponent {
           this.onChageStatus(event.data);
         }
         break;
+          case "Suppliers.viewSupplier":
+        {
+          this.onViewSupplierHistory(event.data);
+        }
+        break;
     }
   }
 
@@ -125,5 +134,8 @@ export class SuppliersListComponent {
       (res => { this.getList() })
   }
 
+ onViewSupplierHistory(event) {
+        this.router.navigate(['/company-management/suppliers/history/'  + event.id])
+    }
 
 }

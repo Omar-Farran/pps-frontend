@@ -1,9 +1,9 @@
 <div class="customers">
   <div class="breadcrumb">
-    <h1>{{'customer-history.customer-history' | translate}}</h1>
+    <h1>{{'supplier-history.supplier-history' | translate}}</h1>
     <ul>
-      <li>{{'customer-history.manageCustomers' | translate}}</li>
-      <li><strong class="text-primary">{{'customer-history.customer-history' | translate}}</strong></li>
+      <li>{{'supplier-history.manageCustomerHistory' | translate}}</li>
+      <li><strong class="text-primary">{{'supplier-history.invoices' | translate}}</strong></li>
     </ul>
   </div>
   <div class="custom-table-wrap">
@@ -37,8 +37,8 @@
                              <span class="value" > {{customer.initialBalance}} </span>
                         </div>      
                          <div class="col-md-4 form-group mb-3">
-                            <label>{{'customers.creditLimit' | translate}}</label>
-                             <span class="value" > {{customer.creditLimit}} </span>
+                            <label>{{'customers.debitLimit' | translate}}</label>
+                             <span class="value" > {{customer.debitLimit}} </span>
                         </div>    
                            <!-- <div class="col-md-4 form-group mb-3">
                             <label>{{'customers.periodInDays' | translate}}</label>
@@ -59,14 +59,14 @@
                         </div>
    <p-tabView>
  <p-tabPanel header="{{'customer-history.products' | translate}}">
-<app-customer-history-invoice></app-customer-history-invoice>
+<app-supplier-history-invoice></app-supplier-history-invoice>
  </p-tabPanel>
-  <p-tabPanel header="{{'customer-history.sales-invoices' | translate}}">
-<app-customer-history-transaction [customerId]="customerId" > </app-customer-history-transaction>
+  <p-tabPanel header="{{'supplier-history.purchase-invoices' | translate}}">
+<app-supplier-history-transaction [customerId]="customerId" > </app-supplier-history-transaction>
   </p-tabPanel>
 
    <p-tabPanel header="{{'customer-history.installments' | translate}}">
-<app-customer-history-installment [customerId]="customerId" > </app-customer-history-installment>
+<app-supplier-history-installments [customerId]="customerId" > </app-supplier-history-installments>
   </p-tabPanel>
 
         </p-tabView>

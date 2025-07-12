@@ -26,6 +26,7 @@
   "PurchaseRequestInvoice": "فاتورة طلب شراء",
   "UnPaid": "غير مدفوع",
   "Paid": "مدفوع",
+  "Overdue": "متأخرة",
   "PartialPaid": "مدفوع جزئياً",
   "Draft":"مسودة",
   "Completed":"مكتملة",
@@ -438,7 +439,8 @@
     "accountNumber": "رقم الحساب",
     "notes": "ملاحظات",
     "editcustomers": "تعديل العملاء",
-    "Searchby": "البحث بالاسم، النوع، الجوال"
+    "Searchby": "البحث بالاسم، النوع، الجوال",
+    "viewcustomerhistory":"سجل العميل"
   },
   "Suppliers": {
     "Suppliers": "الموردون",
@@ -465,7 +467,8 @@
     "accountNumber": "رقم الحساب",
     "notes": "ملاحظات",
     "editSuppliers": "تعديل الموردين",
-    "Searchby": "البحث بالاسم، النوع، الجوال"
+    "Searchby": "البحث بالاسم، النوع، الجوال",
+    "viewSupplier":"سجل المورد"
   },
   "warehouse-balance": {
     "warehouse": "المستودعات",
@@ -815,7 +818,8 @@
     "copy-purchase-request": "نسخ طلب الشراء",
     "purchase-request-convert-invoice": "موافقات طلبات الشراء",
     "convert-purchase-request-invoice": "تحويل طلب الشراء",
-    "convertedsuccess": "تم تحويل طلب الشراء إلى فاتورة"
+    "convertedsuccess": "تم تحويل طلب الشراء إلى فاتورة",
+    "submitInstallment":"حفظ الأقساط"
   },
   "product-line-item": {
     "product": "المنتج",
@@ -901,14 +905,26 @@
     "purchase-total-amount":"إجمالي المشتريات"
    },
    "customer-history": {
-  "customer-history": "سجل العميل",
-  "manageCustomerHistory": "سجل العميل",
-  "invoices": "الفواتير",
-  "transaction": "المعاملات",
+  "customer-history": "سجل العملاء",
+  "manageCustomers": "ادارة سجل",
+  "products": "سجل الأصناف",
+  "sales-invoices": "سجل المبيعات",
   "totalAmount": "المبلغ الإجمالي",
   "unitPrice": "سعر الوحدة",
   "quantity": "الكمية",
   "unitOfMeasure": "وحدة القياس",
-  "name":"اسم المنتج"
-}
+  "name":"اسم المنتج",
+   "minPrice":"أقل سعر",
+   "maxPrice":"أعلى سعر",
+   "avgPrice":"السعر المتوسط",
+   "installments":"سجل الدفعات",
+   "invoices":"العملاء"
+},
+   "supplier-history":{
+    "supplier-history":"سجل الموردين",
+    "invoices":"سجل المشتريات",
+    "purchase-invoices":"سجل المشتريات",
+    "manageCustomerHistory":"ادارة الموردين"
+   }
+
 }
