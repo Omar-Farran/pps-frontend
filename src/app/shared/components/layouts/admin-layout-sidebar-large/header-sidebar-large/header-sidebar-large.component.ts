@@ -7,6 +7,7 @@ import { DirectionService } from 'src/app/shared/services/change-language.servic
 import { LanguageService } from 'src/app/shared/services/language.service';
 import { Language } from 'src/app/shared/models/enum';
 import { BaseService } from 'src/app/shared/services/base.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header-sidebar-large',
@@ -29,7 +30,8 @@ export class HeaderSidebarLargeComponent implements OnInit {
       private auth: AuthService,
       private languageService : LanguageService,
       public directionService: DirectionService,
-      private baseService: BaseService
+      private baseService: BaseService,
+      private router:Router
     ) 
     {}
   
@@ -93,5 +95,9 @@ export class HeaderSidebarLargeComponent implements OnInit {
   
     signout() {
       this.auth.signout();
+    }
+
+    navigateToDashboard(){
+      this.router.navigate(['dashboard/v1'])
     }
 }

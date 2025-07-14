@@ -942,6 +942,7 @@
     "addNewService":"New Service",
     "products":"Products",
     "addNewProduct":"New Product",
-    "servicesAndProducts":"Services and Products"
+    "servicesAndProducts":"Services and Products",
+    "dashboard":"Dashboard"
    }
 }

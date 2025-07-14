@@ -58,32 +58,33 @@ export class NavigationService {
             name: 'navigation.dashboard',
             type: 'dropDown',
             icon: 'i-Bar-Chart',
-            permissions: 'Dashboard',
+            permissions: 'Dashboards',
             sub: [
                 {
                     name: 'V1',
                     state: 'dashboard/v1',
                     type: 'link',
-                    permissions: 'Dashboard'
-                },
-                {
-                    name: 'V2',
-                    state: '/dashboard/v2',
-                    type: 'link',
-                    permissions: 'Dashboard'
-                },
-                {
-                    name: 'V3',
-                    state: '/dashboard/v3',
-                    type: 'link',
-                    permissions: 'Dashboard'
-                },
-                {
-                    name: 'V4',
-                    state: '/dashboard/v4',
-                    type: 'link',
-                    permissions: 'Dashboard'
-                },
+                    permissions: 'Dashboards'
+                }
+                // ,
+                // {
+                //     name: 'V2',
+                //     state: '/dashboard/v2',
+                //     type: 'link',
+                //     permissions: 'Dashboards'
+                // },
+                // {
+                //     name: 'V3',
+                //     state: '/dashboard/v3',
+                //     type: 'link',
+                //     permissions: 'Dashboards'
+                // },
+                // {
+                //     name: 'V4',
+                //     state: '/dashboard/v4',
+                //     type: 'link',
+                //     permissions: 'Dashboards'
+                // },
             ]
         },
         {

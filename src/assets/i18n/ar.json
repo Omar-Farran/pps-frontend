@@ -930,6 +930,24 @@
     "invoices":"سجل المشتريات",
     "purchase-invoices":"سجل المشتريات",
     "manageCustomerHistory":"ادارة الموردين"
+   },
+   "dashboard":{
+    "customersAndSuppliers":"الموردين و العملاء",
+    "customers":"العملاء ",
+    "addNewCustomer":"New Customer",
+    "suppliers":"الموردين",
+    "addNewSupplier":"New Supplier",
+    "salesAndPurchase":"المبيعات و المشتريات",
+    "sales":"فواتير المبيعات",
+    "purchase":"فواتير المشتريات",
+    "addNewSale":"اضافة فاتورة مبيعات",
+    "addNewPurchase":"اضافة فاتورة مشتريات",
+    "service":"الخدمات",
+    "addNewService":"New Service",
+    "products":"المنتجات",
+    "addNewProduct":"New Product",
+    "servicesAndProducts":"Services and Products",
+    "dashboard":"لوحة التحكم"
    }
 
 }

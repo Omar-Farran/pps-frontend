@@ -1,11 +1,11 @@
 <div class="main-header">
     <h2 class="header-title" [ngClass]="{'active': navService.sidebarState.sidenavOpen || eventsDrop._open || searchService.searchOpen}">
-        {{ 
-            eventsDrop._open && !navService.sidebarState.sidenavOpen 
-            ? 'Events' 
+        {{
+            eventsDrop._open && !navService.sidebarState.sidenavOpen
+            ? 'Events'
             : searchService.searchOpen && !navService.sidebarState.sidenavOpen
-            ? 'Search' 
-            : 'Menu' 
+            ? 'Search'
+            : 'Menu'
         }}
     </h2>
     <div class="header-part-left" [ngClass]="{'none': navService.sidebarState.sidenavOpen || eventsDrop._open}">
@@ -16,7 +16,7 @@
         </a>
 
         <div class="menu-search mobile" [ngClass]="{'d-none': searchService.searchOpen }" (click)="searchService.searchOpen = true"></div>
-    
+
         <!-- Search bar -->
         <!-- <div class="search-bar-wrap" [ngClass]="{'search-open': searchService.searchOpen}">
             <div class="search-bar">
@@ -25,7 +25,7 @@
 
                 <div class="tabs-to-dropdown category-search-drop mobile-wide" ngbDropdown>
                     <div id="categorySearchDrop" class="mobile-dropdown" ngbDropdownToggle [ngbNavOutlet]="search"></div>
-            
+
                     <div ngbDropdownMenu aria-labelledby="categorySearchDrop" ngbNav #search="ngbNav">
                         <ng-container ngbNavItem="Shipments">
                             <a class="dropdown-item" ngbNavLink>Shipments</a>
@@ -54,7 +54,7 @@
 
             <div class="search-overlay"(click)="searchService.searchOpen = false"></div>
         </div> -->
-    </div> 
+    </div>
 
     <a href="#/statistics/statistics" class="logo mobile" [ngClass]="{'none': navService.sidebarState.sidenavOpen || eventsDrop._open || searchService.searchOpen }">
         <img src="./assets/images/icon2.png" alt="">
@@ -63,17 +63,26 @@
     <div class="menu-cross" [ngClass]="{'active': navService.sidebarState.sidenavOpen }" (click)="toggelSidebar(); searchService.searchOpen = false; eventsDrop.close()"></div>
     <div class="menu-cross" [ngClass]="{'active': searchService.searchOpen && !navService.sidebarState.sidenavOpen }" (click)="searchService.searchOpen = false"></div>
 
+     <div class="header-icon events mobile-drop" ngbDropdown [placement]="'bottom-right'" [autoClose]="autocloseEnabled" #eventsDrop="ngbDropdown">
+<a id="helpDropdown" (click)="navigateToDashboard()"  class="icon-item nav-item-hold">
+                <i class="icon i-Home1 nav-icon"></i>
+</a>
+ </div>
+
     <div class="header-part-right" [ngClass]="{'none': navService.sidebarState.sidenavOpen || searchService.searchOpen}">
         <div class="header-icon notice lang" ngbDropdown [placement]="'bottom-right'">
             <div id="langDropdown" class="icon-item" ngbDropdownToggle>{{ directionService.getCurrentLanguage() == 'en' ? languages[0].label :  languages[1].label }}</div>
-          
+
             <div ngbDropdownMenu aria-labelledby="langDropdown" class="header-account-dropdown">
               <ng-container *ngFor="let lang of languages">
                 <a class="dropdown-item" (click)="changeLanguage(lang.code)">{{ lang.label }}</a>
               </ng-container>
             </div>
           </div>
-           
+
+
+            
+
 
         <div class="header-icon events mobile-drop" ngbDropdown [placement]="'bottom-right'" [autoClose]="autocloseEnabled" #eventsDrop="ngbDropdown">
             <div class="menu-cross m-0" [ngClass]="{'active': eventsDrop._open}" (click)="eventsDrop.close()"></div>
@@ -83,11 +92,11 @@
                 <i id="dropdownIcon" class="i-Bell nav-icon"></i>
                 <span class="nav-text">Events</span>
             </div>
-            
+
             <div ngbDropdownMenu class="notification-dropdown rtl-ps-none">
                 <div class="notification-wrap">
                 <div class="heading mobile-back" (click)="$event.stopPropagation(); eventsDrop.close();">Events</div>
-                
+
                 <div class="dropdown-item d-flex" *ngFor="let item of notifications" >
                     <div class="notification-icon">
                     <i class="{{item.icon}} text-{{item.status}}"></i>
@@ -103,15 +112,12 @@
                 </div>
                 </div>
             </div>
-  
+
         </div>
-        
-        <!-- <div class="header-icon help mobile-drop" ngbDropdown #helpDrop="ngbDropdown">
-            <div id="helpDropdown" ngbDropdownToggle class="icon-item nav-item-hold">
-                <i class="i-Speach-Bubble-Asking nav-icon"></i>
-                <span class="nav-text">Help</span>
-            </div>
-            
+
+         <div class="header-icon help mobile-drop" ngbDropdown #helpDrop="ngbDropdown">
+          
+<!--
             <div ngbDropdownMenu aria-labelledby="helpDropdown">
                 <div class="mobile-back" (click)="$event.stopPropagation(); helpDrop.close();">Help</div>
                 <button class="dropdown-item">Knowledge center</button>
