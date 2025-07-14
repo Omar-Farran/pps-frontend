@@ -242,7 +242,8 @@
     "purchase-status-report":"Purchase Status Report",
     "purchase-supplier-report":"Collection Report by Supplier",
     "purchase-installment-followup-report":"Purchase Installment Follow Up",
-    "purchase-period-report":"Purchase Period Report"
+    "purchase-period-report":"Purchase Period Report",
+    "brand":"Brands"
     
   },
   "section": {
@@ -408,7 +409,9 @@
     "section": "Sections",
     "currentStock": "Current Stock",
     "purchaseDiscount":"Purchase Discount",
-    "purchaseTax":"Purchase Tax"
+    "purchaseTax":"Purchase Tax",
+    "brand":"Brand",
+    "type":"Product Type"
   },
   "customers": {
     "customers": "Customers",
@@ -923,5 +926,22 @@
     "invoices":"Invoices",
     "purchase-invoices":"Purchase History",
     "manageCustomerHistory":"Manage Suppliers"
+   },
+   "dashboard":{
+    "customersAndSuppliers":"Customers & Suppliers",
+    "customers":"Customers",
+    "addNewCustomer":"New Customer",
+    "suppliers":"Suppliers",
+    "addNewSupplier":"New Supplier",
+    "salesAndPurchase":"Sales & Purchase",
+    "sales":"Sales",
+    "purchase":"Purchase",
+    "addNewSale":"New Sale",
+    "addNewPurchase":"New Purchase",
+    "service":"Service",
+    "addNewService":"New Service",
+    "products":"Products",
+    "addNewProduct":"New Product",
+    "servicesAndProducts":"Services and Products"
    }
 }

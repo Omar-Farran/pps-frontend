@@ -251,8 +251,7 @@ this.baseService.Get('WarehouseSections' , 'GetSectionsByWarehouseId/' + warehou
   }
 
   getSelectItemList(query){
-    
-    this.baseService.Get('Product' , 'GetSelectItemsList?query=' + query ).subscribe(res => {
+    this.baseService.Get('Product' , 'GetSelectItemsList?query=' + query + '&isPurchase=true' ).subscribe(res => {
       this.filteredProducts = (res as SelectItem[]).filter(product =>
   this.transactionItems.every(item => item.product?.id !== product.id)
 );

@@ -15,5 +15,6 @@ export class ProductLineItem {
     quantityDb:number = 0;
     reserveDb:boolean;
     isInValid:boolean;
+    type:any;
 }
 

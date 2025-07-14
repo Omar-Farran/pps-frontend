@@ -1,46 +1,53 @@
 <div class="c-card mb-4">
     <div class="c-card-body">
         <div class="c-header">
-            <div class="c-title text-20">Customers dashboard</div>
-
-            <div class="c-actions">
-                <button type="button" class="btn btn-rounded btn-secondary">
-                    View more
-                </button>
-            </div>
+            <div class="c-title text-20">{{'dashboard.salesAndPurchase' | translate}}</div>
         </div>
 
         <div class="c-list c-list-statistics">
             <div class="item-info">
-                <div class="title">Today’s Login</div>
-                <div class="body">
-                    <i class="icon i-MaleFemale"></i>
-                    <span class="value">21</span>
-                </div>
-            </div>
-
-            <div class="item-info">
-                <div class="title">Sales</div>
+                <a (click)="goToSalesList()" >
+              <div class="title">{{'dashboard.sales' | translate}}</div>
                 <div class="body">
                     <i class="icon i-Wallet"></i>
-                    <span class="value">4421</span>
+                    
+                    <span *ngIf="model" class="value">{{model.salesCount}}</span>
                 </div>
+                </a>
+             
             </div>
 
             <div class="item-info">
-                <div class="title">Orders</div>
-                <div class="body">
-                    <i class="icon i-Bag-Coins"></i>
-                    <span class="value">442</span>
+                <a (click)="goToAddNewSalesInvoice()" >
+                <div class="title">{{'dashboard.addNewSale' | translate}}</div>
+                <div class="body  px-4 pt-2">
+                    <i class="icon i-Wallet">
+                        <i class="icon i-Add"></i>
+                    </i>
                 </div>
+                </a>
             </div>
 
             <div class="item-info">
-                <div class="title">Expense</div>
+                <a (click)="goToPurchaseList()" >
+                <div class="title">{{'dashboard.purchase' | translate}}</div>
                 <div class="body">
-                    <i class="icon i-Pie-Chart-3"></i>
-                    <span class="value">210</span>
+                    <i class="icon i-Cash-Register"></i>
+                    <span *ngIf="model" class="value">{{model.salesCount}}</span>
                 </div>
+                </a>
+            </div>
+
+            <div class="item-info">
+                 <a (click)="goToAddNewPurchaseInvoice()" >
+                <div class="title">{{'dashboard.addNewPurchase' | translate}}</div>
+                <div class="body  px-4 pt-2">
+                    <i class="icon i-Cash-Register">
+
+                        <i class="icon i-Add"></i>
+                    </i>
+                </div>
+                </a>
             </div>
         </div>
     </div>

@@ -1,47 +1,54 @@
 <div class="c-card mb-4">
     <div class="c-card-body">
         <div class="c-header">
-            <div class="c-title text-20">User statistics</div>
-
-            <div class="c-actions">
-                <button type="button" class="btn btn-rounded btn-secondary">
-                    View more
-                </button>
-            </div>
+         
         </div>
 
         <div class="c-list c-list-statistics">
             <div class="item-info">
-                <div class="title">Today’s Login</div>
+                  <a (click)="goToCustomers()" >
+                <div class="title">{{'dashboard.customers' | translate }}</div>
                 <div class="body">
-                    <i class="icon i-Conference"></i>
-                    <span class="value">21</span>
+                   <i class="icon i-Checked-User"></i>
+                    <span  *ngIf="model" class="value">{{model.customerCount}}</span>
                 </div>
+                </a>
             </div>
 
+        
             <div class="item-info">
-                <div class="title">New Users</div>
+                 <a (click)="goToSuppliers()" >
+                <div class="title">{{'dashboard.suppliers' | translate }}</div>
                 <div class="body">
-                    <i class="icon i-Add-User"></i>
-                    <span class="value">21</span>
+                   <i class="icon i-Conference"></i>
+                    <span  *ngIf="model" class="value">{{model.supplierCount}}</span>
                 </div>
+                </a>
             </div>
 
-            <div class="item-info">
-                <div class="title">Active Users</div>
+              <div class="item-info">
+                 <a (click)="goToProducts()" >
+                <div class="title">{{'dashboard.products' | translate }}</div>
                 <div class="body">
-                    <i class="icon i-Checked-User"></i>
-                    <span class="value">200</span>
+                   <i class="icon i-Bag-Items"></i>
+                    <span  *ngIf="model" class="value">{{model.productCount}}</span>
                 </div>
+                </a>
             </div>
 
-            <div class="item-info">
-                <div class="title">Users Updates</div>
+             <div class="item-info">
+                <a (click)="goToProducts()" >
+                <div class="title">{{'dashboard.service' | translate }}</div>
                 <div class="body">
-                    <i class="icon i-Boy"></i>
-                    <span class="value">200</span>
+                   <i class="icon i-Tag"></i>
+                    <span  *ngIf="model" class="value">{{model.serviceProductCount}}</span>
                 </div>
+                </a>
             </div>
+
+
+         
+            
         </div>
     </div>
 </div>

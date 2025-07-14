@@ -1,4 +1,6 @@
 {
+  "Product":"منتج",
+  "Service":"خدمة",
   "IQD":"دينار عراقي",
   "true":"نعم",
   "false":"لا",
@@ -247,7 +249,8 @@
     "purchase-status-report":"تقرير حالة فواتير المشتريات",
     "purchase-supplier-report":"تقرير التحصيل حسب المورد",
     "purchase-installment-followup-report":"تقرير متابعة دفعات فواتير الشراء",
-    "purchase-period-report":"تقرير أداء المشتريات حسب الفترة"
+    "purchase-period-report":"تقرير أداء المشتريات حسب الفترة",
+    "brand":"الماركات"
   },
   "section": {
     "sectionManagment": "إدارة الأقسام",
@@ -411,7 +414,9 @@
     "section": "الأقسام",
     "currentStock": "المخزون الحالي",
     "purchaseDiscount": "خصم الشراء",
-    "purchaseTax": "ضريبة الشراء"
+    "purchaseTax": "ضريبة الشراء",
+    "brand":"الماركة",
+    "type":"نوع المنتج"
   },
   "customers": {
     "customers": "العملاء",

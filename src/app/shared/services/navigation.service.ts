@@ -191,6 +191,12 @@ export class NavigationService {
                     state: '/lookups-managment/sectionType/18',
                     type: 'link',
                     permissions: 'Lookups-List'
+                },
+                {
+                    name: 'navigation.brand',
+                    state: '/lookups-managment/brand/19',
+                    type: 'link',
+                    permissions: 'Lookups-List'
                 }
             ]
         },

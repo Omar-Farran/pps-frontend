@@ -41,7 +41,8 @@ export enum LookpusType {
     CustomersType = 15,
     unitOfMeasures = 16,
     Category = 17,
-    SectionType = 18
+    SectionType = 18,
+    Brand = 19
 
 }
 export const LookupsTypeArr =
@@ -275,6 +276,11 @@ export enum InvoiceStatus {
      Paid = 6
 }
 
+export enum ProductTypeEnum {
+    Product = 0,
+    Service = 1
+}
+
 export const transactionTypes  =
     [
         { id: 1, name: 'Reciving', nameAr: 'استقبال' },
@@ -329,4 +335,10 @@ export const transactionTypes  =
         { id: 0, name: 'Daily', nameAr: 'Daily' },
         { id: 1, name: 'Weekly', nameAr: 'Weekly' },
         { id: 2, name: 'Monthly', nameAr: 'Monthly' }
+    ]
+
+          export const productTypes = 
+    [
+        { id: 0, name: 'Product', nameAr: 'Product' },
+        { id: 1, name: 'Service', nameAr: 'Service' }
     ]

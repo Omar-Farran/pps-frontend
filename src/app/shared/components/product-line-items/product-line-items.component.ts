@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, Output, SimpleChanges } from '@angular/cor
 import { BaseService } from '../../services/base.service';
 import { SelectItem } from 'src/app/data/select-item';
 import { ProductLineItem } from 'src/app/data/product-line-item';
-import { InvoiceStatus, InvoiceType } from '../../models/enum';
+import { InvoiceStatus, InvoiceType, ProductTypeEnum, productTypes } from '../../models/enum';
 
 @Component({
   selector: 'app-product-line-items',
@@ -18,10 +18,9 @@ export class ProductLineItemsComponent  implements OnChanges {
 @Input() sourceId:any;
 @Input() invoice:any;
 filteredProducts:any;
-isPurchase:boolean;
+isPurchase:boolean = false;
 itemLabel:any;
 showReserve:boolean;
-
  constructor
     (
       private baseService: BaseService
@@ -59,7 +58,7 @@ showReserve:boolean;
   }
 
   getSelectItemList(query){
-    this.baseService.Get('Product' , 'GetSelectItemsList?query=' + query ).subscribe(res => {
+    this.baseService.Get('Product' , 'GetSelectItemsList?query=' + query + '&isPurchase=' + this.isPurchase ).subscribe(res => {
       this.filteredProducts = (res as SelectItem[]).filter(product =>
   this.productItems.every(item => item.product?.id !== product.id)
 );
@@ -94,6 +93,7 @@ onSelectProduct(lineItem: any, event: any) {
     this.productItems[lineItem.index].productId = event.value.id;
     this.productItems[lineItem.index].index = lineItem.index;
     this.productItems[lineItem.index].quantity = 1;
+    this.showReserve = lineItem.type == ProductTypeEnum.Product; 
     this.calculateTotal(this.productItems[lineItem.index] , 'quantity');
 });
 

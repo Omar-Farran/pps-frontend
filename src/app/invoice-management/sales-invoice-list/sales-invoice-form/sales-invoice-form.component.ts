@@ -9,7 +9,7 @@ import { ProductLineItem } from 'src/app/data/product-line-item';
 import { SelectItem } from 'src/app/data/select-item';
 import { InstallmentComponent } from 'src/app/shared/components/installment/installment.component';
 import { ProductLineItemsComponent } from 'src/app/shared/components/product-line-items/product-line-items.component';
-import { ClientType, paymentMethods, sourceTypes , SourceType, InvoiceType, InvoiceStatus } from 'src/app/shared/models/enum';
+import { ClientType, paymentMethods, sourceTypes , SourceType, InvoiceType, InvoiceStatus, ProductTypeEnum } from 'src/app/shared/models/enum';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { BaseService } from 'src/app/shared/services/base.service';
 import { environment } from 'src/environments/environment';
@@ -247,7 +247,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
          this.submitInvoiceHeaderForm();
         }else if(this.activeIndex == 1){
           if(this.productLineComponent.productItems?.every(item => item.quantity > 0 && item.unitPrice > 0 && item.total > 0 && item.id > 0 &&
-            item.quantity <= (item.maxQuantity + (item.reserveDb && this.entity.status != InvoiceStatus.Draft ? item.quantityDb ?? 0 : 0))
+           (item.type == ProductTypeEnum.Product ?  item.quantity <= (item.maxQuantity + (item.reserveDb && this.entity.status != InvoiceStatus.Draft ? item.quantityDb ?? 0 : 0)) : true)
           )){
               this.submitProductItems();
           }else {

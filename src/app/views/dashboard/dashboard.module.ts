@@ -13,6 +13,8 @@ import { DashboardV3Component } from './dashboard-v3/dashboard-v3.component';
 import { DashboardV4Component } from './dashboard-v4/dashboard-v4.component';
 import { CardCustomersDashboardComponent } from './components/cards/card-customers-dashboard/card-customers-dashboard.component';
 import { CardUserStatisticsComponent } from './components/cards/card-user-statistics/card-user-statistics.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { ProductStatisticsDashboardComponent } from './components/cards/product-statistics-dashboard/product-statistics-dashboard.component';
 
 @NgModule({
   imports: [
@@ -23,7 +25,8 @@ import { CardUserStatisticsComponent } from './components/cards/card-user-statis
     }),
     NgxDatatableModule,
     NgbModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    SharedModule
   ],
   declarations: [
     DashboadDefaultComponent,
@@ -31,7 +34,8 @@ import { CardUserStatisticsComponent } from './components/cards/card-user-statis
     DashboardV3Component,
     DashboardV4Component,
     CardCustomersDashboardComponent,
-    CardUserStatisticsComponent
+    CardUserStatisticsComponent,
+    ProductStatisticsDashboardComponent
   ]
 })
 export class DashboardModule { }

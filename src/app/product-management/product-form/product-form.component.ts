@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { OverlayContainer, ToastrService } from 'ngx-toastr';
-import { GlobalStatus, GlobalStatusArr, LookpusType } from 'src/app/shared/models/enum';
+import { GlobalStatus, GlobalStatusArr, LookpusType, ProductTypeEnum, productTypes } from 'src/app/shared/models/enum';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { BaseService } from 'src/app/shared/services/base.service';
 import { maxValueValidator } from 'src/app/utils/maxValueValidator';
@@ -25,6 +25,9 @@ export class ProductFormComponent {
   isDetailsFormSubmitted:boolean = false;
   imageFile:any;
   public status = GlobalStatusArr
+  public productTypes = productTypes;
+isProductService:boolean = false;
+brands:any[];
   categories:any[];
   unitOfMeasures:any[];
   followTypes:any[];
@@ -44,13 +47,14 @@ export class ProductFormComponent {
         barCode:new FormControl(null),
         nameEn: new FormControl('', [Validators.required,englishTextWithNumbersValidator,noWhitespaceValidator() , Validators.maxLength(100)]),
         nameAr: new FormControl('', [Validators.required, arabicTextWithNumbersValidator(), noWhitespaceValidator() ]),
-        purchasePrice: new FormControl(null, [Validators.required ]),
+        purchasePrice: new FormControl(null),
         sellPrice: new FormControl(null, [Validators.required ]),
         unitOfMeasureId:new FormControl(null ,  [Validators.required ]),
         categoryId:new FormControl(null ,  [Validators.required ]),
         isActive: new FormControl(false),
-        hasBarCode:new FormControl(false)
-
+        hasBarCode:new FormControl(false),
+        type:new FormControl(0),
+        brandId:new FormControl(null)
       }
     );
      detailsForm = new FormGroup ({
@@ -96,7 +100,7 @@ export class ProductFormComponent {
       this.getCategories();
       this.getUnitOfMeasures();
       this.getWarehouses();
-      
+      this.getBrands();
       this.steps = [
     { label: this.translate.instant('product-management.basicInfo'), command: () => (this.activeIndex = 0) },
     { label: this.translate.instant('product-management.details'), command: () => (this.activeIndex = 1) }
@@ -197,7 +201,9 @@ export class ProductFormComponent {
                 categoryId:this.entity.categoryId,
                 unitOfMeasureId:this.entity.unitOfMeasureId,
                 sellPrice:this.entity.sellPrice,
-                purchasePrice:this.entity.purchasePrice
+                purchasePrice:this.entity.purchasePrice,
+                type:this.entity.type,
+                brandId:this.entity.brandId
              }
           );
        const date = this.entity.expirationDate ?  new Date(this.entity.expirationDate) : null;
@@ -246,6 +252,12 @@ export class ProductFormComponent {
       });
     }
 
+      getBrands(){
+      this.baseService.getLookupsByType(LookpusType.Brand).subscribe(res => {
+        this.brands = res;
+      });
+    }
+
      getUnitOfMeasures(){
       this.baseService.getLookupsByType(LookpusType.unitOfMeasures).subscribe(res => {
         this.unitOfMeasures = res;
@@ -290,8 +302,20 @@ this.baseService.Get('WarehouseSections' , 'GetSectionsByWarehouseId/' + warehou
 onFollowItemChange(value){
   if(value){
     this.detailsForm.get('followType').setValue(0);
+    this.basicForm.get('purchasePrice').setValidators(Validators.required);
   }else {
     this.detailsForm.get('followType').setValue(null);
+     this.basicForm.get('purchasePrice').clearValidators();
+     this.basicForm.updateValueAndValidity();
+  }
+}
+
+onProductTypeChange(value){
+  debugger;
+  if(value == ProductTypeEnum.Service){
+    this.isProductService = true;
+  }else {
+    this.isProductService = false;
   }
 }
 }

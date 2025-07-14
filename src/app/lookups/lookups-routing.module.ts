@@ -10,7 +10,8 @@ const routes: Routes =
     { path: 'category/:typeId', component: LookupsListComponent },
     { path: 'unitOfMeasure/:typeId', component: LookupsListComponent },
     { path: 'customerType/:typeId', component: LookupsListComponent },
-    { path: 'sectionType/:typeId', component: LookupsListComponent }
+    { path: 'sectionType/:typeId', component: LookupsListComponent },
+    { path: 'brand/:typeId', component: LookupsListComponent }
 
   ];
 @NgModule
