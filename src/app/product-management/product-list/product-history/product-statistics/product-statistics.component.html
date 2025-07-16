@@ -1,12 +1,14 @@
-<div class="customers">
-		<div class="card mb-2">
-					<div class="card-body">
+  
+  
+  <div class="tab-content active">
+      <div class="filters">
+      	
 <form [formGroup]="searchForm" id="searchForm" (submit)="onSearch()">
 	<div class="row">
-
-        			<div class="col-md-4 form-group mb-3">
+                         
+						<div class="col-md-4 form-group mb-3">
         <label for="picker1">{{
-          "sales-invoice.invoiceDateFrom" | translate
+          "product-history.dateFrom" | translate
         }}</label>
         <div class="input-group">
           <input
@@ -14,7 +16,7 @@
             class="form-control"
             placeholder="yyyy-mm-dd"
             name="dp"
-            formControlName="invoiceDateFrom"
+            formControlName="dateFrom"
             ngbDatepicker
             #dp="ngbDatepicker"
           />
@@ -32,7 +34,7 @@
 
 	   <div class="col-md-4 form-group mb-3 ">
         <label for="picker1">{{
-          "sales-invoice.invoiceDateTo" | translate
+          "product-history.dateTo" | translate
         }}</label>
         <div class="input-group">
           <input
@@ -40,7 +42,7 @@
             class="form-control"
             placeholder="yyyy-mm-dd"
             name="invoiceDateTo"
-            formControlName="invoiceDateTo"
+            formControlName="dateTo"
             ngbDatepicker
             #invoiceDateTo="ngbDatepicker"
           />
@@ -56,14 +58,6 @@
         </div>
       </div>
 
-                  
-
-
-               
-
-                         
-			
-
 
 
 
@@ -77,24 +71,14 @@
 </div>
 				
  </form>
-					</div>
-				</div>
+				
 
-<div class="custom-table-wrap my-5">
-		<app-table 
-			[Headers]="columns" 
-			[dataSource]="dataSource" 
-			[PageSize]="baseSearch.pageSize" 
-			[TotalRecords]="totalCount" 
-			(PageChange)="onPageChange($event)"
-		>
-		</app-table>
-	</div>
-</div>
-
-
-
-
-
-
-
+      </div>
+      <div *ngIf="statisticsModel" class="stats">
+        <div>📦 {{'product-history.totalBalance' | translate}}: <strong>{{statisticsModel.totalBalance}}</strong> {{'Unit' | translate}}</div>
+        <div>🛒 {{'product-history.productSalesCount' | translate}}: <strong>{{statisticsModel.productSalesCount}}</strong> {{'Unit' | translate}}</div>
+        <div>📥 {{'product-history.productPurchaseCount' | translate}}: <strong>{{statisticsModel.productPurchaseCount}}</strong> {{'Unit' | translate}}</div>
+        <div>💰 {{'product-history.avgPurchasePrice' | translate}}: <strong>{{statisticsModel.avgPurchasePrice}} {{'IRQ' | translate}}</strong></div>
+        <div>💵 {{'product-history.avgSellPrice' | translate}}: <strong>{{statisticsModel.avgSellPrice}} {{'IRQ' | translate}}</strong></div>
+      </div>
+    </div>

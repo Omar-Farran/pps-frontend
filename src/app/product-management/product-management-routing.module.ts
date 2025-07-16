@@ -7,6 +7,7 @@ import { WarehouseListComponent } from './warehouse-list/warehouse-list.componen
 import { WarehouseSectionsListComponent } from './warehouse-sections-list/warehouse-sections-list.component';
 import { TransactionInfoComponent } from './transaction-list/transaction-info/transaction-info.component';
 import { InventoryCountingComponent } from './inventory-counting/inventory-counting.component';
+import { ProductHistoryComponent } from './product-list/product-history/product-history.component';
 
 
 const routes: Routes =
@@ -14,10 +15,11 @@ const routes: Routes =
     { path: 'warehouse', component: WarehouseListComponent },
     { path: 'warehouse-sections', component: WarehouseSectionsListComponent },
     { path: 'products', component: ProductListComponent },
+    {path:'products/history/:id' , component:ProductHistoryComponent},
     { path: 'warehouse-balance', component: WarehouseBalanceListComponent },
     { path: 'transaction', component: TransactionListComponent },
     { path: 'transaction/:id', component: TransactionInfoComponent },
-    { path: 'inventory-counting', component: InventoryCountingComponent },
+    { path: 'inventory-counting', component: InventoryCountingComponent }
   ];
 
 @NgModule({

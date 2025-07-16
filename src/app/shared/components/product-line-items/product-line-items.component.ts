@@ -93,7 +93,7 @@ onSelectProduct(lineItem: any, event: any) {
     this.productItems[lineItem.index].productId = event.value.id;
     this.productItems[lineItem.index].index = lineItem.index;
     this.productItems[lineItem.index].quantity = 1;
-    this.showReserve = lineItem.type == ProductTypeEnum.Product; 
+    this.showReserve = productLineItem.type == ProductTypeEnum.Product; 
     this.calculateTotal(this.productItems[lineItem.index] , 'quantity');
 });
 

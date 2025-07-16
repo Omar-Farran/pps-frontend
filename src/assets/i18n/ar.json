@@ -1,4 +1,6 @@
 {
+  "Unit":"وحدة",
+  "IRQ":"دينار",
   "Product":"منتج",
   "Service":"خدمة",
   "IQD":"دينار عراقي",
@@ -416,7 +418,9 @@
     "purchaseDiscount": "خصم الشراء",
     "purchaseTax": "ضريبة الشراء",
     "brand":"الماركة",
-    "type":"نوع المنتج"
+    "type":"نوع المنتج",
+    "view-history":"سجل المنتج"
+    
   },
   "customers": {
     "customers": "العملاء",
@@ -948,6 +952,46 @@
     "addNewProduct":"New Product",
     "servicesAndProducts":"Services and Products",
     "dashboard":"لوحة التحكم"
+   },
+   "product-history": {
+     "name":"اسم المنتج",
+     "manageProductHistory":"ادارة سجل المنتج",
+     "product-history":"سجل المنتج",
+      "product": "المنتجات",
+    "product-management": "إدارة المنتجات",
+    "manageProduct": "إدارة المنتجات",
+    "addNewProduct": "إضافة منتج جديد",
+    "nameEn": "الاسم بالإنجليزية",
+    "nameAr": "الاسم بالعربية",
+    "code": "الباركود",
+    "status": "الحالة",
+    "purchasePrice": "سعر الشراء",
+    "sellPrice": "سعر البيع",
+    "details": "تفاصيل المنتج",
+    "follow": "متابعة التفاصيل",
+    "isActive": "نشط",
+    "category": "الفئة",
+    "unitOfMeasure": "وحدة القياس",
+    "salesTax": "ضريبة المبيعات",
+    "brand":"الماركة",
+    "type":"نوع المنتج",
+    "barCode":"الباركود",
+    "statistics":"إحصائيات المنتج",
+    "product-sales":"المبيعات حسب العملاء",
+    "product-purchase":"المشتريات حسب المورد",
+    "totalBalance":"إجمالي المخزون",
+    "productSalesCount":"إجمالي المبيعات",
+    "avgSellPrice":"السعر المتوسط للبيع",
+    "productPurchaseCount":"إجمالي المشتريات",
+    "avgPurchasePrice":"السعر المتوسط للشراء",
+    "dateFrom":"من تاريخ",
+    "dateTo":"إلى تاريخ",
+    "customerName":"اسم العميل",
+    "soldQuantity":"الكمية",
+    "minSoldPrice":"أقل سعر",
+    "maxSoldPrice":"أعلى سعر",
+    "avgSoldPrice":"متوسط السعر",
+    "supplierName":"اسم المورد"
    }
 
 }

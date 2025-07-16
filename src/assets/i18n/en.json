@@ -411,7 +411,8 @@
     "purchaseDiscount":"Purchase Discount",
     "purchaseTax":"Purchase Tax",
     "brand":"Brand",
-    "type":"Product Type"
+    "type":"Product Type",
+    "view-history":"View Product History"
   },
   "customers": {
     "customers": "Customers",
@@ -944,5 +945,45 @@
     "addNewProduct":"New Product",
     "servicesAndProducts":"Services and Products",
     "dashboard":"Dashboard"
-   }
+   },
+  "product-history": {
+  "name": "Product Name",
+  "manageProductHistory": "Manage Product History",
+  "product-history": "Product History",
+  "product": "Products",
+  "product-management": "Product Management",
+  "manageProduct": "Manage Products",
+  "addNewProduct": "Add New Product",
+  "nameEn": "Name (English)",
+  "nameAr": "Name (Arabic)",
+  "code": "Barcode",
+  "status": "Status",
+  "purchasePrice": "Purchase Price",
+  "sellPrice": "Sell Price",
+  "details": "Product Details",
+  "follow": "Follow Details",
+  "isActive": "Active",
+  "category": "Category",
+  "unitOfMeasure": "Unit of Measure",
+  "salesTax": "Sales Tax",
+  "brand": "Brand",
+  "type": "Product Type",
+  "barCode": "Barcode",
+  "statistics": "Product Statistics",
+  "product-sales": "Sales by Customers",
+  "product-purchase": "Purchases by Supplier",
+  "totalBalance": "Total Stock",
+  "productSalesCount": "Total Sales",
+  "avgSellPrice": "Average Sell Price",
+  "productPurchaseCount": "Total Purchases",
+  "avgPurchasePrice": "Average Purchase Price",
+  "dateFrom": "From Date",
+  "dateTo": "To Date",
+   "customerName": "Customer Name",
+  "soldQuantity": "Quantity",
+  "minSoldPrice": "Minimum  Price",
+  "maxSoldPrice": "Maximum  Price",
+  "avgSoldPrice": "Average  Price"
+}
+
 }

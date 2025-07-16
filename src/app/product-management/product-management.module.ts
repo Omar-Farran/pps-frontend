@@ -25,6 +25,10 @@ import { TransactionInfoComponent } from './transaction-list/transaction-info/tr
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { InventoryCountingComponent } from './inventory-counting/inventory-counting.component';
 import { TabViewModule } from 'primeng/tabview';
+import { ProductHistoryComponent } from './product-list/product-history/product-history.component';
+import { ProductStatisticsComponent } from './product-list/product-history/product-statistics/product-statistics.component';
+import { ProductSalesCustomerComponent } from './product-list/product-history/product-sales-customer/product-sales-customer.component';
+import { ProductPurchaseSupplierComponent } from './product-list/product-history/product-purchase-supplier/product-purchase-supplier.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,11 @@ import { TabViewModule } from 'primeng/tabview';
     WarehouseSectionsListComponent,
     WarehouseSectionsFormComponent,
     TransactionInfoComponent,
-    InventoryCountingComponent
+    InventoryCountingComponent,
+    ProductHistoryComponent,
+    ProductStatisticsComponent,
+    ProductSalesCustomerComponent,
+    ProductPurchaseSupplierComponent
   ],
   imports: [
     CommonModule,

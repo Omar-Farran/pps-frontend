@@ -21,6 +21,7 @@ export class ProductListComponent {
     { name: "product-management.status", field: "isActive"  }
   ];
     actionList: any[] = [
+    { name: "product-management.view-history", icon: "change", permission: "Product-Form" },
     { name: "common.edit", icon: "change", permission: "Product-Form" },
     { name: 'common.updatestatus', icon: 'change' , permission: 'Product-Form'}
   ];
@@ -118,6 +119,12 @@ dataSource: any[] = [];
            this.onInfo(event.data);
         }
         break;
+            case "product-management.view-history":
+        {
+           this.onViewProductHistory(event.data);
+        }
+        break;
+        
     }
   }
 
@@ -144,4 +151,8 @@ dataSource: any[] = [];
    onInfo(event) {
         this.router.navigate(['/product-management/products/' + event.id])
     }
+ onViewProductHistory(event) {
+        this.router.navigate(['/product-management/products/history/' + event.id])
+    }
+    
 }
