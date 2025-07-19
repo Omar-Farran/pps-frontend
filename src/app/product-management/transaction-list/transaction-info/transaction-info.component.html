@@ -1,11 +1,15 @@
 <div class="breadcrumb">
     <h1>{{ 'transaction.info' | translate }}</h1>
     <ul>
-        <li>{{'transaction.transaction' | translate}}</li>
         <li>
-            <a (click)="router.navigate(['/product-management/transaction'])">
+         <a (click)="router.navigate(['/product-management/transaction'])">
+            {{'transaction.transaction' | translate}}
+
+         </a>
+        
+        </li>
+        <li>
                 <strong>{{'transaction.info' | translate}}</strong>
-            </a>
         </li>
       
     </ul>
@@ -26,7 +30,7 @@
 
                          <div class="col-md-4 form-group mb-3">
                             <label>{{'transaction.type' | translate}}</label>
-                             <span class="value" > {{entity.type}} </span>
+                             <span class="value" > {{entity.type | translate}} </span>
                         </div>
 
                          <div class="col-md-4 form-group mb-3">

@@ -48,7 +48,26 @@
 
       </div>
        
+      	 <div class="col-md-4 form-group required">
+         <label>{{ "purchase-invoice.suppliers" | translate }}</label>
+             <p-dropdown 
+                                  [options]="filteredCustomers"
+                                  [styleClass]="'form-control' + (isInvoiceHeaderFormSubmitted && invoiceHeaderForm.get('customerId')?.errors ? ' is-invalid' : '')"
+                                  optionLabel="name" 
+                                  optionValue="id"
+                                  [filter]="true"
+                                  placeholder="{{ 'purchase-invoice.suppliers' | translate }}" 
+                                  formControlName="customerId"
+                                  [class.is-invalid]="isInvoiceHeaderFormSubmitted && invoiceHeaderForm.get('customerId')?.errors"
+                                  >
+                  </p-dropdown> 
+                 <div  class="invalid-feedback">
+                                    {{ "common.fieldRequired" | translate }}
+                                 </div>
+      </div>
 
+
+<!-- 
                         		<div  class="col-md-4 form-group mb-3 required">
                                   <label>{{ "purchase-invoice.suppliers" | translate }}</label>
                                   <p-autoComplete
@@ -69,7 +88,7 @@
                                     <div  class="invalid-feedback">
                                     {{ "common.fieldRequired" | translate }}
                                  </div>
-                                  </div>
+                                  </div> -->
 
 
      

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { min } from 'date-fns';
 import { OverlayContainer, ToastrService } from 'ngx-toastr';
 import { GlobalStatus, GlobalStatusArr, LookpusType, ProductTypeEnum, productTypes } from 'src/app/shared/models/enum';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -46,11 +47,11 @@ brands:any[];
         id: new FormControl(0),
         barCode:new FormControl(null),
         nameEn: new FormControl('', [Validators.required,englishTextWithNumbersValidator,noWhitespaceValidator() , Validators.maxLength(100)]),
-        nameAr: new FormControl('', [Validators.required, arabicTextWithNumbersValidator(), noWhitespaceValidator() ]),
+        nameAr: new FormControl(''),
         purchasePrice: new FormControl(null),
         sellPrice: new FormControl(null, [Validators.required ]),
-        unitOfMeasureId:new FormControl(null ,  [Validators.required ]),
-        categoryId:new FormControl(null ,  [Validators.required ]),
+        unitOfMeasureId:new FormControl(null),
+        categoryId:new FormControl(null),
         isActive: new FormControl(false),
         hasBarCode:new FormControl(false),
         type:new FormControl(0),
@@ -303,6 +304,8 @@ onFollowItemChange(value){
   if(value){
     this.detailsForm.get('followType').setValue(0);
     this.basicForm.get('purchasePrice').setValidators(Validators.required);
+    this.detailsForm.get('quantityValue').setValidators(Validators.min(1))
+    this.detailsForm.updateValueAndValidity();
   }else {
     this.detailsForm.get('followType').setValue(null);
      this.basicForm.get('purchasePrice').clearValidators();
@@ -314,8 +317,14 @@ onProductTypeChange(value){
   debugger;
   if(value == ProductTypeEnum.Service){
     this.isProductService = true;
+    this.basicForm.get('unitOfMeasureId').setValidators(Validators.required);
+    this.basicForm.get('categoryId').setValidators(Validators.required);
+    this.basicForm.updateValueAndValidity();
+
   }else {
     this.isProductService = false;
   }
 }
+
+
 }

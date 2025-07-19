@@ -32,6 +32,7 @@ columns: any[] = [
 
   ];
 warehouses:any;
+selectedInvoice:any;
 sections:any;
 dataSource: any[] = [];
 deliveryDate:any;
@@ -266,6 +267,7 @@ let pad = (n: number) => n.toString().padStart(2, '0');
 
        onShowPrintModal(data){
       this.id = data.id;
+      this.selectedInvoice = data;
         this.modalService.open(this.printReportComponent, {
       windowClass: 'change-password-popup',
       ariaLabelledBy: 'modal-basic-title', 

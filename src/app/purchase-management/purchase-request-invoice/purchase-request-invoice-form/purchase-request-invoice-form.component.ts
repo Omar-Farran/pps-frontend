@@ -58,7 +58,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
       {
         id: new FormControl(0),
         invoiceDate: new FormControl(null , [Validators.required]),
-        customerId:new FormControl(null),
+        customerId:new FormControl(null , [Validators.required]),
         sourceType: new FormControl(1, [Validators.required]),
         paymentMethod:new FormControl(null, [Validators.required]),
         isDeliveredOrReceived:new FormControl(false),
@@ -114,6 +114,8 @@ isInvoiceHeaderFormSubmitted:boolean = false;
                           day: date.getDate()
                         })
       }
+
+      this.getSupplierSelectItemList('');
     }
     //#region Functions
     resetForm () 
@@ -135,7 +137,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
     let form = this.invoiceHeaderForm.getRawValue();
     let date = form.invoiceDate;
     form.id  = this.id;
-      form.customerId = form.customerId?.id;
+      form.customerId = form.customerId;
       form.isCustomer = true;
        let pad = (n: number) => n.toString().padStart(2, '0');
        form.invoiceDate = `${date.year}-${pad(date.month)}-${pad(date.day)}`;
@@ -191,7 +193,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
           (
             {
                 id: this.entity.id,
-                customerId: {id:this.entity.customerId , name:this.entity.customerName},
+                customerId: this.entity.customerId,
                 sourceType: this.entity.sourceType,
                 paymentMethod:this.entity.paymentMethod,
                 isDeliveredOrReceived:this.entity.isDeliveredOrReceived,

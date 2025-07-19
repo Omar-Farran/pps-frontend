@@ -94,7 +94,7 @@
 
                 <!-- Multi Select if NOT acting as a branch -->
                 <p-multiSelect *ngIf="form?.get('actAsBranch')?.value === false" [options]="branchesList"
-                    [styleClass]="'form-control'" optionLabel="description" optionValue="id"
+                    [styleClass]="'form-control'" optionLabel="name" optionValue="id"
                     placeholder="{{ 'warehouse.select' | translate }}" formControlName="warehouseBranchesIds"
                     [class.is-invalid]="isFormSubmitted && form.get('warehouseBranchesIds')?.errors"></p-multiSelect>
 
@@ -103,7 +103,7 @@
                     formControlName="warehouseBranchesIds"
                     [class.is-invalid]="isFormSubmitted && form.get('warehouseBranchesIds')?.errors">
                     <option value="" disabled selected>{{ "warehouse.select" | translate }}</option>
-                    <option *ngFor="let item of branchesList" [value]="item.id">{{ item.description }}</option>
+                    <option *ngFor="let item of branchesList" [value]="item.id">{{ item.name }}</option>
                 </select>
 
                 <!-- Validation Message -->

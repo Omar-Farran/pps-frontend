@@ -37,7 +37,7 @@
         </div>
       </div>
 
-       <div  class="col-12 col-sm-6 form-group required" >
+       <!-- <div  class="col-12 col-sm-6 form-group required" >
         <label>{{ "product-management.nameAr" | translate }}</label>
         <input
           type="text"
@@ -55,7 +55,7 @@
                                 *ngIf="basicForm.get('nameAr').invalid &&  basicForm.get('nameAr').errors['arabicTextWithNumbers']">
                                 {{'common.onlyArabicIsAllowed'|translate}}
           </div>
-      </div>
+      </div> -->
 
                 <div class="col-12 col-sm-6 form-group mb-3 required">
                             <label for="picker1"> {{ "product-management.type" | translate }}</label>
@@ -124,7 +124,8 @@
                 </div>
             </div>
 
-              <div class="col-md-6 form-group mb-3 required">
+             <ng-container *ngIf="!isProductService"  > 
+  <div  class="col-md-6 form-group mb-3 required">
                <label for="picker1"> {{ "product-management.unitOfMeasure" | translate }}</label>
                <select class="form-control" formControlName="unitOfMeasureId" name="unitOfMeasureId"
                [class.is-invalid]="isFormSubmitted && basicForm.get('unitOfMeasureId')?.errors"
@@ -158,11 +159,11 @@
                <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
                <option *ngFor="let item of brands" value="{{item.id}}" >{{item.title}}</option>
                </select>
-                 <div class="invalid-feedback">
-                    {{'common.fieldRequired'|translate}}
-                </div>
+                
              </div>
 
+             </ng-container>
+            
 
 
 
@@ -346,7 +347,7 @@
       </div>
 
 
-         <div *ngIf="!entity?.imagePath" class="col-12 col-sm-6 form-group">
+         <div *ngIf="!entity?.imagePath && !isProductService" class="col-12 col-sm-6 form-group">
         <label>{{ "product-management.image" | translate }}</label>
         <input
           type="file"
@@ -362,7 +363,7 @@
 
         
 
-         <div class="col-md-6 form-group mb-3">
+         <div *ngIf="!isProductService" class="col-md-6 form-group mb-3">
         <label class="switch switch-primary me-3 mt-4">
           <span>
             {{ "product-management.followItem" | translate }}
@@ -385,7 +386,7 @@
 
          <div class="col-md-6 form-group mb-3">
                <label for="picker1"> {{ "product-management.followType" | translate }}</label>
-               <select class="form-control" formControlName="followType" name="followType" 
+               <select class="form-control" formControlName="followType" name="followType"  (change)="onFollowTypeChange()"
                >
                <option *ngFor="let item of followTypes" value="{{item.id}}" >{{item.title}}</option>
                </select>
@@ -401,9 +402,14 @@
                     formControlName="quantityValue"
                     [class.is-invalid]="isDetailsFormSubmitted && detailsForm.get('quantityValue')?.errors"
                 >
-                <div class="invalid-feedback">
-                    {{'common.fieldRequired'|translate}}
-                </div>
+               <div class="invalid-feedback" *ngIf="isDetailsFormSubmitted && detailsForm.get('quantityValue')?.errors">
+                        <ng-container *ngIf="detailsForm.get('quantityValue')?.errors['required']">
+                                   {{ 'common.fieldRequired' | translate }}
+           </ng-container>
+           <ng-container *ngIf="detailsForm.get('quantityValue')?.errors['min']">
+                         {{ 'common.mustBeGreaterThanZero' | translate }}
+            </ng-container>
+</div>
             </div>
 
 

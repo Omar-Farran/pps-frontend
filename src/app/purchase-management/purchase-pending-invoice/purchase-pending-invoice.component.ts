@@ -2,7 +2,7 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { InvoiceType } from 'src/app/shared/models/enum';
+import { ClientType, InvoiceType } from 'src/app/shared/models/enum';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { BaseService } from 'src/app/shared/services/base.service';
 import { LanguageService } from 'src/app/shared/services/language.service';
@@ -37,13 +37,14 @@ deliveryDate:any;
   id: number = null;
   filteredInvoices:any;
   searchInvoices:string;
+  filteredCustomers:any;
   public searchForm = new FormGroup
   (
     {
       invoiceDateFrom:new FormControl(null),
       invoiceDateTo:new FormControl(null),
       invoiceNumber:new FormControl(null),
-      customerName:new FormControl(null)
+      customerId:new FormControl(null)
 
     }
   )
@@ -55,7 +56,7 @@ deliveryDate:any;
     invoiceDateFrom:null,
     invoiceDateTo:null,
     invoiceId:null,
-    customerName:null,
+    customerId:null,
     isDelivered:false
   }
   @ViewChild('changeDeliveryDate') changeDeliveryDateComp:TemplateRef<any>;
@@ -84,6 +85,7 @@ deliveryDate:any;
   }
   ngOnInit() : void 
   {
+    this.getSupplierSelectItemList('');
     this.onSearch();
     this.searchInvoices = this.translate.instant('sales-invoice.seasrch-invoice')
 
@@ -120,7 +122,7 @@ deliveryDate:any;
     if(searchFormValue){
     if(searchFormValue.invoiceNumber)
     this.baseSearch.invoiceId = searchFormValue.invoiceNumber.id;
-    this.baseSearch.customerName = searchFormValue.customerName;
+    this.baseSearch.customerId = searchFormValue.customerId;
       let pad = (n: number) => n.toString().padStart(2, '0');
    if(searchFormValue.invoiceDateFrom){
         this.baseSearch.invoiceDateFrom = `${searchFormValue.invoiceDateFrom.year}-${pad(searchFormValue.invoiceDateFrom.month)}-${pad(searchFormValue.invoiceDateFrom.day)}`;
@@ -260,4 +262,11 @@ deliveryDate:any;
     this.id = data.id;
         this.router.navigate(['invoice-management/invoice/view/' + this.id]);
   }
+
+
+       getSupplierSelectItemList(query){
+            this.baseService.Get('Customers' , 'GetSelectItemsList/' + ClientType.Supplier + '/?query=' + query ).subscribe(res => {
+              this.filteredCustomers = res 
+          })
+          }
 }

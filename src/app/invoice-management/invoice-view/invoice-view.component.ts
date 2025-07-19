@@ -60,10 +60,19 @@ isPurchase:boolean;
         }
 
         navigate(){
-          if(this.entity.type == 1){
-            this.router.navigate(['/invoice-management/sales-invoice'])
-          }else {
+          switch(this.entity.type){
+            case InvoiceType.QuotationInvoice:
             this.router.navigate(['/invoice-management/quotation'])
+            break;
+             case InvoiceType.SalesInvoice:
+            this.router.navigate(['/invoice-management/sales-invoice'])
+            break;
+             case InvoiceType.PurchaseRequestInvoice:
+            this.router.navigate(['/purchase-management/purchase-request-invoice'])
+            break;
+             default:
+            this.router.navigate(['/purchase-management/purchase-invoice'])
+            break;
           }
         }
 }

@@ -13,7 +13,7 @@
          [(ngModel)]="installmentNumber"
          name="installmentNumber"
           [class.is-invalid]="installmentNumber == 0 || !installmentNumber"
-          [disabled]="invoice.isBalanceUpdated"
+          [disabled]="invoice.isBalanceUpdated || disableGenerateInstallmentButton"
         />
                 <div class="invalid-feedback">
                     {{ 'common.required' | translate }}
@@ -21,7 +21,7 @@
       </div>
    
       <div class="col-md-3 form-group">
-            <button  class="btn btn-primary mt-3"  type="button" (click)="generateInstallments()"  [disabled]="invoice.isBalanceUpdated" > {{ "installment.generateInstallment" | translate  }}</button>
+            <button  class="btn btn-primary mt-3"  type="button" (click)="generateInstallments()"  [disabled]="invoice.isBalanceUpdated || disableGenerateInstallmentButton" > {{ "installment.generateInstallment" | translate  }}</button>
       </div>
     </div>
  
@@ -31,7 +31,7 @@
  <table  *ngIf="installments?.length > 0" class="table table-bordered">
     <thead>
       <tr>
-        <th>#</th>
+        <th>{{'installment-line.sequence' | translate}}</th>
         <th >{{'installment-line.dueDate' | translate}}</th>
         <th>{{'installment-line.amount' | translate}} </th>
         <th *ngIf="invoice?.paymentMethod == 2">{{'installment-line.chequeNumber' | translate}}</th>

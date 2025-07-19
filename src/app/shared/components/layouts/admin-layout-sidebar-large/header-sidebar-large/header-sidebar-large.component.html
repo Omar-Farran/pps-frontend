@@ -8,52 +8,21 @@
             : 'Menu'
         }}
     </h2>
+
+
     <div class="header-part-left" [ngClass]="{'none': navService.sidebarState.sidenavOpen || eventsDrop._open}">
         <div class="menu-toggle" [ngClass]="{'d-none': searchService.searchOpen }" (click)="toggelSidebar()"></div>
-        <!-- <app-search *ngIf="searchService.searchOpen"></app-search> -->
         <a href="#/statistics/statistics" class="logo desktop">
-            <!-- <img src="./assets/images/icon2.png" alt=""> -->
         </a>
 
         <div class="menu-search mobile" [ngClass]="{'d-none': searchService.searchOpen }" (click)="searchService.searchOpen = true"></div>
 
-        <!-- Search bar -->
-        <!-- <div class="search-bar-wrap" [ngClass]="{'search-open': searchService.searchOpen}">
-            <div class="search-bar">
-                <input type="text" placeholder="Search by {{ search.activeId | lowercase }}" [(ngModel)]="searchText" (focus)="searchService.searchOpen = true">
-                <div class="menu-cross menu-cross-input" [ngClass]="{'active': searchText }" (click)="searchText = ''"></div>
-
-                <div class="tabs-to-dropdown category-search-drop mobile-wide" ngbDropdown>
-                    <div id="categorySearchDrop" class="mobile-dropdown" ngbDropdownToggle [ngbNavOutlet]="search"></div>
-
-                    <div ngbDropdownMenu aria-labelledby="categorySearchDrop" ngbNav #search="ngbNav">
-                        <ng-container ngbNavItem="Shipments">
-                            <a class="dropdown-item" ngbNavLink>Shipments</a>
-                            <ng-template ngbNavContent>Shipments</ng-template>
-                        </ng-container>
-                        <ng-container ngbNavItem="Customers">
-                            <a class="dropdown-item" ngbNavLink>Customers</a>
-                            <ng-template ngbNavContent>Customers</ng-template>
-                        </ng-container>
-                        <ng-container ngbNavItem="Users">
-                            <a class="dropdown-item" ngbNavLink>Users</a>
-                            <ng-template ngbNavContent>Users</ng-template>
-                        </ng-container>
-                    </div>
-                </div>
-
-                <ul class="search-terms mobile">
-                    <h5 class="search-terms-title">{{ searchText ? 'Top suggestions' : 'Popular search terms' }}</h5>
-                    <li class="search-term">Vogacloset</li>
-                    <li class="search-term">Vogacloset & Aramex</li>
-                    <li class="search-term">Vogacloset GNTUPD0100002617GBSA</li>
-                    <li class="search-term">Vogacloset GNTUPD0100003217GBSA</li>
-                    <li class="search-term">Vogacloset GNTUPD0100002617GBSA</li>
-                </ul>
-            </div>
-
-            <div class="search-overlay"(click)="searchService.searchOpen = false"></div>
-        </div> -->
+      
+        
+    <div *ngIf="company?.logo" class="logo" >
+    <img  src="{{company?.logo}}" alt="image">
+   </div>
+ <div *ngIf="company"> {{company.name}}</div>
     </div>
 
     <a href="#/statistics/statistics" class="logo mobile" [ngClass]="{'none': navService.sidebarState.sidenavOpen || eventsDrop._open || searchService.searchOpen }">
@@ -63,7 +32,9 @@
     <div class="menu-cross" [ngClass]="{'active': navService.sidebarState.sidenavOpen }" (click)="toggelSidebar(); searchService.searchOpen = false; eventsDrop.close()"></div>
     <div class="menu-cross" [ngClass]="{'active': searchService.searchOpen && !navService.sidebarState.sidenavOpen }" (click)="searchService.searchOpen = false"></div>
 
-     <div class="header-icon events mobile-drop" ngbDropdown [placement]="'bottom-right'" [autoClose]="autocloseEnabled" #eventsDrop="ngbDropdown">
+  
+
+   <div class="header-icon events mobile-drop" ngbDropdown [placement]="'bottom-right'" [autoClose]="autocloseEnabled" #eventsDrop="ngbDropdown">
 <a id="helpDropdown" (click)="navigateToDashboard()"  class="icon-item nav-item-hold">
                 <i class="icon i-Home1 nav-icon"></i>
 </a>
@@ -117,13 +88,7 @@
 
          <div class="header-icon help mobile-drop" ngbDropdown #helpDrop="ngbDropdown">
           
-<!--
-            <div ngbDropdownMenu aria-labelledby="helpDropdown">
-                <div class="mobile-back" (click)="$event.stopPropagation(); helpDrop.close();">Help</div>
-                <button class="dropdown-item">Knowledge center</button>
-                <button class="dropdown-item">Quick User Guide</button>
-            </div>
-        </div> -->
+
 
         <div class="header-icon user" ngbDropdown [placement]="'bottom-right'" [ngClass]="{'none': eventsDrop._open}">
             <div id="userDropdown" ngbDropdownToggle class="icon-item">

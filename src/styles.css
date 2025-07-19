@@ -59,3 +59,13 @@
 .p-autocomplete.p-component.p-inputwrapper.p-inputwrapper-filled {
     width: 100%;
 }
+
+
+
+html[dir="rtl"] .custom-popup {
+  text-align: right;
+}
+
+html[dir="ltr"] .custom-popup {
+  text-align: left;
+}

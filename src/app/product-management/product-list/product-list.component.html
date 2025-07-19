@@ -6,26 +6,69 @@
         <li><strong class="text-primary">{{'product-management.product'  | translate}}</strong></li>
     </ul>
 </div>
-	<div class="custom-table-wrap">
+
+
+	
+		<div class="card">
+					<div class="card-body">
+<form [formGroup]="searchForm" id="searchForm" (submit)="onSearch()">
+	<div class="row">
+ <div class="col-md-4 form-group mb-3 ">
+                            <label for="picker1"> {{ "product-management.type" | translate }}</label>
+                            <select class="form-control" formControlName="type" name="type" >
+                               <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
+                              <option *ngFor="let item of types" value="{{item.id}}" >{{item.name | translate }}</option>
+                            </select>
+                           
+                        </div>
+         <div class="col-md-4 form-group required">
+        <label>{{ "product-management.productSsearch" | translate }}</label>
+        <input
+          type="text"
+          maxlength="100"
+          placeholder="{{ 'product-management.productSsearch' | translate }}"
+          class="form-control"
+          formControlName="searchValue"
+        />
+        <div class="invalid-feedback">
+        </div>
+      </div>
+
+	</div>
+
+				<div class="row ">
+  <div class="col-2 search-section" >
+       <button class="btn btn-light  btn-block mt-3 mr-1" type="button" (click)="resetSearchForm()">{{'common.clear' | translate}}</button>
+		<button class="btn btn-primary btn-block mt-3 mr-1" type="submit">{{'common.search' | translate}}</button>
+  </div>
+</div>
+				
+ </form>
+					</div>
+				</div>
+
+<div class="custom-table-wrap my-3">
 		<div class="table-heading">
 			<div class="table-search form-group">
+
+				
 				<!-- Searching Lookups -->
-				<input 
+				<!-- <input 
 					id="table-search" 
 					placeholder="{{'product-management.productSsearch' | translate}}"
 					class="form-control" 
 					type="text"
 					maxlength="100"
-					(keydown.enter)="onSearch($event)"
-				>
+					(keydown.enter)="onSearch()"
+				> -->
 			</div>
-			<div *ngIf="authService.hasPermission('Product-Form')" class="heading-actions">
+			<div *ngIf="authService.hasPermission('Transaction-Form')" class="heading-actions">
 				<!-- Add Lookups -->
 				<button 
 					type="button" 
 					class="btn btn-rounded btn-primary" 
-					(click)="onAddCompany(AddProductPopup)" 
-					*ngIf="authService.hasPermission('Lookups-Add') "
+					(click)="onAddTransaction(AddProductPopup)" 
+					*ngIf="authService.hasPermission('Transaction-Form') "
 				>
 					<i class="i-Plus"></i>
 					<span>
@@ -47,6 +90,8 @@
 		</app-table>
 	</div>
 </div>
+
+
 <!-- Add Lookups -->
 <ng-template #AddProductPopup let-modal>
 	<app-product-form [modal]="modal" [TypeId]="TypeId"></app-product-form>

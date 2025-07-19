@@ -14,8 +14,9 @@ installmentNumber:number = 1;
 @Input() invoice;
 chequePaymentMethodType:PaymentMethod.Cheque;
 installmentStatus= installmentStatus;
+disableGenerateInstallmentButton:boolean = false;
 ngOnChanges(changes: SimpleChanges): void {
-debugger;
+  debugger;
   if(this.installments?.length > 0){
     this.installmentNumber = this.installments.length;
     this.installments = this.installments.map(ins => {
@@ -35,6 +36,12 @@ if(ins.paidDate){
 }
 return ins;
     })
+  }else {
+    if(this.invoice.paymentMethod){
+      this.installmentNumber = 1;
+      this.generateInstallments();
+      this.disableGenerateInstallmentButton = true;
+    }
   }
 
 }

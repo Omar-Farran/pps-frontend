@@ -1,15 +1,30 @@
 
 <div class="breadcrumb">
-    <h1>{{'invoice.view' | translate}}</h1>
+    <!-- <h1>{{'invoice.view' | translate}}</h1> -->
     <ul>
-        <li>{{'invoice.invoice-management'  | translate}}</li>
         <li>
            <a (click)="navigate()">
+          {{'invoice.invoice-management'  | translate}}
+           </a>
+         </li>
+        <li>
                <strong class="text-primary">{{'invoice.invoice'  | translate}}</strong>
-            </a>
         </li>
     </ul>
 </div>
+
+<div class="p-2">
+     <div class="modal-header">
+  <h4 class="modal-title" >
+     {{'invoice.invoice-management'  | translate}}
+  </h4>
+  	<a (click)="navigate()"  type="button" class="close" aria-label="Close" >
+						<span aria-hidden="true">&times;</span>
+    </a>
+</div>
+
+    
+
 
 
 <div class="row">
@@ -41,7 +56,7 @@
                 </div>
                  <div  class="col-md-4 form-group mb-3">
                             <label>{{ (isPurchase ?  'purchase-invoice.isReceived' : 'invoice.isDeliverd' )  | translate}}</label>
-                             <span class="value" > {{entity.isDeliveredOrReceived }} </span>
+                             <span class="value" > {{ (entity.isDeliveredOrReceived ? 'true' : 'false') | translate}} </span>
                 </div>
 
                   <div  *ngIf="entity.isDeliveredOrReceived" class="col-md-4 form-group mb-3">
@@ -230,5 +245,9 @@
 </div>
 
 </div>
+
+
+</div>
+
 
 

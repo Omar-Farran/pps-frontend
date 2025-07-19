@@ -48,7 +48,7 @@
         </div>
         <!-- Role Status -->
         <div class="col-12 col-sm-12 form-group required" >
-            <label>{{'Carrier.status' | translate }}</label>
+            <label>{{'status' | translate }}</label>
             <select class="form-control" formControlName="status"  
                 [class.is-invalid]="isSubmittedRoleAddForm && rolesAddForm.get('status')?.errors" >
                 <option *ngFor="let status of status" [value]="status.id">{{ languageService.getCurrentLanguage() === 'en' ? status.name : status.nameAr }}</option>

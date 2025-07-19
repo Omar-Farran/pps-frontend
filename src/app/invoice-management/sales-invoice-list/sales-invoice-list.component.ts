@@ -168,6 +168,7 @@ let pad = (n: number) => n.toString().padStart(2, '0');
          break;
            case "sales-invoice.print-report":
         {
+          debugger;
             this.onShowPrintModal(event.data);
         }
          break;

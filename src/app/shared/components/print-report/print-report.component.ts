@@ -26,7 +26,9 @@ constructor(private baseService:BaseService,
 
 }
 printReport(){
-  if(this.invoice.invoiceStatus != 'Draft') {
+  debugger;
+  console.log(this.invoice)
+  if(this.invoice?.invoiceStatus != 'Draft') {
  this.modal.dismiss('Cross click')
 this.baseService.printReport('Invoice' , 'PrintInvoiceReport/' + this.invoiceId + '/' + this.reportType + '?lang=' + this.lang);
   } else {

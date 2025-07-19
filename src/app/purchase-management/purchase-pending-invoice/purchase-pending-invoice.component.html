@@ -13,16 +13,17 @@
 	<div class="row">
 
 		 <div class="col-md-4 form-group required">
-        <label>{{ "purchase-invoice.supplierName" | translate }}</label>
-        <input
-          type="text"
-          maxlength="100"
-          placeholder="{{ 'purchase-invoice.supplierName' | translate }}"
-          class="form-control"
-          formControlName="customerName"
-        />
-        <div class="invalid-feedback">
-        </div>
+         <label>{{ "purchase-invoice.supplierName" | translate }}</label>
+             <p-dropdown 
+                                  [options]="filteredCustomers"
+                                  [styleClass]="'form-control'" 
+                                  optionLabel="name" 
+                                  optionValue="id"
+                                  [filter]="true"
+                                  placeholder="{{ 'purchase-invoice.suppliers' | translate }}" 
+                                  formControlName="customerId">
+              </p-dropdown> 
+              
       </div>
 
 				<div class="col-md-4 form-group mb-3 required">
@@ -146,7 +147,7 @@
 				<div class="modal-body">
 					<div class="row">
              <div class="col-md-12 form-group mb-3 required">
-        <label for="picker1">{{
+        <label for="picker1"  class="custom-popup" >{{
           "purchase-invoice.receivedDate" | translate
         }}</label>
         <div class="input-group">

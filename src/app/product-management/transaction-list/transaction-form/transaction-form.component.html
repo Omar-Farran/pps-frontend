@@ -91,7 +91,7 @@
                             <label for="picker1"> {{ "transaction.towarehouse" | translate }}</label>
                             <select class="form-control" formControlName="toWarehouseId" name="toWarehouseId" (click)="getWarehouseToSections()">
                                <option  [ngValue]="null" selected>{{ "select" | translate }}</option>
-                              <option *ngFor="let item of warehouses" value="{{item.id}}" >{{item.nameEn}}</option>
+                              <option *ngFor="let item of warehouses" value="{{item.id}}" >{{item.name}}</option>
                             </select>
                             <div *ngIf="isFormSubmitted && form.get('toWarehouseId').invalid" class="invalid-feedback">
                                     {{ "common.fieldRequired" | translate }}
@@ -118,7 +118,7 @@
                             <label for="picker1"> {{ "transaction.tobranch" | translate }}</label>
                             <select class="form-control" formControlName="toBranchId" name="toBranchId">
                                <option  [ngValue]="null" selected>{{ "select" | translate }}</option>
-                              <option *ngFor="let item of branchies" value="{{item.id}}" >{{item.description}}</option>
+                              <option *ngFor="let item of branchies" value="{{item.id}}" >{{item.name}}</option>
                             </select>
                             <div *ngIf="isFormSubmitted && form.get('branch').invalid" class="invalid-feedback">
                                     {{ "common.fieldRequired" | translate }}

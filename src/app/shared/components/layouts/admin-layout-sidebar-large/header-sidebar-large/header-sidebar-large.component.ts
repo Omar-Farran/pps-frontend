@@ -8,6 +8,7 @@ import { LanguageService } from 'src/app/shared/services/language.service';
 import { Language } from 'src/app/shared/models/enum';
 import { BaseService } from 'src/app/shared/services/base.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header-sidebar-large',
@@ -22,7 +23,8 @@ export class HeaderSidebarLargeComponent implements OnInit {
     ];
     @ViewChild('eventsDrop') eventsDrop!: any;
     searchText = '';
-
+    attachmentUrl = environment.attachmentUrl;
+company:any;
     constructor
     (
       public navService: NavigationService,
@@ -38,6 +40,7 @@ export class HeaderSidebarLargeComponent implements OnInit {
     ngOnInit() {
       this.checkWindowWidth();
       //this.loadNotifications();
+      this.getCompanyInfo();
     }
     
     loadNotifications() {
@@ -99,5 +102,14 @@ export class HeaderSidebarLargeComponent implements OnInit {
 
     navigateToDashboard(){
       this.router.navigate(['dashboard/v1'])
+    }
+
+    getCompanyInfo(){
+     this.baseService.Get('Company' , 'GetCompanyHeaderInfo').subscribe(res => {
+      this.company = res;
+      if(this.company.logo) {
+     this.company.logo = this.attachmentUrl + this.company.logo;
+      }
+     })
     }
 }

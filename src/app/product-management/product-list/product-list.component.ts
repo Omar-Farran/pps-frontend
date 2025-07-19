@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { productTypes, productTypesDll } from 'src/app/shared/models/enum';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { BaseService } from 'src/app/shared/services/base.service';
 import { LanguageService } from 'src/app/shared/services/language.service';
@@ -28,12 +29,15 @@ export class ProductListComponent {
 
 dataSource: any[] = [];
   totalCount: number = 0
-  id: number = null
+  id: number = null;
+  types:any[]  = productTypesDll;
+  
   public searchForm = new FormGroup
   (
     {
       status: new FormControl(),
-      searchValue: new FormControl()
+      searchValue: new FormControl(),
+      type:new FormControl()
     }
   )
   baseSearch = 
@@ -41,6 +45,7 @@ dataSource: any[] = [];
     name: '',
     pageSize: 25,
     pageNumber: 0,
+    type:null
   }
   //#endregion
   constructor 
@@ -55,7 +60,7 @@ dataSource: any[] = [];
   ngOnInit() : void 
   {
     this.getList()
-    this.onSearch(null)
+    this.onSearch()
   }
   //#region Getters
   private getList () 
@@ -85,13 +90,17 @@ dataSource: any[] = [];
   }
   //#endregion
   //#region Filtering and Searching
-  onSearch(event) {
-
-    if(event?.target){
-     this.baseSearch.name = event.target.value;
+  onSearch() {
+    debugger;
+      let searchFormValue = this.searchForm.getRawValue();
+      this.baseSearch.name =searchFormValue?.searchValue;
+      if(searchFormValue?.type){
+        this.baseSearch.type = searchFormValue?.type == 2 ? Number(0) : Number(searchFormValue?.type);
+      }else {
+        this.baseSearch.type = null;
+      }
+      
       this.baseSearch.pageNumber = 0;
-    }
-
       this.getList();
   }
   onPageChange (event: any): void 
@@ -155,4 +164,8 @@ dataSource: any[] = [];
         this.router.navigate(['/product-management/products/history/' + event.id])
     }
     
+    resetSearchForm(){
+      this.searchForm.reset();
+      this.onSearch();
+    }
 }

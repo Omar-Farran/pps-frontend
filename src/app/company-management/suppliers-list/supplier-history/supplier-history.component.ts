@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BaseService } from 'src/app/shared/services/base.service';
 
 @Component({
@@ -12,7 +12,7 @@ customerId:number;
 customer:any;
 
 
-constructor(private route: ActivatedRoute,private baseService:BaseService) {
+constructor(private route: ActivatedRoute,private baseService:BaseService,public router:Router) {
   
   this.route.params.subscribe((params) => {
       this.customerId = params["id"];

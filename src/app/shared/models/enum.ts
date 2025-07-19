@@ -49,12 +49,13 @@ export const LookupsTypeArr =
     [
         { id: 11, name: 'Nationality', nameAr: 'الجنسية', parentId: null },
         { id: 12, name: 'Currency', nameAr: 'العملة', parentId: null },
-        { id: 13, name: 'Preferred Language', nameAr: 'الغة المفضلة', parentId: null },
-        { id: 14, name: 'Taxes', nameAr: 'ضريبة', parentId: null },
+        { id: 13, name: 'Preferred Language', nameAr: 'اللغة المفضلة', parentId: null },
+        { id: 14, name: 'Taxes', nameAr: 'الضريبة', parentId: null },
         { id: 15, name: 'Customer Type', nameAr: 'نوع العميل', parentId: null },
         { id: 16, name: 'Unit Of Measure', nameAr: 'وحدة القياس', parentId: null },
         { id: 17, name: 'Category', nameAr: 'الصنف', parentId: null },
-        { id: 18, name: 'Section Type', nameAr: 'نوع القسم', parentId: null }
+        { id: 18, name: 'Section Type', nameAr: 'نوع القسم', parentId: null },
+        { id: 19, name: 'Brands', nameAr: 'الماركات', parentId: null }
     ]
 export enum OrderStatus {
     Pending = 1,
@@ -340,5 +341,11 @@ export const transactionTypes  =
           export const productTypes = 
     [
         { id: 0, name: 'Product', nameAr: 'Product' },
+        { id: 1, name: 'Service', nameAr: 'Service' }
+    ]
+
+       export const productTypesDll = 
+    [
+        { id: 2, name: 'Product', nameAr: 'Product' },
         { id: 1, name: 'Service', nameAr: 'Service' }
     ]

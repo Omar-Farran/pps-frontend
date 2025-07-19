@@ -1,4 +1,6 @@
 {
+  "delete":"Delete",
+  "add":"Add",
   "IQD":"IQD",
   "Daily":"يومي",
   "Weekly":"اسبوعي",
@@ -87,7 +89,9 @@
     "info": "Info",
     "maxValue": "Discount Price Exceed Max Value",
     "clear": "Clear",
-    "print":"Print"
+    "print":"Print",
+    "invalidMobile":"InValid Mobile Number ",
+    "mustBeGreaterThanZero":"Min value is 1"
   },
   "userManagment": {
     "email": "Email",
@@ -221,7 +225,7 @@
     "warehouse-balance": "Warehouse Balanceies",
     "invoice-management": "Sales Management",
     "sales-invoices": "Sales Invoices",
-    "generateReport":"Print Report",
+    "generateReport":"Print",
     "inventory-counting": "Inventory Counting",
     "pending-delivery-invoice": "Pending Delivery Invoices",
     "invoice-installment": "Installments",
@@ -302,7 +306,8 @@
     "InvoiceCancelled":"Invoice Cancelled",
     "InsufficientBalance":"Insufficient Balance",
     "installmentalreadypaid":"Installment already paid",
-    "InvalidInvoiceStatus":"Invalid invoice status"
+    "InvalidInvoiceStatus":"Invalid invoice status",
+    "WarehouseSectionAlreadyExists":"Section name already exists for this warehouse"
 
   },
   "dashboards": {
@@ -416,7 +421,7 @@
   },
   "customers": {
     "customers": "Customers",
-    "managecustomers": "Manage Customers",
+    "managecustomers": "Customers",
     "descriptionAr": "Description Arabic",
     "endWorkingHour": "End Working Hours",
     "startWorkingHour": "Start Working Hours",
@@ -829,8 +834,8 @@
     "product": "Product",
     "unit":"Unit",
     "unitPrice":"Unit Price",
-    "discount": "Discount",
-    "tax": "Tax",
+    "discount": "Discount %",
+    "tax": "Tax %",
     "fees": "Fee Amount",
     "total": "Total",
     "action":"Action",
@@ -843,7 +848,8 @@
    "amount":"Amount",
    "chequeNumber":"Cheque Number",
    "status":"Status",
-   "paidDate":"Paid Date"
+   "paidDate":"Paid Date",
+   "sequence":"Sequence"
   },
   "sales-period-report":{
     "sales-period-report":"Sales Period",
@@ -926,7 +932,7 @@
     "supplier-history":"Supplier History",
     "invoices":"Invoices",
     "purchase-invoices":"Purchase History",
-    "manageCustomerHistory":"Manage Suppliers"
+    "manageCustomerHistory":"Suppliers"
    },
    "dashboard":{
     "customersAndSuppliers":"Customers & Suppliers",

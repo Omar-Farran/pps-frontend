@@ -1,13 +1,25 @@
 <div class="customers">
   <div class="breadcrumb">
-    <h1>{{'supplier-history.supplier-history' | translate}}</h1>
     <ul>
-      <li>{{'supplier-history.manageCustomerHistory' | translate}}</li>
+      <li>  
+        <a  (click)="router.navigate(['/company-management/suppliers'])" > {{'supplier-history.manageCustomerHistory' | translate}}
+      </a>
+      </li>
       <li><strong class="text-primary">{{'supplier-history.invoices' | translate}}</strong></li>
     </ul>
   </div>
   <div class="custom-table-wrap">
     <div class="card">
+
+            <div class="modal-header">
+  <h4 class="modal-title" >
+   {{'supplier-history.supplier-history' | translate}}
+  </h4>
+  	<a (click)="router.navigate(['/company-management/suppliers'])"  type="button" class="close" aria-label="Close" >
+						<span aria-hidden="true">&times;</span>
+    </a>
+</div>
+
       <div class="card-body p-3">
 
 

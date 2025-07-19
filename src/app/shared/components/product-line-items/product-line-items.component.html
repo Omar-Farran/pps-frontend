@@ -1,16 +1,16 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th style="width: 10%;">{{'product-line-item.product' | translate }}</th>
-        <th >{{'product-line-item.unit' | translate }}</th>
-        <th style="width: 12%;" >Quantity</th>
-        <th>{{    'product-line-item.unitPrice' | translate}}</th>
-        <th>{{'product-line-item.discount' | translate }}</th>
-        <th>{{'product-line-item.tax' | translate }}</th>
-        <th>{{'product-line-item.fees' | translate }}</th>
-        <th>{{'product-line-item.total' | translate }}</th>
-        <th *ngIf="!invoice.isDeliveredOrReceived && showReserve" >Reserve</th>
-        <th>{{'product-line-item.action' | translate }}</th>
+        <th  style="width: 15%;">{{'product-line-item.product' | translate }}</th>
+        <th  style="width: 10%;" >{{'product-line-item.unit' | translate }}</th>
+        <th  style="width: 10%" >{{'product-line-item.quantity' | translate }}</th>
+        <th  style="width: 15%" >{{    'product-line-item.unitPrice' | translate}}</th>
+        <th  style="width: 10%" >{{'product-line-item.discount' | translate }}</th>
+        <th  style="width: 10%" >{{'product-line-item.tax' | translate }}</th>
+        <!-- <th  style="width: 10%;" >{{'product-line-item.fees' | translate }}</th> -->
+        <th  style="width: 15%" >{{'product-line-item.total' | translate }}</th>
+        <th  style="width: 5%"  *ngIf="!invoice.isDeliveredOrReceived && showReserve" >{{'product-line-item.reserve' | translate}}</th>
+        <th  style="width: 10%" >{{'product-line-item.action' | translate }}</th>
       </tr>
     </thead>
     <!-- <form  > -->
@@ -71,9 +71,9 @@
          <td>
           <input type="number" class="form-control" [(ngModel)]="item.tax" name="tax{{i}}" [disabled]="invoice.isBalanceUpdated" (change)="calculateTotal(item , 'tax')"  />
         </td>
-         <td>
+         <!-- <td>
           <input type="number" class="form-control" [(ngModel)]="item.feesAmount" name="feesAmount{{i}}"  [disabled]="invoice.isBalanceUpdated" (change)="calculateTotal(item , 'feesAmount')"  />
-        </td>
+        </td> -->
          <td>
           <input type="number" class="form-control" [(ngModel)]="item.total"  name="total{{i}}"  [disabled]="invoice.isBalanceUpdated" disabled />
         </td>
@@ -82,8 +82,8 @@
         </td>
 
         <td style="width: 7%;">
-          <button *ngIf="item.index == productItems.length - 1" type="button"  class="btn btn-success btn-sm me-1" (click)="addRow()" [disabled]="invoice.isBalanceUpdated">
-           <span class="text-white">+ </span> 
+          <button *ngIf="item.index == productItems.length - 1" type="button"  class="btn btn-success btn-sm mx-1p" (click)="addRow()" [disabled]="invoice.isBalanceUpdated">
+           <span class="text-white">{{'add' | translate}} </span> 
           </button>
           <button *ngIf="!(productItems?.length === 1)"
             type="button"
@@ -91,7 +91,7 @@
             (click)="removeRow(item.index)"
            [disabled]="invoice.isBalanceUpdated"
           >
-            ×
+           {{'delete' | translate}}
           </button>
         </td>
       </tr>
