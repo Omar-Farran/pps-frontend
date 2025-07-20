@@ -65,44 +65,62 @@
                     <span class="slider"></span>
                 </label>
          </div>
-                        		<div *ngIf="invoiceHeaderForm.get('isCustomer')?.value  == true"  class="col-md-4 form-group mb-3 required">
-                                  <label>{{ "quotation.customers" | translate }}</label>
-                                  <p-autoComplete
-                                    formControlName="customerId"
-                                    [suggestions]="filteredCustomers"
-                                    (completeMethod)="filterCustomers($event)"
-                                    field="name"
-                                    [forceSelection]="true"
-                                    [inputStyle]="{
-                                      backgroundColor: '#f8f9fa',
-                                      border: '1px solid #CED4DA',
-                                      borderRadius: '17px',
-                                      height: '32px',
-                                      padding: '0.375rem 0.75rem',
-                                      width: '100%'    
-                                    }"
-                                  ></p-autoComplete>
-                                    <div  class="invalid-feedback">
-                                    {{ "common.fieldRequired" | translate }}
-                                 </div>
-                                  </div>
+                         <div *ngIf="invoiceHeaderForm.get('isCustomer')?.value  == true" class="col-md-4 form-group mb-3 required">
+  <label>{{ "sales-invoice.customers" | translate }}</label>
+  
+  <div class="input-group">
+    <p-autoComplete
+      formControlName="customerId"
+      [suggestions]="filteredCustomers"
+      (completeMethod)="filterCustomers($event)"
+      field="name"
+      [forceSelection]="true"
+      [inputStyle]="{
+        backgroundColor: '#f8f9fa',
+        border: '1px solid #CED4DA',
+        borderRadius: '17px 0 0 17px',
+        height: '32px',
+        padding: '0.375rem 0.75rem',
+        width: '100%'
+      }"
+      style="flex: 1 1 auto"
+    ></p-autoComplete>
 
+    <div class="input-group-append">
+      <button type="button" class="btn btn-primary remove-border-raduis " (click)="onAddCustomers(AddCustomersPopup)" >
+        <i class="i-Plus"></i>
+      </button>
+    </div>
+  </div>
 
-        <div *ngIf="(invoiceHeaderForm.get('isCustomer')?.value == false)" class="col-md-4 form-group required">
-        <label>{{ "quotation.customerName" | translate }}</label>
-        <input
-          type="text"
-          maxlength="100"
-          placeholder="{{ 'quotation.customerName' | translate }}"
-          class="form-control"
-          formControlName="customerName"
-          [class.is-invalid]="isInvoiceHeaderFormSubmitted &&  invoiceHeaderForm && invoiceHeaderForm.get('customerName')?.errors"
-          [disabled]="invoice?.isBalanceUpdated"
-        />
-        <div class="invalid-feedback">
-          {{ "common.fieldRequired" | translate }}
-        </div>
-      </div>
+  <div class="invalid-feedback">
+    {{ "common.fieldRequired" | translate }}
+  </div>
+</div>
+
+<div *ngIf="(invoiceHeaderForm.get('isCustomer')?.value == false)" class="col-md-4 form-group required">
+  <label>{{ "sales-invoice.customerName" | translate }}</label>
+  <div class="input-group">
+    <input
+      type="text"
+      maxlength="100"
+      placeholder="{{ 'sales-invoice.customerName' | translate }}"
+      class="form-control"
+      formControlName="customerName"
+      [class.is-invalid]="isInvoiceHeaderFormSubmitted && invoiceHeaderForm && invoiceHeaderForm.get('customerName')?.errors"
+      [disabled]="invoice?.isBalanceUpdated"
+    />
+    <div class="input-group-append">
+      <button type="button" class="btn btn-primary" (click)="onAddCustomers(AddCustomersPopup)">
+        <i class="i-Plus"></i>
+      </button>
+    </div>
+  </div>
+  <div class="invalid-feedback">
+    {{ "common.fieldRequired" | translate }}
+  </div>
+</div>
+
 
 
 
@@ -293,3 +311,7 @@
 </div>
 
 
+
+      <ng-template #AddCustomersPopup let-modal>
+	<app-customers-form [modal]="modal"></app-customers-form>
+</ng-template>

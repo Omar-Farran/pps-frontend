@@ -13,29 +13,7 @@
   <form [formGroup]="form" id="form">
     <div class="row">
 
-      <!-- Name English -->
-      <div class="col-12 col-sm-6 form-group required">
-        <label>{{ "customers.nameEn" | translate }}</label>
-        <input type="text" maxlength="100" class="form-control" formControlName="nameEn"
-          placeholder="{{ 'customers.nameEn' | translate }}"
-          [class.is-invalid]="isFormSubmitted && form.get('nameEn')?.invalid" />
-        <div *ngIf="isFormSubmitted && form.get('nameEn')?.errors" class="invalid-feedback">
-          <div *ngIf="form.get('nameEn')?.errors['required']">
-            {{ "common.fieldRequired" | translate }}
-          </div>
-          <div *ngIf="form.get('nameEn')?.errors['englishTextWithNumbers']">
-            {{ "common.onlyEnglishIsAllowed" | translate }}
-          </div>
-          <div *ngIf="form.get('nameEn')?.errors['noWhitespace']">
-            {{ "common.noWhitespace" | translate }}
-          </div>
-          <div *ngIf="form.get('nameEn')?.errors['maxlength']">
-            {{ "common.maxLength" | translate:{length:100} }}
-          </div>
-        </div>
-      </div>
-
-      <!-- Name Arabic -->
+           <!-- Name Arabic -->
       <div class="col-12 col-sm-6 form-group required">
         <label>{{ "customers.nameAr" | translate }}</label>
         <input type="text" maxlength="100" class="form-control" formControlName="nameAr"
@@ -57,6 +35,31 @@
         </div>
       </div>
 
+
+
+      <!-- Name English -->
+      <div class="col-12 col-sm-6 form-group">
+        <label>{{ "customers.nameEn" | translate }}</label>
+        <input type="text" maxlength="100" class="form-control" formControlName="nameEn"
+          placeholder="{{ 'customers.nameEn' | translate }}"
+          [class.is-invalid]="isFormSubmitted && form.get('nameEn')?.invalid" />
+        <div *ngIf="isFormSubmitted && form.get('nameEn')?.errors" class="invalid-feedback">
+          <div *ngIf="form.get('nameEn')?.errors['required']">
+            {{ "common.fieldRequired" | translate }}
+          </div>
+          <div *ngIf="form.get('nameEn')?.errors['englishTextWithNumbers']">
+            {{ "common.onlyEnglishIsAllowed" | translate }}
+          </div>
+          <div *ngIf="form.get('nameEn')?.errors['noWhitespace']">
+            {{ "common.noWhitespace" | translate }}
+          </div>
+          <div *ngIf="form.get('nameEn')?.errors['maxlength']">
+            {{ "common.maxLength" | translate:{length:100} }}
+          </div>
+        </div>
+      </div>
+
+ 
       <!-- Address -->
       <div class="col-12 col-sm-6 form-group">
         <label>{{ "customers.address" | translate }}</label>
@@ -143,7 +146,7 @@
       </div>
 
       <!-- Customer Type -->
-      <div class="col-md-6 form-group mb-3 required">
+      <div class="col-md-6 form-group mb-3">
         <label for="customerTypeId">{{ "customers.customerTypeId" | translate }}</label>
         <select class="form-control" formControlName="customerTypeId"
           [class.is-invalid]="isFormSubmitted && form.get('customerTypeId')?.invalid" id="customerTypeId">

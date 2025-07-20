@@ -281,4 +281,10 @@ let pad = (n: number) => n.toString().padStart(2, '0');
                   this.filteredCustomers = res 
               })
               }
+
+                       onAddCustomers(modal: any) {
+    const modalRef = this.modalService.open
+      (modal, { modalDialogClass: 'side-modal', backdrop: 'static', keyboard: false });
+    modalRef.result.then((result) => { this.getSupplierSelectItemList(''); })
+  }
 }

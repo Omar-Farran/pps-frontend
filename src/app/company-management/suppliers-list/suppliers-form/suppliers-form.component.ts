@@ -28,8 +28,8 @@ export class SuppliersFormComponent implements OnInit {
   form = new FormGroup({
     id: new FormControl(null),
     nameAr: new FormControl('', [Validators.required, arabicTextWithNumbersValidator(), noWhitespaceValidator(), Validators.maxLength(100)]),
-    nameEn: new FormControl('', [Validators.required, englishTextWithNumbersValidator, noWhitespaceValidator(), Validators.maxLength(100)]),
-    customerTypeId: new FormControl('', [Validators.required]),
+    nameEn: new FormControl('', [englishTextWithNumbersValidator, noWhitespaceValidator(), Validators.maxLength(100)]),
+    customerTypeId: new FormControl(null),
     initialBalance: new FormControl(0, [Validators.required, Validators.min(0)]),
     address: new FormControl(''),
     mobileNumber: new FormControl('', [Validators.pattern(/^(\+?\d{7,15})?$/)]), // simple mobile validation

@@ -48,47 +48,33 @@
 
       </div>
        
-      	 <div class="col-md-4 form-group required">
-         <label>{{ "purchase-invoice.suppliers" | translate }}</label>
-             <p-dropdown 
+    	<div  class="col-md-4 form-group mb-3 required">
+                                   <label for="sourceType"> {{ "purchase-invoice.suppliers" | translate }}</label> 
+                                <!-- <div class="input-group"> -->
+                                   <p-dropdown 
                                   [options]="filteredCustomers"
-                                  [styleClass]="'form-control' + (isInvoiceHeaderFormSubmitted && invoiceHeaderForm.get('customerId')?.errors ? ' is-invalid' : '')"
+                                  [styleClass]="'form-control'" 
                                   optionLabel="name" 
                                   optionValue="id"
                                   [filter]="true"
+                                  [styleClass]="'form-control w-100 ' + (isInvoiceHeaderFormSubmitted && invoiceHeaderForm.get('customerId')?.errors ? ' is-invalid' : '')"
                                   placeholder="{{ 'purchase-invoice.suppliers' | translate }}" 
                                   formControlName="customerId"
-                                  [class.is-invalid]="isInvoiceHeaderFormSubmitted && invoiceHeaderForm.get('customerId')?.errors"
-                                  >
-                  </p-dropdown> 
-                 <div  class="invalid-feedback">
-                                    {{ "common.fieldRequired" | translate }}
-                                 </div>
-      </div>
+                                  [class.is-invalid]="isInvoiceHeaderFormSubmitted && invoiceHeaderForm.get('customerId')?.errors">
+                                </p-dropdown> 
+
+                                  <div class="input-group-append">
+                                    <label></label>
+      <button type="button" class="btn btn-primary remove-border-raduis " style="margin-top: 19px;" (click)="onAddCustomers(AddCustomersPopup)" >
+        <i class="i-Plus"></i>
+      </button>
+    </div>
+
+                                  <!-- </div> -->
+                                  </div>
 
 
-<!-- 
-                        		<div  class="col-md-4 form-group mb-3 required">
-                                  <label>{{ "purchase-invoice.suppliers" | translate }}</label>
-                                  <p-autoComplete
-                                    formControlName="customerId"
-                                    [suggestions]="filteredCustomers"
-                                    (completeMethod)="filterSupplier($event)"
-                                    field="name"
-                                    [forceSelection]="true"
-                                    [inputStyle]="{
-                                      backgroundColor: '#f8f9fa',
-                                      border: '1px solid #CED4DA',
-                                      borderRadius: '17px',
-                                      height: '32px',
-                                      padding: '0.375rem 0.75rem',
-                                      width: '100%'    
-                                    }"
-                                  ></p-autoComplete>
-                                    <div  class="invalid-feedback">
-                                    {{ "common.fieldRequired" | translate }}
-                                 </div>
-                                  </div> -->
+
 
 
      
@@ -342,3 +328,9 @@
 				
 				</div>
 			</ng-template>
+
+
+      
+            <ng-template #AddCustomersPopup let-modal>
+		<app-suppliers-form [modal]="modal" ></app-suppliers-form>
+</ng-template>

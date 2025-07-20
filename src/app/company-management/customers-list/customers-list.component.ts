@@ -14,8 +14,8 @@ import { LanguageService } from 'src/app/shared/services/language.service';
 })
 export class CustomersListComponent {
   columns: any[] = [
-    { name: "customers.nameEn", field: "nameEn" },
     { name: "customers.nameAr", field: "nameAr" },
+    { name: "customers.nameEn", field: "nameEn" },
     { name: "customers.customerTypeId", field: "customerTypeTitle" },
     { name: "customers.mobileNumber", field: "mobileNumber" },
     { name: "status", field: "isActive" }

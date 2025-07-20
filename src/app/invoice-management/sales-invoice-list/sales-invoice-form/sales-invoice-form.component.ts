@@ -529,4 +529,12 @@ submitInvoiceInstallments(validateCredit = true){
     })
     }
 
+
+      onAddCustomers(modal: any) {
+    const modalRef = this.modalService.open
+      (modal, { modalDialogClass: 'side-modal', backdrop: 'static', keyboard: false });
+    modalRef.result.then((result) => { this.getCustomerSelectItemList(''); })
+  }
+
+
 }

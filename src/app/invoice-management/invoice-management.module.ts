@@ -21,7 +21,7 @@ import { QuotationInvoiceListComponent } from './quotation-invoice-list/quotatio
 import { QuotationInvoiceFormComponent } from './quotation-invoice-list/quotation-invoice-form/quotation-invoice-form.component';
 import { ConvertQuotationComponent } from './convert-quotation/convert-quotation.component';
 import { InvoiceViewComponent } from './invoice-view/invoice-view.component';
-
+import { CompanyManagementModule } from '../company-management/company-management.module';
 
 
 
@@ -53,7 +53,8 @@ import { InvoiceViewComponent } from './invoice-view/invoice-view.component';
         FormWizardModule,
         FormsModule,
         StepsModule,
-        AutoCompleteModule
+        AutoCompleteModule,
+        CompanyManagementModule
   ]
 })
 export class InvoiceManagementModule { }

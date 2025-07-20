@@ -20,6 +20,7 @@ import { PurchaseInstallmentComponent } from './purchase-installment/purchase-in
 import { PurchaseRequestInvoiceComponent } from './purchase-request-invoice/purchase-request-invoice.component';
 import { PurchaseRequestInvoiceFormComponent } from './purchase-request-invoice/purchase-request-invoice-form/purchase-request-invoice-form.component';
 import { PurchaseRequestConvertInvoiceComponent } from './purchase-request-convert-invoice/purchase-request-convert-invoice.component';
+import { CompanyManagementModule } from '../company-management/company-management.module';
 
 
 
@@ -51,7 +52,8 @@ import { PurchaseRequestConvertInvoiceComponent } from './purchase-request-conve
         FormWizardModule,
         FormsModule,
         StepsModule,
-        AutoCompleteModule
+        AutoCompleteModule,
+        CompanyManagementModule
   ]
 })
 export class PurchaseManagementModule { }

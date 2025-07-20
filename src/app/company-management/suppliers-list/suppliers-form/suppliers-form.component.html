@@ -13,28 +13,7 @@
   <form [formGroup]="form" id="form">
     <div class="row">
 
-      <!-- Name English -->
-      <div class="col-12 col-sm-6 form-group required">
-        <label>{{ "Suppliers.nameEn" | translate }}</label>
-        <input type="text" maxlength="100" class="form-control" formControlName="nameEn"
-          placeholder="{{ 'Suppliers.nameEn' | translate }}"
-          [class.is-invalid]="isFormSubmitted && form.get('nameEn')?.invalid" />
-        <div *ngIf="isFormSubmitted && form.get('nameEn')?.errors" class="invalid-feedback">
-          <div *ngIf="form.get('nameEn')?.errors['required']">
-            {{ "common.fieldRequired" | translate }}
-          </div>
-          <div *ngIf="form.get('nameEn')?.errors['englishTextWithNumbers']">
-            {{ "common.onlyEnglishIsAllowed" | translate }}
-          </div>
-          <div *ngIf="form.get('nameEn')?.errors['noWhitespace']">
-            {{ "common.noWhitespace" | translate }}
-          </div>
-          <div *ngIf="form.get('nameEn')?.errors['maxlength']">
-            {{ "common.maxLength" | translate:{length:100} }}
-          </div>
-        </div>
-      </div>
-
+      
       <!-- Name Arabic -->
       <div class="col-12 col-sm-6 form-group required">
         <label>{{ "Suppliers.nameAr" | translate }}</label>
@@ -56,6 +35,30 @@
           </div>
         </div>
       </div>
+
+
+      <!-- Name English -->
+      <div class="col-12 col-sm-6 form-group">
+        <label>{{ "Suppliers.nameEn" | translate }}</label>
+        <input type="text" maxlength="100" class="form-control" formControlName="nameEn"
+          placeholder="{{ 'Suppliers.nameEn' | translate }}"
+          [class.is-invalid]="isFormSubmitted && form.get('nameEn')?.invalid" />
+        <div *ngIf="isFormSubmitted && form.get('nameEn')?.errors" class="invalid-feedback">
+          <div *ngIf="form.get('nameEn')?.errors['required']">
+            {{ "common.fieldRequired" | translate }}
+          </div>
+          <div *ngIf="form.get('nameEn')?.errors['englishTextWithNumbers']">
+            {{ "common.onlyEnglishIsAllowed" | translate }}
+          </div>
+          <div *ngIf="form.get('nameEn')?.errors['noWhitespace']">
+            {{ "common.noWhitespace" | translate }}
+          </div>
+          <div *ngIf="form.get('nameEn')?.errors['maxlength']">
+            {{ "common.maxLength" | translate:{length:100} }}
+          </div>
+        </div>
+      </div>
+
 
       <!-- Address -->
       <div class="col-12 col-sm-6 form-group">
@@ -143,7 +146,7 @@
       </div>
 
       <!-- Customer Type -->
-      <div class="col-md-6 form-group mb-3 required">
+      <div class="col-md-6 form-group mb-3">
         <label for="customerTypeId">{{ "Suppliers.customerTypeId" | translate }}</label>
         <select class="form-control" formControlName="customerTypeId"
           [class.is-invalid]="isFormSubmitted && form.get('customerTypeId')?.invalid" id="customerTypeId">

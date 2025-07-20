@@ -69,3 +69,12 @@ html[dir="rtl"] .custom-popup {
 html[dir="ltr"] .custom-popup {
   text-align: left;
 }
+
+.remove-border-raduis {
+      border-top-right-radius:0px;
+      border-bottom-right-radius:0px;
+}
+
+.w-100 {
+    width: 100%;
+}

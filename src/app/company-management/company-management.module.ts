@@ -65,6 +65,6 @@ import { SupplierHistoryInstallmentsComponent } from './suppliers-list/supplier-
     NgbDatepickerModule,
     TabViewModule
   ],
-  exports:[CompanyFormComponent]
+  exports:[CompanyFormComponent , CustomersFormComponent , SuppliersFormComponent]
 })
 export class CompanyManagementModule { }

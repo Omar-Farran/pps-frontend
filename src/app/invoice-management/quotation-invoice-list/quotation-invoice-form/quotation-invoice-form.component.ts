@@ -435,4 +435,10 @@ this.baseService.Get('WarehouseSections' , 'GetWarehouseSectionsByLoggedInUser')
         this.filteredCustomers = res 
     })
     }
+
+         onAddCustomers(modal: any) {
+    const modalRef = this.modalService.open
+      (modal, { modalDialogClass: 'side-modal', backdrop: 'static', keyboard: false });
+    modalRef.result.then((result) => { this.getCustomerSelectItemList(''); })
+  }
 }
