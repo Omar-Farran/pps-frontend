@@ -35,20 +35,21 @@
 
                     
                 </ng-container>
-                <td class="actions">
-                    <div ngbDropdown *ngIf="actionList.length > 0">
-                        <i ngbDropdownToggle class="row-menu"><span></span></i>
-                        <div ngbDropdownMenu>
-                            
-                            <ng-container *ngFor="let action of actionList">
-                                <button class="dropdown-item" *ngIf="authService.hasPermission(action.permission)"
-                                (click)="onItemEvent(action,data)">{{
-                                action.name | translate }}</button>
-                            </ng-container>
-                           
-                        </div>
-                    </div>
-                </td>
+             <td class="actions">
+  <div ngbDropdown *ngIf="actionList.length > 0" container="body" >
+    <i ngbDropdownToggle class="row-menu"><span></span></i>
+    <div ngbDropdownMenu>
+      <ng-container *ngFor="let action of actionList">
+        <button
+          class="dropdown-item"
+          *ngIf="authService.hasPermission(action.permission)"
+          (click)="onItemEvent(action, data)">
+          {{ action.name | translate }}
+        </button>
+      </ng-container>
+    </div>
+  </div>
+</td>
             </tr>
 
             <tr *ngIf="dataSource.length <= 0">

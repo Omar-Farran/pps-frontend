@@ -16,7 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class QuotationInvoiceListComponent {
 columns: any[] = [
-    { name: "sales-invoice.invoiceNumber", field: "invoiceNumber" },
+    { name: "sales-invoice.quotationInvoiceNumber", field: "invoiceNumber" },
     { name: "sales-invoice.InvoiceDate", field: "invoiceDate" , type:'date' },
     { name: "sales-invoice.customerName", field: "customerName" },
     { name: "sales-invoice.sourceType", field: "sourceTypeName" , isTranslate:true },

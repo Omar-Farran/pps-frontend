@@ -75,19 +75,13 @@ dataSource: any[] = [];
   }
   //#endregion
   //#region Actions Handler
-  onAddCompany (modal: any) 
+  onAddProduct (modal: any) 
   {
     const modalRef = this.modalService.open
     (modal, { modalDialogClass: 'side-modal', backdrop: 'static', keyboard: false });
     modalRef.result.then((result) => { this.getList(); })
   }
-  onEditCompany (entity: any, modal: any) 
-  {
-    this.id = entity.id;
-    const modalRef = this.modalService.open
-    (modal, { modalDialogClass: 'side-modal', backdrop: 'static', keyboard: false });
-    modalRef.result.then((result) => { this.getList(); });
-  }
+
   //#endregion
   //#region Filtering and Searching
   onSearch() {

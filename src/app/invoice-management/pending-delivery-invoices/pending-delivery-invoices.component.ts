@@ -255,6 +255,6 @@ deliveryDate:any;
 
      onView(data) {
     this.id = data.id;
-        this.router.navigate(['invoice-management/invoice/view/' + this.id]);
+        this.router.navigate(['invoice-management/invoice/view/' + this.id + '/pending']);
   }
 }

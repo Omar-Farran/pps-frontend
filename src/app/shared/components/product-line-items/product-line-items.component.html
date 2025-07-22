@@ -10,7 +10,7 @@
         <!-- <th  style="width: 10%;" >{{'product-line-item.fees' | translate }}</th> -->
         <th  style="width: 15%" >{{'product-line-item.total' | translate }}</th>
         <th  style="width: 5%"  *ngIf="!invoice.isDeliveredOrReceived && showReserve" >{{'product-line-item.reserve' | translate}}</th>
-        <th  style="width: 10%" >{{'product-line-item.action' | translate }}</th>
+        <th  style="width: 5%" >{{'product-line-item.action' | translate }}</th>
       </tr>
     </thead>
     <!-- <form  > -->
@@ -83,7 +83,7 @@
 
         <td style="width: 7%;">
           <button *ngIf="item.index == productItems.length - 1" type="button"  class="btn btn-success btn-sm mx-1p" (click)="addRow()" [disabled]="invoice.isBalanceUpdated">
-           <span class="text-white">{{'add' | translate}} </span> 
+           <span class="text-white">+ </span> 
           </button>
           <button *ngIf="!(productItems?.length === 1)"
             type="button"
@@ -91,7 +91,7 @@
             (click)="removeRow(item.index)"
            [disabled]="invoice.isBalanceUpdated"
           >
-           {{'delete' | translate}}
+           -
           </button>
         </td>
       </tr>

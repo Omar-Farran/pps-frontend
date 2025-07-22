@@ -95,7 +95,7 @@ onSelectProduct(lineItem: any, event: any) {
     this.productItems[lineItem.index].quantity = 1;
     debugger;
 
-    this.showReserve = productLineItem.type == ProductTypeEnum.Product && this.invoice.type != InvoiceType.PurchaseInvoice && this.invoice.type != InvoiceType.PurchaseRequestInvoice;
+    this.showReserve = productLineItem.type == ProductTypeEnum.Product && this.invoice.type == InvoiceType.SalesInvoice ;
     this.calculateTotal(this.productItems[lineItem.index] , 'quantity');
 });
 

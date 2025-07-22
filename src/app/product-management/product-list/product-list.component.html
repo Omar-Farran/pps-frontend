@@ -52,22 +52,13 @@
 			<div class="table-search form-group">
 
 				
-				<!-- Searching Lookups -->
-				<!-- <input 
-					id="table-search" 
-					placeholder="{{'product-management.productSsearch' | translate}}"
-					class="form-control" 
-					type="text"
-					maxlength="100"
-					(keydown.enter)="onSearch()"
-				> -->
+				
 			</div>
 			<div *ngIf="authService.hasPermission('Transaction-Form')" class="heading-actions">
-				<!-- Add Lookups -->
 				<button 
 					type="button" 
 					class="btn btn-rounded btn-primary" 
-					(click)="onAddTransaction(AddProductPopup)" 
+					(click)="onAddProduct(AddProductPopup)" 
 					*ngIf="authService.hasPermission('Transaction-Form') "
 				>
 					<i class="i-Plus"></i>
@@ -77,7 +68,6 @@
 				</button>
 			</div>
 		</div>
-		<!-- Lookups -->
 		<app-table 
 			[Headers]="columns" 
 			[dataSource]="dataSource" 

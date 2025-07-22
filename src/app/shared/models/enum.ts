@@ -53,7 +53,7 @@ export const LookupsTypeArr =
         { id: 14, name: 'Taxes', nameAr: 'الضريبة', parentId: null },
         { id: 15, name: 'Customer Type', nameAr: 'نوع العميل', parentId: null },
         { id: 16, name: 'Unit Of Measure', nameAr: 'وحدة القياس', parentId: null },
-        { id: 17, name: 'Category', nameAr: 'الصنف', parentId: null },
+        { id: 17, name: 'Category', nameAr: 'التصنيف', parentId: null },
         { id: 18, name: 'Section Type', nameAr: 'نوع القسم', parentId: null },
         { id: 19, name: 'Brands', nameAr: 'الماركات', parentId: null }
     ]

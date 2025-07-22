@@ -17,6 +17,7 @@ products:ProductLineItem[];
 installments:Installment[];
 hideQuotationValues:boolean = false;
 isPurchase:boolean;
+isNotDeliveredPage:boolean = false;
   constructor
       (
         private route:ActivatedRoute,
@@ -28,7 +29,10 @@ isPurchase:boolean;
       this.GetById();
       this.getProductLineItems(this.id);
       this.getInvoiceInstallments(this.id);
-      
+      let type = params["type"];
+      if(type == 'pending'){
+        this.isNotDeliveredPage = true;
+      }
     });
 
       }
@@ -60,7 +64,14 @@ isPurchase:boolean;
         }
 
         navigate(){
-          switch(this.entity.type){
+          if(this.isNotDeliveredPage) {
+             if(this.entity.type == InvoiceType.SalesInvoice){
+              this.router.navigate(['/invoice-management/sales-invoice/pending-delivery-invoices'])
+             } else  {
+               this.router.navigate(['/purchase-management/purchase-invoice/pending'])
+             }
+          }else {
+             switch(this.entity.type){
             case InvoiceType.QuotationInvoice:
             this.router.navigate(['/invoice-management/quotation'])
             break;
@@ -74,5 +85,7 @@ isPurchase:boolean;
             this.router.navigate(['/purchase-management/purchase-invoice'])
             break;
           }
+          }
+         
         }
 }

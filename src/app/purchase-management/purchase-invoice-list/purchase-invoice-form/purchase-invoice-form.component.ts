@@ -46,7 +46,6 @@ isInvoiceHeaderFormSubmitted:boolean = false;
    invoiceProducts:ProductLineItem[] = [];
    invoiceInstallments:Installment[] = [];
    sourceTypes:any[]  = sourceTypes;
-   paymentMethods:any[]  = paymentMethods;
    warehouseSourceType = SourceType.Warehouse;
   steps = [];
   activeIndex: number = 0;
@@ -60,7 +59,6 @@ isInvoiceHeaderFormSubmitted:boolean = false;
         invoiceDate: new FormControl(null , [Validators.required]),
         customerId:new FormControl(null,[Validators.required]),
         sourceType: new FormControl(1, [Validators.required]),
-        paymentMethod:new FormControl(null, [Validators.required]),
         isDeliveredOrReceived:new FormControl(false),
         note:new FormControl(null),
         additionalAttachmentFile:new FormControl(null),
@@ -198,7 +196,6 @@ isInvoiceHeaderFormSubmitted:boolean = false;
                 id: this.entity.id,
                 customerId: this.entity.customerId,
                 sourceType: this.entity.sourceType,
-                paymentMethod:this.entity.paymentMethod,
                 isDeliveredOrReceived:this.entity.isDeliveredOrReceived,
                 note:this.entity.note,
                 additionalAttachmentFile:this.additionalAttachmentFile,
@@ -254,7 +251,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
           }
           
         } else if(this.activeIndex == 2){
-          if(this.installmentComponent?.installments?.length > 0){
+          if(this.installmentComponent?.installments?.length > 0 && this.installmentComponent.paymentMethod > 0 ){
 this.submitInvoiceInstallments();
 this.GetById();
           }else {
@@ -411,6 +408,7 @@ submitInvoiceInstallments(validateCredit = true){
     let form =  {
       invoiceId: this.id,
       invoiceType:InvoiceType.PurchaseInvoice,
+      paymentMethod:Number(this.installmentComponent.paymentMethod),
       installments: this.installmentComponent.installments.map(installment => {
         installment.dueDate = installment.dueDateControl ? `${installment.dueDateControl.year}-${pad(installment.dueDateControl.month)}-${pad(installment.dueDateControl.day)}`   : new Date();
         installment.paidDate = installment.paidDateControl ?  `${installment.paidDateControl.year}-${pad(installment.paidDateControl.month)}-${pad(installment.paidDateControl.day)}` : null;
@@ -454,7 +452,6 @@ submitInvoiceInstallments(validateCredit = true){
      this.invoiceHeaderForm.get('isCustomer').disable();
      this.invoiceHeaderForm.get('customerId').disable();
      this.invoiceHeaderForm.get('sourceType').disable();
-     this.invoiceHeaderForm.get('paymentMethod').disable();
      this.invoiceHeaderForm.get('isDeliveredOrReceived').disable();
      this.invoiceHeaderForm.get('note').disable();
      this.invoiceHeaderForm.get('invoiceDate').disable();

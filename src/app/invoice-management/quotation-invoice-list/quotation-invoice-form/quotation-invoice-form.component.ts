@@ -65,8 +65,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
         additionalAttachmentFile:new FormControl(null),
         warehouseId:new FormControl(null),
         warehouseSectionId:new FormControl(null),
-        type:new FormControl(InvoiceType.QuotationInvoice),
-        paymentMethod:new FormControl(PaymentMethod.Cash)
+        type:new FormControl(InvoiceType.QuotationInvoice)
       }
     );
 
@@ -137,7 +136,6 @@ isInvoiceHeaderFormSubmitted:boolean = false;
        let pad = (n: number) => n.toString().padStart(2, '0');
        form.invoiceDate = `${date.year}-${pad(date.month)}-${pad(date.day)}`;
     form.additionalAttachmentFile = this.additionalAttachmentFile;
-    form.paymentMethod = PaymentMethod.Cash;
     this.baseService.postItemFromForm(ControllerPath , ApiPath , form).subscribe
     ( res => { 
         this.id = res as number;

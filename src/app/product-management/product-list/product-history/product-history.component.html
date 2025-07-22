@@ -1,14 +1,27 @@
 <div class="customers">
   <div class="breadcrumb">
-    <h1>{{'product-history.product-history' | translate}}</h1>
+    <!-- <h1>{{'product-history.product-history' | translate}}</h1> -->
     <ul>
       <li>{{'product-history.manageProductHistory' | translate}}</li>
       <li><strong class="text-primary">{{'product-history.product-history' | translate}}</strong></li>
     </ul>
   </div>
+
+
+
+
   <div class="custom-table-wrap">
     <div class="card">
-      <div class="card-body p-5">
+           <div class="modal-header">
+  <h4 class="modal-title" >
+    {{'product-history.product-history' | translate}}
+  </h4>
+  	<a   (click)="router.navigate(['/product-management/products'])"   type="button" class="close" aria-label="Close" >
+						<span aria-hidden="true">&times;</span>
+    </a>
+</div>
+
+      <div class="card-body p-3">
 
 
                  <div *ngIf="product" class="row">

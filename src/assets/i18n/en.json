@@ -627,7 +627,8 @@
     "createdUser":"User",
     "generateReport":"Generate PDF",
     "branch":"Branch",
-    "warehouses":"Warehouse"
+    "warehouses":"Warehouse",
+    "quotationInvoiceNumber":"Quotation Price Number"
 
   },
   "installment": {

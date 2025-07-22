@@ -3,7 +3,18 @@
 
 
     <div class="row">
- <div class="col-md-3 form-group required">
+       <div  class="col-md-4 form-group mb-3 required">
+        <label for="paymentMethod"> {{ "sales-invoice.paymentMethod" | translate }}</label>
+        <select class="form-control" [(ngModel)]="paymentMethod"  name="paymentMethod" (change)="onPaymentMethodChange()" [disabled]="invoice.isBalanceUpdated" >
+        <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
+          <option *ngFor="let item of paymentMethods" value="{{item.id}}" >{{item.name | translate}}</option>
+        </select>
+        <div  class="invalid-feedback">
+                {{ "common.fieldRequired" | translate }}
+             </div>
+       </div>
+<ng-container *ngIf="paymentMethod > 0 " >
+ <div  class="col-md-3 form-group required">
         <label>{{ "installment.installmentNumber" | translate }}</label>
         <input
           type="text"
@@ -13,17 +24,18 @@
          [(ngModel)]="installmentNumber"
          name="installmentNumber"
           [class.is-invalid]="installmentNumber == 0 || !installmentNumber"
-          [disabled]="invoice.isBalanceUpdated || disableGenerateInstallmentButton"
+          [disabled]="invoice.isBalanceUpdated || paymentMethod == paymentMethodCash"
         />
                 <div class="invalid-feedback">
                     {{ 'common.required' | translate }}
                 </div>
-      </div>
+  </div>
    
       <div class="col-md-3 form-group">
-            <button  class="btn btn-primary mt-3"  type="button" (click)="generateInstallments()"  [disabled]="invoice.isBalanceUpdated || disableGenerateInstallmentButton" > {{ "installment.generateInstallment" | translate  }}</button>
+            <button  class="btn btn-primary mt-3"  type="button" (click)="generateInstallments()"  [disabled]="invoice.isBalanceUpdated || paymentMethod == paymentMethodCash" > {{ "installment.generateInstallment" | translate  }}</button>
       </div>
-    </div>
+</ng-container>
+
  
 
 

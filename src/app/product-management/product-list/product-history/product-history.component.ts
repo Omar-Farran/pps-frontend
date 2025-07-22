@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BaseService } from 'src/app/shared/services/base.service';
 import { environment } from 'src/environments/environment';
 
@@ -14,7 +14,7 @@ productId:any;
 product:any;
 baseUrl = environment.attachmentUrl;
 imageLogoPath:string;
-constructor(private route: ActivatedRoute,private baseService:BaseService) {
+constructor(private route: ActivatedRoute,private baseService:BaseService,public router:Router) {
   
   this.route.params.subscribe((params) => {
       this.productId = params["id"];

@@ -9,7 +9,7 @@ import { ProductLineItem } from 'src/app/data/product-line-item';
 import { SelectItem } from 'src/app/data/select-item';
 import { InstallmentComponent } from 'src/app/shared/components/installment/installment.component';
 import { ProductLineItemsComponent } from 'src/app/shared/components/product-line-items/product-line-items.component';
-import { ClientType, paymentMethods, sourceTypes , SourceType, InvoiceType, InvoiceStatus } from 'src/app/shared/models/enum';
+import { ClientType, sourceTypes , SourceType, InvoiceType, InvoiceStatus } from 'src/app/shared/models/enum';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { BaseService } from 'src/app/shared/services/base.service';
 import { environment } from 'src/environments/environment';
@@ -46,7 +46,6 @@ isInvoiceHeaderFormSubmitted:boolean = false;
    invoiceProducts:ProductLineItem[] = [];
    invoiceInstallments:Installment[] = [];
    sourceTypes:any[]  = sourceTypes;
-   paymentMethods:any[]  = paymentMethods;
    warehouseSourceType = SourceType.Warehouse;
   steps = [];
   activeIndex: number = 0;
@@ -60,7 +59,6 @@ isInvoiceHeaderFormSubmitted:boolean = false;
         invoiceDate: new FormControl(null , [Validators.required]),
         customerId:new FormControl(null , [Validators.required]),
         sourceType: new FormControl(1, [Validators.required]),
-        paymentMethod:new FormControl(null, [Validators.required]),
         isDeliveredOrReceived:new FormControl(false),
         note:new FormControl(null),
         additionalAttachmentFile:new FormControl(null),
@@ -195,7 +193,6 @@ isInvoiceHeaderFormSubmitted:boolean = false;
                 id: this.entity.id,
                 customerId: this.entity.customerId,
                 sourceType: this.entity.sourceType,
-                paymentMethod:this.entity.paymentMethod,
                 isDeliveredOrReceived:this.entity.isDeliveredOrReceived,
                 note:this.entity.note,
                 additionalAttachmentFile:this.additionalAttachmentFile,

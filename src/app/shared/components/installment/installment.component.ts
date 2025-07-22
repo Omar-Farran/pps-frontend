@@ -1,24 +1,39 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Installment } from 'src/app/data/installment';
-import { InstallmentStatus, installmentStatus, PaymentMethod } from '../../models/enum';
+import { InstallmentStatus, installmentStatus, PaymentMethod, paymentMethods } from '../../models/enum';
 
 @Component({
   selector: 'app-installment',
   templateUrl: './installment.component.html',
   styleUrls: ['./installment.component.scss']
 })
-export class InstallmentComponent  implements OnChanges{
+export class InstallmentComponent  implements OnChanges {
+
 installmentNumber:number = 1;
 @Input() installments:Installment[];
 @Input() invoice;
 chequePaymentMethodType:PaymentMethod.Cheque;
 installmentStatus= installmentStatus;
 disableGenerateInstallmentButton:boolean = false;
+paymentMethods:any[]  = paymentMethods;
+paymentMethod?:number= null;
+paymentMethodCash = PaymentMethod.Cash;
+
+
+
 ngOnChanges(changes: SimpleChanges): void {
-  debugger;
-  if(this.installments?.length > 0){
-    this.installmentNumber = this.installments.length;
+ 
+  if(this.installments?.length > 0 &&  this.installments?.every(f=> f.id > 0)){
+        this.fetchInstallmentTable();
+  }
+
+  if(this.invoice?.paymentMethod > 0){
+    this.paymentMethod = this.invoice.paymentMethod;
+  }
+}
+
+fetchInstallmentTable(){
+   this.installmentNumber = this.installments.length;
     this.installments = this.installments.map(ins => {
        const dueDate = new Date(ins.dueDate);
       ins.dueDateControl = {
@@ -36,17 +51,7 @@ if(ins.paidDate){
 }
 return ins;
     })
-  }else {
-    if(this.invoice.paymentMethod){
-      this.installmentNumber = 1;
-      this.generateInstallments();
-      this.disableGenerateInstallmentButton = true;
-    }
-  }
-
 }
-
-
 
 
 generateInstallments(){
@@ -69,5 +74,30 @@ generateInstallments(){
 }
 
 
+generateCashInstallments(){
+  this.disableGenerateInstallmentButton = true;
+  const amount =  (this.invoice.totalAmount as number / this.installmentNumber).toFixed(3);
+  this.installments = [];
+    let installment = new Installment();
+    installment.sequence = 1;
+    installment.amount = Number(amount);
+    installment.status = InstallmentStatus.Paid;
+    let dueDate = new Date(); // base date
+    dueDate.setMonth(dueDate.getMonth() + 1);
+    let todayDate = {
+  year: dueDate.getFullYear(),
+  month: dueDate.getMonth() + 1 - 1,
+  day: dueDate.getDate()};
+    installment.dueDateControl =  todayDate;
+   installment.paidDateControl =  todayDate;
+  this.installments.push(installment);
+  
+}
+
+onPaymentMethodChange(){
+  if(this.paymentMethod == PaymentMethod.Cash && !(this.installments?.length > 0)){
+    this.generateCashInstallments();
+  }
+}
 
 }

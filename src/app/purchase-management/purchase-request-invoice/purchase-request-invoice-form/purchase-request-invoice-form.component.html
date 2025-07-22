@@ -109,27 +109,6 @@
                                     {{ "common.fieldRequired" | translate }}
                                  </div>
                         </div>
-                        
-
-            
-                       
-                  
-
-
-
-                           <div  class="col-md-4 form-group mb-3 required">
-                            <label for="paymentMethod"> {{ "purchase-invoice.paymentMethod" | translate }}</label>
-                            <select class="form-control" formControlName="paymentMethod" name="paymentMethod" 
-                            [class.is-invalid]="isInvoiceHeaderFormSubmitted &&  invoiceHeaderForm && invoiceHeaderForm.get('paymentMethod')?.errors"
-                            >
-                               <option  [ngValue]="null" selected>{{ "select" | translate }}</option> 
-                              <option *ngFor="let item of paymentMethods" value="{{item.id}}" >{{item.name | translate}}</option>
-                            </select>
-                            <div  class="invalid-feedback">
-                                    {{ "common.fieldRequired" | translate }}
-                                 </div>
-                           </div>
-
 
       <div class="col-md-8 form-group">
         <label>{{ "purchase-invoice.note" | translate }}</label>

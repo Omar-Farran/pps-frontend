@@ -23,7 +23,8 @@ const routes: Routes =
     { path: 'quotation/form', component: QuotationInvoiceFormComponent },
     { path: 'quotation/form/:id', component: QuotationInvoiceFormComponent },
     { path: 'quotation/convert', component: ConvertQuotationComponent },
-    { path: 'invoice/view/:id', component: InvoiceViewComponent }
+    { path: 'invoice/view/:id', component: InvoiceViewComponent },
+    { path: 'invoice/view/:id/:type', component: InvoiceViewComponent }
 
 
 

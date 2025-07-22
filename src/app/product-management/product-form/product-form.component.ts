@@ -190,7 +190,9 @@ brands:any[];
       (res => {
         this.entity = res;
         if(this.entity?.imagePath)
-        this.entity.imagePath = `${this.baseUrl}/${this.entity.imagePath}`;
+        this.entity.imagePath = `${this.baseUrl}/${this.entity.imagePath}`; 
+        this.onProductTypeChange(this.entity.type);
+
         this.basicForm.patchValue
           (
             {
@@ -208,6 +210,7 @@ brands:any[];
              }
           );
        const date = this.entity.expirationDate ?  new Date(this.entity.expirationDate) : null;
+       this.onFollowItemChange(this.entity.followItem);
        this.detailsForm.patchValue
           (
             {
@@ -304,7 +307,7 @@ onFollowItemChange(value){
   if(value){
     this.detailsForm.get('followType').setValue(0);
     this.basicForm.get('purchasePrice').setValidators(Validators.required);
-    this.detailsForm.get('quantityValue').setValidators(Validators.min(1))
+    this.detailsForm.get('quantityValue').setValidators([Validators.min(1) , Validators.required])
     this.detailsForm.updateValueAndValidity();
   }else {
     this.detailsForm.get('followType').setValue(null);
@@ -317,12 +320,15 @@ onProductTypeChange(value){
   debugger;
   if(value == ProductTypeEnum.Service){
     this.isProductService = true;
-    this.basicForm.get('unitOfMeasureId').setValidators(Validators.required);
-    this.basicForm.get('categoryId').setValidators(Validators.required);
+   this.basicForm.get('unitOfMeasureId').removeValidators(Validators.required);
+    this.basicForm.get('categoryId').removeValidators(Validators.required);
     this.basicForm.updateValueAndValidity();
 
   }else {
     this.isProductService = false;
+    this.basicForm.get('unitOfMeasureId').setValidators(Validators.required);
+    this.basicForm.get('categoryId').setValidators(Validators.required);
+    this.basicForm.updateValueAndValidity();
   }
 }
 

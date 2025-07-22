@@ -284,30 +284,59 @@
         }
     }
     
+    // .dropdown-menu {
+    //     top: 15px !important;
+    //     right: calc(100% - 12px) !important;
+    //     bottom: auto !important;
+    //     left: auto !important;
+    //     // transform: none !important;
+    //     min-width: auto;
+    //     border-radius: 4px;
+    //     border: 1px solid $grey;
+    //     box-shadow: none;
+    //     color: $primary-grey;
+    //     font-size: 14px;
+    // }
     .dropdown-menu {
-        top: 15px !important;
-        right: calc(100% - 12px) !important;
-        bottom: auto !important;
-        left: auto !important;
-        // transform: none !important;
-        min-width: auto;
-        border-radius: 4px;
-        border: 1px solid $grey;
-        box-shadow: none;
-        color: $primary-grey;
-        font-size: 14px;
-    }
+    top: 15px !important;
+    right: calc(100% - 12px) !important;
+    bottom: auto !important;
+    left: auto !important;
+    // transform: none !important;
+    min-width: 180px; // ← اجعل هناك حد أدنى مناسب
+    max-width: 250px; // ← يمكن تحديده لضبط الشكل العام
+    white-space: normal !important; // ← هذا هو الأهم
+    word-break: break-word;
+    border-radius: 4px;
+    border: 1px solid $grey;
+    box-shadow: none;
+    color: $primary-grey;
+    font-size: 14px;
+}
 
-    .dropdown-item {
-        padding: 5px 19px;
-        border-radius: 0;
-        color: $primary-grey;
-        transition: background .3s;
+.dropdown-item {
+    padding: 5px 19px;
+    border-radius: 0;
+    color: $primary-grey;
+    transition: background .3s;
+    white-space: normal !important; // ← حتى النص داخل الزر لا يُجبر على سطر واحد
+    word-break: break-word;
 
-        &.delete {
-            color: $red;
-        }
+    &.delete {
+        color: $red;
     }
+}
+
+    // .dropdown-item {
+    //     padding: 5px 19px;
+    //     border-radius: 0;
+    //     color: $primary-grey;
+    //     transition: background .3s;
+
+    //     &.delete {
+    //         color: $red;
+    //     }
+    // }
 
     // table droprow
     .action-row {

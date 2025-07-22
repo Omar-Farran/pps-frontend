@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -9,7 +9,7 @@ import { ProductLineItem } from 'src/app/data/product-line-item';
 import { SelectItem } from 'src/app/data/select-item';
 import { InstallmentComponent } from 'src/app/shared/components/installment/installment.component';
 import { ProductLineItemsComponent } from 'src/app/shared/components/product-line-items/product-line-items.component';
-import { ClientType, paymentMethods, sourceTypes , SourceType, InvoiceType, InvoiceStatus, ProductTypeEnum } from 'src/app/shared/models/enum';
+import { ClientType, sourceTypes , SourceType, InvoiceType, InvoiceStatus, ProductTypeEnum } from 'src/app/shared/models/enum';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { BaseService } from 'src/app/shared/services/base.service';
 import { environment } from 'src/environments/environment';
@@ -46,7 +46,6 @@ isInvoiceHeaderFormSubmitted:boolean = false;
    invoiceProducts:ProductLineItem[] = [];
    invoiceInstallments:Installment[] = [];
    sourceTypes:any[]  = sourceTypes;
-   paymentMethods:any[]  = paymentMethods;
    warehouseSourceType = SourceType.Warehouse;
   steps = [];
   activeIndex: number = 0;
@@ -62,7 +61,6 @@ isInvoiceHeaderFormSubmitted:boolean = false;
         customerId:new FormControl(null),
         customerName:new FormControl(null, [Validators.required]),
         sourceType: new FormControl(1, [Validators.required]),
-        paymentMethod:new FormControl(null, [Validators.required]),
         isDeliveredOrReceived:new FormControl(false),
         note:new FormControl(null),
         additionalAttachmentFile:new FormControl(null),
@@ -87,7 +85,9 @@ isInvoiceHeaderFormSubmitted:boolean = false;
       private translate: TranslateService,
       private route:ActivatedRoute,
       private router:Router,
-      private modalService: NgbModal
+      private modalService: NgbModal,
+      private cdRef: ChangeDetectorRef
+      
     ) 
     {
 
@@ -95,6 +95,8 @@ isInvoiceHeaderFormSubmitted:boolean = false;
       this.id = params["id"];
     
     });
+
+
     }
     ngOnInit (): void 
     {
@@ -202,7 +204,6 @@ isInvoiceHeaderFormSubmitted:boolean = false;
                 customerId: {id:this.entity.customerId , name:this.entity.customerName},
                 customerName: this.entity.isCustomer ? null : this.entity.customerName,
                 sourceType: this.entity.sourceType,
-                paymentMethod:this.entity.paymentMethod,
                 isDeliveredOrReceived:this.entity.isDeliveredOrReceived,
                 note:this.entity.note,
                 additionalAttachmentFile:this.additionalAttachmentFile,
@@ -226,8 +227,8 @@ isInvoiceHeaderFormSubmitted:boolean = false;
             this.invoiceHeaderForm.get('sourceType').disable();
             this.invoiceHeaderForm.get('warehouseSectionId').disable();
           }
-
-        
+      
+            this.cdRef.detectChanges(); 
       }
       )
   }
@@ -258,7 +259,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
           }
           
         } else if(this.activeIndex == 2){
-          if(this.installmentComponent?.installments?.length > 0){
+          if(this.installmentComponent?.installments?.length > 0 && this.installmentComponent.paymentMethod > 0){
 this.submitInvoiceInstallments();
 this.GetById();
           }else {
@@ -407,7 +408,9 @@ this.baseService.Get('WarehouseSections' , 'GetWarehouseSectionsByLoggedInUser')
    getInvoiceInstallments(invoiceid:number){
     this.baseService.Get('Invoice' , 'GetInvoiceInstallments/' + invoiceid).subscribe(res => {
       debugger;
+      if(res) {
       this.invoiceInstallments = res as Installment[];
+      }
     })
   }
 
@@ -433,6 +436,7 @@ submitInvoiceInstallments(validateCredit = true){
     let pad = (n: number) => n.toString().padStart(2, '0');
     let form =  {
       invoiceId: this.id,
+      paymentMethod:Number(this.installmentComponent.paymentMethod),
       installments: this.installmentComponent.installments.map(installment => {
         installment.dueDate = installment.dueDateControl ? `${installment.dueDateControl.year}-${pad(installment.dueDateControl.month)}-${pad(installment.dueDateControl.day)}`   : new Date();
         installment.paidDate = installment.paidDateControl ?  `${installment.paidDateControl.year}-${pad(installment.paidDateControl.month)}-${pad(installment.paidDateControl.day)}` : null;
@@ -477,7 +481,6 @@ submitInvoiceInstallments(validateCredit = true){
      this.invoiceHeaderForm.get('customerId').disable();
      this.invoiceHeaderForm.get('customerName').disable();
      this.invoiceHeaderForm.get('sourceType').disable();
-     this.invoiceHeaderForm.get('paymentMethod').disable();
      this.invoiceHeaderForm.get('isDeliveredOrReceived').disable();
      this.invoiceHeaderForm.get('note').disable();
      this.invoiceHeaderForm.get('invoiceDate').disable();
