@@ -75,7 +75,7 @@
           <input type="number" class="form-control" [(ngModel)]="item.feesAmount" name="feesAmount{{i}}"  [disabled]="invoice.isBalanceUpdated" (change)="calculateTotal(item , 'feesAmount')"  />
         </td> -->
          <td>
-          <input type="number" class="form-control" [(ngModel)]="item.total"  name="total{{i}}"  [disabled]="invoice.isBalanceUpdated" disabled />
+          <input type="number" class="form-control" [(ngModel)]="item.total"  name="total{{i}}"   disabled />
         </td>
         <td *ngIf="!invoice.isDeliveredOrReceived && showReserve" >
           <input type="checkbox"  [(ngModel)]="item.reserve" name="reserve{{i}}"  [disabled]="invoice.isBalanceUpdated" >

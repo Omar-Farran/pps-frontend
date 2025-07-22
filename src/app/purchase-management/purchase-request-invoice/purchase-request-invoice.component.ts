@@ -21,7 +21,8 @@ columns: any[] = [
     { name: "purchase-invoice.supplier", field: "customerName" },
     { name: "purchase-invoice.sourceType", field: "sourceTypeName" , isTranslate:true },
     { name: "purchase-invoice.totalAmount", field: "totalAmount" , type:'number' },
-    { name: "purchase-invoice.status", field: "invoiceStatus" ,  isTranslate:true }
+    { name: "purchase-invoice.status", field: "invoiceStatus" ,  isTranslate:true },
+    { name: "sales-invoice.printed", field: "printed" ,  type:'boolean'}
   ];
     actionList: any[] = [
     { name: "purchase-invoice.view", icon: "change", permission: "Purchase-Invoices-List" },

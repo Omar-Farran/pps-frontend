@@ -78,6 +78,11 @@
                             <label>{{'invoice.status' | translate}}</label>
                              <span class="value" > {{entity.statusName | translate}} </span>
                 </div>
+                    <div  class="col-md-4 form-group mb-3">
+                            <label>{{ 'sales-invoice.printed' | translate}}</label>
+                             <span class="value" > {{ (entity.printed ? 'true' : 'false') | translate}} </span>
+                </div>
+
 
         </div>
     </div>
