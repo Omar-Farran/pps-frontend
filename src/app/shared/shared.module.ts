@@ -19,6 +19,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { InstallmentComponent } from './components/installment/installment.component';
 import { PrintReportComponent } from './components/print-report/print-report.component';
+import { TooltipModule } from 'primeng/tooltip';
+import { AddProductPopupComponent } from './components/add-product-popup/add-product-popup.component';
+import { StepsModule } from 'primeng/steps';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -31,7 +34,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NotDataComponent,
     ProductLineItemsComponent,
     InstallmentComponent,
-    PrintReportComponent
+    PrintReportComponent,
+    AddProductPopupComponent
   ],
   imports: [
     CommonModule,
@@ -53,9 +57,11 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       },
       isolate: false
-    })
+    }),
+    TooltipModule,
+     StepsModule
   ],
-  exports: [TableComponent, TranslateModule,PaggerComponent , ProductLineItemsComponent ,InstallmentComponent , PrintReportComponent],
+  exports: [TableComponent, TranslateModule,PaggerComponent , ProductLineItemsComponent ,InstallmentComponent , PrintReportComponent,AddProductPopupComponent],
   providers: [JwtHelperService, 
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     

@@ -100,7 +100,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
 
       if (this.id > 0) {
         this.GetById();
-        this.getCustomerSelectItemList(null)
+       
       }else {
         let date = new Date();
         this.invoiceHeaderForm.get('invoiceDate').setValue({
@@ -109,6 +109,9 @@ isInvoiceHeaderFormSubmitted:boolean = false;
                           day: date.getDate()
                         })
       }
+
+       this.getCustomerSelectItemList('')
+
     }
     //#region Functions
     resetForm () 
@@ -130,9 +133,6 @@ isInvoiceHeaderFormSubmitted:boolean = false;
     let form = this.invoiceHeaderForm.getRawValue();
     let date = form.invoiceDate;
     form.id  = this.id;
-    if(form.isCustomer){
-      form.customerId = form.customerId?.id;
-    }
        let pad = (n: number) => n.toString().padStart(2, '0');
        form.invoiceDate = `${date.year}-${pad(date.month)}-${pad(date.day)}`;
     form.additionalAttachmentFile = this.additionalAttachmentFile;
@@ -187,7 +187,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
             {
                 id: this.entity.id,
                 isCustomer:this.entity.isCustomer,
-                customerId: {id:this.entity.customerId , name:this.entity.customerName},
+                customerId: this.entity.customerId,
                 customerName: this.entity.isCustomer ? null : this.entity.customerName,
                 sourceType: this.entity.sourceType,
                 note:this.entity.note,
@@ -225,7 +225,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
     if(this.activeIndex == 0){
          this.submitInvoiceHeaderForm();
         }else if(this.activeIndex == 1){
-          if(this.productLineComponent.productItems?.every(item => item.quantity > 0 && item.unitPrice > 0 && item.total > 0 && item.id > 0 )){
+          if(this.productLineComponent.productItems?.every(item => item.quantity > 0 && item.unitPrice > 0 && item.total > 0 && (typeof item.product === 'object' ? item.product.id > 0 : item.product != null ) )){
               this.submitProductItems();
           }else {
               this.toastr.error(
@@ -373,9 +373,30 @@ this.baseService.Get('WarehouseSections' , 'GetWarehouseSectionsByLoggedInUser')
 
 
   submitProductItems(){
+    debugger;
     let form =  {
       invoiceId: this.id,
-      Products: this.productLineComponent.productItems
+       Products: this.productLineComponent.productItems.map(x => ({
+    id: x.id,
+    quantity: x.quantity,
+    unitPrice: x.unitPrice,
+    discount: x.discount,
+    tax: x.tax,
+    feesAmount: x.feesAmount,
+    total: x.total,
+    reserve: x.reserve,
+    index: x.index,
+    productId: typeof x.product === 'object' ? x.product.id : null,
+    productName: typeof x.product === 'string' ? x.product : null,
+    unitOfMeasureId: typeof x.unitMeasure === 'object' ? x.unitMeasure.id : null,
+    unitMeasure: typeof x.unitMeasure === 'string' ? x.unitMeasure : null,
+    maxQuantity: x.maxQuantity,
+    quantityDb: x.quantityDb,
+    reserveDb: x.reserveDb,
+    isInValid: x.isInValid,
+    type: x.type,
+    unitOfMeasures:null
+  }))
     }
     this.baseService.Post('Invoice' , 'SubmitQuotationProductItems' , form).subscribe(res => {
       this.GetById();

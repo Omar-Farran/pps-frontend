@@ -8,6 +8,7 @@ import { SharedPipesModule } from '../pipes/shared-pipes.module';
 import { SearchModule } from './search/search.module';
 import { SharedDirectivesModule } from '../directives/shared-directives.module';
 import { LayoutsModule } from './layouts/layouts.module';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 const components = [
   BtnLoadingComponent,
@@ -24,7 +25,7 @@ const components = [
     SharedDirectivesModule,
     SearchModule,
     // PerfectScrollbarModule,
-    NgbModule,
+    NgbModule
   ],
   declarations: components,
   exports: components

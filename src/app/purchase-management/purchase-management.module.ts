@@ -21,6 +21,7 @@ import { PurchaseRequestInvoiceComponent } from './purchase-request-invoice/purc
 import { PurchaseRequestInvoiceFormComponent } from './purchase-request-invoice/purchase-request-invoice-form/purchase-request-invoice-form.component';
 import { PurchaseRequestConvertInvoiceComponent } from './purchase-request-convert-invoice/purchase-request-convert-invoice.component';
 import { CompanyManagementModule } from '../company-management/company-management.module';
+import { InvoiceManagementModule } from '../invoice-management/invoice-management.module';
 
 
 
@@ -53,7 +54,8 @@ import { CompanyManagementModule } from '../company-management/company-managemen
         FormsModule,
         StepsModule,
         AutoCompleteModule,
-        CompanyManagementModule
+        CompanyManagementModule,
+        InvoiceManagementModule
   ]
 })
 export class PurchaseManagementModule { }

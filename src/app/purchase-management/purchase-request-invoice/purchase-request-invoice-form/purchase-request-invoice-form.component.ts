@@ -385,7 +385,27 @@ this.baseService.Get('WarehouseSections' , 'GetWarehouseSectionsByLoggedInUser')
   submitProductItems(){
     let form =  {
       invoiceId: this.id,
-      Products: this.productLineComponent.productItems
+      Products: this.productLineComponent.productItems.map(x => ({
+    id: x.id,
+    quantity: x.quantity,
+    unitPrice: x.unitPrice,
+    discount: x.discount,
+    tax: x.tax,
+    feesAmount: x.feesAmount,
+    total: x.total,
+    reserve: x.reserve,
+    index: x.index,
+    productId: typeof x.product === 'object' ? x.product.id : null,
+    productName: typeof x.product === 'string' ? x.product : null,
+    unitOfMeasureId: typeof x.unitMeasure === 'object' ? x.unitMeasure.id : null,
+    unitMeasure: typeof x.unitMeasure === 'string' ? x.unitMeasure : null,
+    maxQuantity: x.maxQuantity,
+    quantityDb: x.quantityDb,
+    reserveDb: x.reserveDb,
+    isInValid: x.isInValid,
+    type: x.type,
+    unitOfMeasures:null
+  }))
     }
     this.baseService.Post('Invoice' , 'SubmitProductItems' , form).subscribe(res => {
       this.GetById();

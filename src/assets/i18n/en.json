@@ -307,7 +307,8 @@
     "InsufficientBalance":"Insufficient Balance",
     "installmentalreadypaid":"Installment already paid",
     "InvalidInvoiceStatus":"Invalid invoice status",
-    "WarehouseSectionAlreadyExists":"Section name already exists for this warehouse"
+    "WarehouseSectionAlreadyExists":"Section name already exists for this warehouse",
+    "invalidunitofMeasuers":"Invalid Unit of Measureies"
 
   },
   "dashboards": {
@@ -628,7 +629,8 @@
     "generateReport":"Generate PDF",
     "branch":"Branch",
     "warehouses":"Warehouse",
-    "quotationInvoiceNumber":"Quotation Price Number"
+    "quotationInvoiceNumber":"Quotation Price Number",
+    "submitAndPrint":"Submit & Print"
 
   },
   "installment": {

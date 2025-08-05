@@ -151,7 +151,8 @@
       </div>
 
           <div *ngIf="activeIndex === 2"  >
-        <ng-container *ngIf="entity"  > 
+             <app-invoice-view [invoiceId]="id"  ></app-invoice-view>
+        <!-- <ng-container *ngIf="entity"  > 
         
           <div class="col-md-3 form-group review-input">
         <label>{{ "purchase-invoice.totalInvoiceAmount" | translate }}</label>
@@ -253,7 +254,7 @@
       </div>
 
 
-        </ng-container>
+        </ng-container> -->
       </div>
 
     

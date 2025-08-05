@@ -1,6 +1,6 @@
 export class ProductLineItem {
     id:number;
-    unitMeasure:number;
+    unitMeasure:any;
     quantity:number;
     unitPrice:number;
     discount:number;
@@ -12,9 +12,14 @@ export class ProductLineItem {
     product:any;
     productId:number;
     maxQuantity:number;
+    maxQuantityView:number;
     quantityDb:number = 0;
     reserveDb:boolean;
     isInValid:boolean;
     type:any;
+    productName:string;
+    unitOfMeasures:any[];
+    unitOfMeasureId?:number;
+    isExternal:boolean;
 }
 

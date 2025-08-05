@@ -182,12 +182,6 @@ export class NavigationService {
                     permissions: 'Lookups-List'
                 },
                 {
-                    name: 'navigation.unitOfMeasure',
-                    state: '/lookups-managment/unitOfMeasure/16',
-                    type: 'link',
-                    permissions: 'Lookups-List'
-                },
-                {
                     name: 'navigation.sectionType',
                     state: '/lookups-managment/sectionType/18',
                     type: 'link',
@@ -207,6 +201,12 @@ export class NavigationService {
             icon: 'i-Posterous',
             permissions: 'Product-List',
             sub: [
+                  {
+                    name: 'navigation.unitOfMeasure',
+                    state: '/product-management/unit-measure',
+                    type: 'link',
+                    permissions: 'UnitOfMeasure-List',
+                },
                 {
                     name: 'navigation.warehouse',
                     state: '/product-management/warehouse',

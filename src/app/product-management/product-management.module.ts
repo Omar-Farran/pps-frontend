@@ -29,6 +29,8 @@ import { ProductHistoryComponent } from './product-list/product-history/product-
 import { ProductStatisticsComponent } from './product-list/product-history/product-statistics/product-statistics.component';
 import { ProductSalesCustomerComponent } from './product-list/product-history/product-sales-customer/product-sales-customer.component';
 import { ProductPurchaseSupplierComponent } from './product-list/product-history/product-purchase-supplier/product-purchase-supplier.component';
+import { UnitOfMeasureListComponent } from './unit-of-measure-list/unit-of-measure-list.component';
+import { UnitOfMeasureFormComponent } from './unit-of-measure-list/unit-of-measure-form/unit-of-measure-form.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { ProductPurchaseSupplierComponent } from './product-list/product-history
     ProductHistoryComponent,
     ProductStatisticsComponent,
     ProductSalesCustomerComponent,
-    ProductPurchaseSupplierComponent
+    ProductPurchaseSupplierComponent,
+    UnitOfMeasureListComponent,
+    UnitOfMeasureFormComponent
   ],
   imports: [
     CommonModule,
@@ -67,6 +71,7 @@ import { ProductPurchaseSupplierComponent } from './product-list/product-history
     StepsModule,
     AutoCompleteModule,
     TabViewModule
-  ]
+  ],
+  exports:[]
 })
 export class ProductManagementModule { }

@@ -11,12 +11,12 @@ import { noWhitespaceValidator } from 'src/app/utils/validation-white-space';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-product-form',
-  templateUrl: './product-form.component.html',
-  styleUrls: ['./product-form.component.scss']
+  selector: 'app-add-product-popup',
+  templateUrl: './add-product-popup.component.html',
+  styleUrls: ['./add-product-popup.component.scss']
 })
-export class ProductFormComponent {
-  imageUrl:string = '';
+export class AddProductPopupComponent {
+imageUrl:string = '';
   activeIndex: number = 0;
   translateS:any;
   showFollowItemDiv:boolean = false;
@@ -384,6 +384,4 @@ onProductTypeChange(value){
     this.basicForm.updateValueAndValidity();
   }
 }
-
-
 }

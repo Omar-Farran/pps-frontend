@@ -1,5 +1,5 @@
 
-<div class="breadcrumb">
+<div *ngIf="invoicePage" class="breadcrumb">
     <!-- <h1>{{'invoice.view' | translate}}</h1> -->
     <ul>
         <li>
@@ -13,8 +13,8 @@
     </ul>
 </div>
 
-<div class="p-2">
-     <div class="modal-header">
+<div   class="p-2">
+     <div  *ngIf="invoicePage" class="modal-header">
   <h4 class="modal-title" >
      {{'invoice.invoice-management'  | translate}}
   </h4>
@@ -138,7 +138,7 @@
               {{item.total}}
         </td>
         <td *ngIf="!hideQuotationValues && !isPurchase">
-            {{item.reserve }}
+            {{ (item.reserve.toString() | translate) }}
         </td>
       </tr>
     </tbody>
@@ -243,6 +243,33 @@
                             <label>{{ "sales-invoice.totalInvoiceAmount" | translate }}</label>
                              <span class="value" > {{entity.totalAmount}} </span>
                 </div>
+
+            
+                <div *ngIf="invoicePage"  class="col-md-6" >
+                        <button type="button" class="btn btn-secondary submit w-100"
+                               (click)="printReport(false)"
+                               >{{'sales-invoice.print-report' | translate}}</button>
+                </div>
+
+                
+
+                
+                  <div  *ngIf="!invoicePage" class="col-md-6 review-input">
+                               <button type="button" class="btn btn-secondary submit w-100"
+                               (click)="onSubmitInvoice(false)"
+                                [disabled]="entity?.isBalanceUpdated"
+                               >   {{'sales-invoice.submit' | translate}}</button>
+                 </div>
+
+                       <div *ngIf="!invoicePage"  class="col-md-6" >
+                        <button type="button" class="btn btn-primary submit w-100"
+                               (click)="onSubmitInvoice(true)"
+                               [disabled]="entity?.isBalanceUpdated"
+                               >{{'sales-invoice.submitAndPrint' | translate}}</button>
+                </div>
+
+
+                       
         </div>
     </div>
 </div>

@@ -55,6 +55,7 @@ import { CompanyManagementModule } from '../company-management/company-managemen
         StepsModule,
         AutoCompleteModule,
         CompanyManagementModule
-  ]
+  ],
+  exports:[InvoiceViewComponent]
 })
 export class InvoiceManagementModule { }

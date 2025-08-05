@@ -26,7 +26,7 @@
   "Cheque": "شيك",
   "Cash": "نقد",
   "UnDefined": "غير محدد",
-  "Installment": "قسط",
+  "Installment": "دفع أجل",
   "SalesInvoice": "فاتورة مبيعات",
   "PurchaseInvoice": "فاتورة مشتريات",
   "QuotationInvoice": "فاتورة عرض سعر",
@@ -316,7 +316,8 @@
     "InsufficientBalance": "رصيد غير كافٍ",
     "installmentalreadypaid":"الفاتورة مدفوعه مسبقا",
     "InvalidInvoiceStatus":"حالة الفاتورة غير صحيحة",
-    "WarehouseSectionAlreadyExists":"اسم القسم مستخدم لهذا المستودع"
+    "WarehouseSectionAlreadyExists":"اسم القسم مستخدم لهذا المستودع",
+    "invalidunitofMeasuers":"خطأ في القياسات"
   },
   "dashboards": {
     "oee-dashboard": "لوحة OEE",
@@ -604,7 +605,7 @@
     "paidAmount": "المبلغ المدفوع",
     "unPaidAmount": "المبلغ غير المدفوع",
     "totalFees": "إجمالي الرسوم",
-    "submit": "إرسال",
+    "submit": "حفظ",
     "invoiceSubmitted": "تم إرسال الفاتورة",
     "deliveryDate": "تاريخ التسليم",
     "atLeastOneProduct": "أضف منتجات",
@@ -630,13 +631,14 @@
     "pending-delivery-invoices": "فواتير التسليم المعلقة",
     "view": "عرض الفاتورة",
     "printed":"مطبوع",
-    "print-report":"'طباعة",
+    "print-report":"طباعة",
     "reportType":"نوع التقرير",
     "createdUser":"اسم المستخدم",
     "generateReport":"تصدير PDF",
     "branch":"فرع",
     "warehouses":"مستودع",
-    "quotationInvoiceNumber":"رقم عرض السعر"
+    "quotationInvoiceNumber":"رقم عرض السعر",
+    "submitAndPrint":"حفظ و طباعة"
 
   },
   "installment": {
@@ -849,7 +851,7 @@
     "action": "اضافة / حذف",
     "purchasePrice": "سعر الشراء",
      "quantity":"الكمية",
-     "reserve":"محجوزة"
+     "reserve":"حجز"
   },
   "installment-line": {
   "dueDate": "تاريخ الاستحقاق",
@@ -1001,6 +1003,21 @@
     "maxSoldPrice":"أعلى سعر",
     "avgSoldPrice":"متوسط السعر",
     "supplierName":"اسم المورد"
+   },
+   "unitOfMeasure":{
+    "manageUnitOfMeasure":"ادارة وحدات القياس",
+    "unitOfMeasure":"وحدات القياس",
+    "addNewUnitOfMeasure":"اضافة وحدة قياس",
+    "name":"اسم الوحدة الأساسي",
+    "code":"رمز",
+    "isActive":"نشط",
+    "addUnitOfMeasure":"أضافة وحدة قياس",
+    "editUnitOfMeasure":"تعديل وحدة القياس",
+    "parentUnitName":"اسم الوحدة الأكبر",
+    "unitValue":"معامل التحويل",
+    "parentCode":"التميز",
+    "addDelete":"اضافة / حذف",
+     "templateName":"القالب"
    }
 
 }

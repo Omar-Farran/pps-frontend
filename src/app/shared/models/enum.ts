@@ -302,7 +302,7 @@ export const transactionTypes  =
     [
         { id: 1, name: 'Cash', nameAr: 'كاش' },
         { id: 2, name: 'Cheque', nameAr: 'شيك' },
-        { id: 3, name: 'Installment', nameAr: 'تقسيط' }
+        { id: 3, name: 'Installment', nameAr: ' دفع أجل' }
     ];
 
     

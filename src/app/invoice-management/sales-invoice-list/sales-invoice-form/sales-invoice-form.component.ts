@@ -109,7 +109,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
 
       if (this.id > 0) {
         this.GetById();
-        this.getCustomerSelectItemList(null)
+       
       }else {
         let date = new Date();
         this.invoiceHeaderForm.get('invoiceDate').setValue({
@@ -118,6 +118,9 @@ isInvoiceHeaderFormSubmitted:boolean = false;
                           day: date.getDate()
                         })
       }
+
+       this.getCustomerSelectItemList('');
+
     }
     //#region Functions
     resetForm () 
@@ -129,7 +132,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
         this.isInvoiceHeaderFormSubmitted = true
     if (this.invoiceHeaderForm.invalid)
     {
-      this.invoiceHeaderForm.markAllAsTouched()
+      this.invoiceHeaderForm.markAllAsTouched();
       return;
     }
 
@@ -139,9 +142,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
     let form = this.invoiceHeaderForm.getRawValue();
     let date = form.invoiceDate;
     form.id  = this.id;
-    if(form.isCustomer){
-      form.customerId = form.customerId?.id;
-    }
+  
        let pad = (n: number) => n.toString().padStart(2, '0');
        form.invoiceDate = `${date.year}-${pad(date.month)}-${pad(date.day)}`;
       let deliveryDate = form.deliveryDate;
@@ -201,7 +202,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
             {
                 id: this.entity.id,
                 isCustomer:this.entity.isCustomer,
-                customerId: {id:this.entity.customerId , name:this.entity.customerName},
+                customerId: this.entity.customerId,
                 customerName: this.entity.isCustomer ? null : this.entity.customerName,
                 sourceType: this.entity.sourceType,
                 isDeliveredOrReceived:this.entity.isDeliveredOrReceived,
@@ -247,8 +248,9 @@ isInvoiceHeaderFormSubmitted:boolean = false;
     if(this.activeIndex == 0){
          this.submitInvoiceHeaderForm();
         }else if(this.activeIndex == 1){
-          if(this.productLineComponent.productItems?.every(item => item.quantity > 0 && item.unitPrice > 0 && item.total > 0 && item.id > 0 &&
-           (item.type == ProductTypeEnum.Product ?  item.quantity <= (item.maxQuantity + (item.reserveDb && this.entity.status != InvoiceStatus.Draft ? item.quantityDb ?? 0 : 0)) : true)
+          if(this.productLineComponent.productItems?.every(item => item.quantity > 0 && item.unitPrice > 0 && item.total > 0 && 
+            (item.id > 0  || typeof item.product !== 'object') &&
+           (item.type == ProductTypeEnum.Product && typeof item.product === 'object'  && !item.isExternal  ?  item.quantity <= (item.maxQuantity + (item.reserveDb && this.entity.status != InvoiceStatus.Draft ? item.quantityDb ?? 0 : 0)) : true)
           )){
               this.submitProductItems();
           }else {
@@ -274,10 +276,10 @@ this.GetById();
         }else {
           switch(this.activeIndex){
             case 0:
-            this.getProductLineItems(this.entity.id);
+            this.getProductLineItems(this.id);
             break;
             case 1:
-              this.getInvoiceInstallments(this.entity.id);
+              this.getInvoiceInstallments(this.id);
             break;
           }
            this.activeIndex++;
@@ -415,10 +417,33 @@ this.baseService.Get('WarehouseSections' , 'GetWarehouseSectionsByLoggedInUser')
   }
 
   submitProductItems(){
-    let form =  {
-      invoiceId: this.id,
-      Products: this.productLineComponent.productItems
-    }
+     debugger;
+    let form = {
+  invoiceId: this.id,
+  Products: this.productLineComponent.productItems.map(x => ({
+    id: x.id,
+    quantity: x.quantity,
+    unitPrice: x.unitPrice,
+    discount: x.discount,
+    tax: x.tax,
+    feesAmount: x.feesAmount,
+    total: x.total,
+    reserve: x.reserve,
+    index: x.index,
+    productId: typeof x.product === 'object' ? x.product.id : null,
+    productName: typeof x.product === 'string' ? x.product : null,
+    unitOfMeasureId: typeof x.unitMeasure === 'object' ? x.unitMeasure.id : null,
+    unitMeasure: typeof x.unitMeasure === 'string' ? x.unitMeasure : null,
+    maxQuantity: x.maxQuantity,
+    quantityDb: x.quantityDb,
+    reserveDb: x.reserveDb,
+    isInValid: x.isInValid,
+    type: x.type,
+    unitOfMeasures:null
+  }))
+};
+
+
     this.baseService.Post('Invoice' , 'SubmitProductItems' , form).subscribe(res => {
       this.GetById();
       this.getInvoiceInstallments(this.id);
@@ -527,7 +552,7 @@ submitInvoiceInstallments(validateCredit = true){
   }
 
     getCustomerSelectItemList(query){
-      this.baseService.Get('Customers' , 'GetSelectItemsList/' + ClientType.Customer + '/?query=' + query ).subscribe(res => {
+          this.baseService.Get('Customers' , 'GetSelectItemsList/' + ClientType.Customer + '/?query=' + query ).subscribe(res => {
         this.filteredCustomers = res 
     })
     }
@@ -539,5 +564,7 @@ submitInvoiceInstallments(validateCredit = true){
     modalRef.result.then((result) => { this.getCustomerSelectItemList(''); })
   }
 
+   
+ 
 
 }

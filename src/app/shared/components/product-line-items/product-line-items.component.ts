@@ -3,6 +3,7 @@ import { BaseService } from '../../services/base.service';
 import { SelectItem } from 'src/app/data/select-item';
 import { ProductLineItem } from 'src/app/data/product-line-item';
 import { InvoiceStatus, InvoiceType, ProductTypeEnum, productTypes } from '../../models/enum';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-product-line-items',
@@ -18,12 +19,18 @@ export class ProductLineItemsComponent  implements OnChanges {
 @Input() sourceId:any;
 @Input() invoice:any;
 filteredProducts:any;
+filteredUnitOfMeasuers:any = [[{id:1 , name:'اخنار'}]];
+productUnitOfMeasuers:any;
 isPurchase:boolean = false;
 itemLabel:any;
 showReserve:boolean;
+value:any;
+
  constructor
     (
-      private baseService: BaseService
+      private baseService: BaseService,
+            private modalService: NgbModal
+      
     ) 
     {
 
@@ -38,6 +45,7 @@ showReserve:boolean;
         this.productItems = this.productItems.map(prod => {
     prod.quantityDb = prod.quantity;
     prod.reserveDb = prod.reserve; 
+    prod.unitMeasure = {id:prod.unitOfMeasureId , name:prod.unitMeasure};
     return prod;
         })
       }
@@ -62,9 +70,15 @@ showReserve:boolean;
       this.filteredProducts = (res as SelectItem[]).filter(product =>
   this.productItems.every(item => item.product?.id !== product.id)
 );
+
+
     })
   }
 
+  onFilterUnitOfMeasuer(query , i){
+    debugger;
+    this.filteredUnitOfMeasuers[i] = [...this.productUnitOfMeasuers[i]];
+  }
 
   addRow(){
     let newProductItemLine = new ProductLineItem();
@@ -82,9 +96,9 @@ showReserve:boolean;
   })
 }
 
-onSelectProduct(lineItem: any, event: any) {
+onSelectProduct(lineItem: any, event: any , index) {
+    debugger;
   const productId = event?.value?.id;
-  debugger;
   if (!productId) return;
   this.baseService.Get('Product', 'GetProductLineItem?SourceType='+ this.sourceType + '&invoiceType=' + this.invoice.type +  '&SourceId=' +  this.sourceId + '&Id=' + productId).subscribe(res => {
     const productLineItem = res as ProductLineItem;
@@ -93,16 +107,29 @@ onSelectProduct(lineItem: any, event: any) {
     this.productItems[lineItem.index].productId = event.value.id;
     this.productItems[lineItem.index].index = lineItem.index;
     this.productItems[lineItem.index].quantity = 1;
-    debugger;
-
+    let unitMeasure =  {id:productLineItem.unitOfMeasureId , name:productLineItem.unitMeasure , value:1};
+     productLineItem.unitOfMeasures.push(unitMeasure);
+    this.productItems[lineItem.index].unitMeasure = {id:productLineItem.unitOfMeasureId , name:productLineItem.unitMeasure}
+    
+    
+   if(!this.productUnitOfMeasuers) {
+    this.productUnitOfMeasuers = [];
+   }
+    if(this.productUnitOfMeasuers[index]){
+      this.productUnitOfMeasuers[index] = productLineItem.unitOfMeasures;
+    }else {
+      this.productUnitOfMeasuers.push(productLineItem.unitOfMeasures);
+    }
+    this.productItems[lineItem.index].maxQuantityView = productLineItem.maxQuantity;
     this.showReserve = productLineItem.type == ProductTypeEnum.Product && this.invoice.type == InvoiceType.SalesInvoice ;
-    this.calculateTotal(this.productItems[lineItem.index] , 'quantity');
+    this.calculateTotal(this.productItems[lineItem.index] , 'quantity' , lineItem.index);
 });
 
 
 }
 
-calculateTotal(item: any , value) {
+calculateTotal(item: any , value , index) {
+  debugger;
   if(item[value] < 1){
     item[value] = 0;
     if(value == 'quantity' || value == 'unitPrice')
@@ -117,7 +144,7 @@ calculateTotal(item: any , value) {
   const price = item.unitPrice || 0;
 const discount = item.discount || 0; // percentage
 const tax = item.tax || 0;           // percentage
-const quantity = item.quantity || 0;
+let quantity = item.quantity || 0;
 const fees = item.feesAmount || 0;
 const discountedPrice = price - (price * discount / 100);
 const taxedPrice = discountedPrice + (discountedPrice * tax / 100);
@@ -133,5 +160,33 @@ validateQuantity(item){
     }
 
 }
+
+setTooltip(autoComp: any, product: any) {
+  const inputEl = autoComp?.inputEL?.nativeElement;
+  if (inputEl && product?.name) {
+    inputEl.setAttribute('title', product.name);
+  } else {
+    inputEl?.removeAttribute('title');
+  }
+}
+
+onSelectUnitMeasure(query , index , item){
+  let unitOfMeasure = this.productUnitOfMeasuers[index].find(x=> x.id == query?.value?.id);
+  if(unitOfMeasure?.value){
+    this.productItems[index].maxQuantityView = Math.floor(this.productItems[index].maxQuantity / unitOfMeasure.value);
+    this.productItems[index].unitPrice = this.productItems[index].unitPrice * unitOfMeasure.value;
+  }else {
+    this.productItems[index].maxQuantityView = this.productItems[index].maxQuantity;
+  }
+  this.calculateTotal(item , 'unitMeasure' , index)
+ 
+}
+
+   onAddProducts(modal: any) {
+    const modalRef = this.modalService.open
+      (modal, { modalDialogClass: 'side-modal', backdrop: 'static', keyboard: false });
+    modalRef.result.then((result) => { this.filterProducts(''); })
+  }
+
 
 }

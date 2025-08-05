@@ -150,10 +150,10 @@
         <table class="table table-bordered">
     <thead>
       <tr>
-        <th style="width: 40%;">Product</th>
-        <th *ngIf="type == recivingType">Ordered Quantity</th>
-        <th>Quantity</th>
-        <th>Actions</th>
+        <th style="width: 40%;">{{'transaction.product' | translate }}</th>
+        <th *ngIf="type == recivingType">{{'transaction.orderQuantity' | translate }}</th>
+        <th>{{'transaction.quantity' | translate }}</th>
+        <th>{{'product-line-item.action' | translate }}</th>
       </tr>
     </thead>
     <tbody  *ngIf="transactionItems?.length > 0">
