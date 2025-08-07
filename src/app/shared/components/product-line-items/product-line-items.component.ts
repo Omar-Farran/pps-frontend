@@ -45,6 +45,7 @@ value:any;
         this.productItems = this.productItems.map(prod => {
     prod.quantityDb = prod.quantity;
     prod.reserveDb = prod.reserve; 
+    if(prod.unitOfMeasureId)
     prod.unitMeasure = {id:prod.unitOfMeasureId , name:prod.unitMeasure};
     return prod;
         })
