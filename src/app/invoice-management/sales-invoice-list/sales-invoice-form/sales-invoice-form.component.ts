@@ -409,7 +409,6 @@ this.baseService.Get('WarehouseSections' , 'GetWarehouseSectionsByLoggedInUser')
 
    getInvoiceInstallments(invoiceid:number){
     this.baseService.Get('Invoice' , 'GetInvoiceInstallments/' + invoiceid).subscribe(res => {
-      debugger;
       if(res) {
       this.invoiceInstallments = res as Installment[];
       }
@@ -417,7 +416,6 @@ this.baseService.Get('WarehouseSections' , 'GetWarehouseSectionsByLoggedInUser')
   }
 
   submitProductItems(){
-     debugger;
     let form = {
   invoiceId: this.id,
   Products: this.productLineComponent.productItems.map(x => ({
@@ -457,7 +455,6 @@ this.baseService.Get('WarehouseSections' , 'GetWarehouseSectionsByLoggedInUser')
   }
 
 submitInvoiceInstallments(validateCredit = true){
-  debugger;
     let pad = (n: number) => n.toString().padStart(2, '0');
     let form =  {
       invoiceId: this.id,

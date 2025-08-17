@@ -62,7 +62,6 @@ export class UserProfileComponent implements OnInit {
 			centered: true
 		})
 		.result.then((result) => {
-			debugger;
 			console.log(result);
 		}, (reason) => {
 			console.log('Err!', reason);

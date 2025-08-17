@@ -93,7 +93,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
     
     });
 
-     debugger;
+    
       this.getSupplierSelectItemList('');
     }
     ngOnInit (): void 
@@ -105,7 +105,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
     { label: this.translate.instant('sales-invoice.final-invoice-summary'), command: () => (this.activeIndex = 3) }
       ]
 
-      debugger;
+     
       if (this.id > 0) {
         this.GetById();
         this.getSupplierSelectItemList('')
@@ -126,7 +126,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
     }
     submitInvoiceHeaderForm (): void 
     {
-      debugger;
+     
         this.isInvoiceHeaderFormSubmitted = true
     if (this.invoiceHeaderForm.invalid)
     {
@@ -177,7 +177,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
          this.disableForm()
 
         }
-       debugger;
+      
         const date = new Date(this.entity.invoiceDate);
         const deliveryDate = this.entity.deliveryDate ?  new Date(this.entity.deliveryDate) : null;
         this.sourceType = this.entity.sourceType;
@@ -380,7 +380,7 @@ this.baseService.Get('WarehouseSections' , 'GetWarehouseSectionsByLoggedInUser')
 
    getInvoiceInstallments(invoiceid:number){
     this.baseService.Get('Invoice' , 'GetInvoiceInstallments/' + invoiceid).subscribe(res => {
-      debugger;
+     
       this.invoiceInstallments = res as Installment[];
     })
   }
@@ -422,7 +422,7 @@ this.baseService.Get('WarehouseSections' , 'GetWarehouseSectionsByLoggedInUser')
   }
 
 submitInvoiceInstallments(validateCredit = true){
-  debugger;
+ 
     let pad = (n: number) => n.toString().padStart(2, '0');
     let form =  {
       invoiceId: this.id,

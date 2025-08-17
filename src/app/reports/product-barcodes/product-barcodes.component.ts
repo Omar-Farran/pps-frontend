@@ -101,7 +101,6 @@ export class ProductBarcodesComponent implements OnInit {
 
     this.baseService.Post('Product', 'DownloadBarcodesPdf', this.selectedIds)
       .subscribe(res => {
-        debugger
         const base64String = (res as any).fileContents
         const byteCharacters = atob(base64String);
         const byteNumbers = new Array(byteCharacters.length);

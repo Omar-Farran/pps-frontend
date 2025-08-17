@@ -373,7 +373,6 @@ this.baseService.Get('WarehouseSections' , 'GetWarehouseSectionsByLoggedInUser')
 
 
   submitProductItems(){
-    debugger;
     let form =  {
       invoiceId: this.id,
        Products: this.productLineComponent.productItems.map(x => ({

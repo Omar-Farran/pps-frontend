@@ -73,7 +73,6 @@ isFormSubmitted:boolean = false;
   );
       return;
     }
-    debugger;
     const ApiPath = this.isEditMood ? 'Update' : 'Post';
     const ControllerPath = 'UnitOfMeasure'
     

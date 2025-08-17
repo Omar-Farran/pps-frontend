@@ -78,7 +78,6 @@ lang:string;
 
          getInvoiceInstallments(invoiceid:number){
           this.baseService.Get('Invoice' , 'GetInvoiceInstallments/' + invoiceid).subscribe(res => {
-            debugger;
             this.installments = res as Installment[];
           })
         }
@@ -136,7 +135,11 @@ lang:string;
        this.translate.instant('success'),
        this.translate.instant('sales-invoice.invoiceSubmitted'),
     { timeOut: 3000 })
-    this.navigate();
+    if(printReport){
+      setTimeout(() => this.navigate(), 2000 )
+    }else {
+      this.navigate()
+    }
     if(printReport){
       this.printReport(true);
     }

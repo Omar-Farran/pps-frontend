@@ -74,7 +74,6 @@ export class SidebarCompactComponent implements OnInit {
               this.selectedItem = item;
               item.active = true;
               // subItem.active = true;
-              // debugger;
             }
             if (subItem.sub) {
               subItem.sub.forEach(subChildItem => {

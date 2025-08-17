@@ -21,7 +21,6 @@ constructor(private route: ActivatedRoute,private baseService:BaseService,public
 }
 
  private GetCustomer() {
-  debugger;
     this.baseService.Get('customers', `Get/${this.customerId}`).subscribe
       (res => {
         this.customer = res;

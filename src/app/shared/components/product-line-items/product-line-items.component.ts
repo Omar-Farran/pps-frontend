@@ -38,6 +38,8 @@ value:any;
     }
   ngOnChanges(changes: SimpleChanges): void {
   if(this.productItems.length == 0){
+       this.productUnitOfMeasuers = [];
+       this.filteredUnitOfMeasuers = [];
         let product = new ProductLineItem();
         product.index = 0;
         this.productItems.push(product);
@@ -45,8 +47,15 @@ value:any;
         this.productItems = this.productItems.map(prod => {
     prod.quantityDb = prod.quantity;
     prod.reserveDb = prod.reserve; 
+    prod.originalUnitPrice = prod.unitPrice;
     if(prod.unitOfMeasureId)
     prod.unitMeasure = {id:prod.unitOfMeasureId , name:prod.unitMeasure};
+  
+  if(prod.unitOfMeasures){
+    this.productUnitOfMeasuers.push(prod.unitOfMeasures);
+    this.filteredUnitOfMeasuers.push(prod.unitOfMeasures);
+  }
+    
     return prod;
         })
       }
@@ -77,9 +86,11 @@ value:any;
   }
 
   onFilterUnitOfMeasuer(query , i){
-    debugger;
+    
     this.filteredUnitOfMeasuers[i] = [...this.productUnitOfMeasuers[i]];
   }
+
+
 
   addRow(){
     let newProductItemLine = new ProductLineItem();
@@ -98,7 +109,7 @@ value:any;
 }
 
 onSelectProduct(lineItem: any, event: any , index) {
-    debugger;
+    
   const productId = event?.value?.id;
   if (!productId) return;
   this.baseService.Get('Product', 'GetProductLineItem?SourceType='+ this.sourceType + '&invoiceType=' + this.invoice.type +  '&SourceId=' +  this.sourceId + '&Id=' + productId).subscribe(res => {
@@ -107,15 +118,12 @@ onSelectProduct(lineItem: any, event: any , index) {
     this.productItems[lineItem.index].product = event.value;
     this.productItems[lineItem.index].productId = event.value.id;
     this.productItems[lineItem.index].index = lineItem.index;
+     this.productItems[lineItem.index].productUnitPrice = this.productItems[lineItem.index].unitPrice;
     this.productItems[lineItem.index].quantity = 1;
     let unitMeasure =  {id:productLineItem.unitOfMeasureId , name:productLineItem.unitMeasure , value:1};
      productLineItem.unitOfMeasures.push(unitMeasure);
     this.productItems[lineItem.index].unitMeasure = {id:productLineItem.unitOfMeasureId , name:productLineItem.unitMeasure}
-    
-    
-   if(!this.productUnitOfMeasuers) {
-    this.productUnitOfMeasuers = [];
-   }
+ 
     if(this.productUnitOfMeasuers[index]){
       this.productUnitOfMeasuers[index] = productLineItem.unitOfMeasures;
     }else {
@@ -130,7 +138,7 @@ onSelectProduct(lineItem: any, event: any , index) {
 }
 
 calculateTotal(item: any , value , index) {
-  debugger;
+  
   if(item[value] < 1){
     item[value] = 0;
     if(value == 'quantity' || value == 'unitPrice')
@@ -175,7 +183,7 @@ onSelectUnitMeasure(query , index , item){
   let unitOfMeasure = this.productUnitOfMeasuers[index].find(x=> x.id == query?.value?.id);
   if(unitOfMeasure?.value){
     this.productItems[index].maxQuantityView = Math.floor(this.productItems[index].maxQuantity / unitOfMeasure.value);
-    this.productItems[index].unitPrice = this.productItems[index].unitPrice * unitOfMeasure.value;
+    this.productItems[index].unitPrice = this.productItems[index].productUnitPrice * unitOfMeasure.value;
   }else {
     this.productItems[index].maxQuantityView = this.productItems[index].maxQuantity;
   }

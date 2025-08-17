@@ -166,7 +166,7 @@ isInvoiceHeaderFormSubmitted:boolean = false;
     this.baseService.Get('Invoice', `Get/${this.id}`).subscribe
       (res => {
         this.entity = res;
-        debugger;
+        
         if(this.entity.type != InvoiceType.PurchaseRequestInvoice){
           this.router.navigate(['others/404'])
         }
@@ -377,7 +377,7 @@ this.baseService.Get('WarehouseSections' , 'GetWarehouseSectionsByLoggedInUser')
 
    getInvoiceInstallments(invoiceid:number){
     this.baseService.Get('Invoice' , 'GetInvoiceInstallments/' + invoiceid).subscribe(res => {
-      debugger;
+      
       this.invoiceInstallments = res as Installment[];
     })
   }
@@ -420,7 +420,7 @@ this.baseService.Get('WarehouseSections' , 'GetWarehouseSectionsByLoggedInUser')
   }
 
 submitInvoiceInstallments(validateCredit = true){
-  debugger;
+  
     let pad = (n: number) => n.toString().padStart(2, '0');
     let form =  {
       invoiceId: this.id,

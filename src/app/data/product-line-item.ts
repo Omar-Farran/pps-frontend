@@ -3,6 +3,7 @@ export class ProductLineItem {
     unitMeasure:any;
     quantity:number;
     unitPrice:number;
+    originalUnitPrice:number;
     discount:number;
     tax:number;
     feesAmount:number;
@@ -21,5 +22,6 @@ export class ProductLineItem {
     unitOfMeasures:any[];
     unitOfMeasureId?:number;
     isExternal:boolean;
+    productUnitPrice:number;
 }
 

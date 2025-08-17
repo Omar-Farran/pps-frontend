@@ -23,7 +23,6 @@ constructor(private route: ActivatedRoute,private baseService:BaseService,public
 }
 
  private getProduct() {
-  debugger;
     this.baseService.Get('Product', `Get/${this.productId}`).subscribe
       (res => {
         this.product = res as any;

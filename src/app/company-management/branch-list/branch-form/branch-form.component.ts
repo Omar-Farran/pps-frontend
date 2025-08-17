@@ -68,7 +68,6 @@ export class BranchFormComponent implements OnInit {
       this.form.markAllAsTouched()
       return;
     }
-    debugger;
     const ApiPath = this.isEditMood ? 'Update' : 'Post';
     const ControllerPath = 'Branch'
     

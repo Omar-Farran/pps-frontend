@@ -370,7 +370,6 @@ onFollowItemChange(value){
 }
 
 onProductTypeChange(value){
-  debugger;
   if(value == ProductTypeEnum.Service){
     this.isProductService = true;
    this.basicForm.get('unitOfMeasureId').removeValidators(Validators.required);

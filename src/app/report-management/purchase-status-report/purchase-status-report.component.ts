@@ -196,7 +196,6 @@ let pad = (n: number) => n.toString().padStart(2, '0');
 downloadReport() {
   this.baseService.generatePDF('Report', 'GeneratePurchaseInvoicePDF', this.baseSearch)
     .subscribe((blob: Blob) => {
-      debugger;
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;

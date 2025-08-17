@@ -79,7 +79,6 @@ export class WarehouseSectionsFormComponent implements OnInit {
       this.form.markAllAsTouched()
       return;
     }
-    debugger;
     const ApiPath = this.isEditMood ? 'Update' : 'Post';
 
     let form = this.form.getRawValue();

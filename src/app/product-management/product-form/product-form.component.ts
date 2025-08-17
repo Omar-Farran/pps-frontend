@@ -178,7 +178,8 @@ brands:any[];
     categoryName:null,
     brandName:null
   };
-  if(typeof combinedData.unitOfMeasureId === 'object'){
+  if(!this.isProductService){
+ if(typeof combinedData.unitOfMeasureId === 'object'){
     combinedData.unitOfMeasureId =  combinedData.unitOfMeasureId.id;
   }else {
     combinedData.UnitOfMeasureName =  combinedData.unitOfMeasureId;
@@ -198,6 +199,8 @@ brands:any[];
     combinedData.brandName =  combinedData.brandId;
     combinedData.brandId = null;
   }
+  }
+ 
 
 
 
@@ -369,20 +372,40 @@ onFollowItemChange(value){
   }
 }
 
-onProductTypeChange(value){
-  debugger;
-  if(value == ProductTypeEnum.Service){
-    this.isProductService = true;
-   this.basicForm.get('unitOfMeasureId').removeValidators(Validators.required);
-    this.basicForm.get('categoryId').removeValidators(Validators.required);
-    this.basicForm.updateValueAndValidity();
+onProductTypeChange(value: ProductTypeEnum) {
+  const uom = this.basicForm.get('unitOfMeasureId');
+  const cat = this.basicForm.get('categoryId');
 
-  }else {
+  if (value == ProductTypeEnum.Service) {
+    this.isProductService = true;
+
+    // 1) remove ALL validators on the controls
+    uom?.clearValidators();
+    cat?.clearValidators();
+    uom?.clearAsyncValidators();
+    cat?.clearAsyncValidators();
+
+    // 2) clear any manually-set/stale errors
+    uom?.setErrors(null);
+    cat?.setErrors(null);
+
+    // 3) re-evaluate the controls themselves
+    uom?.updateValueAndValidity({ onlySelf: true, emitEvent: false });
+    cat?.updateValueAndValidity({ onlySelf: true, emitEvent: false });
+  } else {
     this.isProductService = false;
-    this.basicForm.get('unitOfMeasureId').setValidators(Validators.required);
-    this.basicForm.get('categoryId').setValidators(Validators.required);
-    this.basicForm.updateValueAndValidity();
+
+    // 1) add required
+    uom?.setValidators([Validators.required]);
+    cat?.setValidators([Validators.required]);
+
+    // 2) re-evaluate the controls
+    uom?.updateValueAndValidity({ onlySelf: true });
+    cat?.updateValueAndValidity({ onlySelf: true });
   }
+
+  // finally re-evaluate the group (in case you have group-level validators)
+  this.basicForm.updateValueAndValidity({ emitEvent: false });
 }
 
 

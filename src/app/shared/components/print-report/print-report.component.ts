@@ -26,7 +26,6 @@ constructor(private baseService:BaseService,
 
 }
 printReport(){
-  debugger;
   console.log(this.invoice)
   if(this.invoice?.invoiceStatus != 'Draft') {
  this.modal.dismiss('Cross click')

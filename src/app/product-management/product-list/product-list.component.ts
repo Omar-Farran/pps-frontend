@@ -85,7 +85,6 @@ dataSource: any[] = [];
   //#endregion
   //#region Filtering and Searching
   onSearch() {
-    debugger;
       let searchFormValue = this.searchForm.getRawValue();
       this.baseSearch.name =searchFormValue?.searchValue;
       if(searchFormValue?.type){

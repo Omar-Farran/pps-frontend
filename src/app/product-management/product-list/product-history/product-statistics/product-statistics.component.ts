@@ -32,7 +32,6 @@ public searchForm = new FormGroup
     }
   }
   onSearch(){
-    debugger;
     this.baseSearch.productId = this.productId;
      let searchFormValue = this.searchForm?.getRawValue();
     if(searchFormValue){

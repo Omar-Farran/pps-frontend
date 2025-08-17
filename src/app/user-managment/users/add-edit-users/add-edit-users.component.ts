@@ -115,7 +115,6 @@ export class AddEditUsersComponent implements OnInit
     this.isSubmittedUserAddForm = true;
     if (this.userAddForm.invalid) 
     {
-        debugger;
       this.userAddForm.markAllAsTouched();
       return;
     }
@@ -157,7 +156,6 @@ export class AddEditUsersComponent implements OnInit
   }
   private GetById ()
   {
-    debugger;
     this.baseService.Get('Users',`GetUserProfileById/${this.UserId}`).subscribe
     ( res => { 
       this.User = res as any;

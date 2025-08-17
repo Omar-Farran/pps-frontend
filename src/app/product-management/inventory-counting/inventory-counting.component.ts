@@ -122,7 +122,6 @@ export class InventoryCountingComponent {
   //#endregion
   //#region Filtering and Searching
   onSearch() {
-    debugger;
     let form = this.searchForm.getRawValue();
     if (form && !this.searchForm.invalid) {
       this.baseSearch.sectionId = form.sectionId;
@@ -218,7 +217,6 @@ export class InventoryCountingComponent {
     }
     let form = this.calculationForm.getRawValue();
     if (form) {
-      debugger;
       form['productId'] = form.product.id
       if(form.sourceType){
         form.sourceType = Number(form.sourceType);
